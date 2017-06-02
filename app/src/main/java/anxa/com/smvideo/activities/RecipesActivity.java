@@ -55,7 +55,7 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_recettes));
 
         //ui
-        recipesListView = (CustomListView) mView.findViewById(R.id.recipeListView);
+        recipesListView = (CustomListView) mView.findViewById(R.id.recipesListView);
         recipesList = new ArrayList<RecipeContract>();
 
         if (adapter == null) {
