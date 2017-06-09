@@ -16,26 +16,54 @@
         android:gravity="top"
         android:weightSum="10">
 
+        <RelativeLayout
+            android:id="@+id/recipeImageLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+            <ImageView
+                android:id="@+id/recipeImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:scaleType="fitXY"
+                android:paddingLeft="0dp"
+                android:paddingRight="10dp"
+                android:adjustViewBounds="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"/>
 
-<ImageView
-    android:id="@+id/recipeImage"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_weight="3"
-    android:scaleType="fitXY"
-    android:paddingLeft="0dp"
-    android:paddingRight="10dp"
-    android:adjustViewBounds="true"/>
+
+                />
+            <ProgressBar
+                android:id="@+id/recipeImageProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:layout_toRightOf="@id/recipeImageLayout">
         <TextView
             android:id="@+id/recipeTitle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/recipeImage"
             android:paddingRight="10dp"
             android:text="Recipe Title"
             android:gravity="center_vertical"
-            android:layout_weight="7"
-            android:minHeight="50sp"/>
+            android:minHeight="50sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
     </LinearLayout>
     >
 

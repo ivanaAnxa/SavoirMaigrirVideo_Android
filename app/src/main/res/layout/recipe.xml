@@ -25,15 +25,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <RelativeLayout
+                android:id="@+id/recipeImageLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4">
                 <ImageView
                     android:id="@+id/recipeImage"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.4"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     />
+            <ProgressBar
+                android:id="@+id/recipeImageProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                />
+            </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

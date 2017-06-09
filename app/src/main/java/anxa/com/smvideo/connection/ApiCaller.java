@@ -1,5 +1,7 @@
 package anxa.com.smvideo.connection;
 
+import android.os.AsyncTask;
+
 import com.google.gson.Gson;
 
 import anxa.com.smvideo.common.CommandConstants;
@@ -32,7 +34,7 @@ public class ApiCaller {
         MasterCommand command = new MasterCommand();
         command.Command = CommandConstants.FREE_DISCOVER;
 
-        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class) ;
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
     }
     public  void GetFreeTestimonials(AsyncResponse asyncResponse)
     {
@@ -40,7 +42,7 @@ public class ApiCaller {
         MasterCommand command = new MasterCommand();
         command.Command = CommandConstants.FREE_TESTIMONIALS;
 
-        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class) ;
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
     }
     public  void GetFreeRecipes(AsyncResponse asyncResponse)
     {
@@ -48,6 +50,6 @@ public class ApiCaller {
         MasterCommand command = new MasterCommand();
         command.Command = CommandConstants.FREE_RECIPES;
 
-        apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, RecipeResponseContract.class) ;
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, RecipeResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
     }
 }

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -80,7 +79,9 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
         switch (position) {
             case 0: //decouvir
+
                 fragment = new DiscoverActivity();
+
                 break;
             case 1: //bilan
                 fragment = new BilanMinceurActivity();
@@ -90,17 +91,28 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                 break;
             case 3: //recetters
                 fragment = new RecipesActivity();
+
                 break;
             case 4: //mon compte
+                fragment = new MonCompteActivity();
                 break;
             default:
                 fragment = new RecipesActivity();
+
+
         }
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.mainContent, fragment)
+        if(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT") != null){
+            fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
+        }
+
+
+        fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT")
                 .commit();
+
+
+
 
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavItems.get(position).mTitle);
@@ -120,5 +132,11 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     public void launchActivity(Class obj) {
         Intent intent = new Intent(this, obj);
         startActivity(intent);
+    }
+
+    public void onBackPressed(View view) {
+
+        getFragmentManager().popBackStack();
+
     }
 }

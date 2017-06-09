@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="fill_parent"
+    android:background="@drawable/fullbackground">
     <include android:layout_height="44dp"
         android:layout_width="match_parent"
         layout="@layout/header_menu"/>
-    <ScrollView
+    <include
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_weight="0.5"
+        layout="@layout/main_video"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8">
         <anxa.com.smvideo.ui.CustomListView
             android:id="@+id/discoverListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:cacheColorHint="#000000"
             android:divider="#000000"
             android:dividerHeight="1dp" />
-    </ScrollView>
+    </RelativeLayout>
 </LinearLayout>

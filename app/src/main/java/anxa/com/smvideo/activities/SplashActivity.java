@@ -29,7 +29,7 @@ public class SplashActivity extends Activity {
                                 /* Step 2: Create an Intent that will start the HapilabsMainActivity. */
                 Intent mainIntent;
 
-                mainIntent = new Intent(SplashActivity.this, MainActivity.class);
+                mainIntent = new Intent(SplashActivity.this, LandingPageActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }

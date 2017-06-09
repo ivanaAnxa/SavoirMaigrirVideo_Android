@@ -2,11 +2,15 @@ package anxa.com.smvideo.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -68,6 +72,7 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
             viewHolder = new VideoListAdapter.ViewHolder();
             viewHolder.videoImage = (ImageView) row.findViewById(R.id.videoImage);
             viewHolder.videoTitle = ((TextView) row.findViewById(R.id.videoTitle));
+            viewHolder.videoImageProgress= ((ProgressBar) row.findViewById(R.id.videoImageProgress));
             row.setTag(viewHolder);
         }else {
             viewHolder = (VideoListAdapter.ViewHolder) row.getTag();
@@ -80,18 +85,33 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
         }
 
         VideoContract contract = (VideoContract) items.get(position);
-        row.setTag(R.id.video_id, contract.Id);
+        row.setTag(R.id.video_id, contract.VideoUrl);
         row.setOnClickListener(this);
         Bitmap avatar = null;
-        avatar = VideoHelper.GetVideoImage(contract.Id);
-        viewHolder.videoImage.setTag(contract.Id);
+        avatar = VideoHelper.GetVideoImage(contract.VideoId);
+        viewHolder.videoImage.setTag(contract.VideoUrl);
+        if(contract.IsSelected)
+        {
+            if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                viewHolder.videoImage.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.orange_border));
+            } else {
+                viewHolder.videoImage.setBackground(context.getResources().getDrawable(R.drawable.orange_border));
+            }
+        }else{
+            if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                viewHolder.videoImage.setBackgroundDrawable(null);
+            } else {
+                viewHolder.videoImage.setBackground(null);
+            }
+        }
         //display message
         viewHolder.videoTitle.setText(contract.Title);
         if (avatar == null) {
-            new VideoDownloadImageAsync(viewHolder.videoImage, contract.Id).execute(contract.ThumbnailUrl);
+            new VideoDownloadImageAsync(viewHolder.videoImage, viewHolder.videoImageProgress,  contract.VideoUrl).execute(contract.ThumbnailUrl.replace("hqdefault", "default"));
         } else {
 
             viewHolder.videoImage.setImageBitmap(avatar);
+            viewHolder.videoImageProgress.setVisibility(View.GONE);
         }
 
         return row;
@@ -106,11 +126,11 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
         if (v != null) {
 
             if (items != null && items.size() > 0) {
-                int pos = (Integer) v.getTag(R.id.recipe_id);
-//                items.get(pos).is_read = true;
+
 
                 if (listener != null) {
                     listener.onClick(v);
+
                 }
             }
         }
@@ -121,5 +141,6 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
     private static class ViewHolder {
         ImageView videoImage;
         TextView videoTitle;
+        ProgressBar videoImageProgress;
     }
 }

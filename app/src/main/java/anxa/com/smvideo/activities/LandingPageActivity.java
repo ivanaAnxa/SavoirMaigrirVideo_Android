@@ -1,6 +1,8 @@
 package anxa.com.smvideo.activities;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -59,9 +61,13 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
     }
 
     private void GoToRecettesPage() {
-        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Recettes;
+      ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Recettes;
         Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(mainIntent);
+
+
+
+
     }
 
     private void GoToBilanPage() {

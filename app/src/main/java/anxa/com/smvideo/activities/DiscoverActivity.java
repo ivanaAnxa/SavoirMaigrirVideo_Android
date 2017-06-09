@@ -1,20 +1,32 @@
 package anxa.com.smvideo.activities;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerView;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
+import anxa.com.smvideo.contracts.RecipeContract;
 import anxa.com.smvideo.contracts.VideoContract;
 import anxa.com.smvideo.contracts.VideoDataContract;
 import anxa.com.smvideo.contracts.VideoResponseContract;
@@ -35,13 +47,18 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
     private VideoListAdapter adapter;
     private List<VideoContract> videosList;
 
+    private YouTubePlayerFragment playerFragment;
+    View mView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         this.context = getActivity();
-        View mView = inflater.inflate(R.layout.discover, null);
+        mView = inflater.inflate(R.layout.discover, null);
         caller = new ApiCaller();
+        //header change
+        ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_decouvrir));
 
         //ui
         discoverListView = (CustomListView) mView.findViewById(R.id.discoverListView);
@@ -51,6 +68,16 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
         }
 
         discoverListView.setAdapter(adapter);
+        //Initializing and adding YouTubePlayerFragment
+        FragmentManager fm = getFragmentManager();
+        String tag = YouTubePlayerFragment.class.getSimpleName();
+        playerFragment = (YouTubePlayerFragment) fm.findFragmentByTag(tag);
+
+            FragmentTransaction ft = fm.beginTransaction();
+            playerFragment = YouTubePlayerFragment.newInstance();
+            ft.replace(R.id.youtube_layout, playerFragment, tag);
+            ft.commit();
+
 
         caller.GetFreeDiscover(new AsyncResponse() {
             @Override
@@ -61,10 +88,20 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
                     VideoResponseContract c = (VideoResponseContract) output;
 
                     if (c != null && c.Data != null && c.Data.Videos != null) {
-                        videosList = (List<VideoContract>) c.Data.Videos;
+                        for(VideoContract v : c.Data.Videos)
+                        {
+                            if(v.VideoSource != null && v.VideoSource.equalsIgnoreCase("youtube"))
+                            {
+                                videosList.add(v);
+                            }
+                        }
+
                         ApplicationData.getInstance().discoverVideoList = videosList;
                         VideoHelper.sort("index", videosList);
+                        videosList.get(0).IsSelected = true;
                         adapter.updateItems(videosList);
+
+                        RefreshPlayer(mView, videosList.get(0));
                     }
                 }
             }
@@ -72,8 +109,91 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
         return mView;
     }
 
+
+
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
+
+
+
+        FragmentManager fm = getFragmentManager();
+        String tag = YouTubePlayerFragment.class.getSimpleName();
+        playerFragment = (YouTubePlayerFragment) fm.findFragmentByTag(tag);
+        if (playerFragment != null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            playerFragment = YouTubePlayerFragment.newInstance();
+            ft.replace(R.id.youtube_layout, playerFragment, tag);
+            ft.commit();
+        }
+
+        final String videoId = (String) v.getTag(R.id.video_id);
+
+        for(int i = 0; i < videosList.size(); i++){
+            VideoContract temp = new VideoContract();
+            if (videosList.get(i).VideoUrl == videoId) {
+                RefreshPlayer(v, videosList.get(i));
+                videosList.get(i).IsSelected = true;
+            }else{
+                videosList.get(i).IsSelected = false;
+            }
+        }
+        adapter.updateItems(videosList);
+    }
+
+    private void RefreshPlayer(final View v, final VideoContract video)
+    {
+        playerFragment.initialize(SavoirMaigrirVideoConstants.YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
+                if(video.VideoId != null){
+
+
+
+                            youTubePlayer.cueVideo(String.valueOf(video.VideoId));
+
+                            ((TextView) (mView.findViewById(R.id.videoTitle))).setText(video.Title);
+                            ((TextView) (mView.findViewById(R.id.videoDesc))).setText(video.Description);
+                            ((TextView) (mView.findViewById(R.id.videoDuration))).setText(video.Duration);
+                            youTubePlayer.setPlaybackEventListener(new YouTubePlayer.PlaybackEventListener() {
+                                @Override
+                                public void onBuffering(boolean arg0) { }
+
+                                @Override
+                                public void onPaused() { }
+
+                                @Override
+                                public void onPlaying() {
+                                    //youTubePlayer.setFullscreen(true);
+                                }
+
+                                @Override
+                                public void onSeekTo(int arg0) { }
+
+                                @Override
+                                public void onStopped()
+                                {
+                                    //youTubePlayer.setFullscreen(false);
+                                }
+                            });
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                //Toast.makeText(YouTubePlayerFragmentActivity.this, "Error while initializing YouTubePlayer.", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+        });
 
     }
+
+
+
+
 }

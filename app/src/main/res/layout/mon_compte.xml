@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scaleType="fitXY"
+    android:background="#ffffff">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1"
+        android:background="#ffffff">
+
+        <include android:layout_height="44dp"
+            android:layout_width="match_parent"
+            layout="@layout/header_menu"
+            android:id="@+id/headermenu"        />
+
+
+        <RelativeLayout
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75">
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:elevation="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mon_compte_bg" />
+
+            <Button
+                android:id="@+id/moncompte_button"
+                android:layout_width="171dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/imageView2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:background="@drawable/button_orange_roundedcorners"
+                android:onClick="button_onclick"
+                android:text="@string/button_register"
+                android:textAllCaps="true"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="15sp"
+                android:paddingTop="10sp"
+                android:text="@string/moncompte_title"
+                android:textColor="@color/colorContenText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/editText"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="15sp"
+                android:paddingTop="5sp"
+                android:text="@string/moncompte_subtitle"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/editText5"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="29dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingLeft="15sp"
+                android:text="@string/moncompte_BulletTittle"
+                android:textColor="#FF771F"
+                android:textSize="15sp"
+                android:layout_below="@+id/editText2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/editText7"
+                android:layout_alignEnd="@+id/editText7" />
+
+            <TextView
+                android:id="@+id/editText4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/editText10"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/editText10"
+                android:layout_below="@+id/editText10"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingLeft="20sp"
+                android:paddingRight="50sp"
+                android:text="@string/moncompte_Bullet6"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                />
+
+            <TextView
+                android:id="@+id/editText10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/editText9"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/editText9"
+                android:layout_below="@+id/editText9"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingBottom="10sp"
+                android:paddingLeft="20sp"
+                android:paddingRight="50sp"
+                android:text="@string/moncompte_Bullet5"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/editText9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/editText8"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/editText8"
+                android:layout_below="@+id/editText8"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingBottom="10sp"
+                android:paddingLeft="20sp"
+                android:paddingRight="50sp"
+                android:text="@string/moncompte_Bullet4"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/editText8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/editText6"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/editText6"
+                android:layout_below="@+id/editText6"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingBottom="10sp"
+                android:paddingLeft="20sp"
+                android:paddingRight="50sp"
+                android:text="@string/moncompte_Bullet3"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/editText7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/moncompte_button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/moncompte_button"
+                android:layout_below="@+id/editText5"
+                android:layout_marginTop="16dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingBottom="10sp"
+                android:paddingLeft="20sp"
+                android:paddingRight="50sp"
+                android:text="@string/moncompte_Bullet1"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/editText6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/editText7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/editText7"
+                android:layout_below="@+id/editText7"
+                android:background="#00000000"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingBottom="10sp"
+                android:paddingLeft="20sp"
+                android:paddingRight="50sp"
+                android:text="@string/moncompte_Bullet2"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"></LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

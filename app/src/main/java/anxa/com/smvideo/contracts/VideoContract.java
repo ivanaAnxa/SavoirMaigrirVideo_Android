@@ -42,4 +42,6 @@ public class VideoContract {
 
     @SerializedName("thumbnailUrl")
     public String ThumbnailUrl;
+
+    public boolean IsSelected;
 }

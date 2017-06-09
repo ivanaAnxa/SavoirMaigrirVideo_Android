@@ -1,9 +1,11 @@
 package anxa.com.smvideo.connection.http;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.Executor;
 
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.common.WebkitURL;
@@ -20,6 +22,11 @@ public class SavoirMaigrirVideoApiClient {
         client.execute(new String()); //temporarily pass string since we already built the url
     }
 
+    //to be used only for listview inside a fragment
+    public  <T extends BaseContract> void GetAsync(AsyncResponse asyncResponse, String apiName, MasterCommand command, Class<T> classType, Executor executor) {
+        AnxacoachingGetAsnyc client = new AnxacoachingGetAsnyc(asyncResponse, FormatUri(apiName, "get", command), classType);
+        client.executeOnExecutor(executor, new String());
+    }
     public String FormatUri(String apiName, String httpMethod,  MasterCommand command)  {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http").encodedAuthority(WebkitURL.domainURL.replace("http://", ""));

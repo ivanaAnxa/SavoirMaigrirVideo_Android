@@ -34,9 +34,9 @@ public class VideoHelper {
         Collections.sort(itemLocationList, comparator);
     }
 
-    public static Bitmap GetVideoImage(int videoId) {
+    public static Bitmap GetVideoImage(String videoId) {
         Bitmap avatarBMP = null;
-        if (videoId > 0) {
+        if (videoId != null) {
             avatarBMP = ApplicationData.getInstance().videoPhotoList.get(String.valueOf(videoId));
 
             return avatarBMP;

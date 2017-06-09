@@ -3,8 +3,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:paddingBottom="5dp">
+    android:background="#ffffff">
 
 
     <LinearLayout
@@ -15,28 +14,56 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-
-        <ImageView
-            android:id="@+id/videoImage"
+        <RelativeLayout
+            android:id="@+id/videoImageLayout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:adjustViewBounds="true"
-            android:paddingLeft="0dp"
-            android:paddingRight="10dp"
-            android:scaleType="fitXY" />
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+
+            <ImageView
+                android:id="@+id/videoImage"
+                android:layout_width="match_parent"
+                android:padding="3dp"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:paddingLeft="0dp"
+                android:scaleType="fitXY"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"/>
+            <ProgressBar
+                android:id="@+id/videoImageProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:layout_toRightOf="@id/videoImageLayout">
 
         <TextView
             android:id="@+id/videoTitle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/videoImage"
-            android:layout_weight="7"
-            android:gravity="center_vertical"
             android:minHeight="50sp"
             android:paddingRight="10dp"
-            android:text="Recipe Title" />
+            android:text=""
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            />
+        </RelativeLayout>
     </LinearLayout>
-    >
+
 
 </RelativeLayout>
