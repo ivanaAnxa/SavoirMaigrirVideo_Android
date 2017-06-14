@@ -38,11 +38,37 @@
 
 
     <!--account page-->
-    <string name="landing_1_account">COACHING</string>
-    <string name="landing_2_account">REPAS</string>
-    <string name="landing_3_account">RECETTES</string>
-    <string name="landing_4_account">CONSEILS</string>
-    <string name="landing_5_account">EXERCICES</string>
-    <string name="landing_6_account">SUIVI DU POIDS</string>
-    <string name="landing_7_account">MON COMPTE</string>
+    <string name="welcome_account_1">Bonjour %@, c\'est le mer</string>
+    <string name="welcome_account_2">credi de la semaine %d de votre programme</string>
+    <string name="menu_account_coaching">Coaching</string>
+    <string name="menu_account_repas">Repas</string>
+    <string name="menu_account_recettes">Recettes</string>
+    <string name="menu_account_conseils">Conseils</string>
+    <string name="menu_account_exercices">Exercices</string>
+    <string name="menu_account_poids">Suivi Du Poids</string>
+    <string name="menu_account_compte">Mon Compte</string>
+
+    <string name="coaching_header">Coaching - Semane %d</string>
+    <string name="coaching_header_right">Archive</string>
+
+
+    <string name="mon_compte_profil">PROFIL</string>
+    <string name="mon_compte_objectif">OBJECTIF</string>
+    <string name="mon_compte_programme">PROGRAMME</string>
+    <string name="mon_compte_alertes">ALERTES</string>
+
+    <string name="mon_compte_prenom">Prenom</string>
+    <string name="mon_compte_sexe">Sexe</string>
+
+    <string name="mon_compte_poids_depart">Poids départ (kg)</string>
+    <string name="mon_compte_poids_vise">Poids de visé (kg)</string>
+    <string name="mon_compte_taille">Taille (cm)</string>
+
+    <string name="mon_compte_plans_repas">Plans de repas</string>
+    <string name="mon_compte_niveau_calorique">Niveau calorique</string>
+
+    <string name="mon_compte_alertes_receive">Recevoir mes plans des repas par email</string>
+    <string name="mon_compte_alertes_vos_plans">Vos plans de repas sont envoyés chaque vendredi</string>
+
+
 </resources>

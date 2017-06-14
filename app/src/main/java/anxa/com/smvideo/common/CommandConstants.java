@@ -13,4 +13,8 @@ public class CommandConstants {
     public static String FREE_DISCOVER= "free/discover";
     public static String FREE_TESTIMONIALS = "free/testimonials";
     public static String FREE_RECIPES = "free/all";
+
+    public static String ACCOUNT_COACHING = "coaching/";
+    public static String ACCOUNT_CONSEILS = "advice";
+    public static String ACCOUNT_EXERCICE = "exercise";
 }

@@ -34,6 +34,7 @@
                 android:src="@drawable/greeting_jmc" />
 
             <TextView
+                android:id="@+id/welcome_message_account_tv"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_marginEnd="2dp"
@@ -43,7 +44,7 @@
                 android:maxLines="4"
                 android:minLines="2"
                 android:text="@string/welcome_message"
-                android:textSize="12sp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,7 +53,8 @@
             android:layout_weight="2"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:weightSum="10">
+            android:weightSum="10"
+            android:background="@android:color/black">
 
             <TextView
                 android:layout_width="0dp"
@@ -139,7 +141,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_1_account"
+                        android:text="@string/menu_account_coaching"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -165,7 +167,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_2_account"
+                        android:text="@string/menu_account_repas"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -200,7 +202,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_3_account"
+                        android:text="@string/menu_account_recettes"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -226,7 +228,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_4_account"
+                        android:text="@string/menu_account_conseils"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -262,7 +264,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_5_account"
+                        android:text="@string/menu_account_exercices"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -288,7 +290,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_6_account"
+                        android:text="@string/menu_account_poids"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -323,7 +325,7 @@
                         style="@style/LandingButtonAccount"
                         android:layout_width="129dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/landing_7_account"
+                        android:text="@string/menu_account_compte"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -342,6 +344,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/terms_of_service_account"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"

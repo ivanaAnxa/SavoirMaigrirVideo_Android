@@ -11,6 +11,7 @@ import anxa.com.smvideo.connection.http.SavoirMaigrirVideoApiClient;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
 import anxa.com.smvideo.contracts.VideoDataContract;
 import anxa.com.smvideo.contracts.VideoResponseContract;
+import anxa.com.smvideo.util.AppUtil;
 
 /**
  * Created by angelaanxa on 5/23/2017.
@@ -51,5 +52,32 @@ public class ApiCaller {
         command.Command = CommandConstants.FREE_RECIPES;
 
         apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, RecipeResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
+    }
+
+    public void GetAccountCoaching(AsyncResponse asyncResponse)
+    {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_COACHING + AppUtil.getCurrentWeek();
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
+    }
+
+    public void GetAccountConseils(AsyncResponse asyncResponse)
+    {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_CONSEILS;
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
+    }
+
+    public void GetAccountExercice(AsyncResponse asyncResponse)
+    {
+
+        MasterCommand command = new MasterCommand();
+            command.Command = CommandConstants.ACCOUNT_EXERCICE;
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR) ;
     }
 }
