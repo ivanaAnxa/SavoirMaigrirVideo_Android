@@ -23,7 +23,21 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="LandingButtonAccount">
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="LandingImage">
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+    <style name="LandingImageAccount">
         <item name="android:layout_margin">0dp</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:adjustViewBounds">true</item>

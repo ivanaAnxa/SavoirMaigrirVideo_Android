@@ -35,4 +35,14 @@
     <string name="moncompte_Bullet4">✔ des conseils minceur en vidéo pour toutes les situations</string>
     <string name="moncompte_Bullet5">✔ votre courbe de poids pour suivre vos progrès</string>
     <string name="moncompte_Bullet6">✔ un support-client efficace pour vous aider à réussir</string>
+
+
+    <!--account page-->
+    <string name="landing_1_account">COACHING</string>
+    <string name="landing_2_account">REPAS</string>
+    <string name="landing_3_account">RECETTES</string>
+    <string name="landing_4_account">CONSEILS</string>
+    <string name="landing_5_account">EXERCICES</string>
+    <string name="landing_6_account">SUIVI DU POIDS</string>
+    <string name="landing_7_account">MON COMPTE</string>
 </resources>

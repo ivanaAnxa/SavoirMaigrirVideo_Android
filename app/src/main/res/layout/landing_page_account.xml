@@ -1,0 +1,354 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fullbackground"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/landingheader"
+        layout="@layout/header_landing"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/landingheader"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/greeting_jmc" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.8"
+                android:gravity="center_vertical"
+                android:maxLines="4"
+                android:minLines="2"
+                android:text="@string/welcome_message"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="80,00 kg"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="3dp"
+                    android:text="Vous avez perdu 10,00 kg (50%)"
+                    android:textSize="12sp" />
+
+                <ProgressBar
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="25" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="60,00 kg"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage1_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_coaching" />
+
+                    <Button
+                        android:id="@+id/LandingCoachingButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_1_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage2_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_repas" />
+
+                    <Button
+                        android:id="@+id/LandingRepasButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_2_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage3_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_recettes" />
+
+                    <Button
+                        android:id="@+id/LandingRecettesAccountButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_3_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage4_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_conseils" />
+
+                    <Button
+                        android:id="@+id/LandingConseilsButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_4_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage5_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_exercise" />
+
+                    <Button
+                        android:id="@+id/LandingExercicesButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_5_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage6_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_poids" />
+
+                    <Button
+                        android:id="@+id/LandingSuiviButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_6_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/LandingImage7_account"
+                        style="@style/LandingImage"
+                        android:layout_width="129dp"
+                        android:layout_height="72dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/landing_account_compte" />
+
+                    <Button
+                        android:id="@+id/LandingMonCompteButton"
+                        style="@style/LandingButtonAccount"
+                        android:layout_width="129dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/landing_7_account"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:text="@string/terms_of_service"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

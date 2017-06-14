@@ -79,9 +79,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
         switch (position) {
             case 0: //decouvir
-
                 fragment = new DiscoverActivity();
-
                 break;
             case 1: //bilan
                 fragment = new BilanMinceurActivity();
@@ -107,12 +105,8 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
         }
 
-
         fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT")
                 .commit();
-
-
-
 
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavItems.get(position).mTitle);
@@ -135,8 +129,6 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     }
 
     public void onBackPressed(View view) {
-
         getFragmentManager().popBackStack();
-
     }
 }

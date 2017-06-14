@@ -78,20 +78,22 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
             viewHolder = (ViewHolder) row.getTag();
         }
 
-        int itemCount = items.size() - position;
-
-        if (getCount() > position && itemCount == 5) {
-            System.out.println("getPosition");
-        }
+//        int itemCount = items.size() - position;
+//
+//        if (getCount() > position && itemCount == 5) {
+//            System.out.println("getPosition");
+//        }
 
         RecipeContract recipe = (RecipeContract) items.get(position);
         row.setTag(R.id.recipe_id, recipe.Id);
         row.setOnClickListener(this);
+
         Bitmap avatar = null;
         avatar = RecipeHelper.GetRecipeImage(recipe.Id);
         viewHolder.recipeImage.setTag(recipe.Id);
         //display message
         viewHolder.recipeTitle.setText(recipe.Title);
+
         if (avatar == null) {
            /* if( !ApplicationData.getInstance().RecipeOngoigImageDownload.contains(recipe.Id)) {
                 ApplicationData.getInstance().RecipeOngoigImageDownload.add(recipe.Id);*/
