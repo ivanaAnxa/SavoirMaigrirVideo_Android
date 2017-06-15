@@ -20,6 +20,7 @@ import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.account.CoachingAccountFragment;
 import anxa.com.smvideo.activities.account.ConseilsFragment;
 import anxa.com.smvideo.activities.account.ExerciceFragment;
+import anxa.com.smvideo.activities.account.MonCompteAccountFragment;
 import anxa.com.smvideo.models.NavItem;
 import anxa.com.smvideo.ui.DrawerListAdapter;
 import anxa.com.smvideo.util.AppUtil;
@@ -154,7 +155,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                     fragment = new MonCompteActivity();
                     break;
                 case 6: //mon compte
-                    fragment = new MonCompteActivity();
+                    fragment = new MonCompteAccountFragment();
                     break;
                 default:
                     fragment = new CoachingAccountFragment();

@@ -96,6 +96,9 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
     }
 
     public void goToMonComptePage() {
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_MonCompte;
+        Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(mainIntent);
 
     }
 
