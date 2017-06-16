@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
+import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 
 /**
@@ -28,8 +29,11 @@ public class SplashActivity extends Activity {
             public void run() {
                                 /* Step 2: Create an Intent that will start the HapilabsMainActivity. */
                 Intent mainIntent;
-
-                mainIntent = new Intent(SplashActivity.this, LandingPageActivity.class);
+                if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+                    mainIntent = new Intent(SplashActivity.this, LandingPageActivity.class);
+                }else{
+                    mainIntent = new Intent(SplashActivity.this, LandingPageAccountActivity.class);
+                }
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }

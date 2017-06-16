@@ -42,7 +42,7 @@ public class MonCompteActivity extends Fragment {
 
         ((Button) mView.findViewById(R.id.moncompte_button)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
-                Uri uriUrl = Uri.parse("https://www.facebook.com/april.samson/activity/10154920678142200");
+                Uri uriUrl = Uri.parse("https://savoir-maigrir.aujourdhui.com/orange/billing/subscribe/");
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(launchBrowser);
 
@@ -51,7 +51,4 @@ public class MonCompteActivity extends Fragment {
 
         return mView;
     }
-
-
-
 }

@@ -11,13 +11,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.account.CoachingAccountFragment;
+import anxa.com.smvideo.activities.account.ConseilsFragment;
+import anxa.com.smvideo.activities.account.ExerciceFragment;
+import anxa.com.smvideo.activities.account.MonCompteAccountFragment;
 import anxa.com.smvideo.models.NavItem;
 import anxa.com.smvideo.ui.DrawerListAdapter;
+import anxa.com.smvideo.util.AppUtil;
 
 
 public class MainActivity extends BaseVideoActivity implements View.OnClickListener {
@@ -36,11 +42,28 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNavItems.add(new NavItem(getString(R.string.menu_decouvrir), R.drawable.decouvrez_ico));
-        mNavItems.add(new NavItem(getString(R.string.menu_bilan), R.drawable.bilanminceur_ico));
-        mNavItems.add(new NavItem(getString(R.string.menu_temoignages), R.drawable.temoignage_ico));
-        mNavItems.add(new NavItem(getString(R.string.menu_recettes), R.drawable.recettes_ico));
-        mNavItems.add(new NavItem(getString(R.string.menu_mon_compte), R.drawable.compte_ico));
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+
+            ((TextView) (findViewById(R.id.welcome_message_account_tv))).setText(getString(R.string.welcome_message));
+
+            mNavItems.add(new NavItem(getString(R.string.menu_decouvrir).toLowerCase(), R.drawable.decouvrez_ico));
+            mNavItems.add(new NavItem(getString(R.string.menu_bilan), R.drawable.bilanminceur_ico));
+            mNavItems.add(new NavItem(getString(R.string.menu_temoignages), R.drawable.temoignage_ico));
+            mNavItems.add(new NavItem(getString(R.string.menu_recettes), R.drawable.recettes_ico));
+            mNavItems.add(new NavItem(getString(R.string.menu_mon_compte), R.drawable.compte_ico));
+        }else{
+
+            String welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek())));
+            ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(welcome_message);
+
+            mNavItems.add(new NavItem(getString(R.string.menu_account_coaching), R.drawable.icon_account_coaching));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_repas), R.drawable.icon_account_repas));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_recettes), R.drawable.icon_account_recettes));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_conseils), R.drawable.icon_account_conseils));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_exercices), R.drawable.icon_account_exercises));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_poids), R.drawable.icon_account_poids));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_compte), R.drawable.icon_account_compte));
+        }
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -61,7 +84,11 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
         //landing page on the first launch
         if (ApplicationData.getInstance().showLandingPage) {
-            launchActivity(LandingPageActivity.class);
+            if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+                launchActivity(LandingPageActivity.class);
+            } else {
+                launchActivity(LandingPageAccountActivity.class);
+            }
         }
     }
 
@@ -69,7 +96,16 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     public void onResume() {
         super.onResume();
 
-        selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal());
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal());
+        }else {
+            //initial
+            if (ApplicationData.getInstance().selectedFragment.getNumVal()<5) {
+                ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Coaching;
+            } else{
+                selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal() - 5);
+            }
+        }
     }
 
     /*
@@ -77,29 +113,53 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     private void selectItemFromDrawer(int position) {
         Fragment fragment = new RecipesActivity();
 
-        switch (position) {
-            case 0: //decouvir
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            switch (position) {
+                case 0: //decouvir
+                    fragment = new DiscoverActivity();
+                    break;
+                case 1: //bilan
+                    fragment = new BilanMinceurActivity();
+                    break;
+                case 2: //temoignages
+                    fragment = new TemoignagesActivity();
+                    break;
+                case 3: //recetters
+                    fragment = new RecipesActivity();
 
-                fragment = new DiscoverActivity();
-
-                break;
-            case 1: //bilan
-                fragment = new BilanMinceurActivity();
-                break;
-            case 2: //temoignages
-                fragment = new TemoignagesActivity();
-                break;
-            case 3: //recetters
-                fragment = new RecipesActivity();
-
-                break;
-            case 4: //mon compte
-                fragment = new MonCompteActivity();
-                break;
-            default:
-                fragment = new RecipesActivity();
-
-
+                    break;
+                case 4: //mon compte
+                    fragment = new MonCompteActivity();
+                    break;
+                default:
+                    fragment = new RecipesActivity();
+            }
+        }else{
+            switch (position) {
+                case 0: //coaching
+                fragment = new CoachingAccountFragment();
+                    break;
+                case 1: //repas
+                    fragment = new BilanMinceurActivity();
+                    break;
+                case 2: //recettes
+                    fragment = new TemoignagesActivity();
+                    break;
+                case 3: //conseils
+                    fragment = new ConseilsFragment();
+                    break;
+                case 4: //exercices
+                    fragment = new ExerciceFragment();
+                    break;
+                case 5: //suivi
+                    fragment = new MonCompteActivity();
+                    break;
+                case 6: //mon compte
+                    fragment = new MonCompteAccountFragment();
+                    break;
+                default:
+                    fragment = new CoachingAccountFragment();
+            }
         }
 
         FragmentManager fragmentManager = getFragmentManager();
@@ -107,12 +167,8 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
         }
 
-
         fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT")
                 .commit();
-
-
-
 
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavItems.get(position).mTitle);
@@ -135,8 +191,6 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     }
 
     public void onBackPressed(View view) {
-
         getFragmentManager().popBackStack();
-
     }
 }

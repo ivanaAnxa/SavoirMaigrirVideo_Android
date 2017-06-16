@@ -10,4 +10,6 @@
 
     <color name="listViewBackground">#F2F2F2</color>
     <color name="recipeCategoryBackground">#343434</color>
+
+    <color name="monCompteHeader">#f7f7f7</color>
 </resources>

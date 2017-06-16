@@ -24,7 +24,15 @@ public class ApplicationData extends Application {
         Bilan(1),
         Temoignages(2),
         Recettes(3),
-        MonCompte(4);
+        MonCompte(4),
+        Account_Coaching(5),
+        Account_Repas(6),
+        Account_Recettes(7),
+        Account_Conseil(8),
+        Account_Exercices(9),
+        Account_Suivi(10),
+        Account_MonCompte(11);
+
 
         private int numVal;
 
@@ -39,6 +47,8 @@ public class ApplicationData extends Application {
 
     private static ApplicationData instance = null;
     public boolean showLandingPage = true;
+    public String accountType = "account";
+    public String userName = "User";
 
     public SelectedFragment selectedFragment = SelectedFragment.Decouvir;
 

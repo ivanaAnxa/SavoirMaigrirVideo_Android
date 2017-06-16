@@ -35,4 +35,62 @@
     <string name="moncompte_Bullet4">✔ des conseils minceur en vidéo pour toutes les situations</string>
     <string name="moncompte_Bullet5">✔ votre courbe de poids pour suivre vos progrès</string>
     <string name="moncompte_Bullet6">✔ un support-client efficace pour vous aider à réussir</string>
+
+
+    <!--account page-->
+    <string name="welcome_account_1">Bonjour %@, c\'est le mer</string>
+    <string name="welcome_account_2">credi de la semaine %d de votre programme</string>
+    <string name="menu_account_coaching">Coaching</string>
+    <string name="menu_account_repas">Repas</string>
+    <string name="menu_account_recettes">Recettes</string>
+    <string name="menu_account_conseils">Conseils</string>
+    <string name="menu_account_exercices">Exercices</string>
+    <string name="menu_account_poids">Suivi Du Poids</string>
+    <string name="menu_account_compte">Mon Compte</string>
+
+    <string name="coaching_header">Coaching - Semane %d</string>
+    <string name="coaching_header_right">Archive</string>
+
+    <!--account mon compte-->
+    <string name="mon_compte_profil">PROFIL</string>
+    <string name="mon_compte_objectif">OBJECTIF</string>
+    <string name="mon_compte_programme">PROGRAMME</string>
+    <string name="mon_compte_alertes">ALERTES</string>
+
+    <string name="mon_compte_prenom">Prenom</string>
+    <string name="mon_compte_sexe">Sexe</string>
+
+    <string name="mon_compte_sexe_fem">Féminin</string>
+    <string name="mon_compte_sexe_masc">Masculin</string>
+
+    <string name="mon_compte_poids_depart">Poids départ (kg)</string>
+    <string name="mon_compte_poids_vise">Poids de visé (kg)</string>
+    <string name="mon_compte_taille">Taille (cm)</string>
+
+    <string name="mon_compte_plans_repas">Plans de repas</string>
+    <string name="mon_compte_plans_brunch">Brunch</string>
+    <string name="mon_compte_plans_classique">Classique</string>
+    <string name="mon_compte_plans_pour">Pour mincir à petits prix</string>
+    <string name="mon_compte_plans_dejeuner">Sans déjeuner - déjeuner léger</string>
+    <string name="mon_compte_plans_diner">Sans diner ou diner léger</string>
+    <string name="mon_compte_plans_gluten">Sans gluten</string>
+    <string name="mon_compte_plans_vache">Sans lait de vache</string>
+    <string name="mon_compte_plans_laitages_avec">Sans laitages, avec fromage</string>
+    <string name="mon_compte_plans_laitages_sans">Sans laitages, sans fromage</string>
+    <string name="mon_compte_plans_petit_dejeuner">Sans petit-déjeuner</string>
+    <string name="mon_compte_plans_special">Spécial colopathie</string>
+    <string name="mon_compte_plans_vegetarien">Végétarien</string>
+
+    <string name="mon_compte_niveau_calorique">Niveau calorique</string>
+    <string name="mon_compte_niveau_calorique_900">900 kcal</string>
+    <string name="mon_compte_niveau_calorique_1200">1200 kcal</string>
+    <string name="mon_compte_niveau_calorique_1400">1400 kcal</string>
+    <string name="mon_compte_niveau_calorique_1600">1600 kcal</string>
+    <string name="mon_compte_niveau_calorique_1800">1800 kcal</string>
+
+    <string name="mon_compte_alertes_receive">Recevoir mes plans des repas par email</string>
+    <string name="mon_compte_alertes_vos_plans">Vos plans de repas sont envoyés chaque vendredi</string>
+
+    <string name="mon_compte_save">Sauvegarder</string>
+
 </resources>
