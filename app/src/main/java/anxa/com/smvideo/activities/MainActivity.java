@@ -44,9 +44,9 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
 
-            ((TextView) (findViewById(R.id.welcome_message_account_tv))).setText(getString(R.string.welcome_message));
+            ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(getString(R.string.welcome_message));
 
-            mNavItems.add(new NavItem(getString(R.string.menu_decouvrir).toLowerCase(), R.drawable.decouvrez_ico));
+            mNavItems.add(new NavItem(getString(R.string.menu_decouvrir), R.drawable.decouvrez_ico));
             mNavItems.add(new NavItem(getString(R.string.menu_bilan), R.drawable.bilanminceur_ico));
             mNavItems.add(new NavItem(getString(R.string.menu_temoignages), R.drawable.temoignage_ico));
             mNavItems.add(new NavItem(getString(R.string.menu_recettes), R.drawable.recettes_ico));
@@ -126,7 +126,6 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                     break;
                 case 3: //recetters
                     fragment = new RecipesActivity();
-
                     break;
                 case 4: //mon compte
                     fragment = new MonCompteActivity();
