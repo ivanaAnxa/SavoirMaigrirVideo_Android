@@ -47,7 +47,7 @@ public class ApplicationData extends Application {
 
     private static ApplicationData instance = null;
     public boolean showLandingPage = true;
-    public String accountType = "account";
+    public String accountType = "free";
     public String userName = "User";
 
     public SelectedFragment selectedFragment = SelectedFragment.Decouvir;
