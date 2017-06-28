@@ -10,11 +10,13 @@ import android.media.Image;
 import android.net.Uri;
 import android.opengl.Visibility;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -221,15 +223,34 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                     break;
                 case "imgBtnFem":
                 case "imgBtnMale":
-                    if (buttonTag == "imgBtnFem") gender = "1";
-                    else gender = "0";
+                    if (buttonTag.equals("imgBtnFem")) {
+                        ImageButton imgBtn2 = (ImageButton) mView.findViewById(R.id.imgBtnFem);
+                        imgBtn2.setImageResource(R.drawable.gender_woman_active);
+                        gender = "0";
+
+                    }
+                    else {
+                        gender = "1";
+                        ImageButton imgBtn1 = (ImageButton) mView.findViewById(R.id.imgBtnMale);
+                        imgBtn1.setImageResource(R.drawable.gender_man_active);
+                    }
 
                     final RelativeLayout genderLayout = (RelativeLayout) getView().findViewById(R.id.rlGenderQuestion);
                     final LinearLayout dietProfileQuestionsListLayout = (LinearLayout) getView().findViewById(R.id.dietProfileQuestionsListLayout);
 
-                    genderLayout.setVisibility(View.GONE);
-                    dietProfileQuestionsListLayout.setVisibility(View.VISIBLE);
-                    getQuestions(gender.toString());
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            genderLayout.setVisibility(View.GONE);
+                            dietProfileQuestionsListLayout.setVisibility(View.VISIBLE);
+                            getQuestions(gender.toString());
+                        }
+                    }, 500);
+
+
+
                     break;
                 default:
                     break;
@@ -308,7 +329,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         else
             textViewErrorSurname.setVisibility(View.GONE);
 
-        if (!InputValidatorUtil.isValidPhoneFormat(editPhone.getText().toString().trim()))
+        boolean boolcheckBoxPhone = checkBoxPhone.isChecked();
+
+        if (!boolcheckBoxPhone && !InputValidatorUtil.isValidPhoneFormat(editPhone.getText().toString().trim()))
             textViewErrorPhone.setVisibility(View.VISIBLE);
         else
             textViewErrorPhone.setVisibility(View.GONE);
@@ -358,6 +381,12 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
             getQuestions(gender);
         }
 
+        LinearLayout.LayoutParams paramsQuestionButton = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        paramsQuestionButton.setMargins(0, 0, 0, 8);
+
         for (QuestionsContract q : questionsList) {
             if (q.QuestionIndex == questionIndex)
             {
@@ -372,8 +401,14 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 for (AnswersContract a : answersList) {
                     Button btn1 = new Button(context);
                     btn1.setTag(a.AnswerIndex);
-                    btn1.setText(a.Answer);
                     btn1.setOnClickListener(this);
+                    btn1.setTextSize(12);
+                    btn1.setGravity(Gravity.LEFT);
+                    btn1.setPadding(50,btn1.getPaddingTop()+5,btn1.getPaddingRight(),btn1.getPaddingBottom());
+
+                    btn1.setLayoutParams(paramsQuestionButton);
+                    btn1.setBackgroundResource(R.drawable.button_lightgray_roundedcorners);
+                    btn1.setText(a.Answer);
                     qLayout.addView(btn1);
                 }
                 break;
@@ -448,6 +483,10 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         final TextView textViewQ4ResultContent = (TextView) mView.findViewById(R.id.textViewQ4ResultContent);
         final TextView textViewResultPage6Content1 = (TextView) mView.findViewById(R.id.textViewResultPage6Content1);
         final TextView textViewResultPage6Content2 = (TextView) mView.findViewById(R.id.textViewResultPage6Content2);
+
+        final TextView textViewCurrentIMCGraph = (TextView) mView.findViewById(R.id.textViewCurrentIMCGraph);
+        final TextView textViewTargetIMCGraph = (TextView) mView.findViewById(R.id.textViewTargetIMCGraph);
+
         EditText editFirstname = (EditText) mView.findViewById(R.id.editFirstname);
         String firstName = editFirstname.getText().toString();
 
@@ -461,17 +500,20 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         textViewProgramme.setText("En suivant mon programme, vous allez bénéficier de tous les outils et conseils pour atteindre votre objectif de "+ resultsData.TargetWeight +" kilos. Cette méthode de rééquilibrage alimentaire sera bénéfique pour votre santé et complètement adaptée à votre profil.");
 
         String page2Content = "Vous m'avez indiqué que votre objectif était d'atteindre le poids de " + resultsData.TargetWeight + " kg.";
-        String page2FullContent = page2Content + " " + resultsData.NormalWeightContent;
+        String page2FullContent = page2Content + " " + resultsData.NormalWeightContent.replace("<strong>","").replace("</strong>","").replace("<strong class=\"darken\">","");
         Spannable spannablePage2Content = new SpannableString(page2FullContent);
         spannablePage2Content.setSpan(boldFont, page2FullContent.indexOf(resultsData.TargetWeight),page2Content.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannablePage2Content.setSpan(boldFont, page2FullContent.indexOf("compris entre") + 13,page2FullContent.indexOf(" kg. C'est donc"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textViewResultPage2Content.setText(spannablePage2Content, TextView.BufferType.SPANNABLE);
 
-        textViewCurrentWeight.setText(resultsData.CurrentWeight);
-        textViewTargetWeight.setText(resultsData.TargetWeight);
+        textViewCurrentWeight.setText(resultsData.CurrentWeight+" kg");
+        textViewTargetWeight.setText(resultsData.TargetWeight +" kg");
         textViewCurrentIMC.setText("IMC:" + resultsData.CurrentIMC);
         textViewAverageIMC.setText(resultsData.AverageIMC);
         textViewTargetIMC.setText(resultsData.TargetIMC);
         textViewMyIMC.setText("Votre IMC : Comme vous pesez "+ resultsData.CurrentWeight +" kg pour " + resultsData.Height +" cm, votre Indice de Masse Corporelle (IMC) est actuellement de "+ resultsData.CurrentIMC +".");
+        textViewCurrentIMCGraph.setText(resultsData.CurrentIMC);
+        textViewTargetIMCGraph.setText(resultsData.TargetIMC);
 
         textViewQ3Result.setText(resultsData.Q3Result);
         textViewTestimonialTitle1.setText(resultsData.TestimonialTitle1);
@@ -480,7 +522,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         textViewQ4ResultTitle.setText(resultsData.Q4ResultTitle);
         textViewQ4ResultContent.setText(resultsData.Q4ResultContent);
 
-        String resultPage6Content1 = "Vous avez" + resultsData.TargetWeightLoss + "kilos à perdre et je vous recommande mon programme qui va vous permettre de perdre tranquillement ces kilos puis de profiter d'une période de stabilisation pour muscler votre corps !";
+        String resultPage6Content1 = "Vous avez " + resultsData.TargetWeightLoss + " kilos à perdre et je vous recommande mon programme qui va vous permettre de perdre tranquillement ces kilos puis de profiter d'une période de stabilisation pour muscler votre corps ! Rappelez-vous que votre succès est important pour votre santé mais aussi pour votre bien être et votre confiance en vous. Savoir maigrir est bien plus efficace qu'un régime : c'est le rééquilibrage alimentaire qui vous servira tout au long de votre vie.";
         Spannable spannableresultPage6Content1 = new SpannableString(resultPage6Content1);
         spannableresultPage6Content1.setSpan(orangeFont, 0,resultPage6Content1.indexOf(" et je vous recommande"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableresultPage6Content1.setSpan(boldFont, 0,resultPage6Content1.indexOf(" et je vous recommande"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
