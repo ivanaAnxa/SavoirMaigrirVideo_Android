@@ -15,8 +15,6 @@ public class InputValidatorUtil {
     }
 
     public final static Boolean isValidPhoneFormat(String phoneNumber) {
-        boolean temp2 = phoneNumber.substring(0,1).equals("0");
-
         if (!phoneNumber.isEmpty() && phoneNumber.length() == 10 && phoneNumber.substring(0,1).equals("0"))
             return true;
 

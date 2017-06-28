@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/textViewDietProfileVSHeader"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="32dp"
                 android:text="Perdez jusqu'à 10 kilos en 3 mois sans jamais vous priver :"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -114,6 +114,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="Etes-vous un homme ou une femme ?"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
@@ -127,7 +128,7 @@
                     android:layout_marginLeft="23dp"
                     android:layout_marginStart="23dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/gender_woman_active"
+                    android:src="@drawable/gender_woman"
                     android:tag="imgBtnFem" />
 
                 <ImageButton
@@ -149,6 +150,7 @@
                     android:layout_alignRight="@+id/imgBtnFem"
                     android:layout_below="@+id/imgBtnFem"
                     android:layout_marginTop="16dp"
+                    android:textColor="#323232"
                     android:text="Je suis une femme" />
 
                 <TextView
@@ -161,6 +163,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="38dp"
                     android:layout_marginRight="38dp"
+                    android:textColor="#323232"
                     android:text="Je suis un homme" />
 
 
@@ -177,15 +180,18 @@
                 <TextView
                 android:id="@+id/textViewQuestion"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginBottom="5dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:layout_marginBottom="12dp"
                 android:background="@android:color/white"
                 android:text=""
                 android:textColor="#323232" />
+
                 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/sQuestionsList"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8"
                 android:background="@android:color/white">
 
                 <LinearLayout
@@ -345,12 +351,14 @@
                     android:visibility="gone"/>
                 <Button
                     android:id="@+id/btnVitalStatsProcess"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_orange_bilanminceur"
+                    android:layout_width="270dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="70dp"
                     android:layout_marginBottom="15dp"
                     android:layout_gravity="bottom|center"
                     android:tag="btnVitalStatsProcess"
+                    android:textColor="#FFFFFF"
                     android:text="Je termine mon bilan" />
             </LinearLayout>
 
@@ -411,6 +419,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="7dp"
                     android:gravity="center"
+                    android:textColor="#D0D0D0"
                     android:text="Votre adresse e-mail nous permet de vous envoyer gratuitement votre bilan par e-mail.Cela reste une information confidentielle."
                     android:textSize="8dp" />
 
@@ -555,15 +564,18 @@
                         android:textSize="8dp"
                         android:gravity="center"
                         android:layout_marginBottom="15dp"
+                        android:textColor="#D0D0D0"
                         android:text="Vérifiez votre adresse e-mail et cliquez sur « Accédez à votre bilan ! » pour recevoir votre bilan minceur personnalisé par e-mail." />
 
                     <Button
                         android:id="@+id/btnPersoInfoProcess"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_orange_bilanminceur"
+                        android:layout_width="270dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center|bottom"
                         android:tag="btnPersoInfoProcess"
                         android:layout_marginBottom="15dp"
+                        android:textColor="#FFFFFF"
                         android:text="Je continue" />
                 </LinearLayout>
 
@@ -577,6 +589,7 @@
         android:id="@+id/dietProfileResultsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:background="@android:color/white"
         android:orientation="vertical"
         android:visibility="gone">
@@ -596,6 +609,7 @@
                 android:layout_marginLeft="18dp"
                 android:layout_marginStart="18dp"
                 android:text="Vos résultats"
+                android:textColor="#323232"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -617,7 +631,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="visible">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -625,7 +638,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:orientation="vertical">
 
                 <TextView
@@ -633,20 +646,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:textColor="#323232"
                     android:text="Bravo, je vais vous aider à perdre ces #TargetWeightLoss kilos et à #Q6Result" />
 
                 <TextView
                     android:id="@+id/textViewProgramme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#323232"
                     android:text="En suivant mon programme, vous allez bénéficier de tous les outils et conseils pour atteindre votre objectif de #TargetWeight kilos. Cette méthode de rééquilibrage alimentaire sera bénéfique pour votre santé et complètement adaptée à votre profil." />
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#323232"
                     android:text="Regardez la vidéo personnalisée de votre bilan minceur :" />
 
                 <ImageView
@@ -655,17 +671,15 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/results01_fig01" />
             </LinearLayout>
-
             <WebView
                 android:id="@+id/webViewResultsVideo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:layout_weight="0.2"
                 android:orientation="vertical">
 
 
@@ -680,24 +694,26 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_weight="1"
                         android:src="@drawable/results01_sign" />
 
                     <Button
                         android:id="@+id/buttonToResultsPage2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_orange_bilanminceur"
+                        android:layout_width="120dp"
+                        android:layout_height="35dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
                         android:tag="buttonToResultsPage2"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
                         android:text="Continuer" />
 
                 </RelativeLayout>
 
 
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -716,6 +732,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.7"
+                android:textColor="#323232"
                 android:text="TextView" />
 
             <LinearLayout
@@ -758,7 +775,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="231dp"
+                        android:layout_marginLeft="221dp"
                         android:layout_marginTop="68dp"
                         android:text="150kg"
                         android:textColor="#f2680d"
@@ -773,31 +790,42 @@
 
                     <TextView
                         android:id="@+id/textViewCurrentIMC"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_lightgray_bilanminceur"
+                        android:layout_width="70dp"
+                        android:layout_height="20dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginStart="32dp"
+                        android:textColor="#323232"
                         android:text="IMC:22,1"
-                        android:background="@drawable/button_orange_roundedcorners"
+                        android:textStyle="bold"
+                        android:gravity="center"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
                     <TextView
                         android:id="@+id/textViewAverageIMC"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_lightgray_bilanminceur"
+                        android:layout_width="70dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:textColor="#323232"
+                        android:textStyle="bold"
                         android:text="21,0" />
 
                     <TextView
                         android:id="@+id/textViewTargetIMC"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="56dp"
-                        android:layout_marginRight="56dp"
-                        android:text="19,8"
+                        android:background="@drawable/button_lightgray_bilanminceur"
+                        android:layout_width="70dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginRight="32dp"
+                        android:textColor="#323232"
+                        android:textStyle="bold"
+                        android:text="19,78"
+                        android:gravity="center"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true" />
@@ -810,6 +838,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
+                android:textColor="#323232"
                 android:text="Votre IMC : Comme vous pesez #CurrentWeight kg pour #Height cm, votre Indice de Masse Corporelle (IMC) est actuellement de #CurrentIMC."
                 android:textSize="12dp"/>
 
@@ -835,6 +864,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:textColor="#323232"
+                    android:textStyle="bold"
                     android:text="21,1" />
 
                 <TextView
@@ -846,6 +877,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginLeft="52dp"
                     android:layout_marginStart="52dp"
+                    android:textColor="#323232"
+                    android:textStyle="bold"
                     android:text="19,8" />
             </RelativeLayout>
 
@@ -856,27 +889,33 @@
 
                 <Button
                     android:id="@+id/buttonReturnToResultsPage1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_lightgray_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:text="Retour"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="28dp"
+                    android:tag="buttonReturnToResultsPage1"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="65dp"
-                    android:layout_marginStart="65dp"
-                    android:tag="buttonReturnToResultsPage1"/>
+                    android:layout_alignParentStart="true" />
 
                 <Button
                     android:id="@+id/buttonToResultsPage3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_orange_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:text="Continuer"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginEnd="28dp"
+                    android:tag="buttonToResultsPage3"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="78dp"
-                    android:layout_marginEnd="78dp"
-                    android:tag="buttonToResultsPage3"/>
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -901,18 +940,21 @@
                     android:id="@+id/textViewQ3Result"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="textViewQ3Result" />
 
                 <TextView
                     android:id="@+id/textView24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="Même si vous souhaitez suivre un régime amaigrissant, ne croyez pas que vous allez devoir changer toutes vos habitudes : vous devez les adapter certes, mais certainement pas les changer du tout au tout." />
 
                 <TextView
                     android:id="@+id/textViewTestimonialTitle1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="textViewTestimonialTitle1" />
             </LinearLayout>
             <WebView
@@ -946,18 +988,21 @@
                         android:id="@+id/textView28"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Des plans de repas sans privations ni aliments interdits" />
 
                     <TextView
                         android:id="@+id/textView27"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Le Jeune Cohen 16H pour accélérer votre perte de poids" />
 
                     <TextView
                         android:id="@+id/textView26"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Des techniques pour rattraper les écarts en douceur" />
                 </LinearLayout>
 
@@ -970,26 +1015,32 @@
 
                 <Button
                     android:id="@+id/buttonReturnToResultsPage2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_lightgray_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="58dp"
-                    android:layout_marginStart="58dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="28dp"
                     android:text="Retour"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:tag="buttonReturnToResultsPage2"/>
 
                 <Button
                     android:id="@+id/buttonToResultsPage4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_orange_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/buttonReturnToResultsPage2"
-                    android:layout_marginEnd="74dp"
-                    android:layout_marginRight="74dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
                     android:text="Continuer"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:tag="buttonToResultsPage4"/>
             </RelativeLayout>
         </LinearLayout>
@@ -1015,18 +1066,21 @@
                     android:id="@+id/textView25"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="Vous allez durablement améliorer votre santé" />
 
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="En France, 15 millions de personnes sont en surpoids et 6.9 millions sont en situation d’obésité, soit au total 32.3 % de la population. Si la tendance se poursuit, la population en situation d’obésité en France pourrait atteindre 30% d’ici 30 ans... et ainsi rejoindre le niveau des Etats-Unis." />
 
                 <TextView
                     android:id="@+id/textViewTestimonialTitle2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="textViewTestimonialTitle2" />
             </LinearLayout>
 
@@ -1061,18 +1115,21 @@
                         android:id="@+id/textView31"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Les conseils vidéo quotidiens de Jean-Michel Cohen" />
 
                     <TextView
                         android:id="@+id/textView30"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Des résultats scientifiquement prouvés (Etude 2014 SEPREM*)" />
 
                     <TextView
                         android:id="@+id/textView29"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Des outils pratiques pour réapprendre à manger et rééquilibrer votre alimentation" />
                 </LinearLayout>
 
@@ -1085,26 +1142,32 @@
 
                 <Button
                     android:id="@+id/buttonReturnToResultsPage3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_lightgray_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="58dp"
-                    android:layout_marginStart="58dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="28dp"
                     android:text="Retour"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:tag="buttonReturnToResultsPage3"/>
 
                 <Button
                     android:id="@+id/buttonToResultsPage5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_orange_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/buttonReturnToResultsPage3"
-                    android:layout_marginEnd="74dp"
-                    android:layout_marginRight="74dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
                     android:text="Continuer"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:tag="buttonToResultsPage5"/>
             </RelativeLayout>
         </LinearLayout>
@@ -1130,18 +1193,21 @@
                     android:id="@+id/textViewQ4ResultTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="textViewQ4ResultTitle" />
 
                 <TextView
                     android:id="@+id/textViewQ4ResultContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="textViewQ4ResultContent" />
 
                 <TextView
                     android:id="@+id/textViewTestimonialTitle3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#323232"
                     android:text="textViewTestimonialTitle3" />
             </LinearLayout>
             <WebView
@@ -1175,18 +1241,21 @@
                         android:id="@+id/textView34"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Plus de confiance grâce à l'accompagnement de votre diététicienne" />
 
                     <TextView
                         android:id="@+id/textView35"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Des résultats scientifiquement prouvés (Etude 2014 SEPREM*)" />
 
                     <TextView
                         android:id="@+id/textView36"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="#323232"
                         android:text="- Des outils pratiques pour réapprendre à manger et rééquilibrer votre alimentation" />
                 </LinearLayout>
 
@@ -1199,26 +1268,32 @@
 
                 <Button
                     android:id="@+id/buttonReturnToResultsPage4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_orange_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="58dp"
-                    android:layout_marginStart="58dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="28dp"
                     android:text="Retour"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:tag="buttonReturnToResultsPage4"/>
 
                 <Button
                     android:id="@+id/buttonToResultsPage6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_lightgray_bilanminceur"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/buttonReturnToResultsPage4"
-                    android:layout_marginEnd="74dp"
-                    android:layout_marginRight="74dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginRight="28dp"
                     android:text="Continuer"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:tag="buttonToResultsPage6"/>
             </RelativeLayout>
         </LinearLayout>
@@ -1233,7 +1308,6 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
             android:visibility="gone">
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -1261,9 +1335,8 @@
                     android:layout_toRightOf="@+id/imageView"
                     android:text="La méthode Savoir Maigrir correspond précisément à vos besoins."
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="#323232"/>
             </RelativeLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -1274,31 +1347,40 @@
                     android:id="@+id/textViewResultPage6Content1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="13dp"
                     android:layout_marginBottom="10dp"
+                    android:textColor="#323232"
                     android:text="Vous avez #TargetWeightLoss kilos à perdre et je vous recommande mon programme qui va vous permettre de perdre tranquillement ces kilos puis de profiter d'une période de stabilisation pour muscler votre corps ! Rappelez-vous que votre succès est important pour votre santé mais aussi pour votre bien être et votre confiance en vous. Savoir maigrir est bien plus efficace qu'un régime : c'est le rééquilibrage alimentaire qui vous servira tout au long de votre vie." />
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:layout_marginBottom="10dp"
+                    android:textColor="#323232"
                     android:text="N'hésitez pas à nous poser des questions car, avec toute mon équipe, nous sommes là pour vous aider et vous conseiller !" />
 
                 <TextView
                     android:id="@+id/textViewResultPage6Content2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:layout_marginBottom="50dp"
+                    android:textColor="#323232"
                     android:text="Vous pouvez avoir une confiance totale dans la méthode Savoir Maigrir, #firstname, et nous vous le prouvons en prenant cet engagement : si vous n'avez pas pu atteindre votre juste poids à la fin du programme, nous nous engageons à vous le rembourser intégralement." />
+
 
                 <Button
                     android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_orange_bilanminceur"
+                    android:layout_width="270dp"
+                    android:layout_height="35dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
                     android:text="Je m'abone" />
             </LinearLayout>
 
