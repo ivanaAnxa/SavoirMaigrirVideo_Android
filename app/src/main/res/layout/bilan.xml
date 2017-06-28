@@ -9,208 +9,1301 @@
         layout="@layout/header_menu"
         android:id="@+id/headermenu"/>
 
-    <VideoView
-        android:id="@+id/videoViewDietProfile"
-        android:layout_width="match_parent"
-        android:layout_height="215dp"/>
-
-    <TextView
-        android:id="@+id/textViewQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:text="Etes-vous un homme ou une femme ?" />
-
-    <RelativeLayout
-        android:id="@+id/rlGenderQuestion"
+    <LinearLayout
+        android:id="@+id/dietProfileQuestionsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
         android:visibility="visible">
 
-        <ImageButton
-            android:id="@+id/imgBtnFem"
-            android:tag="imgBtnFem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="65dp"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="92dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/female_orange" />
-
-        <ImageButton
-            android:id="@+id/imgBtnMale"
-            android:tag="imgBtnMale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/imgBtnFem"
-            android:layout_marginEnd="90dp"
-            android:layout_marginRight="90dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/male_orange" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="Je suis une femme"
-            android:layout_marginLeft="43dp"
-            android:layout_marginStart="43dp"
-            android:layout_below="@+id/imgBtnFem"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Je suis un homme"
-            android:layout_marginLeft="44dp"
-            android:layout_marginStart="44dp"
-            android:layout_alignBaseline="@+id/textView"
-            android:layout_alignBottom="@+id/textView"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView" />
-    </RelativeLayout>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/sQuestionsList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:visibility="gone">
+        <include
+            layout="@layout/main_video"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
         <LinearLayout
-            android:id="@+id/lQuestionsList"
+            android:id="@+id/dietProfileQuestionsHeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/black"
+            android:orientation="vertical"
+            android:layout_weight="0.15"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/textViewDietProfileHeader"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Votre bilan minceur perssonnalise gratuit"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/textViewDietProfileSubHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Commencez vore analyse minceur pour perdre 1kg par semaine"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dietProfilVitalStatsHeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/black"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_weight="0.15">
+
+            <TextView
+                android:id="@+id/textViewDietProfileVSHeader"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Perdez jusqu'à 10 kilos en 3 mois sans jamais vous priver :"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/textViewDietProfileVSSubHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Réalisez maintenant votre analyse minceur gratuit ..."
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dietProfilPersonalInfoHeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/black"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_weight="0.13">
+
+            <TextView
+                android:id="@+id/textViewDietProfilePIHeader"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Vos informations personnelles"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dietProfileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_weight="0.72">
+            <RelativeLayout
+                android:id="@+id/rlGenderQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Etes-vous un homme ou une femme ?"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp" />
+
+                <ImageButton
+                    android:id="@+id/imgBtnFem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginStart="23dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/gender_woman_active"
+                    android:tag="imgBtnFem" />
+
+                <ImageButton
+                    android:id="@+id/imgBtnMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textView"
+                    android:layout_alignEnd="@+id/textView2"
+                    android:layout_alignRight="@+id/textView2"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/gender_man"
+                    android:tag="imgBtnMale" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/imgBtnFem"
+                    android:layout_alignRight="@+id/imgBtnFem"
+                    android:layout_below="@+id/imgBtnFem"
+                    android:layout_marginTop="16dp"
+                    android:text="Je suis une femme" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView"
+                    android:layout_alignBottom="@+id/textView"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="38dp"
+                    android:layout_marginRight="38dp"
+                    android:text="Je suis un homme" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/dietProfileQuestionsListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_margin="8dp">
+                <TextView
+                android:id="@+id/textViewQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/white"
+                android:text=""
+                android:textColor="#323232" />
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/sQuestionsList"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@android:color/white">
+
+                <LinearLayout
+                    android:id="@+id/lQuestionsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lVitalStats"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_margin="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+
+                        android:id="@+id/textView32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:textColor="#323232"
+                        android:text="Quelle est votre taille ?" />
+
+                    <EditText
+                        android:id="@+id/editHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:ems="5"
+                        android:maxLength="5"
+                        android:layout_marginLeft="38dp"
+                        android:textColor="#000"
+                        android:inputType="numberDecimal"
+                        android:text=""
+                        android:textSize="12dp"/>
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#323232"
+                        android:gravity="right"
+                        android:text="cm" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewHeightError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Merci de préciser votre taille."
+                    android:textColor="#ff0000"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#323232"
+                        android:layout_marginLeft="25dp"
+                        android:text="Quel est votre poids ?" />
+
+                    <EditText
+                        android:id="@+id/editCurrentWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="45dp"
+                        android:ems="5"
+                        android:maxLength="5"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="12dp"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#323232"
+                        android:text="kilos" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewWeightError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Merci de préciser votre poids."
+                    android:textColor="#ff0000"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#323232"
+                        android:layout_marginLeft="25dp"
+                        android:text="Quel est votre poids idéal ?" />
+
+                    <EditText
+                        android:id="@+id/editIdealWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="12dp"
+                        android:ems="5"
+                        android:maxLength="5"
+                        android:text=""
+                        android:textSize="12dp"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="kilos"
+                        android:textColor="#323232"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewTargetWeightError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Merci de préciser votre poids souhaité."
+                    android:textColor="#ff0000"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
+                <Button
+                    android:id="@+id/btnVitalStatsProcess"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="bottom|center"
+                    android:tag="btnVitalStatsProcess"
+                    android:text="Je termine mon bilan" />
+            </LinearLayout>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/sPersonalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="@android:color/white">
+            <LinearLayout
+                android:id="@+id/lPersonalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:layout_margin="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adresse E-mail"
+                        android:layout_weight="0.8"
+                        android:textColor="#323232"/>
+
+                    <EditText
+                        android:id="@+id/editEmailAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:ems="13"
+                        android:maxLength="30"
+                        android:text=""
+                        android:textSize="12dp"
+                        android:gravity="left"
+                        android:layout_weight="0.2"
+                        android:inputType="textEmailAddress" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vous devez entrer un email valide"
+                    android:textColor="#ff0000"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:gravity="center"
+                    android:text="Votre adresse e-mail nous permet de vous envoyer gratuitement votre bilan par e-mail.Cela reste une information confidentielle."
+                    android:textSize="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prénom"
+                        android:layout_weight="0.9"
+                        android:textColor="#323232" />
+
+                    <EditText
+                        android:id="@+id/editFirstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:ems="13"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textColor="#323232"
+                        android:maxLength="20"
+                        android:layout_weight="0.14"
+                        android:gravity="left"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorFirstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Merci de saisir votre prénom."
+                    android:textColor="#ff0000"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:text="Nom"
+                        android:textColor="#323232" />
+
+                    <EditText
+                        android:id="@+id/editSurname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_weight="0.132"
+                        android:gravity="left"
+                        android:ems="13"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textColor="#323232"
+                        android:maxLength="20"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorSurname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Merci de saisir votre nom."
+                    android:textColor="#ff0000"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Numéro de téléphone"
+                        android:layout_weight="0.5"
+                        android:textColor="#323232" />
+
+                    <EditText
+                        android:id="@+id/editPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:ems="13"
+                        android:text=""
+                        android:inputType="phone"
+                        android:textColor="#323232"
+                        android:layout_weight="0.39"
+                        android:gravity="left"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Attention, votre numéro doit commencer par 01 à 09 et comporter 10 chiffres sans espace. Cochez la case si le numéro est étranger."
+                    android:textColor="#ff0000"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp">
+
+                    <CheckBox
+                        android:id="@+id/checkBoxPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right"
+                        android:text="Cochez pour un numéro étranger"
+                        android:textColor="#323232"
+                        android:textSize="8dp"  />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="8dp"
+                        android:gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:text="Vérifiez votre adresse e-mail et cliquez sur « Accédez à votre bilan ! » pour recevoir votre bilan minceur personnalisé par e-mail." />
+
+                    <Button
+                        android:id="@+id/btnPersoInfoProcess"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:tag="btnPersoInfoProcess"
+                        android:layout_marginBottom="15dp"
+                        android:text="Je continue" />
+                </LinearLayout>
+
+            </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dietProfileResultsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@android:color/black">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:text="Vos résultats"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageViewProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/results_progress01" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/dietProfileResultsPage1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewGreeting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Bravo, je vais vous aider à perdre ces #TargetWeightLoss kilos et à #Q6Result" />
+
+                <TextView
+                    android:id="@+id/textViewProgramme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="En suivant mon programme, vous allez bénéficier de tous les outils et conseils pour atteindre votre objectif de #TargetWeight kilos. Cette méthode de rééquilibrage alimentaire sera bénéfique pour votre santé et complètement adaptée à votre profil." />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Regardez la vidéo personnalisée de votre bilan minceur :" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/results01_fig01" />
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/webViewResultsVideo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:src="@drawable/results01_sign" />
+
+                    <Button
+                        android:id="@+id/buttonToResultsPage2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:tag="buttonToResultsPage2"
+                        android:text="Continuer" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
-    </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/rlPersonalInfo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/dietProfileResultsPage2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/textHeightLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="37dp"
-            android:layout_marginStart="37dp"
-            android:layout_marginTop="68dp"
-            android:text="Quelle est votre taille ?"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <TextView
+                android:id="@+id/textViewResultPage2Content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:text="TextView" />
 
-        <EditText
-            android:id="@+id/editHeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="5"
-            android:inputType="number"
-            android:maxLength="5"
-            android:textColor="#000"
-            android:layout_alignTop="@+id/textHeightLabel"
-            android:layout_toRightOf="@+id/textHeightLabel"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_alignBottom="@+id/textHeightLabel"/>
+            <LinearLayout
+                android:id="@+id/dietProfileResultsGraph"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/editHeight"
-            android:layout_toEndOf="@+id/editHeight"
-            android:text="cm"
-            android:layout_toRightOf="@+id/editHeight" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5">
 
-        <TextView
-            android:id="@+id/textWeightLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textHeightLabel"
-            android:layout_alignStart="@+id/textHeightLabel"
-            android:layout_below="@+id/textHeightLabel"
-            android:layout_marginTop="23dp"
-            android:text="Quel est votre poids ?" />
+                    <ImageView
+                        android:id="@+id/imageViewGenderGraph"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="0dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/results02_female" />
 
-        <EditText
-            android:id="@+id/editCurrentWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editHeight"
-            android:layout_alignStart="@+id/editHeight"
-            android:layout_alignTop="@+id/textWeightLabel"
-            android:ems="5"
-            android:inputType="number"
-            android:maxLength="5"
-            android:textColor="#000"
-            android:layout_alignBottom="@+id/textWeightLabel"
-            android:layout_toLeftOf="@+id/textView4"
-            android:layout_toStartOf="@+id/textView4" />
+                    <TextView
+                        android:id="@+id/textViewCurrentWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="170kg"
+                        android:textColor="#f2680d"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/editCurrentWeight"
-            android:layout_toEndOf="@+id/editCurrentWeight"
-            android:layout_toRightOf="@+id/editCurrentWeight"
-            android:text="kg" />
+                    <TextView
+                        android:id="@+id/textViewTargetWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="231dp"
+                        android:layout_marginTop="68dp"
+                        android:text="150kg"
+                        android:textColor="#f2680d"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textIdealWeightLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textWeightLabel"
-            android:layout_alignStart="@+id/textWeightLabel"
-            android:layout_below="@+id/textWeightLabel"
-            android:layout_marginTop="23dp"
-            android:text="Quel est votre poids idéal ?" />
+                </RelativeLayout>
 
-        <EditText
-            android:id="@+id/editIdealWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editCurrentWeight"
-            android:layout_alignStart="@+id/editCurrentWeight"
-            android:layout_alignTop="@+id/textIdealWeightLabel"
-            android:ems="5"
-            android:inputType="number"
-            android:maxLength="5"
-            android:textColor="#000"
-            android:layout_alignBottom="@+id/textIdealWeightLabel"
-            android:layout_toLeftOf="@+id/textView7"
-            android:layout_toStartOf="@+id/textView7" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1">
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/editIdealWeight"
-            android:layout_toEndOf="@+id/editIdealWeight"
-            android:layout_toRightOf="@+id/editIdealWeight"
-            android:text="kg" />
+                    <TextView
+                        android:id="@+id/textViewCurrentIMC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp"
+                        android:text="IMC:22,1"
+                        android:background="@drawable/button_orange_roundedcorners"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/btnProcess"
-            android:tag="btnProcess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textIdealWeightLabel"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="19dp"
-            android:text="Je termine mon bilan" />
-    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/textViewAverageIMC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="21,0" />
+
+                    <TextView
+                        android:id="@+id/textViewTargetIMC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="56dp"
+                        android:layout_marginRight="56dp"
+                        android:text="19,8"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewMyIMC"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:text="Votre IMC : Comme vous pesez #CurrentWeight kg pour #Height cm, votre Indice de Masse Corporelle (IMC) est actuellement de #CurrentIMC."
+                android:textSize="12dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/results02_bar"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/textViewCurrentIMCGraph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="21,1" />
+
+                <TextView
+                    android:id="@+id/textViewTargetIMCGraph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginStart="52dp"
+                    android:text="19,8" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2">
+
+                <Button
+                    android:id="@+id/buttonReturnToResultsPage1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Retour"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="65dp"
+                    android:layout_marginStart="65dp"
+                    android:tag="buttonReturnToResultsPage1"/>
+
+                <Button
+                    android:id="@+id/buttonToResultsPage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Continuer"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="78dp"
+                    android:layout_marginEnd="78dp"
+                    android:tag="buttonToResultsPage3"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dietProfileResultsPage3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/textViewQ3Result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="textViewQ3Result" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Même si vous souhaitez suivre un régime amaigrissant, ne croyez pas que vous allez devoir changer toutes vos habitudes : vous devez les adapter certes, mais certainement pas les changer du tout au tout." />
+
+                <TextView
+                    android:id="@+id/textViewTestimonialTitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="textViewTestimonialTitle1" />
+            </LinearLayout>
+            <WebView
+                android:id="@+id/webViewResultsTestimonialVideo1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="0.4">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/results03_fig1"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="0.3"
+                    android:scaleType="fitCenter"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="0.6">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Des plans de repas sans privations ni aliments interdits" />
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Le Jeune Cohen 16H pour accélérer votre perte de poids" />
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Des techniques pour rattraper les écarts en douceur" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3">
+
+                <Button
+                    android:id="@+id/buttonReturnToResultsPage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="58dp"
+                    android:layout_marginStart="58dp"
+                    android:text="Retour"
+                    android:tag="buttonReturnToResultsPage2"/>
+
+                <Button
+                    android:id="@+id/buttonToResultsPage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/buttonReturnToResultsPage2"
+                    android:layout_marginEnd="74dp"
+                    android:layout_marginRight="74dp"
+                    android:text="Continuer"
+                    android:tag="buttonToResultsPage4"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dietProfileResultsPage4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vous allez durablement améliorer votre santé" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="En France, 15 millions de personnes sont en surpoids et 6.9 millions sont en situation d’obésité, soit au total 32.3 % de la population. Si la tendance se poursuit, la population en situation d’obésité en France pourrait atteindre 30% d’ici 30 ans... et ainsi rejoindre le niveau des Etats-Unis." />
+
+                <TextView
+                    android:id="@+id/textViewTestimonialTitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="textViewTestimonialTitle2" />
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/webViewResultsTestimonialVideo2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="0.4">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/results04_fig1"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="0.3"
+                    android:scaleType="fitCenter"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="0.6">
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Les conseils vidéo quotidiens de Jean-Michel Cohen" />
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Des résultats scientifiquement prouvés (Etude 2014 SEPREM*)" />
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Des outils pratiques pour réapprendre à manger et rééquilibrer votre alimentation" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3">
+
+                <Button
+                    android:id="@+id/buttonReturnToResultsPage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="58dp"
+                    android:layout_marginStart="58dp"
+                    android:text="Retour"
+                    android:tag="buttonReturnToResultsPage3"/>
+
+                <Button
+                    android:id="@+id/buttonToResultsPage5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/buttonReturnToResultsPage3"
+                    android:layout_marginEnd="74dp"
+                    android:layout_marginRight="74dp"
+                    android:text="Continuer"
+                    android:tag="buttonToResultsPage5"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dietProfileResultsPage5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:id="@+id/textViewQ4ResultTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="textViewQ4ResultTitle" />
+
+                <TextView
+                    android:id="@+id/textViewQ4ResultContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="textViewQ4ResultContent" />
+
+                <TextView
+                    android:id="@+id/textViewTestimonialTitle3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="textViewTestimonialTitle3" />
+            </LinearLayout>
+            <WebView
+                android:id="@+id/webViewResultsTestimonialVideo3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="0.4">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/results05_fig1"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="0.3"
+                    android:scaleType="fitCenter"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="0.6">
+
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Plus de confiance grâce à l'accompagnement de votre diététicienne" />
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Des résultats scientifiquement prouvés (Etude 2014 SEPREM*)" />
+
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- Des outils pratiques pour réapprendre à manger et rééquilibrer votre alimentation" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3">
+
+                <Button
+                    android:id="@+id/buttonReturnToResultsPage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="58dp"
+                    android:layout_marginStart="58dp"
+                    android:text="Retour"
+                    android:tag="buttonReturnToResultsPage4"/>
+
+                <Button
+                    android:id="@+id/buttonToResultsPage6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/buttonReturnToResultsPage4"
+                    android:layout_marginEnd="74dp"
+                    android:layout_marginRight="74dp"
+                    android:text="Continuer"
+                    android:tag="buttonToResultsPage6"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dietProfileResultsPage6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone">
 
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/results06_coachpic"/>
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_toEndOf="@+id/imageView"
+                    android:layout_toRightOf="@+id/imageView"
+                    android:text="La méthode Savoir Maigrir correspond précisément à vos besoins."
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewResultPage6Content1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Vous avez #TargetWeightLoss kilos à perdre et je vous recommande mon programme qui va vous permettre de perdre tranquillement ces kilos puis de profiter d'une période de stabilisation pour muscler votre corps ! Rappelez-vous que votre succès est important pour votre santé mais aussi pour votre bien être et votre confiance en vous. Savoir maigrir est bien plus efficace qu'un régime : c'est le rééquilibrage alimentaire qui vous servira tout au long de votre vie." />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="N'hésitez pas à nous poser des questions car, avec toute mon équipe, nous sommes là pour vous aider et vous conseiller !" />
+
+                <TextView
+                    android:id="@+id/textViewResultPage6Content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="50dp"
+                    android:text="Vous pouvez avoir une confiance totale dans la méthode Savoir Maigrir, #firstname, et nous vous le prouvons en prenant cet engagement : si vous n'avez pas pu atteindre votre juste poids à la fin du programme, nous nous engageons à vous le rembourser intégralement." />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Je m'abone" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 </LinearLayout>

@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 
 import com.crashlytics.android.Crashlytics;
 
+import anxa.com.smvideo.contracts.QuestionsContract;
+import anxa.com.smvideo.contracts.ResultsResponseDataContract;
 import anxa.com.smvideo.contracts.VideoContract;
 import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
@@ -55,8 +57,10 @@ public class ApplicationData extends Application {
     public Hashtable<String, Bitmap> recipePhotoList = new Hashtable<String, Bitmap>();
     public Hashtable<String, Bitmap> videoPhotoList = new Hashtable<String, Bitmap>();
     public List<RecipeContract> recipeList = new ArrayList<>();
+    public List<QuestionsContract> questionsList = new ArrayList<>();
     public List<VideoContract> discoverVideoList = new ArrayList<>();
     public List<VideoContract> testimonialVideoList = new ArrayList<>();
+    public ResultsResponseDataContract bilanminceurResults = new ResultsResponseDataContract();
     @Override
     public void onCreate() {
         super.onCreate();
