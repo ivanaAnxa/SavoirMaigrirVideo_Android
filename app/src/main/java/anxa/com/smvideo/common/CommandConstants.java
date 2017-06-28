@@ -9,10 +9,14 @@ public class CommandConstants {
     /* API NAMES */
     public static String API_VIDEOS = "video";
     public static String API_RECIPES = "recipe";
+    public static String API_BILANMINCEUR = "dietProfile";
     /* API COMMANDS */
     public static String FREE_DISCOVER= "free/discover";
     public static String FREE_TESTIMONIALS = "free/testimonials";
     public static String FREE_RECIPES = "free/all";
+    public static String BILANMINCEUR_VIDEO = "free/video";
+    public static String BILANMINCEUR_QUESTIONS = "free/questions";
+    public static String BILANMINCEUR_RESULTS = "free/result";
 
     public static String ACCOUNT_COACHING = "coaching/";
     public static String ACCOUNT_CONSEILS = "advice";
