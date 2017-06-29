@@ -67,6 +67,10 @@ import anxa.com.smvideo.util.InputValidatorUtil;
 
 public class BilanMinceurActivity extends Fragment implements View.OnClickListener {
     private WebView webViewResultsVideo;
+    private WebView webViewTestimonials1Video;
+    private WebView webViewTestimonials2Video;
+    private WebView webViewTestimonials3Video;
+
     private YouTubePlayerFragment playerFragment;
     private List<QuestionsContract> questionsList;
     private Integer questionIndex;
@@ -120,10 +124,42 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 return false;
             }
         });
-        webViewResultsVideo.setWebChromeClient(new WebChromeClient());
+
         WebSettings webSettings = webViewResultsVideo.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
+        webViewTestimonials1Video = (WebView) mView.findViewById(R.id.webViewResultsTestimonialVideo1);
+        webViewTestimonials1Video.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+
+        WebSettings webSettings1 = webViewTestimonials1Video.getSettings();
+        webSettings1.setJavaScriptEnabled(true);
+
+        webViewTestimonials2Video = (WebView) mView.findViewById(R.id.webViewResultsTestimonialVideo2);
+        webViewTestimonials2Video.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+
+        WebSettings webSettings2 = webViewTestimonials2Video.getSettings();
+        webSettings2.setJavaScriptEnabled(true);
+
+        webViewTestimonials3Video = (WebView) mView.findViewById(R.id.webViewResultsTestimonialVideo3);
+        webViewTestimonials3Video.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+
+        WebSettings webSettings3 = webViewTestimonials3Video.getSettings();
+        webSettings3.setJavaScriptEnabled(true);
 
         caller = new ApiCaller();
         caller.GetBilanMinceurVideo(new AsyncResponse() {
@@ -541,8 +577,19 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
             imageViewGenderGraph.setImageResource(R.drawable.results02_male);
         }
 
+        webViewResultsVideo.setWebChromeClient(new WebChromeClient());
         webViewResultsVideo.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/"+ resultsData.MainVideo +"\" frameborder=\"0\" allowfullscreen></iframe></body></html>","text/html", "utf-8");
-        RefreshPlayer(mView, resultsData.MainVideo);
+
+        webViewTestimonials1Video.setWebChromeClient(new WebChromeClient());
+        webViewTestimonials1Video.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/"+ resultsData.TestimonialVideo1 +"\" frameborder=\"0\" allowfullscreen></iframe></body></html>","text/html", "utf-8");
+
+        webViewTestimonials2Video.setWebChromeClient(new WebChromeClient());
+        webViewTestimonials2Video.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/"+ resultsData.TestimonialVideo2 +"\" frameborder=\"0\" allowfullscreen></iframe></body></html>","text/html", "utf-8");
+
+        webViewTestimonials3Video.setWebChromeClient(new WebChromeClient());
+        webViewTestimonials3Video.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/"+ resultsData.TestimonialVideo3 +"\" frameborder=\"0\" allowfullscreen></iframe></body></html>","text/html", "utf-8");
+
+        //RefreshPlayer(mView, resultsData.MainVideo);
 
         Button buttonToResultsPage2 = (Button) mView.findViewById(R.id.buttonToResultsPage2);
         buttonToResultsPage2.setOnClickListener(this);
@@ -586,44 +633,36 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
         ImageView imageViewProgressBar= (ImageView) mView.findViewById(R.id.imageViewProgressBar);
 
+        dietProfileResultsPage1.setVisibility(View.GONE);
+        dietProfileResultsPage2.setVisibility(View.GONE);
+        dietProfileResultsPage3.setVisibility(View.GONE);
+        dietProfileResultsPage4.setVisibility(View.GONE);
+        dietProfileResultsPage5.setVisibility(View.GONE);
+        dietProfileResultsPage6.setVisibility(View.GONE);
+
         switch (pageNo) {
             case 1:
                 dietProfileResultsPage1.setVisibility(View.VISIBLE);
-                dietProfileResultsPage2.setVisibility(View.GONE);
-                RefreshPlayer(mView, resultsData.MainVideo);
                 imageViewProgressBar.setImageResource(R.drawable.results_progress01);
                 break;
             case 2:
                 dietProfileResultsPage2.setVisibility(View.VISIBLE);
-                dietProfileResultsPage1.setVisibility(View.GONE);
-                dietProfileResultsPage3.setVisibility(View.GONE);
-
                 imageViewProgressBar.setImageResource(R.drawable.results_progress02);
                 break;
             case 3:
                 dietProfileResultsPage3.setVisibility(View.VISIBLE);
-                dietProfileResultsPage2.setVisibility(View.GONE);
-                dietProfileResultsPage4.setVisibility(View.GONE);
-                RefreshPlayer(mView, resultsData.TestimonialVideo1);
                 imageViewProgressBar.setImageResource(R.drawable.results_progress03);
                 break;
             case 4:
                 dietProfileResultsPage4.setVisibility(View.VISIBLE);
-                dietProfileResultsPage3.setVisibility(View.GONE);
-                dietProfileResultsPage5.setVisibility(View.GONE);
-                RefreshPlayer(mView, resultsData.TestimonialVideo2);
                 imageViewProgressBar.setImageResource(R.drawable.results_progress04);
                 break;
             case 5:
                 dietProfileResultsPage5.setVisibility(View.VISIBLE);
-                dietProfileResultsPage4.setVisibility(View.GONE);
-                dietProfileResultsPage6.setVisibility(View.GONE);
-                RefreshPlayer(mView, resultsData.TestimonialVideo3);
                 imageViewProgressBar.setImageResource(R.drawable.results_progress05);
                 break;
             case 6:
                 dietProfileResultsPage6.setVisibility(View.VISIBLE);
-                dietProfileResultsPage5.setVisibility(View.GONE);
                 imageViewProgressBar.setImageResource(R.drawable.results_progress06);
                 break;
         }
