@@ -93,4 +93,37 @@
 
     <string name="mon_compte_save">Sauvegarder</string>
 
+    <!--Repas-->
+    <string name="repas_header_meal_plan">Vous suivez actuellement le programme classique a 900 kcal/jour</string>
+    <string name="repas_breakfast">Petit-Déjeuner</string>
+    <string name="repas_lunch">Déjeuner</string>
+    <string name="repas_dinner">Diner</string>
+    <string name="repas_related_recipe">Recettes associéss</string>
+    <string name="repas_footer">Pour recevoir chaque semaine vos plans de repas et listes de courses par Email, activez l\'alerte dans Mon compte</string>
+
+
+    <!--Suivi du Poids-->
+    <string name="WEIGHT_GRAPH_WEIGHT_TIP">Notre conseil: pesez-vous régulièrement pour mettre votre courbe de poids à jour !</string>
+    <string name="WEIGHT_GRAPH_ENTER_CURRENT_WEIGHT">Entrez votre poids actuel</string>
+    <string name="btn_submit">Poster</string>
+    <string name="WEIGHT_GRAPH_TARGET_WEIGHT">Poids visé</string>
+    <string name="WEIGHT_GRAPH_CURRENT_BMI">IMC actuel</string>
+    <string name="WEIGHT_GRAPH_WEIGHT_LOST">Poids perdu</string>
+    <string name="WEIGHT_GRAPH_WEIGHT_LOG">Historique</string>
+    <string name="NO_DATA">Pas de données</string>
+    <string name="WEIGHT_GRAPH_STEPS_LOG">Historique</string>
+    <string name="WEIGHT_GRAPH_DATE">Date</string>
+    <string name="WEIGHT_GRAPH_SEE_MORE">Voir plus</string>
+    <string name="WEIGHT_GRAPH_DEVICE">Appareil</string>
+    <string name="WEIGHT_GRAPH_NO_MORE_CONTENTS_TO_SHOW">Fin du contenu</string>
+    <string name="WEIGHT_GRAPH_EDIT_WEIGHT">Editer de Poids</string>
+    <string name="WEIGHT_BUTTON">Courbe de Poids</string>
+    <string name="WEIGHT_GRAPH_NO_DATA">Poids actuel: Pas de données</string>
+    <string name="WEIGHT_GRAPH_CURRENT_WEIGHT_ASOF">Poids actuel: %@ kg le</string>
+
+
+    <!--Bilan Minceur-->
+    <string name="bilan_broadcast_subscribe">SUBSCRIBE_BILAN</string>
+    <string name="bilan_subscribe_btn">Je m\'abone</string>
+
 </resources>

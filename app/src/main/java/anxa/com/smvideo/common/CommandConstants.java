@@ -10,6 +10,8 @@ public class CommandConstants {
     public static String API_VIDEOS = "video";
     public static String API_RECIPES = "recipe";
     public static String API_BILANMINCEUR = "dietProfile";
+    public static String API_TV = "tv";
+    public static String API_USER = "user";
     /* API COMMANDS */
     public static String FREE_DISCOVER= "free/discover";
     public static String FREE_TESTIMONIALS = "free/testimonials";
@@ -21,4 +23,5 @@ public class CommandConstants {
     public static String ACCOUNT_COACHING = "coaching/";
     public static String ACCOUNT_CONSEILS = "advice";
     public static String ACCOUNT_EXERCICE = "exercise";
+    public static String ACCOUNT_GRAPH_DATA = "weight/graphData";
 }

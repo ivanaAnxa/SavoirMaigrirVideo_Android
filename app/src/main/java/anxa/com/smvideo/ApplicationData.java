@@ -5,11 +5,15 @@ import android.graphics.Bitmap;
 
 import com.crashlytics.android.Crashlytics;
 
+import anxa.com.smvideo.contracts.CoachingVideosContract;
 import anxa.com.smvideo.contracts.QuestionsContract;
 import anxa.com.smvideo.contracts.ResultsResponseDataContract;
+import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.VideoContract;
+import anxa.com.smvideo.contracts.WeightGraphContract;
 import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -49,6 +53,10 @@ public class ApplicationData extends Application {
 
     private static ApplicationData instance = null;
     public boolean showLandingPage = true;
+
+    public int regId = 27;
+    public int selectedWeek = 0;
+    public int applicationId = 1;
     public String accountType = "free";
     public String userName = "User";
 
@@ -60,7 +68,18 @@ public class ApplicationData extends Application {
     public List<QuestionsContract> questionsList = new ArrayList<>();
     public List<VideoContract> discoverVideoList = new ArrayList<>();
     public List<VideoContract> testimonialVideoList = new ArrayList<>();
+
+    /** account **/
+    public UserDataContract userDataContract = null;
+    public List<CoachingVideosContract> coachingVideoList = new ArrayList<>();
+    public List<VideoContract> conseilsVideoList = new ArrayList<>();
+    public List<VideoContract> exerciseVideoList = new ArrayList<>();
+    public List<WeightGraphContract> weightGraphContractList = new ArrayList<>();
     public ResultsResponseDataContract bilanminceurResults = new ResultsResponseDataContract();
+
+    public String currentDateRangeDisplay;
+    public Date currentDateRangeDisplay_date;
+    public Date currentDateRangeDisplay_date2;
     @Override
     public void onCreate() {
         super.onCreate();

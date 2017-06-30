@@ -11,5 +11,22 @@
     <color name="listViewBackground">#F2F2F2</color>
     <color name="recipeCategoryBackground">#343434</color>
 
+    <color name="repasFooterBackground">#f2f2f2</color>
+
     <color name="monCompteHeader">#f7f7f7</color>
+
+    <!--weight graph-->
+    <color name="text_orangedark">#f68802</color>
+    <color name="text_blackgray">#2d2d2d</color>
+    <color name="text_darkgray">#909090</color>
+    <color name="gray_background">#f9f9f9</color>
+    <color name="text_lightgray">#c8c8c8</color>
+    <color name="common_button_orange">#ff9900</color>
+    <color name="common_gray_separator">#d3d3d3</color>
+    <color name="text_orange">#ff9900</color>
+
+    <color name="dark_gray_bg_bilan">#353535</color>
+    <color name="gray_text_bilan">#323232</color>
+
+
 </resources>

@@ -23,10 +23,11 @@ import anxa.com.smvideo.R;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
+import anxa.com.smvideo.contracts.CoachingVideosContract;
+import anxa.com.smvideo.contracts.CoachingVideosResponseContract;
 import anxa.com.smvideo.contracts.VideoContract;
-import anxa.com.smvideo.contracts.VideoResponseContract;
+import anxa.com.smvideo.ui.CoachingVideoListAdapter;
 import anxa.com.smvideo.ui.CustomListView;
-import anxa.com.smvideo.ui.VideoListAdapter;
 import anxa.com.smvideo.util.AppUtil;
 import anxa.com.smvideo.util.VideoHelper;
 
@@ -39,8 +40,9 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
     private Context context;
     protected ApiCaller caller;
 
-    private VideoListAdapter adapter;
-    private List<VideoContract> videosList;
+    private CoachingVideoListAdapter adapter;
+    private List<CoachingVideosContract> videosList_all;
+    private List<CoachingVideosContract> videosList;
 
     private CustomListView coachingListView;
 
@@ -63,9 +65,11 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
 
         coachingListView = (CustomListView) mView.findViewById(R.id.coachingListView);
 
-        videosList = new ArrayList<VideoContract>();
+        videosList = new ArrayList<CoachingVideosContract>();
+        videosList_all = new ArrayList<CoachingVideosContract>();
+
         if (adapter == null) {
-            adapter = new VideoListAdapter(context, videosList, this);
+            adapter = new CoachingVideoListAdapter(context, videosList, this);
         }
 
         coachingListView.setAdapter(adapter);
@@ -87,17 +91,25 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
 
                 //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
                 if (output != null) {
-                    VideoResponseContract c = (VideoResponseContract) output;
+                    CoachingVideosResponseContract c = (CoachingVideosResponseContract) output;
 
                     if (c != null && c.Data != null && c.Data.Videos != null) {
-                        for (VideoContract v : c.Data.Videos) {
+                        for (CoachingVideosContract v : c.Data.Videos) {
 //                            if (v.VideoSource != null && v.VideoSource.equalsIgnoreCase("youtube")) {
-                                videosList.add(v);
+                                videosList_all.add(v);
 //                            }
+
+                            if (v.WeekNumber == AppUtil.getCurrentWeek()){
+                                videosList.add(v);
+                            }
+
+                            System.out.println("v.WeekNumber: " + v.WeekNumber + " = " + AppUtil.getCurrentWeek());
                         }
 
-                        ApplicationData.getInstance().discoverVideoList = videosList;
-                        VideoHelper.sort("index", videosList);
+                        ApplicationData.getInstance().coachingVideoList = videosList_all;
+
+
+                        VideoHelper.sortCoachingVideos("index", videosList);
                         videosList.get(0).IsSelected = true;
                         adapter.updateItems(videosList);
 
@@ -138,13 +150,13 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
         adapter.updateItems(videosList);
     }
 
-    private void RefreshPlayer(final View v, final VideoContract video) {
+    private void RefreshPlayer(final View v, final CoachingVideosContract video) {
         playerFragment.initialize(SavoirMaigrirVideoConstants.YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
-                if (video.VideoId != null) {
+                if (video.VideoUrl != null) {
 
-                    youTubePlayer.cueVideo(String.valueOf(video.VideoId));
+                    youTubePlayer.cueVideo(video.VideoUrl);
 
                     ((TextView) (mView.findViewById(R.id.videoTitle))).setText(video.Title);
                     ((TextView) (mView.findViewById(R.id.videoDesc))).setText(video.Description);

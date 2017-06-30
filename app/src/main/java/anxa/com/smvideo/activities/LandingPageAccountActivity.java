@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.connection.ApiCaller;
+import anxa.com.smvideo.connection.http.AsyncResponse;
+import anxa.com.smvideo.contracts.RecipeResponseContract;
+import anxa.com.smvideo.contracts.UserDataContract;
+import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.util.AppUtil;
 
 /**
@@ -17,16 +22,47 @@ import anxa.com.smvideo.util.AppUtil;
  */
 
 public class LandingPageAccountActivity extends Activity implements View.OnClickListener {
+
+    protected ApiCaller caller;
+    String userName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_page_account);
 
+        caller = new ApiCaller();
+
+//        if(ApplicationData.getInstance().userDataContract!=null) {
+//            userName = ApplicationData.getInstance().userDataContract.FirstName;
+//        }else{
+        caller.GetAccountUserData(new AsyncResponse() {
+            @Override
+            public void processFinish(Object output) {
+                if (output != null) {
+
+                    UserDataResponseContract c = (UserDataResponseContract) output;
+                    //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+
+                    if (c != null) {
+                        ApplicationData.getInstance().userDataContract = c.Data;
+
+                        userName = c.Data.FirstName;
+
+                        String welcome_message = getString(R.string.welcome_account_1).replace("%@", userName) +
+                                getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek()));
+                        ((TextView) (findViewById(R.id.welcome_message_account_tv))).setText(welcome_message);
+                    }
+                }
+
+            }
+        });
+//    }
+
+
         ApplicationData.getInstance().showLandingPage = false;
 
-        String welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userName) +
-                getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek()));
-        ((TextView) (findViewById(R.id.welcome_message_account_tv))).setText(welcome_message);
+
 
         //initialize on click (transfer inside api call if there will be one in the future
         ((Button) findViewById(R.id.LandingCoachingButton)).setOnClickListener(this);
@@ -71,11 +107,15 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
     }
 
     public void goToRepasPage() {
-
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Repas;
+        Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(mainIntent);
     }
 
     public void goToRecettesPage() {
-
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Recettes;
+        Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(mainIntent);
     }
 
     public void goToConseilsPage() {
@@ -92,15 +132,15 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
     }
 
     public void goToSuiviPage() {
-
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Suivi;
+        Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(mainIntent);
     }
 
     public void goToMonComptePage() {
         ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_MonCompte;
         Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(mainIntent);
-
     }
-
 
 }

@@ -2,7 +2,10 @@ package anxa.com.smvideo.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +24,8 @@ import anxa.com.smvideo.activities.account.CoachingAccountFragment;
 import anxa.com.smvideo.activities.account.ConseilsFragment;
 import anxa.com.smvideo.activities.account.ExerciceFragment;
 import anxa.com.smvideo.activities.account.MonCompteAccountFragment;
+import anxa.com.smvideo.activities.account.RepasFragment;
+import anxa.com.smvideo.activities.account.WeightGraphFragment;
 import anxa.com.smvideo.models.NavItem;
 import anxa.com.smvideo.ui.DrawerListAdapter;
 import anxa.com.smvideo.util.AppUtil;
@@ -42,6 +47,10 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(this.getResources().getString(R.string.bilan_broadcast_subscribe));
+        this.getApplicationContext().registerReceiver(the_receiver, filter);
+
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
 
             ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(getString(R.string.welcome_message));
@@ -53,7 +62,13 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             mNavItems.add(new NavItem(getString(R.string.menu_mon_compte), R.drawable.compte_ico));
         }else{
 
-            String welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek())));
+            String welcome_message;
+            if (ApplicationData.getInstance().userDataContract.FirstName!=null) {
+                welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userDataContract.FirstName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek())));
+            }else{
+                welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek())));
+
+            }
             ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(welcome_message);
 
             mNavItems.add(new NavItem(getString(R.string.menu_account_coaching), R.drawable.icon_account_coaching));
@@ -139,10 +154,10 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                 fragment = new CoachingAccountFragment();
                     break;
                 case 1: //repas
-                    fragment = new BilanMinceurActivity();
+                    fragment = new RepasFragment();
                     break;
                 case 2: //recettes
-                    fragment = new TemoignagesActivity();
+                    fragment = new RecipesActivity();
                     break;
                 case 3: //conseils
                     fragment = new ConseilsFragment();
@@ -151,7 +166,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                     fragment = new ExerciceFragment();
                     break;
                 case 5: //suivi
-                    fragment = new MonCompteActivity();
+                    fragment = new WeightGraphFragment();
                     break;
                 case 6: //mon compte
                     fragment = new MonCompteAccountFragment();
@@ -192,4 +207,14 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     public void onBackPressed(View view) {
         getFragmentManager().popBackStack();
     }
+
+    private BroadcastReceiver the_receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getAction() == context.getResources().getString(R.string.bilan_broadcast_subscribe)) {
+                selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal());
+            }
+        }
+    };
 }
