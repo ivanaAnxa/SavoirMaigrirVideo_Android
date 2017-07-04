@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -94,6 +95,8 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
     private LinearLayout lVitalStats;
     private LinearLayout dietProfileQuestionsListLayout;
 
+    private ProgressBar questionnairesProgressBar;
+
     private YouTubePlayer youTubePlayer;
 
     Context context;
@@ -117,6 +120,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         dietProfileResultsPage4 = (RelativeLayout) mView.findViewById(R.id.dietProfileResultsPage4);
         dietProfileResultsPage5 = (RelativeLayout) mView.findViewById(R.id.dietProfileResultsPage5);
         dietProfileResultsPage6 = (LinearLayout) mView.findViewById(R.id.dietProfileResultsPage6);
+
+        questionnairesProgressBar = (ProgressBar) mView.findViewById(R.id.questionnaires_progressBar);
+        questionnairesProgressBar.setVisibility(View.GONE);
 
         persoHeaderLayout = (LinearLayout) mView.findViewById(R.id.dietProfilPersonalInfoHeaderLayout);
         vsHeaderLayout = (LinearLayout) mView.findViewById(R.id.dietProfilVitalStatsHeaderLayout);
@@ -151,7 +157,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         UI Fixes
         */
         //Testing
-        webViewResultsVideo = (WebView) mView.findViewById(R.id.webViewResultsVideo);
+        webViewResultsVideo = ((WebView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.webViewResultsVideo));
         webViewResultsVideo.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -162,7 +168,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         WebSettings webSettings = webViewResultsVideo.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        webViewTestimonials1Video = (WebView) mView.findViewById(R.id.webViewResultsTestimonialVideo1);
+        webViewTestimonials1Video = (WebView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.webViewResultsTestimonialVideo1);
         webViewTestimonials1Video.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -173,7 +179,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         WebSettings webSettings1 = webViewTestimonials1Video.getSettings();
         webSettings1.setJavaScriptEnabled(true);
 
-        webViewTestimonials2Video = (WebView) mView.findViewById(R.id.webViewResultsTestimonialVideo2);
+        webViewTestimonials2Video = (WebView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.webViewResultsTestimonialVideo2);
         webViewTestimonials2Video.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -184,7 +190,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         WebSettings webSettings2 = webViewTestimonials2Video.getSettings();
         webSettings2.setJavaScriptEnabled(true);
 
-        webViewTestimonials3Video = (WebView) mView.findViewById(R.id.webViewResultsTestimonialVideo3);
+        webViewTestimonials3Video = (WebView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.webViewResultsTestimonialVideo3);
         webViewTestimonials3Video.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -218,23 +224,29 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         System.out.println("bilan onclick: " + v.getTag());
-        if (v.getTag() instanceof Integer) {
-            int answerTag = (int) v.getTag();
-            if (answerTag >= 1 && answerTag <= 10 && questionIndex <= 11) {
-                answers[questionIndex - 2] = answerTag;
-                if (questionIndex <= 10) {
-                    createQuestionsList();
-                } else {
-
-                    qHeaderLayout.setVisibility(View.GONE);
-                    dietProfileQuestionsListLayout.setVisibility(View.GONE);
-                    lVitalStats.setVisibility(View.VISIBLE);
-                    vsHeaderLayout.setVisibility(View.VISIBLE);
-                    Button btnVitalStatsProcess = (Button) mView.findViewById(R.id.btnVitalStatsProcess);
-                    btnVitalStatsProcess.setOnClickListener(this);
-                }
-            }
-        } else {
+//        if (v.getTag() instanceof Integer) {
+//            int answerTag = (int) v.getTag();
+//            if (answerTag >= 1 && answerTag <= 10 && questionIndex <= 11) {
+//                answers[questionIndex - 2] = answerTag;
+//                if (questionIndex <= 10) {
+//                    final Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            createQuestionsList();
+//                        }
+//                    }, 1000);
+//                } else {
+//
+//                    qHeaderLayout.setVisibility(View.GONE);
+//                    dietProfileQuestionsListLayout.setVisibility(View.GONE);
+//                    lVitalStats.setVisibility(View.VISIBLE);
+//                    vsHeaderLayout.setVisibility(View.VISIBLE);
+//                    Button btnVitalStatsProcess = (Button) mView.findViewById(R.id.btnVitalStatsProcess);
+//                    btnVitalStatsProcess.setOnClickListener(this);
+//                }
+//            }
+//        } else {
             String buttonTag = (String) v.getTag();
             switch (buttonTag) {
                 case "buttonReturnToResultsPage1":
@@ -296,6 +308,8 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                         public void run() {
                             genderLayout.setVisibility(View.GONE);
                             dietProfileQuestionsListLayout.setVisibility(View.VISIBLE);
+                            questionnairesProgressBar.setVisibility(View.VISIBLE);
+                            questionnairesProgressBar.setProgress(0);
                             getQuestions(gender.toString());
                         }
                     }, 500);
@@ -311,7 +325,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 default:
                     break;
             }
-        }
+//        }
         // default method for handling onClick Events..
     }
 
@@ -446,16 +460,67 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 textViewQuestion.setTextColor(Color.parseColor("#323232"));
                 textViewQuestion.setText(q.QuestionIndex.toString() + ". " + question);
 
+                questionnairesProgressBar.setProgress(questionIndex-1);
+
                 for (AnswersContract a : answersList) {
-                    Button btn1 = new Button(context);
+                    final Button btn1 = new Button(context);
                     btn1.setTag(a.AnswerIndex);
-                    btn1.setOnClickListener(this);
+                    btn1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (v.getTag() instanceof Integer) {
+                                int answerTag = (int) v.getTag();
+                                if (answerTag >= 1 && answerTag <= 10 && questionIndex <= 11) {
+                                    answers[questionIndex - 2] = answerTag;
+                                    if (questionIndex <= 10) {
+                                        btn1.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.button_orange_selected));
+                                        final Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                createQuestionsList();
+                                            }
+                                        }, 500);
+                                    } else {
+
+                                        qHeaderLayout.setVisibility(View.GONE);
+                                        dietProfileQuestionsListLayout.setVisibility(View.GONE);
+                                        lVitalStats.setVisibility(View.VISIBLE);
+                                        vsHeaderLayout.setVisibility(View.VISIBLE);
+                                        Button btnVitalStatsProcess = (Button) mView.findViewById(R.id.btnVitalStatsProcess);
+                                        btnVitalStatsProcess.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                if (validateVitalStats()) {
+
+                                                    lVitalStats.setVisibility(View.GONE);
+                                                    vsHeaderLayout.setVisibility(View.GONE);
+                                                    persoHeaderLayout.setVisibility(View.VISIBLE);
+                                                    sPersonalInfo.setVisibility(View.VISIBLE);
+                                                    Button btnPersoInfoProcess = (Button) mView.findViewById(R.id.btnPersoInfoProcess);
+                                                    btnPersoInfoProcess.setOnClickListener(new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            if (validatePersonalInfo()) {
+                                                                dietProfileQuestionsLayout.setVisibility(View.GONE);
+                                                                postResults();
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    });
                     btn1.setTextSize(12);
                     btn1.setGravity(Gravity.LEFT);
                     btn1.setPadding(50, btn1.getPaddingTop() + 5, btn1.getPaddingRight(), btn1.getPaddingBottom());
 
                     btn1.setLayoutParams(paramsQuestionButton);
-                    btn1.setBackgroundResource(R.drawable.button_lightgray_roundedcorners);
+                    btn1.setBackgroundResource(R.drawable.button_questions_background);
                     btn1.setText(a.Answer);
                     qLayout.addView(btn1);
                 }
@@ -494,10 +559,15 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
             @Override
             public void processFinish(Object output) {
                 if (output != null) {
+
                     BMResultsResponseContract c = (BMResultsResponseContract) output;
 
-                    if (c != null && c.Data != null) {
-                        buildResultsPage(c.Data);
+                    if(c.Message.equalsIgnoreCase("Failed")){
+                        Toast.makeText(context, c.MessageDetails, Toast.LENGTH_LONG).show();
+                    }else {
+                        if (c != null && c.Data != null) {
+                            buildResultsPage(c.Data);
+                        }
                     }
                 }
             }
@@ -513,31 +583,31 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         final ForegroundColorSpan orangeFont = new ForegroundColorSpan(Color.parseColor("#f2680d"));
         final StyleSpan boldFont = new StyleSpan(android.graphics.Typeface.BOLD);
 
-        final TextView textViewGreeting = (TextView) mView.findViewById(R.id.textViewGreeting);
-        final TextView textViewProgramme = (TextView) mView.findViewById(R.id.textViewProgramme);
-        final TextView textViewResultPage2Content = (TextView) mView.findViewById(R.id.textViewResultPage2Content);
-        final TextView textViewCurrentWeight = (TextView) mView.findViewById(R.id.textViewCurrentWeight);
-        final TextView textViewTargetWeight = (TextView) mView.findViewById(R.id.textViewTargetWeight);
-        final TextView textViewCurrentIMC = (TextView) mView.findViewById(R.id.textViewCurrentIMC);
-        final TextView textViewAverageIMC = (TextView) mView.findViewById(R.id.textViewAverageIMC);
-        final TextView textViewTargetIMC = (TextView) mView.findViewById(R.id.textViewTargetIMC);
-        final TextView textViewMyIMC = (TextView) mView.findViewById(R.id.textViewMyIMC);
-        final TextView textViewQ3Result = (TextView) mView.findViewById(R.id.textViewQ3Result);
-        final TextView textViewTestimonialTitle1 = (TextView) mView.findViewById(R.id.textViewTestimonialTitle1);
-        final TextView textViewTestimonialTitle2 = (TextView) mView.findViewById(R.id.textViewTestimonialTitle2);
-        final TextView textViewTestimonialTitle3 = (TextView) mView.findViewById(R.id.textViewTestimonialTitle3);
-        final TextView textViewQ4ResultTitle = (TextView) mView.findViewById(R.id.textViewQ4ResultTitle);
-        final TextView textViewQ4ResultContent = (TextView) mView.findViewById(R.id.textViewQ4ResultContent);
-        final TextView textViewResultPage6Content1 = (TextView) mView.findViewById(R.id.textViewResultPage6Content1);
-        final TextView textViewResultPage6Content2 = (TextView) mView.findViewById(R.id.textViewResultPage6Content2);
+        final TextView textViewGreeting = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewGreeting);
+        final TextView textViewProgramme = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewProgramme);
+        final TextView textViewResultPage2Content = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewResultPage2Content);
+        final TextView textViewCurrentWeight = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewCurrentWeight);
+        final TextView textViewTargetWeight = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewTargetWeight);
+        final TextView textViewCurrentIMC = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewCurrentIMC);
+        final TextView textViewAverageIMC = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewAverageIMC);
+        final TextView textViewTargetIMC = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewTargetIMC);
+        final TextView textViewMyIMC = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewMyIMC);
+        final TextView textViewQ3Result = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewQ3Result);
+        final TextView textViewTestimonialTitle1 = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewTestimonialTitle1);
+        final TextView textViewTestimonialTitle2 = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewTestimonialTitle2);
+        final TextView textViewTestimonialTitle3 = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewTestimonialTitle3);
+        final TextView textViewQ4ResultTitle = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewQ4ResultTitle);
+        final TextView textViewQ4ResultContent = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewQ4ResultContent);
+        final TextView textViewResultPage6Content1 = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewResultPage6Content1);
+        final TextView textViewResultPage6Content2 = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewResultPage6Content2);
 
-        final TextView textViewCurrentIMCGraph = (TextView) mView.findViewById(R.id.textViewCurrentIMCGraph);
-        final TextView textViewTargetIMCGraph = (TextView) mView.findViewById(R.id.textViewTargetIMCGraph);
+        final TextView textViewCurrentIMCGraph = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewCurrentIMCGraph);
+        final TextView textViewTargetIMCGraph = (TextView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.textViewTargetIMCGraph);
 
         EditText editFirstname = (EditText) mView.findViewById(R.id.editFirstname);
         String firstName = editFirstname.getText().toString();
 
-        ImageView imageViewGenderGraph = (ImageView) mView.findViewById(R.id.imageViewGenderGraph);
+        ImageView imageViewGenderGraph = (ImageView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.imageViewGenderGraph);
 
         String greeting = "Bravo, je vais vous aider à perdre ces " + resultsData.TargetWeightLoss + " kilos et à " + resultsData.Q6Result;
         textViewGreeting.setText(resultsData.Q6Result);
@@ -569,7 +639,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         textViewQ4ResultTitle.setText(resultsData.Q4ResultTitle);
         textViewQ4ResultContent.setText(resultsData.Q4ResultContent);
 
-        String resultPage6Content1 = "Vous avez " + resultsData.TargetWeightLoss + " kilos à perdre et je vous recommande mon programme qui va vous permettre de perdre tranquillement ces kilos puis de profiter d'une période de stabilisation pour muscler votre corps ! Rappelez-vous que votre succès est important pour votre santé mais aussi pour votre bien être et votre confiance en vous. Savoir maigrir est bien plus efficace qu'un régime : c'est le rééquilibrage alimentaire qui vous servira tout au long de votre vie.";
+        String resultPage6Content1 = "Vous avez " + resultsData.TargetWeightLoss + " " + getString(R.string.bilan_results_weight_text6_1);
         Spannable spannableresultPage6Content1 = new SpannableString(resultPage6Content1);
         spannableresultPage6Content1.setSpan(orangeFont, 0, resultPage6Content1.indexOf("et je vous recommande"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableresultPage6Content1.setSpan(boldFont, 0, resultPage6Content1.indexOf("et je vous recommande"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -577,7 +647,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         spannableresultPage6Content1.setSpan(boldFont, resultPage6Content1.indexOf("mon programme"), resultPage6Content1.indexOf(" qui va vous permettre"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textViewResultPage6Content1.setText(spannableresultPage6Content1, TextView.BufferType.SPANNABLE);
 
-        String resultPage6Content2 = "Vous pouvez avoir une confiance totale dans la méthode Savoir Maigrir, " + firstName + ", et nous vous le prouvons en prenant cet engagement : si vous n'avez pas pu atteindre votre juste poids à la fin du programme, nous nous engageons à vous le rembourser intégralement.";
+        String resultPage6Content2 = getString(R.string.bilan_greetings_text6_1) + " " + firstName + getString(R.string.bilan_greetings_text6_2);
         Spannable spannableresultPage6Content2 = new SpannableString(resultPage6Content2);
         spannableresultPage6Content2.setSpan(orangeFont, resultPage6Content2.indexOf(firstName), resultPage6Content2.indexOf(", et nous vous"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableresultPage6Content2.setSpan(boldFont, resultPage6Content2.indexOf(firstName), resultPage6Content2.indexOf(", et nous vous"), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -588,47 +658,47 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         }
 
         webViewResultsVideo.setWebChromeClient(new WebChromeClient());
-        webViewResultsVideo.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.MainVideo + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
+        webViewResultsVideo.loadData("<html><body><iframe height=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.MainVideo + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
 
         webViewTestimonials1Video.setWebChromeClient(new WebChromeClient());
-        webViewTestimonials1Video.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.TestimonialVideo1 + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
+        webViewTestimonials1Video.loadData("<html><body><iframe height=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.TestimonialVideo1 + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
 
         webViewTestimonials2Video.setWebChromeClient(new WebChromeClient());
-        webViewTestimonials2Video.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.TestimonialVideo2 + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
+        webViewTestimonials2Video.loadData("<html><body><iframe height=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.TestimonialVideo2 + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
 
         webViewTestimonials3Video.setWebChromeClient(new WebChromeClient());
-        webViewTestimonials3Video.loadData("<html><body><iframe heigth=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.TestimonialVideo3 + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
+        webViewTestimonials3Video.loadData("<html><body><iframe height=\"100%\" width=\"100%\" src=\"https://www.youtube.com/embed/" + resultsData.TestimonialVideo3 + "\" frameborder=\"0\" allowfullscreen></iframe></body></html>", "text/html", "utf-8");
 
         //RefreshPlayer(mView, resultsData.MainVideo);
 
-        Button buttonToResultsPage2 = (Button) mView.findViewById(R.id.buttonToResultsPage2);
+        Button buttonToResultsPage2 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonToResultsPage2);
         buttonToResultsPage2.setOnClickListener(this);
 
-        Button buttonToResultsPage3 = (Button) mView.findViewById(R.id.buttonToResultsPage3);
+        Button buttonToResultsPage3 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonToResultsPage3);
         buttonToResultsPage3.setOnClickListener(this);
 
-        Button buttonToResultsPage4 = (Button) mView.findViewById(R.id.buttonToResultsPage4);
+        Button buttonToResultsPage4 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonToResultsPage4);
         buttonToResultsPage4.setOnClickListener(this);
 
-        Button buttonToResultsPage5 = (Button) mView.findViewById(R.id.buttonToResultsPage5);
+        Button buttonToResultsPage5 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonToResultsPage5);
         buttonToResultsPage5.setOnClickListener(this);
 
-        Button buttonToResultsPage6 = (Button) mView.findViewById(R.id.buttonToResultsPage6);
+        Button buttonToResultsPage6 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonToResultsPage6);
         buttonToResultsPage6.setOnClickListener(this);
 
-        Button buttonReturnToResultsPage1 = (Button) mView.findViewById(R.id.buttonReturnToResultsPage1);
+        Button buttonReturnToResultsPage1 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonReturnToResultsPage1);
         buttonReturnToResultsPage1.setOnClickListener(this);
 
-        Button buttonReturnToResultsPage2 = (Button) mView.findViewById(R.id.buttonReturnToResultsPage2);
+        Button buttonReturnToResultsPage2 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonReturnToResultsPage2);
         buttonReturnToResultsPage2.setOnClickListener(this);
 
-        Button buttonReturnToResultsPage3 = (Button) mView.findViewById(R.id.buttonReturnToResultsPage3);
+        Button buttonReturnToResultsPage3 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonReturnToResultsPage3);
         buttonReturnToResultsPage3.setOnClickListener(this);
 
-        Button buttonReturnToResultsPage4 = (Button) mView.findViewById(R.id.buttonReturnToResultsPage4);
+        Button buttonReturnToResultsPage4 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonReturnToResultsPage4);
         buttonReturnToResultsPage4.setOnClickListener(this);
 
-        Button buttonSubscribe = (Button) mView.findViewById(R.id.buttonSubscribe);
+        Button buttonSubscribe = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonSubscribe);
         buttonSubscribe.setOnClickListener(this);
     }
 
@@ -641,12 +711,13 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         dietProfileQuestionsListLayout.setVisibility(View.GONE);
         qHeaderLayout.setVisibility(View.GONE);
         dietProfileQuestionsLayout.setVisibility(View.GONE);
+        questionnairesProgressBar.setVisibility(View.GONE);
 
         System.out.println("viewResultsPage: ");
 
         ResultsResponseDataContract resultsData = ApplicationData.getInstance().bilanminceurResults;
 
-        ImageView imageViewProgressBar = (ImageView) mView.findViewById(R.id.imageViewProgressBar);
+        ImageView imageViewProgressBar = (ImageView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.imageViewProgressBar);
 
         dietProfileResultsPage1.setVisibility(View.GONE);
         dietProfileResultsPage2.setVisibility(View.GONE);
