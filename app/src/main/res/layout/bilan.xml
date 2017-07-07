@@ -12,28 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/dietProfileQuestionsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fullbackground"
-        android:orientation="vertical"
         android:visibility="visible">
 
         <include
+            android:id="@+id/bilan_mainVideo"
             layout="@layout/main_video"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
 
         <LinearLayout
             android:id="@+id/dietProfileQuestionsHeaderLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:layout_below="@+id/bilan_mainVideo">
 
             <TextView
                 android:id="@+id/textViewDietProfileHeader"
@@ -52,7 +52,8 @@
                 android:gravity="center"
                 android:text="@string/bilan_start_losing_1kg"
                 android:textColor="@android:color/white"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:paddingBottom="10dp"/>
 
             <ProgressBar
                 android:id="@+id/questionnaires_progressBar"
@@ -65,7 +66,6 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="100dp"
                 android:paddingRight="100dp"
-                android:paddingTop="10dp"
                 android:progress="5"
                 android:progressTint="@color/colorOrangeButton" />
 
@@ -74,11 +74,12 @@
         <LinearLayout
             android:id="@+id/dietProfilVitalStatsHeaderLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.15"
-            android:background="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bilan_mainVideo"
+            android:background="@android:color/transparent"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/textViewDietProfileVSHeader"
@@ -102,11 +103,12 @@
         <LinearLayout
             android:id="@+id/dietProfilPersonalInfoHeaderLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.13"
-            android:background="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bilan_mainVideo"
+            android:background="@android:color/transparent"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textViewDietProfilePIHeader"
@@ -123,8 +125,8 @@
         <LinearLayout
             android:id="@+id/dietProfileLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.72"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/dietProfileQuestionsHeaderLayout"
             android:background="@android:color/white"
             android:orientation="vertical"
             android:visibility="visible">
@@ -211,6 +213,7 @@
                 android:id="@+id/dietProfileQuestionsListLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/dietProfileQuestionsHeaderLayout"
                 android:layout_margin="8dp"
                 android:background="@android:color/white"
                 android:orientation="vertical"
@@ -220,7 +223,7 @@
                     android:id="@+id/textViewQuestion"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="0.2"
                     android:background="@android:color/white"
                     android:text=""
@@ -241,434 +244,436 @@
                 </ScrollView>
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lVitalStats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:background="@android:color/white"
+            android:layout_below="@+id/dietProfilVitalStatsHeaderLayout"
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <LinearLayout
-                android:id="@+id/lVitalStats"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/bilan_what_height"
+                    android:textColor="@color/gray_text_bilan" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left">
+
+                    <EditText
+                        android:id="@+id/editHeight"
+                        android:layout_width="70dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="20dp"
+                        android:ems="5"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="cm"
+                        android:textColor="@color/gray_text_bilan" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewHeightError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:text="@string/bilan_height_alert"
+                android:textColor="@color/red_text_bilan"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView32"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/bilan_what_height"
-                        android:textColor="@color/gray_text_bilan" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left">
-
-                        <EditText
-                            android:id="@+id/editHeight"
-                            android:layout_width="70dp"
-                            android:layout_height="32dp"
-                            android:layout_marginLeft="20dp"
-                            android:ems="5"
-                            android:inputType="numberDecimal"
-                            android:maxLength="5"
-                            android:text=""
-                            android:textColor="#000"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="cm"
-                            android:textColor="@color/gray_text_bilan" />
-
-                    </LinearLayout>
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewHeightError"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/bilan_height_alert"
-                    android:textColor="@color/red_text_bilan"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:id="@+id/textView38"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/bilan_what_current_weight"
+                    android:textColor="@color/gray_text_bilan" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left">
+
+                    <EditText
+                        android:id="@+id/editCurrentWeight"
+                        android:layout_width="70dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="20dp"
+                        android:ems="5"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="12dp" />
 
                     <TextView
-                        android:id="@+id/textView38"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/bilan_what_current_weight"
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="kilos"
                         android:textColor="@color/gray_text_bilan" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left">
-
-                        <EditText
-                            android:id="@+id/editCurrentWeight"
-                            android:layout_width="70dp"
-                            android:layout_height="32dp"
-                            android:layout_marginLeft="20dp"
-                            android:ems="5"
-                            android:inputType="numberDecimal"
-                            android:maxLength="5"
-                            android:text=""
-                            android:textColor="#000"
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/textView33"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="kilos"
-                            android:textColor="@color/gray_text_bilan" />
-
-                    </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewWeightError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/bilan_current_weight_alert"
+                android:textColor="@color/red_text_bilan"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewWeightError"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/bilan_current_weight_alert"
-                    android:textColor="@color/red_text_bilan"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:id="@+id/textView39"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/bilan_what_ideal_weight"
+                    android:textColor="@color/gray_text_bilan" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left">
+
+                    <EditText
+                        android:id="@+id/editIdealWeight"
+                        android:layout_width="70dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="20dp"
+                        android:ems="5"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
+                        android:text=""
+                        android:textSize="12dp" />
 
                     <TextView
-                        android:id="@+id/textView39"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/bilan_what_ideal_weight"
+                        android:id="@+id/textView37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="kilos"
                         android:textColor="@color/gray_text_bilan" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left">
-
-                        <EditText
-                            android:id="@+id/editIdealWeight"
-                            android:layout_width="70dp"
-                            android:layout_height="32dp"
-                            android:layout_marginLeft="20dp"
-                            android:ems="5"
-                            android:inputType="numberDecimal"
-                            android:maxLength="5"
-                            android:text=""
-                            android:textSize="12dp" />
-
-                        <TextView
-                            android:id="@+id/textView37"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="kilos"
-                            android:textColor="@color/gray_text_bilan" />
-                    </LinearLayout>
-
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textViewTargetWeightError"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/bilan_target_weight_alert"
-                    android:textColor="@color/red_text_bilan"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <Button
-                    android:id="@+id/btnVitalStatsProcess"
-                    android:layout_width="270dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="70dp"
-                    android:background="@drawable/button_orange_bilanminceur"
-                    android:tag="btnVitalStatsProcess"
-                    android:text="@string/bilan_termine"
-                    android:textColor="@android:color/white"
-                    android:textSize="14dp"/>
 
             </LinearLayout>
 
-            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/sPersonalInfo"
+            <TextView
+                android:id="@+id/textViewTargetWeightError"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:visibility="gone">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/bilan_target_weight_alert"
+                android:textColor="@color/red_text_bilan"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-                <LinearLayout
-                    android:id="@+id/lPersonalInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView7"
-                            style="@style/txtBilanPersonalInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="@string/bilan_email" />
-
-                        <EditText
-                            android:id="@+id/editEmailAddress"
-                            android:layout_width="0dp"
-                            android:layout_height="32dp"
-                            android:layout_weight="6"
-                            android:ems="13"
-                            android:gravity="left"
-                            android:inputType="textEmailAddress"
-                            android:maxLength="30"
-                            android:text=""
-                            android:textSize="12dp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textViewErrorEmailAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/bilan_email_alert"
-                        android:textColor="@color/red_text_bilan"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        style="@style/txtBilanNote"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bilan_email_intro" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            style="@style/txtBilanPersonalInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="@string/bilan_firstname" />
-
-                        <EditText
-                            android:id="@+id/editFirstname"
-                            android:layout_width="4dp"
-                            android:layout_height="32dp"
-                            android:layout_weight="6"
-                            android:ems="13"
-                            android:gravity="left"
-                            android:inputType="textPersonName"
-                            android:maxLength="20"
-                            android:text=""
-                            android:textColor="@color/gray_text_bilan"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textViewErrorFirstname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/bilan_enter_firstname"
-                        android:textColor="@color/red_text_bilan"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView40"
-                            style="@style/txtBilanPersonalInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="@string/bilan_name" />
-
-                        <EditText
-                            android:id="@+id/editSurname"
-                            android:layout_width="0dp"
-                            android:layout_height="32dp"
-                            android:layout_weight="6"
-                            android:ems="13"
-                            android:gravity="left"
-                            android:inputType="textPersonName"
-                            android:maxLength="20"
-                            android:text=""
-                            android:textColor="@color/gray_text_bilan"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textViewErrorSurname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/bilan_enter_name"
-                        android:textColor="@color/red_text_bilan"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView41"
-                            style="@style/txtBilanPersonalInfo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="@string/bilan_tel_number" />
-
-                        <EditText
-                            android:id="@+id/editPhone"
-                            android:layout_width="0dp"
-                            android:layout_height="32dp"
-                            android:layout_weight="6"
-                            android:ems="13"
-                            android:gravity="left"
-                            android:inputType="phone"
-                            android:text=""
-                            android:textColor="@color/gray_text_bilan"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textViewErrorPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/bilan_check_number_attention"
-                        android:textColor="@color/red_text_bilan"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="4" />
-
-                        <CheckBox
-                            android:id="@+id/checkBoxPhone"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_weight="6"
-                            android:text="@string/bilan_check_number"
-                            android:textColor="@color/gray_text_bilan"
-                            android:textSize="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView42"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="15dp"
-                            android:gravity="center"
-                            android:text="@string/bilan_check_email"
-                            android:textColor="@color/light_gray_text_bilan"
-                            android:textSize="10dp" />
-
-                        <Button
-                            android:id="@+id/btnPersoInfoProcess"
-                            android:layout_width="270dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center|bottom"
-                            android:layout_marginBottom="15dp"
-                            android:background="@drawable/button_orange_bilanminceur"
-                            android:tag="btnPersoInfoProcess"
-                            android:text="@string/bilan_continue"
-                            android:textColor="@android:color/white" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </ScrollView>
+            <Button
+                android:id="@+id/btnVitalStatsProcess"
+                android:layout_width="270dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/button_orange_bilanminceur"
+                android:tag="btnVitalStatsProcess"
+                android:text="@string/bilan_termine"
+                android:textColor="@android:color/white"
+                android:textSize="14dp"/>
 
         </LinearLayout>
-    </LinearLayout>
+
+        <ScrollView android:id="@+id/sPersonalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_below="@+id/dietProfilPersonalInfoHeaderLayout"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/lPersonalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        style="@style/txtBilanPersonalInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/bilan_email" />
+
+                    <EditText
+                        android:id="@+id/editEmailAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="6"
+                        android:ems="13"
+                        android:gravity="left"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="30"
+                        android:text=""
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/bilan_email_alert"
+                    android:textColor="@color/red_text_bilan"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    style="@style/txtBilanNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bilan_email_intro" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        style="@style/txtBilanPersonalInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/bilan_firstname" />
+
+                    <EditText
+                        android:id="@+id/editFirstname"
+                        android:layout_width="4dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="6"
+                        android:ems="13"
+                        android:gravity="left"
+                        android:inputType="textPersonName"
+                        android:maxLength="20"
+                        android:text=""
+                        android:textColor="@color/gray_text_bilan"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorFirstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/bilan_enter_firstname"
+                    android:textColor="@color/red_text_bilan"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        style="@style/txtBilanPersonalInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/bilan_name" />
+
+                    <EditText
+                        android:id="@+id/editSurname"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="6"
+                        android:ems="13"
+                        android:gravity="left"
+                        android:inputType="textPersonName"
+                        android:maxLength="20"
+                        android:text=""
+                        android:textColor="@color/gray_text_bilan"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorSurname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/bilan_enter_name"
+                    android:textColor="@color/red_text_bilan"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        style="@style/txtBilanPersonalInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/bilan_tel_number" />
+
+                    <EditText
+                        android:id="@+id/editPhone"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="6"
+                        android:ems="13"
+                        android:gravity="left"
+                        android:inputType="phone"
+                        android:text=""
+                        android:textColor="@color/gray_text_bilan"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewErrorPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/bilan_check_number_attention"
+                    android:textColor="@color/red_text_bilan"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4" />
+
+                    <CheckBox
+                        android:id="@+id/checkBoxPhone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="6"
+                        android:text="@string/bilan_check_number"
+                        android:textColor="@color/gray_text_bilan"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center"
+                        android:text="@string/bilan_check_email"
+                        android:textColor="@color/light_gray_text_bilan"
+                        android:textSize="10dp" />
+
+                    <Button
+                        android:id="@+id/btnPersoInfoProcess"
+                        android:layout_width="270dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/button_orange_bilanminceur"
+                        android:tag="btnPersoInfoProcess"
+                        android:text="@string/bilan_continue"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 
     <include
         android:id="@+id/dietProfileResultsLayout"

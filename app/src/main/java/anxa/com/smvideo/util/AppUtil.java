@@ -692,4 +692,30 @@ public class AppUtil {
         return localTime;
     }
 
+    public static int getIMCRange(String inputtedIMC){
+
+//        Maigreur           below 18.5  - 3
+//        Bonne santé     18.5 - 25  - 2
+//        Surpoids           25 - 30  - 1
+//        Obésité            30 - 35 and above  - 0
+
+        float inputtedIMCinFloat = 0;
+
+        if (inputtedIMC!=null){
+            //replace comma with period
+            inputtedIMC = inputtedIMC.replace(",", ".");
+            inputtedIMCinFloat = Float.parseFloat(inputtedIMC);
+        }
+
+        if (inputtedIMCinFloat<18.5){
+            return 3;
+        }else if (inputtedIMCinFloat<25){
+            return 2;
+        }else if (inputtedIMCinFloat<30){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
 }

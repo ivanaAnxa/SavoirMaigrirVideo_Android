@@ -60,6 +60,7 @@ import anxa.com.smvideo.contracts.BMVideoResponseContract;
 import anxa.com.smvideo.contracts.QuestionsContract;
 import anxa.com.smvideo.contracts.ResultsResponseDataContract;
 import anxa.com.smvideo.contracts.VideoContract;
+import anxa.com.smvideo.util.AppUtil;
 import anxa.com.smvideo.util.BilanMinceurUtil;
 import anxa.com.smvideo.util.InputValidatorUtil;
 
@@ -89,11 +90,12 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
     private LinearLayout persoHeaderLayout;
     private ScrollView sPersonalInfo;
 
-    private LinearLayout dietProfileQuestionsLayout;
+    private RelativeLayout dietProfileQuestionsLayout;
     private LinearLayout qHeaderLayout;
     private LinearLayout vsHeaderLayout;
     private LinearLayout lVitalStats;
     private LinearLayout dietProfileQuestionsListLayout;
+    private LinearLayout dietProfileLayout;
 
     private ProgressBar questionnairesProgressBar;
 
@@ -128,8 +130,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         vsHeaderLayout = (LinearLayout) mView.findViewById(R.id.dietProfilVitalStatsHeaderLayout);
         lVitalStats = (LinearLayout) mView.findViewById(R.id.lVitalStats);
         sPersonalInfo = (ScrollView) mView.findViewById(R.id.sPersonalInfo);
-        dietProfileQuestionsLayout = (LinearLayout) mView.findViewById(R.id.dietProfileQuestionsLayout);
+        dietProfileQuestionsLayout = (RelativeLayout) mView.findViewById(R.id.dietProfileQuestionsLayout);
         qHeaderLayout = (LinearLayout) mView.findViewById(R.id.dietProfileQuestionsHeaderLayout);
+        dietProfileLayout = (LinearLayout) mView.findViewById(R.id.dietProfileLayout);
 
         dietProfileQuestionsListLayout = (LinearLayout) mView.findViewById(R.id.dietProfileQuestionsListLayout);
         /*
@@ -149,6 +152,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         playerFragment = YouTubePlayerFragment.newInstance();
         ft.replace(R.id.youtube_layout, playerFragment, tag);
         ft.commit();
+
+        ((LinearLayout)mView.findViewById(R.id.youtube_layout_caption)).setVisibility(View.GONE);
+
 
         /*
         TO DO: http://stacktips.com/tutorials/android/youtubeplayerview-example-in-android-using-youtube-api
@@ -224,29 +230,6 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         System.out.println("bilan onclick: " + v.getTag());
-//        if (v.getTag() instanceof Integer) {
-//            int answerTag = (int) v.getTag();
-//            if (answerTag >= 1 && answerTag <= 10 && questionIndex <= 11) {
-//                answers[questionIndex - 2] = answerTag;
-//                if (questionIndex <= 10) {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            createQuestionsList();
-//                        }
-//                    }, 1000);
-//                } else {
-//
-//                    qHeaderLayout.setVisibility(View.GONE);
-//                    dietProfileQuestionsListLayout.setVisibility(View.GONE);
-//                    lVitalStats.setVisibility(View.VISIBLE);
-//                    vsHeaderLayout.setVisibility(View.VISIBLE);
-//                    Button btnVitalStatsProcess = (Button) mView.findViewById(R.id.btnVitalStatsProcess);
-//                    btnVitalStatsProcess.setOnClickListener(this);
-//                }
-//            }
-//        } else {
             String buttonTag = (String) v.getTag();
             switch (buttonTag) {
                 case "buttonReturnToResultsPage1":
@@ -328,6 +311,16 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 //        }
         // default method for handling onClick Events..
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        webViewResultsVideo.onPause();
+        webViewTestimonials1Video.onPause();
+        webViewTestimonials2Video.onPause();
+        webViewTestimonials3Video.onPause();
+    }
+
 
     private boolean validateVitalStats() {
         EditText editHeight = (EditText) mView.findViewById(R.id.editHeight);
@@ -485,6 +478,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
                                         qHeaderLayout.setVisibility(View.GONE);
                                         dietProfileQuestionsListLayout.setVisibility(View.GONE);
+                                        dietProfileLayout.setVisibility(View.GONE);
                                         lVitalStats.setVisibility(View.VISIBLE);
                                         vsHeaderLayout.setVisibility(View.VISIBLE);
                                         Button btnVitalStatsProcess = (Button) mView.findViewById(R.id.btnVitalStatsProcess);
@@ -632,6 +626,69 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         textViewCurrentIMCGraph.setText(resultsData.CurrentIMC);
         textViewTargetIMCGraph.setText(resultsData.TargetIMC);
 
+        //arrow - current
+        View currentIMC_dummy1 = (View)mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.currentIMC_dummy1);
+        View currentIMC_dummy2 = (View)mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.currentIMC_dummy2);
+        View currentIMC_dummy3 = (View)mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.currentIMC_dummy3);
+
+        //arrow target
+        View targetIMC_dummy1 = (View)mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.targetIMC_dummy1);
+        View targetIMC_dummy2 = (View)mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.targetIMC_dummy2);
+        View targetIMC_dummy3 = (View)mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.targetIMC_dummy3);
+
+        int currentIMCValue = AppUtil.getIMCRange(resultsData.CurrentIMC);
+        switch (currentIMCValue){
+            case 0:
+                currentIMC_dummy1.setVisibility(View.GONE);
+                currentIMC_dummy2.setVisibility(View.GONE);
+                currentIMC_dummy3.setVisibility(View.GONE);
+                break;
+            case 1:
+                currentIMC_dummy1.setVisibility(View.VISIBLE);
+                currentIMC_dummy2.setVisibility(View.GONE);
+                currentIMC_dummy3.setVisibility(View.GONE);
+                break;
+            case 2:
+                currentIMC_dummy1.setVisibility(View.VISIBLE);
+                currentIMC_dummy2.setVisibility(View.VISIBLE);
+                currentIMC_dummy3.setVisibility(View.GONE);
+                break;
+            case 3:
+                currentIMC_dummy1.setVisibility(View.VISIBLE);
+                currentIMC_dummy2.setVisibility(View.VISIBLE);
+                currentIMC_dummy3.setVisibility(View.VISIBLE);
+                break;
+            default:
+
+        }
+
+        int targetIMCValue = AppUtil.getIMCRange(resultsData.TargetIMC);
+        switch (targetIMCValue){
+            case 0:
+                targetIMC_dummy1.setVisibility(View.GONE);
+                targetIMC_dummy2.setVisibility(View.GONE);
+                targetIMC_dummy3.setVisibility(View.GONE);
+                break;
+            case 1:
+                targetIMC_dummy1.setVisibility(View.VISIBLE);
+                targetIMC_dummy2.setVisibility(View.GONE);
+                targetIMC_dummy3.setVisibility(View.GONE);
+                break;
+            case 2:
+                targetIMC_dummy1.setVisibility(View.VISIBLE);
+                targetIMC_dummy2.setVisibility(View.VISIBLE);
+                targetIMC_dummy3.setVisibility(View.GONE);
+                break;
+            case 3:
+                targetIMC_dummy1.setVisibility(View.VISIBLE);
+                targetIMC_dummy2.setVisibility(View.VISIBLE);
+                targetIMC_dummy3.setVisibility(View.VISIBLE);
+                break;
+            default:
+
+        }
+
+
         textViewQ3Result.setText(resultsData.Q3Result);
         textViewTestimonialTitle1.setText(resultsData.TestimonialTitle1);
         textViewTestimonialTitle2.setText(resultsData.TestimonialTitle2);
@@ -713,13 +770,10 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         dietProfileQuestionsLayout.setVisibility(View.GONE);
         questionnairesProgressBar.setVisibility(View.GONE);
 
-        System.out.println("viewResultsPage: ");
-
         ResultsResponseDataContract resultsData = ApplicationData.getInstance().bilanminceurResults;
-
         ImageView imageViewProgressBar = (ImageView) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.imageViewProgressBar);
 
-        dietProfileResultsPage1.setVisibility(View.GONE);
+//        dietProfileResultsPage1.setVisibility(View.GONE);
         dietProfileResultsPage2.setVisibility(View.GONE);
         dietProfileResultsPage3.setVisibility(View.GONE);
         dietProfileResultsPage4.setVisibility(View.GONE);
@@ -733,22 +787,43 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 break;
             case 2:
                 dietProfileResultsPage2.setVisibility(View.VISIBLE);
+//
+                webViewResultsVideo.onPause();
+                webViewResultsVideo.onResume();
+//                webViewResultsVideo.loadUrl("file:///android_asset/nonexistent.html");
+
+                webViewTestimonials1Video.onPause();
+                webViewTestimonials1Video.onResume();
+
                 imageViewProgressBar.setImageResource(R.drawable.results_progress02);
+
+                dietProfileResultsPage1.setVisibility(View.GONE);
+
                 break;
             case 3:
                 dietProfileResultsPage3.setVisibility(View.VISIBLE);
+                webViewTestimonials2Video.onPause();
+                webViewTestimonials2Video.onResume();
                 imageViewProgressBar.setImageResource(R.drawable.results_progress03);
                 break;
             case 4:
                 dietProfileResultsPage4.setVisibility(View.VISIBLE);
+                webViewTestimonials1Video.onPause();
+                webViewTestimonials1Video.onResume();
+                webViewTestimonials3Video.onPause();
+                webViewTestimonials3Video.onResume();
                 imageViewProgressBar.setImageResource(R.drawable.results_progress04);
                 break;
             case 5:
                 dietProfileResultsPage5.setVisibility(View.VISIBLE);
+                webViewTestimonials2Video.onPause();
+                webViewTestimonials2Video.onResume();
                 imageViewProgressBar.setImageResource(R.drawable.results_progress05);
                 break;
             case 6:
                 dietProfileResultsPage6.setVisibility(View.VISIBLE);
+                webViewTestimonials3Video.onPause();
+                webViewTestimonials3Video.onResume();
                 imageViewProgressBar.setImageResource(R.drawable.results_progress06);
                 break;
         }
