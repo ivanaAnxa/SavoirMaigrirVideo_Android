@@ -17,12 +17,17 @@ import anxa.com.smvideo.contracts.BMContract;
 import anxa.com.smvideo.contracts.BMQuestionsResponseContract;
 import anxa.com.smvideo.contracts.BMResultsResponseContract;
 import anxa.com.smvideo.contracts.BMVideoResponseContract;
+import anxa.com.smvideo.contracts.BaseContract;
 import anxa.com.smvideo.contracts.CoachingVideosResponseContract;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
+import anxa.com.smvideo.contracts.RepasResponseContract;
+import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
-import anxa.com.smvideo.contracts.VideoDataContract;
 import anxa.com.smvideo.contracts.VideoResponseContract;
+import anxa.com.smvideo.contracts.WeightGraphContract;
 import anxa.com.smvideo.contracts.WeightGraphResponseContract;
+import anxa.com.smvideo.contracts.WeightHistoryContract;
+import anxa.com.smvideo.contracts.WeightHistoryResponseContract;
 import anxa.com.smvideo.util.AppUtil;
 
 /**
@@ -92,10 +97,37 @@ public class ApiCaller {
         apiClient.PostAsync(asyncResponse, CommandConstants.API_BILANMINCEUR, command, gson.toJson(contract), BMResultsResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public void GetAccountCoaching(AsyncResponse asyncResponse) {
+
+    /**
+     * Account
+     **/
+
+    public void GetAccountUserData(AsyncResponse asyncResponse) {
 
         MasterCommand command = new MasterCommand();
-        command.Command = CommandConstants.ACCOUNT_COACHING + AppUtil.getCurrentWeek();
+        command.RegId = ApplicationData.getInstance().regId;
+
+        Hashtable params = new Hashtable();
+        params.put("applicationId", ApplicationData.getInstance().applicationId);
+        params.put("includeData", true);
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_USER, command, params, UserDataResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void PostUpdateAccountUserData(AsyncResponse asyncResponse, UserDataContract userDataContract) {
+
+        MasterCommand command = new MasterCommand();
+        command.RegId = ApplicationData.getInstance().regId;
+        command.Command = CommandConstants.ACCOUNT_EDIT_PROFILE;
+
+        apiClient.PostAsync(asyncResponse, CommandConstants.API_USER, command, gson.toJson(userDataContract), UserDataResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+
+    public void GetAccountCoaching(AsyncResponse asyncResponse, int currentWeek) {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_COACHING + currentWeek;
 
         apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, CoachingVideosResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
@@ -116,6 +148,45 @@ public class ApiCaller {
         apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, VideoResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
+    public void GetAccountRepas(AsyncResponse asyncResponse, int weekNumber, int dayNumber) {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_REPAS;
+        command.RegId = ApplicationData.getInstance().regId;
+
+        Hashtable params = new Hashtable();
+        params.put("mealPlan", ApplicationData.getInstance().dietProfilesDataContract.MealPlanType);
+        params.put("calorieType", ApplicationData.getInstance().dietProfilesDataContract.CalorieType);
+        params.put("weekNumber", weekNumber);
+        params.put("dayNumber", dayNumber);
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_TV, command, params, RepasResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void GetAccountRecipeCtid(AsyncResponse asyncResponse, int recipeCtid, int returnMealDay) {
+
+        MasterCommand command = new MasterCommand();
+//        command.Command = CommandConstants.ACCOUNT_RECIPE_CTID;
+
+        Hashtable params = new Hashtable();
+        params.put("recipeCtid", recipeCtid);
+        params.put("returnMealDay", returnMealDay);
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, params, RecipeResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void GetAccountRecettes(AsyncResponse asyncResponse, int recipeType) {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_RECIPES;
+        command.RegId = ApplicationData.getInstance().regId;
+
+        Hashtable params = new Hashtable();
+        params.put("recipeType", recipeType);
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, params, RecipeResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
     public void GetAccountGraphData(AsyncResponse asyncResponse) {
 
         MasterCommand command = new MasterCommand();
@@ -128,16 +199,36 @@ public class ApiCaller {
         apiClient.GetAsync(asyncResponse, CommandConstants.API_TV, command, params, WeightGraphResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public void GetAccountUserData(AsyncResponse asyncResponse) {
+    public void GetAccountGraphHistory(AsyncResponse asyncResponse) {
 
         MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_GRAPH_HISTORY;
         command.RegId = ApplicationData.getInstance().regId;
 
         Hashtable params = new Hashtable();
         params.put("applicationId", ApplicationData.getInstance().applicationId);
-        params.put("includeData", true);
 
-        apiClient.GetAsync(asyncResponse, CommandConstants.API_USER, command, params, UserDataResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_TV, command, params, WeightHistoryResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void PostWeight(AsyncResponse asyncResponse, WeightHistoryContract weightGraphContract) {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_POST_WEIGHT;
+        command.RegId = ApplicationData.getInstance().regId;
+        command.ApplicationId = ApplicationData.getInstance().applicationId;
+
+        apiClient.PostAsync(asyncResponse, CommandConstants.API_TV, command, gson.toJson(weightGraphContract), WeightHistoryResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void EditWeight(AsyncResponse asyncResponse, WeightHistoryContract weightGraphContract) {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_EDIT_WEIGHT;
+        command.RegId = ApplicationData.getInstance().regId;
+        command.ApplicationId = ApplicationData.getInstance().applicationId;
+
+        apiClient.PostAsync(asyncResponse, CommandConstants.API_TV, command, gson.toJson(weightGraphContract), WeightHistoryResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
 

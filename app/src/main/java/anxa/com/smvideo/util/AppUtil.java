@@ -1,5 +1,11 @@
 package anxa.com.smvideo.util;
 
+import android.text.format.DateUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -190,7 +196,7 @@ public class AppUtil {
         //include current date;
 
         WeightGraphContract dummyWeight = new WeightGraphContract();
-        dummyWeight.Date = cal.getTime().toString();
+        dummyWeight.Date = cal.getTime().getTime();
         dummyWeight.WeightKg = 0;
         weightDate.put(cal.getTime(), dummyWeight);
 
@@ -199,7 +205,7 @@ public class AppUtil {
             dateList.add(calValid.getTime());
 
             dummyWeight = new WeightGraphContract();
-            dummyWeight.Date = calValid.getTime().toString();
+            dummyWeight.Date = calValid.getTime().getTime();
             dummyWeight.WeightKg = 0;
             weightDate.put(calValid.getTime(), dummyWeight);
         }
@@ -212,10 +218,10 @@ public class AppUtil {
 
         for (WeightGraphContract weight : weightGraphDataArrayList) {
             Calendar calIndex = Calendar.getInstance();
-            calIndex.setTime(convertStringToDate(weight.Date));
+            calIndex.setTime(toDate(weight.Date));
             int monthIndex = calIndex.get(Calendar.MONTH);
 
-            if (convertStringToDate(weight.Date).before(cal.getTime()) && convertStringToDate(weight.Date).after((Date) dateList.get(0))) {
+            if (toDate(weight.Date).before(cal.getTime()) && toDate(weight.Date).after((Date) dateList.get(0))) {
                 for (Date date_list : dateList) {
                     Calendar calIndex_date = Calendar.getInstance();
                     calIndex_date.setTime(date_list);
@@ -240,7 +246,7 @@ public class AppUtil {
 
         Collections.sort(weightGraphDataArrayList, new Comparator<WeightGraphContract>() {
             public int compare(WeightGraphContract o1, WeightGraphContract o2) {
-                return convertStringToDate(o1.Date).compareTo(convertStringToDate(o2.Date));
+                return toDate(o1.Date).compareTo(toDate(o2.Date));
             }
         });
 
@@ -255,8 +261,8 @@ public class AppUtil {
 
         //oldest weight
         Calendar calValid = Calendar.getInstance();
-        if (oldestWeight.Date != null) {
-            calValid.setTime(convertStringToDate(oldestWeight.Date));
+        if (toDate(oldestWeight.Date) != null) {
+            calValid.setTime(toDate(oldestWeight.Date));
         } else {
             calValid.setTime(new Date());
         }
@@ -270,7 +276,7 @@ public class AppUtil {
         dateList.add(calLatest.getTime());
 
         WeightGraphContract dummyWeight = new WeightGraphContract();
-        dummyWeight.Date = calLatest.getTime().toString();
+        dummyWeight.Date = calLatest.getTime().getTime();
         dummyWeight.WeightKg = 0;
         weightDate.put(calLatest.getTime(), dummyWeight);
 
@@ -281,7 +287,7 @@ public class AppUtil {
             dateList.add(calLatest.getTime());
 
             dummyWeight = new WeightGraphContract();
-            dummyWeight.Date = calLatest.getTime().toString();
+            dummyWeight.Date = calLatest.getTime().getTime();
             dummyWeight.WeightKg = 0;
             weightDate.put(calLatest.getTime(), dummyWeight);
         }
@@ -294,11 +300,11 @@ public class AppUtil {
 
         for (WeightGraphContract weight : weightGraphDataArrayList) {
             Calendar calIndex = Calendar.getInstance();
-            calIndex.setTime(convertStringToDate(weight.Date));
+            calIndex.setTime(toDate(weight.Date));
             int monthIndex = calIndex.get(Calendar.MONTH);
             int yearIndex = calIndex.get(Calendar.YEAR);
 
-            if (convertStringToDate(weight.Date).before(new Date()) && convertStringToDate(weight.Date).after((Date) dateList.get(0))) {
+            if (toDate(weight.Date).before(new Date()) && toDate(weight.Date).after((Date) dateList.get(0))) {
                 for (Date date_list : dateList) {
                     Calendar calIndex_date = Calendar.getInstance();
                     calIndex_date.setTime(date_list);
@@ -325,10 +331,10 @@ public class AppUtil {
 
         for (WeightGraphContract weight : weightGraphDataArrayList) {
             Calendar calIndex = Calendar.getInstance();
-            calIndex.setTime(convertStringToDate(weight.Date));
+            calIndex.setTime(toDate(weight.Date));
             int monthIndex = calIndex.get(Calendar.MONTH);
 
-            if (convertStringToDate(weight.Date).before(convertStringToDate(oldestWeight.Date))) {
+            if (toDate(weight.Date).before(toDate(oldestWeight.Date))) {
                 oldestWeight = weight;
             }
         }
@@ -338,8 +344,9 @@ public class AppUtil {
 
     public static Date convertStringToDate(String dateToConvert){
     //sample date: 2017-06-26T19:32:57.247
+//        2017-06-26T19:32:57.247
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss.SSS", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH);
 
         try {
             cal.setTime(sdf.parse(dateToConvert));
@@ -352,7 +359,7 @@ public class AppUtil {
         return cal.getTime();
     }
 
-    public static final int getMonthsDifference(Date date1, Date date2) {
+    public static int getMonthsDifference(Date date1, Date date2) {
         Calendar startCalendar = new GregorianCalendar();
         startCalendar.setTime(date1);
         Calendar endCalendar = new GregorianCalendar();
@@ -372,7 +379,7 @@ public class AppUtil {
 
         Collections.sort(weightGraphDataArrayList, new Comparator<WeightGraphContract>() {
             public int compare(WeightGraphContract o1, WeightGraphContract o2) {
-                return o1.Date.compareTo(o2.Date);
+                return toDate(o1.Date).compareTo(toDate(o2.Date));
             }
         });
 
@@ -394,7 +401,7 @@ public class AppUtil {
         //include current date;
         dateList.add(cal.getTime());
         WeightGraphContract dummyWeight = new WeightGraphContract();
-        dummyWeight.Date = cal.getTime().toString();
+        dummyWeight.Date = cal.getTime().getTime();
         dummyWeight.WeightKg = 0;
         weightDate.put(cal.getTime(), dummyWeight);
 
@@ -403,7 +410,7 @@ public class AppUtil {
             dateList.add(calValid.getTime());
 
             dummyWeight = new WeightGraphContract();
-            dummyWeight.Date = calValid.getTime().toString();
+            dummyWeight.Date = calValid.getTime().getTime();
             dummyWeight.WeightKg = 0;
             weightDate.put(calValid.getTime(), dummyWeight);
         }
@@ -416,10 +423,10 @@ public class AppUtil {
 
         for (WeightGraphContract weight : weightGraphDataArrayList) {
             Calendar calIndex = Calendar.getInstance();
-            calIndex.setTime(convertStringToDate(weight.Date));
+            calIndex.setTime(toDate(weight.Date));
             int monthIndex = calIndex.get(Calendar.MONTH);
 
-            if (convertStringToDate(weight.Date).before(cal.getTime()) && convertStringToDate(weight.Date).after((Date) dateList.get(0))) {
+            if (toDate(weight.Date).before(cal.getTime()) && toDate(weight.Date).after((Date) dateList.get(0))) {
                 for (Date date_list : dateList) {
                     Calendar calIndex_date = Calendar.getInstance();
                     calIndex_date.setTime(date_list);
@@ -466,7 +473,7 @@ public class AppUtil {
         dateList.add(cal.getTime());
 
         WeightGraphContract dummyWeight = new WeightGraphContract();
-        dummyWeight.Date = cal.getTime().toString();
+        dummyWeight.Date = cal.getTime().getTime();
         dummyWeight.WeightKg = 0;
 
         weightDate.put(cal.getTime(), dummyWeight);
@@ -476,7 +483,7 @@ public class AppUtil {
             dateList.add(calValid.getTime());
 
             dummyWeight = new WeightGraphContract();
-            dummyWeight.Date = calValid.getTime().toString();
+            dummyWeight.Date = calValid.getTime().getTime();
             dummyWeight.WeightKg = 0;
 
             weightDate.put(calValid.getTime(), dummyWeight);
@@ -490,10 +497,10 @@ public class AppUtil {
 
         for (WeightGraphContract weight : weightGraphDataArrayList) {
             Calendar calIndex = Calendar.getInstance();
-            calIndex.setTime(convertStringToDate(weight.Date));
+            calIndex.setTime(toDate(weight.Date));
             int dayIndex = calIndex.get(Calendar.DAY_OF_MONTH);
 
-            if (convertStringToDate(weight.Date).before(cal.getTime()) && convertStringToDate(weight.Date).after((Date) dateList.get(0))) {
+            if (toDate(weight.Date).before(cal.getTime()) && toDate(weight.Date).after((Date) dateList.get(0))) {
                 for (Date date_list : dateList) {
                     Calendar calIndex_date = Calendar.getInstance();
                     calIndex_date.setTime(date_list);
@@ -510,7 +517,7 @@ public class AppUtil {
 
         Collections.sort(weightGraphDataArrayList_1m, new Comparator<WeightGraphContract>() {
             public int compare(WeightGraphContract o1, WeightGraphContract o2) {
-                return o1.Date.compareTo(o2.Date);
+                return toDate(o1.Date).compareTo(toDate(o2.Date));
             }
         });
 
@@ -529,10 +536,14 @@ public class AppUtil {
     public static double getLowestWeight(List<WeightGraphContract> weightList) {
         double lowestWeight = 0.0;
 
+        System.out.println("getLowestWeight: " + weightList.size());
         //do not include zero
         if (weightList.size() > 0) {
             //get lowest with value except 0
             for (WeightGraphContract weight : weightList) {
+
+                System.out.println("getLowestWeight: " + weight.WeightKg);
+
                 if (weight.WeightKg > 0) {
                     lowestWeight = weight.WeightKg;
                     break;
@@ -540,9 +551,12 @@ public class AppUtil {
             }
 
             for (WeightGraphContract weight : weightList) {
+                System.out.println("getLowestWeight: " + weight.WeightKg);
                 if (weight.WeightKg > 0) {
                     lowestWeight = weight.WeightKg < lowestWeight ? weight.WeightKg : lowestWeight;
                 }
+                System.out.println("getLowestWeight: " + lowestWeight);
+
             }
         }
         return lowestWeight;
@@ -563,7 +577,7 @@ public class AppUtil {
         weightGraphDataArrayList = ApplicationData.getInstance().weightGraphContractList;
 
         for (int i = 0; i < weightGraphDataArrayList.size(); i++) {
-            Date dateIndex = convertStringToDate(weightGraphDataArrayList.get(i).Date);
+            Date dateIndex = toDate(weightGraphDataArrayList.get(i).Date);
 
             cal = Calendar.getInstance();
             cal.setTime(dateIndex);
@@ -605,7 +619,7 @@ public class AppUtil {
         weightGraphDataArrayList = ApplicationData.getInstance().weightGraphContractList;
 
         for (int i = 0; i < weightGraphDataArrayList.size(); i++) {
-            Date dateIndex = convertStringToDate(weightGraphDataArrayList.get(i).Date);
+            Date dateIndex = toDate(weightGraphDataArrayList.get(i).Date);
 
             cal = Calendar.getInstance();
             cal.setTime(dateIndex);
@@ -649,7 +663,7 @@ public class AppUtil {
         weightGraphDataArrayList = ApplicationData.getInstance().weightGraphContractList;
 
         for (int i = 0; i < weightGraphDataArrayList.size(); i++) {
-            Date dateIndex = convertStringToDate(weightGraphDataArrayList.get(i).Date);
+            Date dateIndex = toDate(weightGraphDataArrayList.get(i).Date);
 
             cal = Calendar.getInstance();
             cal.setTime(dateIndex);
@@ -692,6 +706,27 @@ public class AppUtil {
         return localTime;
     }
 
+    public static String getEditWeightDateFormat(Date date) {
+
+        String localTime = "";
+        try {
+
+            Calendar cal = Calendar.getInstance();
+            TimeZone tz = cal.getTimeZone();
+
+        /* date formatter in local timezone */
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy");
+
+            sdf.setTimeZone(tz);
+            localTime = sdf.format(date);
+
+        } catch (NullPointerException e) {
+            return "";
+        }
+
+        return localTime;
+    }
+
     public static int getIMCRange(String inputtedIMC){
 
 //        Maigreur           below 18.5  - 3
@@ -717,5 +752,147 @@ public class AppUtil {
             return 0;
         }
     }
+
+    public static Date toDate(Long timestamplong) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamplong * 1000);
+        return calendar.getTime();
+
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+
+    public static String convertToFrenchDecimal(float toConvert){
+        String convertedString = String.format("%.2f", toConvert);
+
+        convertedString = convertedString.replace(".", ",");
+
+        return convertedString;
+    }
+
+    public static float convertToEnglishDecimal(String toConvert){
+        toConvert = toConvert.replace(",", ".");
+
+        return Float.parseFloat(toConvert);
+    }
+
+    public static int getCurrentWeekNumber(long coachingStartDate, Date endTime){
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTimeInMillis(coachingStartDate*1000);
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endTime);
+
+        long diff = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis(); //result in millis
+
+        double days = diff / (24 * 60 * 60 * 1000);
+        double modWeeks = Math.ceil((days+1) / 7.0);
+
+        if (modWeeks==0){
+            return 1;
+        }
+        return (int)modWeeks;
+    }
+
+    public static int getDaysDiffToCurrent(long coachingStartDate){
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTimeInMillis(coachingStartDate*1000);
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(new Date());
+
+        long diff = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis(); //result in millis
+
+        double days = diff / (24 * 60 * 60 * 1000);
+
+        return (int)days;
+    }
+
+    public static int getCurrentDayNumber(){
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        int dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+        if (dayNumber==0){
+            dayNumber = 7;
+        }
+        return dayNumber;
+    }
+
+    public static int getDayNumber(Date date){
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        int dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+        if (dayNumber==0){
+            dayNumber = 7;
+        }
+        return dayNumber;
+    }
+
+    public static String getRepasDateHeader(Date date, boolean init){
+
+        System.out.println("getRepasDateHeader: " + date.getTime()/1000);
+        System.out.println("getRepasDateHeader to: " + ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate);
+
+        String stringHeader;
+
+        if (init) {
+            stringHeader = " (semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date())) + ")";
+            stringHeader = getCurrentDayName(getCurrentDayNumber()) + " "+ stringHeader;
+
+        }else{
+            stringHeader = " (semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), date)) + ")";
+            stringHeader = getGivenDayName(date) + " "+ stringHeader;
+        }
+
+        return stringHeader;
+    }
+
+    public static String getCurrentDayName(int i){
+
+        String weekDay;
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.FRANCE);
+
+        Calendar calendar = Calendar.getInstance();
+        weekDay = dayFormat.format(calendar.getTime());
+
+        return weekDay;
+    }
+
+    public static String getGivenDayName(Date date){
+
+        String weekDay;
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.FRANCE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        weekDay = dayFormat.format(calendar.getTime());
+
+        return weekDay;
+    }
+
 
 }

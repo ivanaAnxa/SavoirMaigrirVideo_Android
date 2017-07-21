@@ -48,8 +48,12 @@
     <string name="menu_account_poids">Suivi Du Poids</string>
     <string name="menu_account_compte">Mon Compte</string>
 
+    <string name="lost_weight_text">Vous avez perdu </string>
+
     <string name="coaching_header">Coaching - Semane %d</string>
+    <string name="coaching_archive_week">Semane %d</string>
     <string name="coaching_header_right">Archive</string>
+    <string name="coaching_broadcast_string">Archive_week_selected</string>
 
     <!--account mon compte-->
     <string name="mon_compte_profil">PROFIL</string>
@@ -94,7 +98,7 @@
     <string name="mon_compte_save">Sauvegarder</string>
 
     <!--Repas-->
-    <string name="repas_header_meal_plan">Vous suivez actuellement le programme classique a 900 kcal/jour</string>
+    <string name="repas_header_meal_plan">Vous suivez actuellement le programme \n#program a #calorie/jour</string>
     <string name="repas_breakfast">Petit-Déjeuner</string>
     <string name="repas_lunch">Déjeuner</string>
     <string name="repas_dinner">Diner</string>
@@ -120,6 +124,18 @@
     <string name="WEIGHT_BUTTON">Courbe de Poids</string>
     <string name="WEIGHT_GRAPH_NO_DATA">Poids actuel: Pas de données</string>
     <string name="WEIGHT_GRAPH_CURRENT_WEIGHT_ASOF">Poids actuel: %@ kg le</string>
+    <string name="btn_edit">Editer</string>
+    <string name="btn_delete">Supprimer</string>
+    <string name="WEIGHT_GRAPH_BROADCAST_DELETE">WEIGHT_GRAPH_DELETE</string>
+    <string name="WEIGHT_GRAPH_BROADCAST_EDIT">WEIGHT_GRAPH_EDIT</string>
+    <string name="ALERTMESSAGE_DELETE_MEAL">Voulez-vous vraiment supprimer cette entrée ?</string>
+    <string name="btn_no">Non</string>
+    <string name="btn_yes">Oui</string>
+    <string name="ALERTMESSAGE_FIRSTNAME_EMPTY">Oops… Vous avez oublié d\'entrer votre prénom.</string>
+    <string name="ALERTMESSAGE_HEIGHT">Oops… Vous avez oublié d\'entrer votre taille.</string>
+    <string name="ALERTMESSAGE_CURRENTWEIGHT">Oops… Vous avez oublié d\'entrer votre poids actuel.</string>
+    <string name="ALERTMESSAGE_TARGETWEIGHT">Oops… Vous avez oublié d\'entrer le poids que vous visez.</string>
+    <string name="ALERTMESSAGE_EMAIL">Le format de votre e-mail est erronée. Veuillez entrer une adresse email valide .</string>
 
 
     <!--Bilan Minceur-->
@@ -191,6 +207,9 @@
 
     <!--Youtube-->
     <string name="player_error">Error initializing YouTube player: %s</string>
+
+
+
 
 
 </resources>

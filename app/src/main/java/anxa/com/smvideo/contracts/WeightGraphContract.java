@@ -8,27 +8,27 @@ import com.google.gson.annotations.SerializedName;
 
 public class WeightGraphContract {
 
-    @SerializedName("ActivityId")
+    @SerializedName("activityId")
     public int ActivityId;
 
-    @SerializedName("UserId")
+    @SerializedName("userId")
     public int UserId;
 
-    @SerializedName("WeightKg")
+    @SerializedName("weight")
     public float WeightKg;
 
-    @SerializedName("Bmi")
+    @SerializedName("bmi")
     public float Bmi;
 
-    @SerializedName("DeviceType")
+    @SerializedName("type")
     public String DeviceType;
 
-    @SerializedName("Date")
-    public String Date;
+    @SerializedName("date")
+    public long Date;
 
-    @SerializedName("Deleted")
+    @SerializedName("deleted")
     public String Deleted;
 
-    @SerializedName("ConfirmedData")
+    @SerializedName("confirmedData")
     public String ConfirmedData;
 }

@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
@@ -24,6 +25,7 @@ import anxa.com.smvideo.activities.account.CoachingAccountFragment;
 import anxa.com.smvideo.activities.account.ConseilsFragment;
 import anxa.com.smvideo.activities.account.ExerciceFragment;
 import anxa.com.smvideo.activities.account.MonCompteAccountFragment;
+import anxa.com.smvideo.activities.account.RecipesAccountFragment;
 import anxa.com.smvideo.activities.account.RepasFragment;
 import anxa.com.smvideo.activities.account.WeightGraphFragment;
 import anxa.com.smvideo.models.NavItem;
@@ -51,6 +53,16 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         filter.addAction(this.getResources().getString(R.string.bilan_broadcast_subscribe));
         this.getApplicationContext().registerReceiver(the_receiver, filter);
 
+
+        //landing page on the first launch
+        if (ApplicationData.getInstance().showLandingPage) {
+            if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+                launchActivity(LandingPageActivity.class);
+            } else {
+                launchActivity(LandingPageAccountActivity.class);
+            }
+        }
+
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
 
             ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(getString(R.string.welcome_message));
@@ -66,7 +78,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             if (ApplicationData.getInstance().userDataContract.FirstName!=null) {
                 welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userDataContract.FirstName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek())));
             }else{
-                welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(AppUtil.getCurrentWeek())));
+                welcome_message = getString(R.string.welcome_account_1).replace("%@", ApplicationData.getInstance().userName).concat(getString(R.string.welcome_account_2).replace("%d", Integer.toString(ApplicationData.getInstance().currentWeekNumber)));
 
             }
             ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(welcome_message);
@@ -97,14 +109,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             }
         });
 
-        //landing page on the first launch
-        if (ApplicationData.getInstance().showLandingPage) {
-            if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
-                launchActivity(LandingPageActivity.class);
-            } else {
-                launchActivity(LandingPageAccountActivity.class);
-            }
-        }
+
     }
 
     @Override
@@ -151,13 +156,15 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         }else{
             switch (position) {
                 case 0: //coaching
-                fragment = new CoachingAccountFragment();
+                    if (!ApplicationData.getInstance().fromArchive)
+                        ApplicationData.getInstance().selectedWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
+                    fragment = new CoachingAccountFragment();
                     break;
                 case 1: //repas
                     fragment = new RepasFragment();
                     break;
                 case 2: //recettes
-                    fragment = new RecipesActivity();
+                    fragment = new RecipesAccountFragment();
                     break;
                 case 3: //conseils
                     fragment = new ConseilsFragment();
@@ -195,6 +202,9 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.header_menu_iv) {
             //burger menu
+            ApplicationData.getInstance().fromArchive = false;
+            ApplicationData.getInstance().selectedWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
+
             mDrawerLayout.openDrawer(Gravity.LEFT);
         }
     }

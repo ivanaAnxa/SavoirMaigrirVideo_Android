@@ -142,7 +142,8 @@
                 android:layout_below="@+id/weight_graph_date_ll"
                 android:layout_centerHorizontal="true"
                 android:padding="10dp"
-                android:textColor="@color/text_darkgray" />
+                android:textColor="@color/text_darkgray"
+                android:textSize="14dp"/>
 
             <ImageView
                 android:id="@+id/viewcontent"

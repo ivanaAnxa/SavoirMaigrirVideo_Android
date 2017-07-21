@@ -24,10 +24,10 @@ public class WeightHistoryContract {
     public int Type;
 
     @SerializedName("date")
-    public String Date;
+    public long Date;
 
     @SerializedName("deleted")
-    public String Deleted;
+    public boolean Deleted;
 
     @SerializedName("confirmedData")
     public String ConfirmedData;
