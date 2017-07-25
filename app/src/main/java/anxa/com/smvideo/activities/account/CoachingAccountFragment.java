@@ -54,6 +54,7 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
     private YouTubePlayerFragment playerFragment;
 
     private int currentCoachingWeekNumber;
+    private int currentCoachingDayNumber;
     private int selectedCoachingWeekNumber;
 
     private boolean fromArchive;
@@ -75,6 +76,7 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
         context.registerReceiver(the_receiver, filter);
 
         currentCoachingWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
+        currentCoachingDayNumber = AppUtil.getCurrentDayNumber();
         ApplicationData.getInstance().currentWeekNumber = currentCoachingWeekNumber;
 
         //header change
@@ -246,7 +248,13 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
 
         for (CoachingVideosContract v : ApplicationData.getInstance().coachingVideoList) {
             if (v.WeekNumber == selectedCoachingWeekNumber) {
-                videosList.add(v);
+                if (v.WeekNumber == currentCoachingWeekNumber) {
+                    if (v.DayNumber <= currentCoachingDayNumber) {
+                        videosList.add(v);
+                    }
+                }else {
+                    videosList.add(v);
+                }
             }
         }
 
@@ -277,7 +285,9 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
 //                            }
 
                             if (v.WeekNumber == currentCoachingWeekNumber) {
-                                videosList.add(v);
+                                if (v.DayNumber <= currentCoachingDayNumber) {
+                                    videosList.add(v);
+                                }
                             }
                         }
 

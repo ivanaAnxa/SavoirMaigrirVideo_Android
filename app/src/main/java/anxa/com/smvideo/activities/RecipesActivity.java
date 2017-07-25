@@ -177,6 +177,7 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
             bundle.putString("RECIPE_ID", String.valueOf(recipeId));
+            bundle.putString("SOURCE", "fromRecipes");
             fragment.setArguments(bundle);
             fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
                     .commit();

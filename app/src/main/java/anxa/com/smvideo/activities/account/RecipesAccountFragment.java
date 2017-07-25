@@ -83,39 +83,74 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
             adapter.updateItems(currentViewRecipeList);
         } else {
             //api call
-            //get all recipeType
-            for (int i = 1; i <= 10; i++) {
+            caller.GetAccountRecettes(new AsyncResponse() {
 
-                caller.GetAccountRecettes(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
+                    if (output != null) {
+                        RecipeResponseContract c = (RecipeResponseContract) output;
+                        //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
 
-                    @Override
-                    public void processFinish(Object output) {
-                        if (output != null) {
-                            RecipeResponseContract c = (RecipeResponseContract) output;
-                            //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+                        if (c != null && c.Data != null && c.Data.Recipes != null) {
 
-                            if (c != null && c.Data != null && c.Data.Recipes != null) {
+                            recipesList = (List<RecipeContract>) c.Data.Recipes;
+                            ApplicationData.getInstance().recipeAccountList.addAll(recipesList);
 
-                                recipesList = (List<RecipeContract>) c.Data.Recipes;
-                                ApplicationData.getInstance().recipeAccountList.addAll(recipesList);
-                                adapter.notifyDataSetChanged();
-
-                            }
+                            updateRecipesList();
                         }
                     }
+                }
 
-                }, i);
-            }
-            List<RecipeContract> currentViewRecipeList = new ArrayList<RecipeContract>();
-            for (RecipeContract r : recipesList) {
-                if (r.RecipeType == RecipeContract.RecipeTypeEnum.Entree.getNumVal()) {
-                    currentViewRecipeList.add(r);
+            }, selectedRecipeType.getNumVal());
+        }
+    }
+
+    private void getRecipePerCategory(final int selectedRecipeTypeParam){
+        caller.GetAccountRecettes(new AsyncResponse() {
+
+            @Override
+            public void processFinish(Object output) {
+                if (output != null) {
+                    RecipeResponseContract c = (RecipeResponseContract) output;
+                    //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+
+                    if (c != null && c.Data != null && c.Data.Recipes != null) {
+
+                        recipesList = (List<RecipeContract>) c.Data.Recipes;
+                        ApplicationData.getInstance().recipeAccountList.addAll(recipesList);
+
+                        updateRecipesListPerCategory(selectedRecipeTypeParam);
+                    }
                 }
             }
-            recipesListView.setAdapter(adapter);
-            adapter.updateItems(currentViewRecipeList);
-        }
 
+        }, selectedRecipeTypeParam);
+    }
+
+    private void updateRecipesList() {
+        List<RecipeContract> currentViewRecipeList = new ArrayList<RecipeContract>();
+        for (RecipeContract r : recipesList) {
+            if (r.RecipeType == RecipeContract.RecipeTypeEnum.Entree.getNumVal()) {
+                currentViewRecipeList.add(r);
+            }
+        }
+        recipesListView.setAdapter(adapter);
+        adapter.updateItems(currentViewRecipeList);
+
+        adapter.notifyDataSetChanged();
+    }
+
+    private void updateRecipesListPerCategory(int category) {
+        List<RecipeContract> currentViewRecipeList = new ArrayList<RecipeContract>();
+        for (RecipeContract r : recipesList) {
+            if (r.RecipeType == category) {
+                currentViewRecipeList.add(r);
+            }
+        }
+        recipesListView.setAdapter(adapter);
+        adapter.updateItems(currentViewRecipeList);
+
+        adapter.notifyDataSetChanged();
     }
 
     private void addOnClickListener() {
@@ -167,13 +202,19 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
                     currentViewRecipeList.add(r);
                 }
             }
-            adapter.updateItems(currentViewRecipeList);
+
+            if (currentViewRecipeList.size()>0) {
+                adapter.updateItems(currentViewRecipeList);
+            }else{
+                getRecipePerCategory(recipeCategoryToSearch.getNumVal());
+            }
         } else {
             int recipeId = (Integer) v.getTag(R.id.recipe_id);
 
             Fragment fragment = new RecipeActivity();
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
+            bundle.putString("SOURCE", "fromRecettes");
             bundle.putString("RECIPE_ID", String.valueOf(recipeId));
             fragment.setArguments(bundle);
             fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)

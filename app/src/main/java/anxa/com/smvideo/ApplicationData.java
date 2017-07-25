@@ -60,7 +60,7 @@ public class ApplicationData extends Application {
     public int currentWeekNumber = 0;
     public int selectedWeekNumber = 0;
     public int applicationId = 1;
-    public String accountType = "free";
+    public String accountType = "account";
     public String userName = "User";
 
     public SelectedFragment selectedFragment = SelectedFragment.Decouvir;
