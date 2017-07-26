@@ -20,7 +20,7 @@ import anxa.com.smvideo.ui.CustomListView;
  * Created by aprilanxa on 17/07/2017.
  */
 
-public class CoachingArchiveAccountActivity extends Activity implements View.OnClickListener{
+public class CoachingArchiveAccountActivity extends Activity implements View.OnClickListener {
 
     CustomListView weekListView;
     CoachingArchiveListAdapter adapter;
@@ -31,10 +31,10 @@ public class CoachingArchiveAccountActivity extends Activity implements View.OnC
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.coaching_archive_account);
-        ((TextView)findViewById(R.id.header_title_tv)).setText(getString(R.string.coaching_header_right));
-        ((TextView)findViewById(R.id.header_right_tv)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.header_title_tv)).setText(getString(R.string.coaching_header_right));
+        ((TextView) findViewById(R.id.header_right_tv)).setVisibility(View.GONE);
 
-        weekListView = (CustomListView)findViewById(R.id.archiveListView);
+        weekListView = (CustomListView) findViewById(R.id.archiveListView);
 
         if (adapter == null) {
             adapter = new CoachingArchiveListAdapter(this, ApplicationData.getInstance().coachingVideoList, this);
@@ -50,14 +50,9 @@ public class CoachingArchiveAccountActivity extends Activity implements View.OnC
         ApplicationData.getInstance().selectedWeekNumber = weekId;
         ApplicationData.getInstance().fromArchive = true;
 
-        System.out.println("weekId: " + weekId);
-//
         Intent broadint = new Intent();
         broadint.setAction(this.getResources().getString(R.string.coaching_broadcast_string));
         this.sendBroadcast(broadint);
-//        Intent intent = new Intent();
-//
-//        setResult(RESULT_OK, intent);
 
         finish();
     }
