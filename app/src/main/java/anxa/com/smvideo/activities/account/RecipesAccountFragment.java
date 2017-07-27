@@ -85,7 +85,7 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
             adapter.updateItems(currentViewRecipeList);
         } else {
             //api call
-
+            addOnClickListener();
                         caller.GetAccountRecettes(new AsyncResponse() {
 
                             @Override
@@ -228,10 +228,11 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
             Fragment fragment = new RecipeActivity();
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
-            bundle.putString("SOURCE", "fromRecettes");
+            bundle.putString("SOURCE", "fromRecettesAccount");
             bundle.putString("RECIPE_ID", String.valueOf(recipeId));
+
             fragment.setArguments(bundle);
-            fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
+            fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
                     .commit();
 
         }

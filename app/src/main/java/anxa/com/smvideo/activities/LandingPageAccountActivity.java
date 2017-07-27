@@ -55,7 +55,7 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
                     UserDataResponseContract c = (UserDataResponseContract) output;
                     //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
 
-                    if (c != null) {
+                    if (c != null && c.Data != null) {
 
                         System.out.println("GetAccountUserData: " + c.Data);
                         ApplicationData.getInstance().userDataContract = c.Data;

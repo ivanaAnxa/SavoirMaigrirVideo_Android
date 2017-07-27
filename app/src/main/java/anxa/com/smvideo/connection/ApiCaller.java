@@ -195,7 +195,7 @@ public class ApiCaller {
         Hashtable params = new Hashtable();
         params.put("recipeType", recipeType);
 
-        apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, params, RecipeResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, params, RecipeResponseContract.class, AsyncTask.SERIAL_EXECUTOR);
     }
 
     public void GetAccountGraphData(AsyncResponse asyncResponse) {
