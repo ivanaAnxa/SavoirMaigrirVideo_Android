@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ public class LoginActivity extends Activity{
         setContentView(R.layout.login_main);
 
         loginContract = new LoginContract();
+
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         email_et = (EditText)findViewById(R.id.login_email_et);
         password_et = (EditText)findViewById(R.id.login_password_et);
