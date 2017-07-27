@@ -16,8 +16,6 @@ import anxa.com.smvideo.R;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.DietProfilesDataContract;
-import anxa.com.smvideo.contracts.RecipeResponseContract;
-import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.util.AppUtil;
 
@@ -35,7 +33,7 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.landing_page_account);
+        setContentView(R.layout.menu_page_account);
 
         initial_weight_tv = (TextView) findViewById(R.id.initial_weight_tv);
         target_weight_tv = (TextView) findViewById(R.id.target_weight_tv);
@@ -44,6 +42,7 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         weightProgressBar = (ProgressBar) findViewById(R.id.weight_landing_progressBar);
         landingProgressBar = (ProgressBar) findViewById(R.id.landing_account_progressBar);
         landingProgressBar.setVisibility(View.VISIBLE);
+
 
         caller = new ApiCaller();
 
