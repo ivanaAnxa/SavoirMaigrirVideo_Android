@@ -1,8 +1,6 @@
 package anxa.com.smvideo.activities.account;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -11,8 +9,6 @@ import android.widget.TextView;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
-import anxa.com.smvideo.activities.RecipeActivity;
-import anxa.com.smvideo.activities.RecipesActivity;
 import anxa.com.smvideo.ui.CoachingArchiveListAdapter;
 import anxa.com.smvideo.ui.CustomListView;
 
