@@ -13,10 +13,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -76,6 +78,7 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
     private EditText weight_enter_et;
     private WeightGraphContract latestWeight;
     private TextView currentWeightTitle;
+    private ProgressBar weightProgressBar;
 
     private TextView targetWeightValue_tv, lostWeightValue_tv, bmiValue_tv;
 
@@ -144,6 +147,9 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
         currentWeightTitle = (TextView) mView.findViewById(R.id.currentWeight_tv);
 
+        weightProgressBar = (ProgressBar) mView.findViewById(R.id.weight_graph_progressBar);
+        weightProgressBar.setVisibility(View.GONE);
+
         targetWeight = ApplicationData.getInstance().dietProfilesDataContract.TargetWeightInKg;
 
         date_left_btn.setOnClickListener(this);
@@ -159,7 +165,7 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         weight_enter_et = (EditText) mView.findViewById(R.id.weight_enter_et);
         weight_enter_et.setOnKeyListener(this);
 
-        getWeightHistoryAPI();
+        getWeightGraphData();
 
         return mView;
     }
@@ -167,8 +173,6 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-
-        dismissKeyboard();
     }
 
     @Override
@@ -308,15 +312,11 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
         latestWeight = ApplicationData.getInstance().weightGraphContractList.get(0);
 
-        System.out.println("GetAccountGraphData latest weight: " + latestWeight.Date);
-        System.out.println("GetAccountGraphData latest weight: " + AppUtil.getWeightDateFormat(AppUtil.toDate(latestWeight.Date)));
-        System.out.println("GetAccountGraphData latest weight: " + latestWeight.WeightKg);
-
         String currentWeightString = getResources().getString(R.string.WEIGHT_GRAPH_CURRENT_WEIGHT_ASOF) + " " + AppUtil.getWeightDateFormat(AppUtil.toDate(latestWeight.Date));
         String currentWeight = String.valueOf(latestWeight.WeightKg);
         final String stringToDisplay = currentWeightString.replace("%@", currentWeight);
 
-        if (ApplicationData.getInstance().initialWeightContract != null){
+        if (ApplicationData.getInstance().initialWeightContract != null) {
             initialWeight = ApplicationData.getInstance().initialWeightContract.WeightKg;
         }
 
@@ -385,7 +385,8 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
                 weightGraphDataArrayList = AppUtil.get1YWeightList(true, 0);
                 break;
             case DATE_RANGE_ALL:
-                weightGraphDataArrayList = AppUtil.getAllWeightList();
+//                weightGraphDataArrayList = AppUtil.getAllWeightList();
+                weightGraphDataArrayList = ApplicationData.getInstance().weightGraphContractList;
                 break;
             default:
                 break;
@@ -399,9 +400,6 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
     private void populateData() {
         lowestWeight = AppUtil.getLowestWeight(weightGraphDataArrayList);
         heighestWeight = AppUtil.getHeighestWeight(weightGraphDataArrayList);
-
-        System.out.println("lowestWeight: " + lowestWeight);
-        System.out.println("heighestWeight: " + heighestWeight);
 
         createGraph(weightGraphDataArrayList);
     }
@@ -466,11 +464,17 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         leftAxis.setGridLineWidth(0.5f);
         leftAxis.addLimitLine(llXAxis);
 
+        leftAxis.setTextColor(Color.GRAY);
+
+
         if (heighestWeight > initialWeight) {
             leftAxis.setAxisMaxValue((float) heighestWeight + 3);
         } else {
+            System.out.println("setAxisMaxValue: " + initialWeight);
             leftAxis.setAxisMaxValue((float) initialWeight + 3);
         }
+
+        System.out.println("setAxisMinValue: target" + targetWeight + " lowestWeight: " + lowestWeight);
 
         if (lowestWeight < targetWeight) {
             leftAxis.setAxisMinValue((float) lowestWeight - 3);
@@ -478,7 +482,6 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
             leftAxis.setAxisMinValue((float) targetWeight - 3);
         }
 
-        leftAxis.setTextColor(Color.GRAY);
 
         dataToGraphArray(graphMealList);
 
@@ -486,12 +489,19 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
         leftAxis.setStartAtZero(false);
 
-        weightLineChart.getAxisLeft().setValueFormatter(new YAxisValueFormatter() {
+        leftAxis.setValueFormatter(new YAxisValueFormatter() {
             @Override
             public String getFormattedValue(float v, YAxis yAxis) {
+                System.out.println("y value: " + v);
+
                 return String.valueOf((int) Math.floor(v));
             }
         });
+
+        System.out.println("entries: " + weightLineChart.getAxisLeft().mEntries.length);
+
+        System.out.println("setAxisMinValue: " + weightLineChart.getAxisLeft().getAxisMinValue() + " max: " + weightLineChart.getAxisLeft().getAxisMaxValue());
+
         weightLineChart.invalidate();
     }
 
@@ -543,20 +553,22 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
                     WeightGraphResponseContract c = (WeightGraphResponseContract) output;
 
                     if (c != null && c.Data != null && c.Data.Weights != null) {
+                        ApplicationData.getInstance().weightGraphContractList = new ArrayList<WeightGraphContract>();
 
-                            for (WeightGraphContract weightGraphContract: c.Data.Weights){
-                                if (weightGraphContract.ConfirmedData.equalsIgnoreCase("true")){
-                                    ApplicationData.getInstance().weightGraphContractList.add(weightGraphContract);
-                                }
-
+                        for (WeightGraphContract weightGraphContract : c.Data.Weights) {
+                            if (weightGraphContract.ConfirmedData.equalsIgnoreCase("true")) {
+                                ApplicationData.getInstance().weightGraphContractList.add(weightGraphContract);
+                            }
                         }
                         updateWeightGraphUI();
-
                     }
                 }
             }
         });
+
+        getWeightHistoryAPI();
     }
+
     private void getWeightHistoryAPI() {
         caller.GetAccountGraphHistory(new AsyncResponse() {
             @Override
@@ -569,21 +581,20 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
                     if (c != null && c.Data != null) {
                         initialWeight = c.Data.InitialWeightModel.WeightKg;
 
-                        if (c.Data.HistoryModel!=null){
-                            for (WeightHistoryContract weightHistoryContract: c.Data.HistoryModel){
-                                if (weightHistoryContract.ConfirmedData.equalsIgnoreCase("true")){
+                        if (c.Data.HistoryModel != null) {
+                            weightGraphHistoryDataList.clear();
+                            for (WeightHistoryContract weightHistoryContract : c.Data.HistoryModel) {
+                                if (weightHistoryContract.ConfirmedData.equalsIgnoreCase("true")) {
                                     weightGraphHistoryDataList.add(weightHistoryContract);
                                 }
                             }
                         }
-//                        weightGraphHistoryDataList = c.Data.HistoryModel;
                         ApplicationData.getInstance().initialWeightContract = c.Data.InitialWeightModel;
 
+                        weightProgressBar.setVisibility(View.GONE);
+
                         updateWeightHistoryList();
-
                     }
-
-                    getWeightGraphData();
                 }
             }
         });
@@ -675,7 +686,6 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         }
 
         if (weightGraphHistoryDataList.size() > 7) {
-
             for (int i = 0; i < 7; i++) {
                 weightLogsListCurrentDisplay.add(weightGraphHistoryDataList.get(i));
             }
@@ -711,6 +721,7 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
     private void deleteWeightData(final WeightHistoryContract weightToDelete) {
         dismissKeyboard();
+        weightProgressBar.setVisibility(View.VISIBLE);
 
         weightToDelete.Deleted = true;
 
@@ -720,7 +731,7 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
                 //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
                 if (output != null) {
-                        getWeightHistoryAPI();
+                    getWeightHistoryAPI();
                 }
             }
         }, weightToDelete);
@@ -730,6 +741,8 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
     private void updateWeightData(WeightHistoryContract weightToUpdate) {
 
         dismissKeyboard();
+        weightProgressBar.setVisibility(View.VISIBLE);
+
         caller.EditWeight(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {
@@ -768,6 +781,9 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         weightToPost.WeightKg = weightInput;
         weightToPost.Deleted = false;
         weightToPost.UserId = ApplicationData.getInstance().regId;
+
+        weight_enter_et.setText("");
+        weightProgressBar.setVisibility(View.VISIBLE);
 
         caller.PostWeight(new AsyncResponse() {
             @Override

@@ -20,6 +20,8 @@ public class CoachingArchiveAccountActivity extends Activity implements View.OnC
 
     CustomListView weekListView;
     CoachingArchiveListAdapter adapter;
+    private TextView header_right;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,12 @@ public class CoachingArchiveAccountActivity extends Activity implements View.OnC
 
         setContentView(R.layout.coaching_archive_account);
         ((TextView) findViewById(R.id.header_title_tv)).setText(getString(R.string.coaching_header_right));
-        ((TextView) findViewById(R.id.header_right_tv)).setVisibility(View.GONE);
+
+        header_right = (TextView) findViewById(R.id.header_right_tv);
+        header_right.setVisibility(View.VISIBLE);
+        header_right.setText("Annuler");
+        header_right.setOnClickListener(this);
+
 
         weekListView = (CustomListView) findViewById(R.id.archiveListView);
 
@@ -42,14 +49,18 @@ public class CoachingArchiveAccountActivity extends Activity implements View.OnC
     @Override
     public void onClick(View v) {
 
-        int weekId = (Integer) v.getTag(R.id.week_id);
-        ApplicationData.getInstance().selectedWeekNumber = weekId;
-        ApplicationData.getInstance().fromArchive = true;
+        if (v==header_right){
+            finish();
+        }else {
+            int weekId = (Integer) v.getTag(R.id.week_id);
+            ApplicationData.getInstance().selectedWeekNumber = weekId;
+            ApplicationData.getInstance().fromArchive = true;
 
-        Intent broadint = new Intent();
-        broadint.setAction(this.getResources().getString(R.string.coaching_broadcast_string));
-        this.sendBroadcast(broadint);
+            Intent broadint = new Intent();
+            broadint.setAction(this.getResources().getString(R.string.coaching_broadcast_string));
+            this.sendBroadcast(broadint);
 
-        finish();
+            finish();
+        }
     }
 }

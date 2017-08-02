@@ -55,6 +55,9 @@
     <string name="coaching_header_right">Archive</string>
     <string name="coaching_broadcast_string">Archive_week_selected</string>
 
+    <string name="conseils_broadcast_string">Archive_category_selected</string>
+    <string name="conseils_header_right">Voir tout</string>
+
     <!--account mon compte-->
     <string name="mon_compte_profil">PROFIL</string>
     <string name="mon_compte_objectif">OBJECTIF</string>

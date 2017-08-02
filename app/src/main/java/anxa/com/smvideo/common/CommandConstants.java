@@ -12,6 +12,7 @@ public class CommandConstants {
     public static String API_BILANMINCEUR = "dietProfile";
     public static String API_TV = "tv";
     public static String API_USER = "user";
+    public static String API_HELP = "Help/Api";
 
     /* API COMMANDS */
     public static String FREE_DISCOVER= "free/discover";
@@ -22,7 +23,7 @@ public class CommandConstants {
     public static String BILANMINCEUR_RESULTS = "free/result";
 
     public static String ACCOUNT_LOGIN = "login";
-    public static String ACCOUNT_COACHING = "coaching/";
+    public static String ACCOUNT_COACHING = "coaching";
     public static String ACCOUNT_CONSEILS = "advice";
     public static String ACCOUNT_EXERCICE = "exercise";
     public static String ACCOUNT_REPAS = "mealplan/day";

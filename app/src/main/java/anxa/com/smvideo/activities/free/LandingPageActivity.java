@@ -1,4 +1,4 @@
-package anxa.com.smvideo.activities;
+package anxa.com.smvideo.activities.free;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.MainActivity;
 
 /**
  * Created by aprilanxa on 31/05/2017.

@@ -159,8 +159,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_below="@id/currentWeight_tv"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
 
             <RelativeLayout
                 android:id="@+id/weight_data_rl"
@@ -399,7 +399,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:indeterminateDrawable="@drawable/animateprogress"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <LinearLayout
                 android:id="@+id/weight_log_ll"

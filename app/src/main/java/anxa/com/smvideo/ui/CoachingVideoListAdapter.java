@@ -80,7 +80,6 @@ public class CoachingVideoListAdapter extends ArrayAdapter<CoachingVideosContrac
         int itemCount = items.size() - position;
 
         if (getCount() > position && itemCount == 5) {
-            System.out.println("getPosition");
         }
 
         CoachingVideosContract contract = (CoachingVideosContract) items.get(position);

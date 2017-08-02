@@ -136,9 +136,9 @@ public class ApiCaller {
 
 
     public void GetAccountCoaching(AsyncResponse asyncResponse, int currentWeek) {
-        //http://dev.savoir-maigrir.aujourdhui.com/api/Help/Api/GET-video-coaching-regId-currentWeekNum
         MasterCommand command = new MasterCommand();
-        command.Command = CommandConstants.ACCOUNT_COACHING + currentWeek;
+        command.Command = CommandConstants.ACCOUNT_COACHING +"/"+ ApplicationData.getInstance().regId + "/" + currentWeek;
+        command.RegId = ApplicationData.getInstance().regId;
 
         apiClient.GetAsync(asyncResponse, CommandConstants.API_VIDEOS, command, CoachingVideosResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }

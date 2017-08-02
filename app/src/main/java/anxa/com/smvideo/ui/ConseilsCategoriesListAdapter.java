@@ -12,23 +12,23 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
-import anxa.com.smvideo.contracts.CoachingVideosContract;
+import anxa.com.smvideo.contracts.VideoContract;
 
 /**
- * Created by aprilanxa on 17/07/2017.
+ * Created by aprilanxa on 28/07/2017.
  */
 
-public class CoachingArchiveListAdapter extends ArrayAdapter<CoachingVideosContract> implements View.OnClickListener {
+public class ConseilsCategoriesListAdapter extends ArrayAdapter<VideoContract> implements View.OnClickListener {
 
     private final Context context;
-    private List<CoachingVideosContract> items = new ArrayList<CoachingVideosContract>();
-    private int currentWeek;
+    private List<VideoContract> items = new ArrayList<VideoContract>();
+    private String currentCategory;
 
     LayoutInflater layoutInflater;
     String inflater = Context.LAYOUT_INFLATER_SERVICE;
     View.OnClickListener listener;
 
-    public CoachingArchiveListAdapter(Context context, List<CoachingVideosContract> items, View.OnClickListener listener) {
+    public ConseilsCategoriesListAdapter(Context context, List<VideoContract> items, View.OnClickListener listener) {
         super(context, R.layout.listitem_archive_content, items);
 
         layoutInflater = (LayoutInflater) context.getSystemService(inflater);
@@ -36,11 +36,10 @@ public class CoachingArchiveListAdapter extends ArrayAdapter<CoachingVideosContr
         this.items = items;
         this.listener = listener;
 
-        currentWeek = ApplicationData.getInstance().currentWeekNumber;
-
+        currentCategory = ApplicationData.getInstance().currentSelectedCategory;
     }
 
-    public void updateItems(List<CoachingVideosContract> items) {
+    public void updateItems(List<VideoContract> items) {
         this.items = items;
         notifyDataSetChanged();
     }
@@ -53,7 +52,8 @@ public class CoachingArchiveListAdapter extends ArrayAdapter<CoachingVideosContr
 
     @Override
     public int getCount() {
-        return ApplicationData.getInstance().currentWeekNumber;
+        return ApplicationData.getInstance().categoryList.size();
+//        return items.size();
     }
 
     @Override
@@ -68,17 +68,17 @@ public class CoachingArchiveListAdapter extends ArrayAdapter<CoachingVideosContr
 
             row = layoutInflator.inflate(R.layout.listitem_archive_content, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.weekNumber = ((TextView) row.findViewById(R.id.weekNumber));
+            viewHolder.videoCategory = ((TextView) row.findViewById(R.id.weekNumber));
             row.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) row.getTag();
         }
 
-        row.setTag(R.id.week_id, currentWeek - position);
+        row.setTag(R.id.category_id, position);
         row.setOnClickListener(this);
 
-        String weekString = (context.getString(R.string.coaching_archive_week)).replace("%d", Integer.toString(currentWeek - position));
-        viewHolder.weekNumber.setText(weekString);
+        String categoryString = ApplicationData.getInstance().categoryList.get(position);
+        viewHolder.videoCategory.setText(categoryString);
         return row;
     }
 
@@ -99,6 +99,6 @@ public class CoachingArchiveListAdapter extends ArrayAdapter<CoachingVideosContr
     }
 
     private static class ViewHolder {
-        TextView weekNumber;
+        TextView videoCategory;
     }
 }

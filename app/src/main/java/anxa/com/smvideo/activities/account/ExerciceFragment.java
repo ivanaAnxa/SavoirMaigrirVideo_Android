@@ -78,7 +78,6 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
         ft.replace(R.id.youtube_layout, playerFragment, tag);
         ft.commit();
 
-
         caller.GetAccountExercice(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {
@@ -104,9 +103,7 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
-
         return mView;
-
     }
 
     @Override
@@ -140,9 +137,9 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
         playerFragment.initialize(SavoirMaigrirVideoConstants.YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
-                if (video.VideoId != null) {
+                if (video.VideoUrl != null) {
 
-                    youTubePlayer.cueVideo(String.valueOf(video.VideoId));
+                    youTubePlayer.cueVideo(video.VideoUrl);
 
                     ((TextView) (mView.findViewById(R.id.videoTitle))).setText(video.Title);
                     ((TextView) (mView.findViewById(R.id.videoDesc))).setText(video.Description);
@@ -179,34 +176,23 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
                                 getActivity().setRequestedOrientation(
                                         ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                 if (youTubePlayer.isPlaying()) {
-                                    System.out.println("notfullscreen youtubeplay playing");
                                     youTubePlayer.play();
                                 } else {
-                                    System.out.println("notfullscreen youtubeplay not playing");
                                 }
                             } else {
                                 if (youTubePlayer.isPlaying()) {
-                                    System.out.println("fullscreen youtubeplay playing");
                                     youTubePlayer.play();
                                 } else {
-                                    System.out.println("fullscreen youtubeplay not playing");
                                 }
                             }
-
                         }
                     });
-
-
                 }
-
             }
-
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
                 //Toast.makeText(YouTubePlayerFragmentActivity.this, "Error while initializing YouTubePlayer.", Toast.LENGTH_SHORT).show();
             }
-
-
         });
 
     }

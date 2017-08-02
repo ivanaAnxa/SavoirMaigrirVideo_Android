@@ -541,14 +541,10 @@ public class AppUtil {
     public static double getLowestWeight(List<WeightGraphContract> weightList) {
         double lowestWeight = 0.0;
 
-        System.out.println("getLowestWeight: " + weightList.size());
         //do not include zero
         if (weightList.size() > 0) {
             //get lowest with value except 0
             for (WeightGraphContract weight : weightList) {
-
-                System.out.println("getLowestWeight: " + weight.WeightKg);
-
                 if (weight.WeightKg > 0) {
                     lowestWeight = weight.WeightKg;
                     break;
@@ -556,12 +552,9 @@ public class AppUtil {
             }
 
             for (WeightGraphContract weight : weightList) {
-                System.out.println("getLowestWeight: " + weight.WeightKg);
                 if (weight.WeightKg > 0) {
                     lowestWeight = weight.WeightKg < lowestWeight ? weight.WeightKg : lowestWeight;
                 }
-                System.out.println("getLowestWeight: " + lowestWeight);
-
             }
         }
         return lowestWeight;
@@ -858,12 +851,7 @@ public class AppUtil {
     }
 
     public static String getRepasDateHeader(Date date, boolean init){
-
-        System.out.println("getRepasDateHeader: " + date.getTime()/1000);
-        System.out.println("getRepasDateHeader to: " + ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate);
-
         String stringHeader;
-
         if (init) {
             stringHeader = " (semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date())) + ")";
             stringHeader = getCurrentDayName(getCurrentDayNumber()) + " "+ stringHeader;

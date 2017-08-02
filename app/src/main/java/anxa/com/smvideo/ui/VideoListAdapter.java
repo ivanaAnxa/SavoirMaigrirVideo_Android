@@ -2,13 +2,11 @@ package anxa.com.smvideo.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -81,7 +79,6 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
         int itemCount = items.size() - position;
 
         if (getCount() > position && itemCount == 5) {
-            System.out.println("getPosition");
         }
 
         VideoContract contract = (VideoContract) items.get(position);
@@ -124,19 +121,13 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
     @Override
     public void onClick(View v) {
         if (v != null) {
-
             if (items != null && items.size() > 0) {
-
-
                 if (listener != null) {
                     listener.onClick(v);
-
                 }
             }
         }
-
     }
-
 
     private static class ViewHolder {
         ImageView videoImage;

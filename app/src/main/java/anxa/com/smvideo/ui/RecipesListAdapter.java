@@ -106,16 +106,16 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
            /* if( !ApplicationData.getInstance().RecipeOngoigImageDownload.contains(recipe.Id)) {
                 ApplicationData.getInstance().RecipeOngoigImageDownload.add(recipe.Id);*/
             //new RecipeDownloadImageAsync(viewHolder.recipeImage, viewHolder.recipeImageProgress, recipe.Id).execute(recipe.ImageUrl);
-               //new RecipeDownloadImageAsync(viewHolder.recipeImage, viewHolder.recipeImageProgress, recipe.Id).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, recipe.ImageUrl);
+            //new RecipeDownloadImageAsync(viewHolder.recipeImage, viewHolder.recipeImageProgress, recipe.Id).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, recipe.ImageUrl);
             //}
 
-           // Picasso.with(context).setDebugging(true);
+            // Picasso.with(context).setDebugging(true);
             //Picasso.with(context).setIndicatorsEnabled(true);
             Glide.with(context).load(recipe.ImageUrl).diskCacheStrategy(DiskCacheStrategy.RESULT).into(viewHolder.recipeImage);
             try {
                 if (!ApplicationData.getInstance().recipePhotoList.containsKey(String.valueOf(recipe.Id)) && viewHolder.recipeImage.getDrawable() != null) {
 
-                    ApplicationData.getInstance().recipePhotoList.put(String.valueOf(recipe.Id), ((GlideBitmapDrawable)viewHolder.recipeImage.getDrawable()).getBitmap());
+                    ApplicationData.getInstance().recipePhotoList.put(String.valueOf(recipe.Id), ((GlideBitmapDrawable) viewHolder.recipeImage.getDrawable()).getBitmap());
                 }
 
             } catch (Exception e) {
@@ -133,7 +133,6 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
     }
 
 
-
     private void refreshUI() {
         notifyDataSetChanged();
     }
@@ -141,17 +140,13 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
     @Override
     public void onClick(View v) {
         if (v != null) {
-
             if (items != null && items.size() > 0) {
                 int pos = (Integer) v.getTag(R.id.recipe_id);
-//                items.get(pos).is_read = true;
-
                 if (listener != null) {
                     listener.onClick(v);
                 }
             }
         }
-
     }
 
 

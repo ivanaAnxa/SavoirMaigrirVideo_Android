@@ -7,6 +7,7 @@ import android.view.View;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.free.LandingPageActivity;
 
 /**
  * Created by aprilanxa on 27/07/2017.

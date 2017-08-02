@@ -28,6 +28,12 @@ public class VideoHelper {
             return Integer.valueOf(o1.Index).compareTo(o2.Index);
         }
     };
+    static Comparator<VideoContract> indexComparatorVideos = new Comparator<VideoContract>() {
+        @Override
+        public int compare(VideoContract o1, VideoContract o2) {
+            return Integer.valueOf(o1.Index).compareTo(o2.Index);
+        }
+    };
 
     public static void sort(final String field, List<VideoContract> itemLocationList) {
 
@@ -48,6 +54,19 @@ public class VideoHelper {
 
         if(field.toLowerCase().equals("index")) {
             comparator = indexComparatorCoaching;
+        }  else {
+            throw new IllegalArgumentException("Comparator not found for " + field);
+        }
+
+        Collections.sort(itemLocationList, comparator);
+    }
+
+    public static void sortVideos(final String field, List<VideoContract> itemLocationList) {
+
+        final Comparator<VideoContract> comparator;
+
+        if(field.toLowerCase().equals("index")) {
+            comparator = indexComparatorVideos;
         }  else {
             throw new IllegalArgumentException("Comparator not found for " + field);
         }

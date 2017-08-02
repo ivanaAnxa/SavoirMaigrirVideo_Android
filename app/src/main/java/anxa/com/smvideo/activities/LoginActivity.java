@@ -6,17 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import java.util.Date;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.account.LandingPageAccountActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
-import anxa.com.smvideo.contracts.DietProfilesDataContract;
 import anxa.com.smvideo.contracts.LoginContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.util.AppUtil;
@@ -29,8 +28,10 @@ public class LoginActivity extends Activity{
 
     private LoginContract loginContract;
     private EditText email_et, password_et;
+    private Button loginButton;
 
     private ApiCaller apiCaller;
+    private ProgressBar loginProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,10 @@ public class LoginActivity extends Activity{
 
         email_et = (EditText)findViewById(R.id.login_email_et);
         password_et = (EditText)findViewById(R.id.login_password_et);
+        loginProgressBar = (ProgressBar)findViewById(R.id.login_progressBar);
+        loginProgressBar.setVisibility(View.GONE);
 
+        loginButton = (Button)findViewById(R.id.login_login_button);
     }
 
     public void goBackToLandingPage(View view){
@@ -52,13 +56,14 @@ public class LoginActivity extends Activity{
     }
 
     public void validateLogin(View view){
-//        goToAccountLandingPage();
-
         if (validateLogin())
             loginToAPI();
     }
 
     private void loginToAPI(){
+        loginProgressBar.setVisibility(View.VISIBLE);
+        loginButton.setEnabled(false);
+
         loginContract.Email = email_et.getText().toString();
         loginContract.Password = password_et.getText().toString();
         loginContract.Check_npna = false;
@@ -68,6 +73,9 @@ public class LoginActivity extends Activity{
         apiCaller.PostLogin(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {
+                loginProgressBar.setVisibility(View.GONE);
+                loginButton.setEnabled(true);
+
                 if (output != null) {
                     UserDataResponseContract c = (UserDataResponseContract) output;
 
@@ -75,7 +83,6 @@ public class LoginActivity extends Activity{
                         if(c.Message.equalsIgnoreCase("Failed")){
                             displayToastMessage(getString(R.string.ALERTMESSAGE_LOGIN_FAILED));
                         }else {
-                            System.out.println("PostLogin: " + c.Data.Email);
                             ApplicationData.getInstance().userDataContract = c.Data;
                             ApplicationData.getInstance().regId = c.Data.Id;
 

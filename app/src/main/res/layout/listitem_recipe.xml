@@ -32,7 +32,8 @@
                 android:adjustViewBounds="true"
                 android:paddingLeft="0dp"
                 android:paddingRight="10dp"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder_recipe"/>
 
 
             <ProgressBar

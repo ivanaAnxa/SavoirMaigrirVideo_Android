@@ -192,8 +192,6 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(final View v) {
-        System.out.println("Repas onClick: " + v.getTag());
-
         if (v==nextDay_btn){
             if (dayOffset<0){
                 dayOffset++;
@@ -214,15 +212,11 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
     }
 
     private void getSpecificRecipe(int recipeId){
-
         caller.GetAccountRecipeCtid(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {
-
-                System.out.println("getSpecificRecipe: " + output);
                 RecipeResponseContract c = (RecipeResponseContract)output;
                 if (c!=null && c.Data!=null && c.Data.Recipes!=null){
-                    System.out.println("getSpecificRecipe: " + c.Data.Recipes.get(0).Title);
                     proceedToRecipePage(c.Data.Recipes.get(0));
                 }
             }
@@ -240,7 +234,6 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
         fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
                 .commit();
     }
-
 
     private void getDateString(){
         Calendar cal = GregorianCalendar.getInstance();

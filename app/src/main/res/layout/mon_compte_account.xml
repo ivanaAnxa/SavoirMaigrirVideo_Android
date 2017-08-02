@@ -331,6 +331,24 @@
                     android:text="@string/mon_compte_alertes_vos_plans" />
 
             </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/logout_btn"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/button_lightgray_roundedcorners"
+                    android:text="Deconnexion"
+                    android:clickable="true"/>
+
+            </TableRow>
         </TableLayout>
     </RelativeLayout>
 

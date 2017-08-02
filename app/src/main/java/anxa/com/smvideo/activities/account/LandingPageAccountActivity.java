@@ -1,4 +1,4 @@
-package anxa.com.smvideo.activities;
+package anxa.com.smvideo.activities.account;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import java.util.Date;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.MainActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.DietProfilesDataContract;
@@ -50,8 +51,6 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
             @Override
             public void processFinish(Object output) {
                 if (output != null) {
-                    System.out.println("GetAccountUserData: " + output);
-
                     UserDataResponseContract c = (UserDataResponseContract) output;
                     //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
 

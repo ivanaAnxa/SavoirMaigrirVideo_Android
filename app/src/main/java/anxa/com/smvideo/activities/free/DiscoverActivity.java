@@ -182,28 +182,19 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
                                     getActivity().setRequestedOrientation(
                                             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                     if (youTubePlayer.isPlaying()) {
-                                        System.out.println("notfullscreen youtubeplay playing");
                                         youTubePlayer.play();
                                     } else {
-                                        System.out.println("notfullscreen youtubeplay not playing");
                                     }
                                 } else {
                                     if (youTubePlayer.isPlaying()) {
-                                        System.out.println("fullscreen youtubeplay playing");
                                         youTubePlayer.play();
                                     } else {
-                                        System.out.println("fullscreen youtubeplay not playing");
                                     }
                                 }
-
                             }
                         });
-
                     }
-
-
                 }
-
             }
 
             @Override
@@ -216,10 +207,6 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
                     Toast.makeText(context, error, Toast.LENGTH_LONG).show();
                 }
             }
-
-
         });
-
     }
-
 }

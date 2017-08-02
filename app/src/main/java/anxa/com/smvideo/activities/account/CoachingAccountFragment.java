@@ -109,11 +109,10 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
         ft.commit();
 
         selectedCoachingWeekNumber = ApplicationData.getInstance().selectedWeekNumber;
-        System.out.println("onCreate selectedweek: " + selectedCoachingWeekNumber);
 
         if (ApplicationData.getInstance().fromArchive) {
             updateVideosList();
-        }else{
+        } else {
             getCoachingVideosFromAPI();
         }
         return mView;
@@ -197,17 +196,13 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
                                 getActivity().setRequestedOrientation(
                                         ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                 if (youTubePlayer.isPlaying()) {
-                                    System.out.println("notfullscreen youtubeplay playing");
                                     youTubePlayer.play();
                                 } else {
-                                    System.out.println("notfullscreen youtubeplay not playing");
                                 }
                             } else {
                                 if (youTubePlayer.isPlaying()) {
-                                    System.out.println("fullscreen youtubeplay playing");
                                     youTubePlayer.play();
                                 } else {
-                                    System.out.println("fullscreen youtubeplay not playing");
                                 }
                             }
                         }
@@ -219,8 +214,6 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
                 //Toast.makeText(YouTubePlayerFragmentActivity.this, "Error while initializing YouTubePlayer.", Toast.LENGTH_SHORT).show();
             }
-
-
         });
     }
 
@@ -234,11 +227,9 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 12345 && resultCode == Activity.RESULT_OK) {
-            System.out.println("onActivityResult");
             selectedCoachingWeekNumber = ApplicationData.getInstance().selectedWeekNumber;
-
             updateVideosList();
-            }
+        }
     }
 
     private void updateVideosList() {
@@ -250,7 +241,7 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
                     if (v.DayNumber <= currentCoachingDayNumber) {
                         videosList.add(v);
                     }
-                }else {
+                } else {
                     videosList.add(v);
                 }
             }
@@ -303,7 +294,6 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
     private BroadcastReceiver the_receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
             if (intent.getAction() == context.getResources().getString(R.string.coaching_broadcast_string)) {
                 fromArchive = true;
                 selectedCoachingWeekNumber = ApplicationData.getInstance().selectedWeekNumber;

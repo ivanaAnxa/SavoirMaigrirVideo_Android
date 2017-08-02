@@ -4,16 +4,19 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.LoginActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.DietProfilesDataContract;
@@ -39,6 +42,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     private TextView plan_et;
     private TextView niveau_calorique_et;
     private EditText email_et;
+    private Button logout_btn;
 
     private UserDataContract userDataContract;
     private DietProfilesDataContract dietProfilesDataContract;
@@ -80,6 +84,9 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         name_et = (EditText) (mView.findViewById(R.id.mon_name_et));
         sexe_et = (TextView) (mView.findViewById(R.id.mon_sexe_et));
         sexe_et.setOnClickListener(this);
+
+        logout_btn = (Button) (mView.findViewById(R.id.logout_btn));
+        logout_btn.setOnClickListener(this);
 
         weight_init_et = (EditText) (mView.findViewById(R.id.mon_weight_init_et));
         weight_target_et = (EditText) (mView.findViewById(R.id.mon_weight_target_et));
@@ -142,6 +149,8 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
 
             genericDialog = builder.create();
             genericDialog.show();
+        } else if(v == logout_btn){
+            logout();
         }
     }
 
@@ -154,7 +163,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
                 //diet profile
                 weight_init_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.StartWeightInKg));
                 weight_target_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.TargetWeightInKg));
-                height_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.HeightInMeter * 100));
+                height_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.HeightInMeter));
 
                 plan_et.setText(plansArray[dietProfilesDataContract.MealPlanType]);
                 niveau_calorique_et.setText(caloriesArray[dietProfilesDataContract.CalorieType]);
@@ -230,4 +239,21 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
             }
         });
     }
+
+    public void logout(){
+
+        //clear login details
+        ApplicationData.getInstance().userDataContract = new UserDataContract();
+        ApplicationData.getInstance().regId = 1;
+
+        goToLoginPage();
+    }
+
+    private void goToLoginPage(){
+        Intent mainIntent = new Intent(context, LoginActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mainIntent);
+    }
+
 }

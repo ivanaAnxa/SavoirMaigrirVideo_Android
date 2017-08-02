@@ -10,6 +10,7 @@ import java.util.Hashtable;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
+import anxa.com.smvideo.common.CommandConstants;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.common.WebkitURL;
 import anxa.com.smvideo.contracts.BaseContract;
@@ -69,13 +70,13 @@ public class SavoirMaigrirVideoApiClient {
             builder.appendQueryParameter("regEmail", command.RegEmail);
         }
 
-        if(command.IncludeData)
-        {
-            builder.appendQueryParameter("includeData", "true");
-        }else{
-            builder.appendQueryParameter("includeData", "false");
+        if (command.Command.equalsIgnoreCase(CommandConstants.ACCOUNT_LOGIN)) {
+            if (command.IncludeData) {
+                builder.appendQueryParameter("includeData", "true");
+            } else {
+                builder.appendQueryParameter("includeData", "false");
+            }
         }
-
 
 
         StringBuilder stringBuilder = new StringBuilder();

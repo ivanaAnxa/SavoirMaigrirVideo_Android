@@ -117,8 +117,6 @@ public class WeightLogsListAdapter extends ArrayAdapter<WeightHistoryContract> i
 
         this.selectedWeight = selectedWeight;
 
-        System.out.println("showOptionsDialog: " + selectedWeight.Date);
-
         ApplicationData.getInstance().currentWeight = selectedWeight;
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

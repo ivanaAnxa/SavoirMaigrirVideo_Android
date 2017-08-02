@@ -229,7 +229,6 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        System.out.println("bilan onclick: " + v.getTag());
             String buttonTag = (String) v.getTag();
             switch (buttonTag) {
                 case "buttonReturnToResultsPage1":
@@ -247,6 +246,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 case "buttonToResultsPage4":
                     viewResultPage(4);
                     break;
+                case "buttonReturnToResultsPage5":
                 case "buttonToResultsPage5":
                     viewResultPage(5);
                     break;
@@ -754,6 +754,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
         Button buttonReturnToResultsPage4 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonReturnToResultsPage4);
         buttonReturnToResultsPage4.setOnClickListener(this);
+
+        Button buttonReturnToResultsPage5 = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonReturnToResultsPage5);
+        buttonReturnToResultsPage5.setOnClickListener(this);
 
         Button buttonSubscribe = (Button) mView.findViewById(R.id.dietProfileResultsLayout).findViewById(R.id.buttonSubscribe);
         buttonSubscribe.setOnClickListener(this);

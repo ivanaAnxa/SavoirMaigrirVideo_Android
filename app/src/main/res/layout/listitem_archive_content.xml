@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/weekNumber"
             android:layout_width="0dp"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="Semane 0"
             android:layout_weight="9"

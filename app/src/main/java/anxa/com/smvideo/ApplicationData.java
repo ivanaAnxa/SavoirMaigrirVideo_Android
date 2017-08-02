@@ -82,17 +82,21 @@ public class ApplicationData extends Application {
     public List<VideoContract> exerciseVideoList = new ArrayList<>();
     public List<WeightGraphContract> weightGraphContractList = new ArrayList<>();
     public List<RepasContract> repasContractArrayList = new ArrayList<>();
+    public List<String> categoryList = new ArrayList<>();
     public ResultsResponseDataContract bilanminceurResults = new ResultsResponseDataContract();
     public RecipeContract selectedRelatedRecipe = new RecipeContract();
 
     public WeightHistoryContract currentWeight;
     public WeightHistoryContract initialWeightContract;
 
+    public String currentSelectedCategory;
+
     public String currentDateRangeDisplay;
     public Date currentDateRangeDisplay_date;
     public Date currentDateRangeDisplay_date2;
 
     public boolean fromArchive = false;
+    public boolean fromArchiveConseils = false;
 
     @Override
     public void onCreate() {
