@@ -53,7 +53,7 @@ public class CoachingArchiveListAdapter extends ArrayAdapter<CoachingVideosContr
 
     @Override
     public int getCount() {
-        return ApplicationData.getInstance().currentWeekNumber;
+        return ApplicationData.getInstance().currentWeekNumber + 1;
     }
 
     @Override
