@@ -1,6 +1,7 @@
 package anxa.com.smvideo.ui;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.contracts.RepasContract;
+import anxa.com.smvideo.util.UITagHandler;
 
 /**
  * Created by aprilanxa on 13/07/2017.
@@ -73,7 +75,7 @@ public class RepasListAdapter extends ArrayAdapter<RepasContract> implements Vie
         RepasContract repas = (RepasContract) items.get(position);
         row.setTag(R.id.recipe_id, repas.itemName);
 
-        viewHolder.recipeTitle.setText(repas.itemName);
+        viewHolder.recipeTitle.setText(Html.fromHtml(repas.itemName, null, new UITagHandler()));
         return row;
     }
 

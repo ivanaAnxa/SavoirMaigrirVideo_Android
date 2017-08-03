@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.squareup.picasso.Picasso;
 
@@ -53,6 +54,7 @@ public class RecipeActivity extends Fragment {
             int recipeId = Integer.parseInt(this.getArguments().getString("RECIPE_ID"));
             if (source.equalsIgnoreCase("fromRecettesAccount")) {
                 recipesList = ApplicationData.getInstance().recipeAccountList;
+                ((TextView) ((RelativeLayout) mView.findViewById(R.id.headermenu)).findViewById(R.id.header_right_tv)).setVisibility(View.GONE);
             }else{
                 recipesList = ApplicationData.getInstance().recipeList;
             }
@@ -72,10 +74,10 @@ public class RecipeActivity extends Fragment {
         Bitmap avatar = null;
         avatar = RecipeHelper.GetRecipeImage(recipeContract.Id);
         ImageView img = (ImageView) mView.findViewById(R.id.recipeImage);
-        img.setTag(recipeContract.Id);
+        //img.setTag(recipeContract.Id);
         if (avatar == null) {
 
-            Glide.with(this).load(recipeContract.ImageUrl).into(img);
+            Glide.with(this).load(recipeContract.ImageUrl).diskCacheStrategy(DiskCacheStrategy.RESULT).into(img);
             try {
                 if (!ApplicationData.getInstance().recipePhotoList.containsKey(String.valueOf(recipeContract.Id)) && img.getDrawable() != null) {
 
