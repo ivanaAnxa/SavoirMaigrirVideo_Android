@@ -27,6 +27,7 @@ import anxa.com.smvideo.contracts.RecipeContract;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
 import anxa.com.smvideo.ui.CustomListView;
 import anxa.com.smvideo.ui.RecipesListAdapter;
+import anxa.com.smvideo.util.AppUtil;
 
 /**
  * Created by angelaanxa on 5/24/2017.
@@ -49,39 +50,28 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         this.context = getActivity();
-
+        caller = new ApiCaller();
         mView = inflater.inflate(R.layout.recipes, null);
 
         //header change
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_recettes));
+        ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.VISIBLE);
 
         //ui
         recipesListView = (CustomListView) mView.findViewById(R.id.recipesListView);
-        recipesList = new ArrayList<RecipeContract>();
-
-        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")){
-            ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.VISIBLE);
-        }else{
-            ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.INVISIBLE);
-        }
-
-
-        PopulateList();
-
-        return mView;
-
-    }
-
-    public void PopulateList() {
-        //ui
         recipesList = new ArrayList<RecipeContract>();
 
         if (adapter == null) {
             adapter = new RecipesListAdapter(getActivity(), recipesList, this);
         }
 
-        caller = new ApiCaller();
+        PopulateList();
 
+        return mView;
+    }
+
+    public void PopulateList() {
+        //ui
         if (ApplicationData.getInstance().recipeList != null && ApplicationData.getInstance().recipeList.size() > 0) {
             AddOnClickListener();
             recipesList = ApplicationData.getInstance().recipeList;
@@ -95,37 +85,39 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
             adapter.updateItems(currentViewRecipeList);
         } else {
             //api call
+            AddOnClickListener();
             caller.GetFreeRecipes(new AsyncResponse() {
 
                 @Override
                 public void processFinish(Object output) {
-                    AddOnClickListener();
                     if (output != null) {
 
                         RecipeResponseContract c = (RecipeResponseContract) output;
                         //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
-
                         if (c != null && c.Data != null && c.Data.Recipes != null) {
-
-
-                            int unreadCount = 0;
 
                             recipesList = (List<RecipeContract>) c.Data.Recipes;
                             ApplicationData.getInstance().recipeList = recipesList;
 
-                            List<RecipeContract> currentViewRecipeList = new ArrayList<RecipeContract>();
-                            for (RecipeContract r : recipesList) {
-                                if (r.RecipeType == RecipeContract.RecipeTypeEnum.Entree.getNumVal()) {
-                                    currentViewRecipeList.add(r);
-                                }
-                            }
-                            recipesListView.setAdapter(adapter);
-                            adapter.updateItems(currentViewRecipeList);
+                            updateRecipesList();
                         }
                     }
                 }
             });
         }
+    }
+
+    private void updateRecipesList() {
+        List<RecipeContract> currentViewRecipeList = new ArrayList<RecipeContract>();
+        for (RecipeContract r : recipesList) {
+            if (r.RecipeType == RecipeContract.RecipeTypeEnum.Entree.getNumVal()) {
+                currentViewRecipeList.add(r);
+            }
+        }
+        recipesListView.setAdapter(adapter);
+        adapter.updateItems(currentViewRecipeList);
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -169,6 +161,7 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
                 }
             }
             adapter.updateItems(currentViewRecipeList);
+
         } else {
             int recipeId = (Integer) v.getTag(R.id.recipe_id);
 
@@ -235,9 +228,7 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
         }
     }
 
-    private Gson gson;
-
-    {
+    private Gson gson;{
         gson = new Gson();
     }
 }

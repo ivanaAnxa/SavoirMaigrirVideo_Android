@@ -86,35 +86,37 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
         } else {
             //api call
             addOnClickListener();
-                        caller.GetAccountRecettes(new AsyncResponse() {
+            caller.GetAccountRecettes(new AsyncResponse() {
 
-                            @Override
-                            public void processFinish(Object output) {
-                                if (output != null) {
-                                    RecipeResponseContract c = (RecipeResponseContract) output;
-                                    //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+                @Override
+                public void processFinish(Object output) {
+                    if (output != null) {
+                        RecipeResponseContract c = (RecipeResponseContract) output;
+                        //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
 
-                                    if (c != null && c.Data != null && c.Data.Recipes != null) {
-                                        Collections.sort(c.Data.Recipes, new Comparator<RecipeContract>() {
-                                            @Override
-                                            public int compare(final RecipeContract object1, final RecipeContract object2) {
-                                                return object1.Title.compareTo(object2.Title);
-                                            }
-                                        });
-                                        recipesList = (List<RecipeContract>) c.Data.Recipes;
-                                        ApplicationData.getInstance().recipeAccountList.addAll(recipesList);
+                        if (c != null && c.Data != null && c.Data.Recipes != null) {
+                            ApplicationData.getInstance().recipeAccountList.clear();
 
-                                        updateRecipesList();
-                                    }
+                            Collections.sort(c.Data.Recipes, new Comparator<RecipeContract>() {
+                                @Override
+                                public int compare(final RecipeContract object1, final RecipeContract object2) {
+                                    return object1.Title.compareTo(object2.Title);
                                 }
-                            }
+                            });
+                            recipesList = (List<RecipeContract>) c.Data.Recipes;
+                            ApplicationData.getInstance().recipeAccountList.addAll(recipesList);
 
-                        }, selectedRecipeType.getNumVal());
+                            updateRecipesList();
+                        }
+                    }
+                }
+
+            }, selectedRecipeType.getNumVal());
 
         }
     }
 
-    private void getRecipePerCategory(final int selectedRecipeTypeParam){
+    private void getRecipePerCategory(final int selectedRecipeTypeParam) {
         caller.GetAccountRecettes(new AsyncResponse() {
 
             @Override
@@ -217,9 +219,9 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
                 }
             }
 
-            if (currentViewRecipeList.size()>0) {
+            if (currentViewRecipeList.size() > 0) {
                 adapter.updateItems(currentViewRecipeList);
-            }else{
+            } else {
                 getRecipePerCategory(recipeCategoryToSearch.getNumVal());
             }
         } else {

@@ -214,8 +214,9 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             //burger menu
             ApplicationData.getInstance().fromArchive = false;
             ApplicationData.getInstance().fromArchiveConseils = false;
-            ApplicationData.getInstance().selectedWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
-
+            if(ApplicationData.getInstance().accountType.equalsIgnoreCase("account")) {
+                ApplicationData.getInstance().selectedWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
+            }
             mDrawerLayout.openDrawer(Gravity.LEFT);
         }
     }
