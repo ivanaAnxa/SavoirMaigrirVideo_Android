@@ -105,7 +105,7 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
         String programHeader = getString(R.string.repas_header_meal_plan);
 
         programHeader = programHeader.replace("#program", plansArray[ApplicationData.getInstance().dietProfilesDataContract.MealPlanType]);
-        programHeader = programHeader.replace("#calorie", caloriesArray[ApplicationData.getInstance().dietProfilesDataContract.MealPlanType]);
+        programHeader = programHeader.replace("#calorie", caloriesArray[ApplicationData.getInstance().dietProfilesDataContract.CalorieType]);
 
         repasProgram_tv.setText(programHeader);
 
