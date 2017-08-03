@@ -300,10 +300,12 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
                     break;
                 case "btnjeMAbone":
+                    System.out.println("btnjeMAbone");
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.MonCompte;
                     Intent broadint = new Intent();
                     broadint.setAction(context.getString(R.string.bilan_broadcast_subscribe));
                     context.sendBroadcast(broadint);
+
                     break;
                 default:
                     break;

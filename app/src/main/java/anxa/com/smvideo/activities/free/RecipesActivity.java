@@ -116,7 +116,6 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
         }
         recipesListView.setAdapter(adapter);
         adapter.updateItems(currentViewRecipeList);
-
         adapter.notifyDataSetChanged();
     }
 
@@ -161,6 +160,8 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
                 }
             }
             adapter.updateItems(currentViewRecipeList);
+            recipesListView.setAdapter(adapter);
+
 
         } else {
             int recipeId = (Integer) v.getTag(R.id.recipe_id);

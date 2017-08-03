@@ -196,10 +196,16 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         FragmentManager fragmentManager = getFragmentManager();
         if (getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT") != null) {
             fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
+        }else{
         }
 
-        fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT")
-                .commit();
+        try {
+
+            fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT").commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavItems.get(position).mTitle);
@@ -233,8 +239,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     private BroadcastReceiver the_receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
-            if (intent.getAction() == context.getResources().getString(R.string.bilan_broadcast_subscribe)) {
+            if (intent.getAction().equalsIgnoreCase(context.getResources().getString(R.string.bilan_broadcast_subscribe))) {
                 selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal());
             }
         }

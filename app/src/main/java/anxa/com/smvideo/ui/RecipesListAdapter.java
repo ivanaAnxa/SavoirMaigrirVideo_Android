@@ -103,6 +103,7 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
         viewHolder.recipeTitle.setText(recipe.Title);
 
         if (avatar == null) {
+            viewHolder.recipeImage.setImageResource(R.drawable.placeholder_recipe);
            /* if( !ApplicationData.getInstance().RecipeOngoigImageDownload.contains(recipe.Id)) {
                 ApplicationData.getInstance().RecipeOngoigImageDownload.add(recipe.Id);*/
             //new RecipeDownloadImageAsync(viewHolder.recipeImage, viewHolder.recipeImageProgress, recipe.Id).execute(recipe.ImageUrl);
@@ -114,7 +115,6 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
             Glide.with(context).load(recipe.ImageUrl).diskCacheStrategy(DiskCacheStrategy.RESULT).into(viewHolder.recipeImage);
             try {
                 if (!ApplicationData.getInstance().recipePhotoList.containsKey(String.valueOf(recipe.Id)) && viewHolder.recipeImage.getDrawable() != null) {
-
                     ApplicationData.getInstance().recipePhotoList.put(String.valueOf(recipe.Id), ((GlideBitmapDrawable) viewHolder.recipeImage.getDrawable()).getBitmap());
                 }
 

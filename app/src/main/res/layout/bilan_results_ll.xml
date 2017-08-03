@@ -510,30 +510,34 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text3_3_1"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text3_3_2"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text3_3_3"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -652,7 +656,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:orientation="vertical">
 
@@ -661,21 +665,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text4_3"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:id="@+id/textView30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text4_4"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:id="@+id/textView29"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text4_5"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -807,21 +814,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text5_1"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:id="@+id/textView35"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text5_2"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:id="@+id/textView36"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bilan_results_text5_3"
-                    android:textColor="@color/gray_text_bilan" />
+                    android:textColor="@color/gray_text_bilan"
+                    android:textSize="12dp"/>
             </LinearLayout>
 
         </LinearLayout>

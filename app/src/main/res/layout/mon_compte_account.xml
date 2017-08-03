@@ -15,341 +15,345 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:scrollbars="none">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true">
-
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/monCompteHeader"
-                android:padding="10dp">
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
 
-                <TextView
-                    style="@style/MonCompteHeader"
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mon_compte_profil" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_prenom" />
-
-                <EditText
-                    android:id="@+id/mon_name_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:hint="@string/mon_compte_prenom"
-                    android:background="@android:color/transparent"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_sexe" />
-
-
-                <TextView
-                    android:id="@+id/mon_sexe_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:hint="@string/mon_compte_sexe"
-                    android:background="@android:color/transparent"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/monCompteHeader"
-                android:padding="10dp">
-
-                <TextView
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mon_compte_objectif" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_poids_depart" />
-
-
-                <EditText
-                    android:id="@+id/mon_weight_init_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:text="80,00"
-                    android:background="@android:color/transparent"
-                    android:inputType="numberDecimal"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_poids_vise" />
-
-
-                <EditText
-                    android:id="@+id/mon_weight_target_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:text="60,00"
-                    android:background="@android:color/transparent"
-                    android:inputType="numberDecimal"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_taille" />
-
-
-                <EditText
-                    android:id="@+id/mon_height_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:text="176"
-                    android:background="@android:color/transparent"
-                    android:inputType="numberDecimal"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/monCompteHeader"
-                android:padding="10dp">
-
-                <TextView
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mon_compte_programme" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_plans_repas" />
-
-
-                <TextView
-                    android:id="@+id/mon_plan_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:text="Classique"
-                    android:background="@android:color/transparent"
-                    android:inputType="none"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-
-                <TextView
-                    style="@style/MonCompteItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/mon_compte_niveau_calorique" />
-
-
-                <TextView
-                    android:id="@+id/mon_calories_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:text="900 kcal"
-                    android:background="@android:color/transparent"
-                    android:inputType="none"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/monCompteHeader"
-                android:padding="10dp">
-
-                <TextView
-                    style="@style/MonCompteHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mon_compte_alertes" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:weightSum="5">
-
-                <TextView
-                    style="@style/MonCompteItemsSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/mon_compte_alertes_receive" />
-
-            </TableRow>
-
-         <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-                <EditText
-                    android:id="@+id/mon_email_et"
-                    style="@style/MonCompteHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="email@domaine.com"
+                    android:layout_height="match_parent"
                     android:background="@color/monCompteHeader"
-                    android:inputType="textEmailAddress"/>
+                    android:padding="10dp">
 
-            </TableRow>
+                    <TextView
+                        style="@style/MonCompteHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mon_compte_profil" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/mon_compte_prenom" />
+
+                    <EditText
+                        android:id="@+id/mon_name_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:hint="@string/mon_compte_prenom" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
 
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:weightSum="5">
-
-                <TextView
-                    style="@style/MonCompteItemsSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:paddingLeft="5dp"
-                    android:text="@string/mon_compte_alertes_vos_plans" />
-
-            </TableRow>
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/mon_compte_sexe" />
 
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:gravity="center">
+                    <TextView
+                        android:id="@+id/mon_sexe_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:hint="@string/mon_compte_sexe" />
 
-                <Button
-                    android:id="@+id/logout_btn"
-                    android:layout_width="90dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/button_lightgray_roundedcorners"
-                    android:text="Deconnexion"
-                    android:clickable="true"/>
+                </TableRow>
 
-            </TableRow>
-        </TableLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/monCompteHeader"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/MonCompteHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mon_compte_objectif" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/mon_compte_poids_depart" />
+
+
+                    <EditText
+                        android:id="@+id/mon_weight_init_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:text="80,00" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/mon_compte_poids_vise" />
+
+
+                    <EditText
+                        android:id="@+id/mon_weight_target_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:text="60,00" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/mon_compte_taille" />
+
+
+                    <EditText
+                        android:id="@+id/mon_height_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:inputType="numberDecimal"
+                        android:text="176" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/monCompteHeader"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/MonCompteHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mon_compte_programme" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/mon_compte_plans_repas" />
+
+
+                    <TextView
+                        android:id="@+id/mon_plan_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:inputType="none"
+                        android:text="Classique" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        style="@style/MonCompteItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/mon_compte_niveau_calorique" />
+
+
+                    <TextView
+                        android:id="@+id/mon_calories_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@android:color/transparent"
+                        android:gravity="right"
+                        android:inputType="none"
+                        android:text="900 kcal" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/monCompteHeader"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/MonCompteHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mon_compte_alertes" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        style="@style/MonCompteItemsSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mon_compte_alertes_receive" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/mon_email_et"
+                        style="@style/MonCompteHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/monCompteHeader"
+                        android:inputType="textEmailAddress"
+                        android:layout_gravity="center"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="10dp"
+                        android:text="email@domaine.com" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:padding="10dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        style="@style/MonCompteItemsSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:textSize="11dp"
+                        android:text="@string/mon_compte_alertes_vos_plans" />
+
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/logout_btn"
+                        android:layout_width="90dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/button_lightgray_roundedcorners"
+                        android:clickable="true"
+                        android:text="Deconnexion" />
+
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </LinearLayout>
