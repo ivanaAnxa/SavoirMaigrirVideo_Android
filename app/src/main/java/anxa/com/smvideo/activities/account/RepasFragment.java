@@ -231,7 +231,7 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putString("SOURCE", "fromRepas");
         fragment.setArguments(bundle);
-        fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
+        fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
                 .commit();
     }
 
