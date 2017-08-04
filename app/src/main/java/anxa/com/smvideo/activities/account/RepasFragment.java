@@ -3,6 +3,7 @@ package anxa.com.smvideo.activities.account;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -226,13 +227,11 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
     private void proceedToRecipePage(RecipeContract recipeContract){
         ApplicationData.getInstance().selectedRelatedRecipe = recipeContract;
 
-        Fragment fragment = new RecipeActivity();
-        FragmentManager fragmentManager = getFragmentManager();
-        Bundle bundle = new Bundle();
-        bundle.putString("SOURCE", "fromRepas");
-        fragment.setArguments(bundle);
-        fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
-                .commit();
+        Intent mainIntent = new Intent(this.getActivity(), RecipeAccountActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(mainIntent);
+
     }
 
     private void getDateString(){
@@ -247,4 +246,5 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
 
         repasDay_et.setText(AppUtil.getRepasDateHeader(displayDate, false));
     }
+
 }

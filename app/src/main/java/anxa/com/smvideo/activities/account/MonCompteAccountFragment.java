@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
@@ -43,6 +46,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     private TextView niveau_calorique_et;
     private EditText email_et;
     private Button logout_btn;
+    private ProgressBar savingProgressBar;
 
     private UserDataContract userDataContract;
     private DietProfilesDataContract dietProfilesDataContract;
@@ -98,6 +102,9 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         niveau_calorique_et.setOnClickListener(this);
         email_et = (EditText) (mView.findViewById(R.id.mon_email_et));
 
+        savingProgressBar = (ProgressBar) (mView.findViewById(R.id.account_progressBar));
+        savingProgressBar.setVisibility(View.GONE);
+
         builder = new AlertDialog.Builder(context);
         builder.setTitle("");
         builder.setCancelable(false);
@@ -111,6 +118,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     public void onClick(final View v) {
         if (v == saveButton) {
             if (validateInput()) {
+                savingProgressBar.setVisibility(View.VISIBLE);
                 saveProfileToObject();
             }
         } else if (v == sexe_et) {
@@ -222,7 +230,29 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         caller.PostUpdateAccountUserData(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {
-                System.out.println("PostUpdateAccountUserData: " + output);
+                savingProgressBar.setVisibility(View.GONE);
+                UserDataResponseContract c = (UserDataResponseContract) output;
+
+                if (c != null && c.Data != null) {
+                    ApplicationData.getInstance().userDataContract = c.Data;
+                    System.out.println("PostUpdateAccountUserData: " + output);
+
+
+                    if (c.Data.DietProfiles != null) {
+                        for (DietProfilesDataContract dietProfilesDataContract : c.Data.DietProfiles) {
+                            if (dietProfilesDataContract.CoachingStartDate != null && !dietProfilesDataContract.CoachingStartDate.equalsIgnoreCase("null")) {
+                                ApplicationData.getInstance().dietProfilesDataContract = dietProfilesDataContract;
+                                break;
+                            }
+                        }
+                    }
+
+                    userDataContract = ApplicationData.getInstance().userDataContract;
+                    dietProfilesDataContract = ApplicationData.getInstance().dietProfilesDataContract;
+
+                    updateUserProfile();
+                }
+
 
             }
         }, userDataContract);

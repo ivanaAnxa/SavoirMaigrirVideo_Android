@@ -3,6 +3,7 @@ package anxa.com.smvideo.activities.account;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -227,17 +228,33 @@ public class RecipesAccountFragment extends Fragment implements View.OnClickList
         } else {
             int recipeId = (Integer) v.getTag(R.id.recipe_id);
 
-            Fragment fragment = new RecipeActivity();
-            FragmentManager fragmentManager = getFragmentManager();
-            Bundle bundle = new Bundle();
-            bundle.putString("SOURCE", "fromRecettesAccount");
-            bundle.putString("RECIPE_ID", String.valueOf(recipeId));
+            proceedToRecipePage(recipeId);
 
-            fragment.setArguments(bundle);
-            fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
-                    .commit();
-
+//            Fragment fragment = new RecipeActivity();
+//            FragmentManager fragmentManager = getFragmentManager();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("SOURCE", "fromRecettesAccount");
+//            bundle.putString("RECIPE_ID", String.valueOf(recipeId));
+//
+//            fragment.setArguments(bundle);
+//            fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
+//                    .commit();
         }
+    }
+
+    private void proceedToRecipePage(int recipeId) {
+        if (recipeId > 0) {
+            for (RecipeContract r : recipesList) {
+                if (r.Id == recipeId) {
+                    ApplicationData.getInstance().selectedRelatedRecipe = r;
+                }
+            }
+        }
+
+        Intent mainIntent = new Intent(this.getActivity(), RecipeAccountActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(mainIntent);
     }
 
     private void updateCategoryButtons(RecipeContract.RecipeTypeEnum enumVal) {
