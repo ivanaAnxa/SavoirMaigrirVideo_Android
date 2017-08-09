@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.RegistrationActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.VideoResponseContract;
@@ -24,6 +25,8 @@ import anxa.com.smvideo.contracts.VideoResponseContract;
 public class MonCompteActivity extends Fragment {
 
     private Context context;
+    private static final int BROWSERTAB_ACTIVITY = 1111;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,13 +41,21 @@ public class MonCompteActivity extends Fragment {
 
         ((Button) mView.findViewById(R.id.moncompte_button)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
-                Uri uriUrl = Uri.parse("https://savoir-maigrir.aujourdhui.com/orange/billing/subscribe/");
-                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-                startActivity(launchBrowser);
+//                Uri uriUrl = Uri.parse("https://savoir-maigrir.aujourdhui.com/orange/billing/subscribe/");
+//                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+//                startActivity(launchBrowser);
+                goToRegistrationPage();
 
             }
         });
 
         return mView;
+    }
+
+    private void goToRegistrationPage() {
+        Intent mainIntent = new Intent(context, RegistrationActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
     }
 }

@@ -171,7 +171,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
                 //diet profile
                 weight_init_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.StartWeightInKg));
                 weight_target_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.TargetWeightInKg));
-                height_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.HeightInMeter));
+                height_et.setText(AppUtil.convertToWholeNumber(dietProfilesDataContract.HeightInMeter));
 
                 plan_et.setText(plansArray[dietProfilesDataContract.MealPlanType]);
                 niveau_calorique_et.setText(caloriesArray[dietProfilesDataContract.CalorieType]);
@@ -209,7 +209,8 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         userDataContract.FirstName = name_et.getText().toString();
         userDataContract.Email = email_et.getText().toString();
 
-        dietProfilesDataContract.HeightInMeter = AppUtil.convertToEnglishDecimal(height_et.getText().toString()) / 100;
+//        dietProfilesDataContract.HeightInMeter = AppUtil.convertToEnglishDecimal(height_et.getText().toString()) / 100;
+        dietProfilesDataContract.HeightInMeter = AppUtil.convertToEnglishDecimal(height_et.getText().toString());
         dietProfilesDataContract.CurrentWeightInKg = AppUtil.convertToEnglishDecimal(weight_init_et.getText().toString());
         dietProfilesDataContract.TargetWeightInKg = AppUtil.convertToEnglishDecimal(weight_target_et.getText().toString());
 

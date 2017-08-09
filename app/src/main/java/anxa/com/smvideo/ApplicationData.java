@@ -98,6 +98,11 @@ public class ApplicationData extends Application {
     public boolean fromArchive = false;
     public boolean fromArchiveConseils = false;
 
+    public String pageTitle = "Page Title";
+    public String customAgent = "";
+
+
+
     @Override
     public void onCreate() {
         super.onCreate();

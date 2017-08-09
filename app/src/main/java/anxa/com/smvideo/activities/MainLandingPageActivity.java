@@ -15,28 +15,57 @@ import anxa.com.smvideo.activities.free.LandingPageActivity;
 
 public class MainLandingPageActivity extends Activity {
 
+    private static final int BROWSERTAB_ACTIVITY = 1111;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landing_main);
     }
 
-    private void goToLoginPage(){
+    private void goToLoginPage() {
         Intent mainIntent = new Intent(this, LoginActivity.class);
         startActivity(mainIntent);
     }
 
-    private void goToFreePage(){
+    private void goToRegistrationPage() {
+        Intent mainIntent = new Intent(this, RegistrationActivity.class);
+        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
+    }
+
+    private void goToFreePage() {
         ApplicationData.getInstance().accountType = "free";
         Intent mainIntent = new Intent(this, LandingPageActivity.class);
         startActivity(mainIntent);
     }
 
-    public void goToLoginPage(View view){
+    public void goToLoginPage(View view) {
         goToLoginPage();
     }
 
-    public void goToFreePart(View view){
+    public void goToRegisrationPage(View view) {
+        goToRegistrationPage();
+    }
+
+    public void goToFreePart(View view) {
         goToFreePage();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == BROWSERTAB_ACTIVITY) {
+            if (intent != null) {
+                boolean isLogin = intent.getBooleanExtra("TO_LOGIN", true);
+                if (isLogin) {
+                    goToLoginPage();
+                }
+            }
+        }
+    }
+
+    private void autoLoginUser(){
+        //if we can get the username and password
+
     }
 }

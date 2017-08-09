@@ -43,7 +43,9 @@
         android:text="@string/login_registration_button"
         style="@style/loginRegistrationButton"
         android:layout_below="@+id/login_subtitle"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:onClick="goToRegisrationPage" />
 
     <TextView
         android:text="@string/login_login_account_button"

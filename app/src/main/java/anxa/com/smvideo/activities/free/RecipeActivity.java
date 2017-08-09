@@ -32,17 +32,23 @@ import anxa.com.smvideo.util.UITagHandler;
  * Created by angelaanxa on 5/29/2017.
  */
 
-public class RecipeActivity extends Fragment {
+public class RecipeActivity extends Fragment implements View.OnClickListener {
     private List<RecipeContract> recipesList;
     View mView;
+    private ImageView backButton;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.recipe, null);
         ((TextView) ((RelativeLayout) mView.findViewById(R.id.headermenu)).findViewById(R.id.header_title_tv)).setText(getString(R.string.menu_recette));
-        ((ImageView) ((RelativeLayout) mView.findViewById(R.id.headermenu)).findViewById(R.id.header_menu_back)).setVisibility(View.VISIBLE);
         ((ImageView) ((RelativeLayout) mView.findViewById(R.id.headermenu)).findViewById(R.id.header_menu_iv)).setVisibility(View.GONE);
+
+
+        backButton = ((ImageView) ((RelativeLayout) mView.findViewById(R.id.headermenu)).findViewById(R.id.header_menu_back));
+        backButton.setVisibility(View.VISIBLE);
+        backButton.setOnClickListener(this);
 
         String myValue = this.getArguments().getString("message");
         String source = this.getArguments().getString("SOURCE");
@@ -110,4 +116,10 @@ public class RecipeActivity extends Fragment {
         return avatarBMP;
     }
 
+    @Override
+    public void onClick(final View v) {
+        if (v==backButton){
+            getFragmentManager().popBackStack();
+        }
+    }
 }
