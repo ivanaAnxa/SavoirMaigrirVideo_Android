@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fullbackground"
     android:orientation="vertical">
 
     <include
@@ -18,12 +19,49 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8">
+
+        <LinearLayout
+            android:id="@+id/youtube_layout_caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/videoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/whiteBoldMedium" />
+
+            <TextView
+                android:id="@+id/videoDesc"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/whiteNormalSmall" />
+
+            <TextView
+                android:id="@+id/videoDuration"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/whiteItalicSmall" />
+
+        </LinearLayout>
         <anxa.com.smvideo.ui.CustomListView
             android:id="@+id/testimonialListView"
+            android:layout_below="@+id/youtube_layout_caption"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:cacheColorHint="#000000"
             android:divider="#000000"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="1dp"
+            android:background="@android:color/white"/>
     </RelativeLayout>
 </LinearLayout>

@@ -240,9 +240,9 @@
                     <Button
                         android:id="@+id/LandingConseilsButton"
                         style="@style/LandingButtonAccount"
-                        android:layout_width="129dp"
+                        android:layout_width="1dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/menu_account_conseils"
+                        android:text="@string/menu_account_webinars"
                         android:layout_alignParentBottom="true"
                         android:layout_alignLeft="@+id/LandingImage4_account"
                         android:layout_alignStart="@+id/LandingImage4_account"

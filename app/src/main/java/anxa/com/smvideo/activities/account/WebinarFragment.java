@@ -1,12 +1,14 @@
-package anxa.com.smvideo.activities;
+package anxa.com.smvideo.activities.account;
 
-import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.compat.BuildConfig;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -15,20 +17,28 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.google.android.youtube.player.YouTubePlayerFragment;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.common.WebkitURL;
+import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.customview.VideoEnabledWebChromeClient;
 import anxa.com.smvideo.customview.VideoEnabledWebView;
 import anxa.com.smvideo.util.AppUtil;
 
 /**
- * Created by aprilanxa on 07/08/2017.
+ * Created by aprilanxa on 18/08/2017.
  */
 
-public class RegistrationActivity extends Activity {
+public class WebinarFragment extends Fragment {
 
     ImageButton forwardBrowserButton, backBrowserButton, refreshBrowserButton;
     String URLPath = "";
@@ -36,32 +46,50 @@ public class RegistrationActivity extends Activity {
 
     ProgressBar myProgressBar;
 
+    View mView;
+    private Context context;
+    protected ApiCaller caller;
+
     private VideoEnabledWebView mainContentWebView;
     private VideoEnabledWebChromeClient webChromeClient;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        URLPath = WebkitURL.domainURL + WebkitURL.registrationURL;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        setContentView(R.layout.registration);
+        this.context = getActivity();
+        mView = inflater.inflate(R.layout.webinar, null);
+
+        ((TextView) mView.findViewById(R.id.header_title_tv)).setText(getString(R.string.menu_account_webinars));
+        ((TextView) mView.findViewById(R.id.header_right_tv)).setVisibility(View.GONE);
+//        ((ImageView) mView.findViewById(R.id.header_menu_iv)).setVisibility(View.VISIBLE);
+
+
+        String autologinURL = WebkitURL.webinarAutoLoginURL.replace("%d", Integer.toString(ApplicationData.getInstance().userDataContract.Id));
+        try {
+            autologinURL = autologinURL.replace("%password", AppUtil.SHA1(Integer.toString(ApplicationData.getInstance().userDataContract.Id) + "Dxx-|%dsDaI"));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        URLPath = WebkitURL.domainURL + autologinURL;
 
         // Save the web view
-        mainContentWebView = (VideoEnabledWebView) findViewById(R.id.maincontentWebView);
+        mainContentWebView = (VideoEnabledWebView)mView.findViewById(R.id.maincontentWebView);
 
-        forwardBrowserButton = (ImageButton) findViewById(R.id.forward);
+        forwardBrowserButton = (ImageButton) mView.findViewById(R.id.forward);
         forwardBrowserButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mainContentWebView.goForward();
             }
 
         });
-        backBrowserButton = (ImageButton) findViewById(R.id.back);
+        backBrowserButton = (ImageButton) mView.findViewById(R.id.back);
         backBrowserButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mainContentWebView.goBack();
             }
         });
-        refreshBrowserButton = (ImageButton) findViewById(R.id.refresh);
+        refreshBrowserButton = (ImageButton) mView.findViewById(R.id.refresh);
         refreshBrowserButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mainContentWebView.reload();
@@ -69,10 +97,10 @@ public class RegistrationActivity extends Activity {
         });
 
         // Initialized progress bar
-        myProgressBar = (ProgressBar) findViewById(R.id.progressbar);
+        myProgressBar = (ProgressBar) mView.findViewById(R.id.progressbar);
 
         // Save the web view
-        mainContentWebView = (VideoEnabledWebView) findViewById(R.id.maincontentWebView);
+        mainContentWebView = (VideoEnabledWebView) mView.findViewById(R.id.maincontentWebView);
 
         mainContentWebView.getSettings().setJavaScriptEnabled(true);
 
@@ -84,8 +112,8 @@ public class RegistrationActivity extends Activity {
 
         // Initialize the VideoEnabledWebChromeClient and set event handlers
         View loadingView = myProgressBar; // Your own view, read class comments
-        View nonVideoLayout = findViewById(R.id.registration_rl); // Your own view, read class comments
-        ViewGroup videoLayout = (ViewGroup) findViewById(R.id.videoLayout); // Your own view, read class comments
+        View nonVideoLayout = mView.findViewById(R.id.registration_rl); // Your own view, read class comments
+        ViewGroup videoLayout = (ViewGroup) mView.findViewById(R.id.videoLayout); // Your own view, read class comments
 
         webChromeClient = new VideoEnabledWebChromeClient(nonVideoLayout, videoLayout, loadingView, mainContentWebView) // See all available constructors...
         {
@@ -100,24 +128,24 @@ public class RegistrationActivity extends Activity {
                 // Your code to handle the full-screen change, for example showing and hiding the title bar. Example:
                 if (fullscreen) {
 
-                    WindowManager.LayoutParams attrs = getWindow().getAttributes();
+                    WindowManager.LayoutParams attrs = getActivity().getWindow().getAttributes();
                     attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
                     attrs.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-                    getWindow().setAttributes(attrs);
+                    getActivity().getWindow().setAttributes(attrs);
                     if (android.os.Build.VERSION.SDK_INT >= 14) {
-                        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+                        getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
                     }
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
                 } else {
-                    WindowManager.LayoutParams attrs = getWindow().getAttributes();
+                    WindowManager.LayoutParams attrs = getActivity().getWindow().getAttributes();
                     attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
                     attrs.flags &= ~WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-                    getWindow().setAttributes(attrs);
+                    getActivity().getWindow().setAttributes(attrs);
                     if (android.os.Build.VERSION.SDK_INT >= 14) {
-                        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+                        getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
                     }
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
             }
         });
@@ -163,25 +191,15 @@ public class RegistrationActivity extends Activity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 //registration for JMC
-
-                System.out.println("Registration onPageStarted url: " + url);
-                System.out.println("Registration onPageStarted this: " + WebkitURL.domainURL + WebkitURL.offerURL);
-                if (url.equalsIgnoreCase(WebkitURL.domainURL + WebkitURL.registrationDoneURL)) {
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("TO_LOGIN", true);
-                    setResult(RESULT_OK, returnIntent);
-
-                    finish();
-                }else if(url.equalsIgnoreCase(WebkitURL.domainURL + WebkitURL.loginURL)){
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("TO_LOGIN", true);
-                    setResult(RESULT_OK, returnIntent);
-
-                    finish();
-                }
-//                else if(url.equalsIgnoreCase(WebkitURL.domainURL + WebkitURL.offerURL)) {
+//                if (url.equalsIgnoreCase(WebkitURL.domainURL + WebkitURL.registrationDoneURL)) {
 //                    Intent returnIntent = new Intent();
-//                    returnIntent.putExtra("TO_LANDING", true);
+//                    returnIntent.putExtra("TO_LOGIN", true);
+//                    setResult(RESULT_OK, returnIntent);
+//
+//                    finish();
+//                } else if (url.equalsIgnoreCase(WebkitURL.domainURL + WebkitURL.loginURL)) {
+//                    Intent returnIntent = new Intent();
+//                    returnIntent.putExtra("TO_LOGIN", true);
 //                    setResult(RESULT_OK, returnIntent);
 //
 //                    finish();
@@ -203,7 +221,8 @@ public class RegistrationActivity extends Activity {
         webSettings.setGeolocationEnabled(true);
         webSettings.setLoadWithOverviewMode(true);
 
+        return mView;
+
     }
+
 }
-
-

@@ -60,7 +60,7 @@ public class CoachingVideoListAdapter extends ArrayAdapter<CoachingVideosContrac
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        CoachingVideoListAdapter.ViewHolder viewHolder = null;
+        ViewHolder viewHolder = null;
 
         View row = convertView;
         if (row == null) {
@@ -68,7 +68,7 @@ public class CoachingVideoListAdapter extends ArrayAdapter<CoachingVideosContrac
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             row = layoutInflator.inflate(R.layout.listitem_video, parent, false);
-            viewHolder = new CoachingVideoListAdapter.ViewHolder();
+            viewHolder = new ViewHolder();
             viewHolder.videoImage = (ImageView) row.findViewById(R.id.videoImage);
             viewHolder.videoTitle = ((TextView) row.findViewById(R.id.videoTitle));
             viewHolder.videoImageProgress = ((ProgressBar) row.findViewById(R.id.videoImageProgress));

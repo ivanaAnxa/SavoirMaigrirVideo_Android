@@ -194,6 +194,7 @@ public class ApiCaller {
 
         Hashtable params = new Hashtable();
         params.put("recipeType", recipeType);
+        params.put("regId", ApplicationData.getInstance().regId);
 
         apiClient.GetAsync(asyncResponse, CommandConstants.API_RECIPES, command, params, RecipeResponseContract.class, AsyncTask.SERIAL_EXECUTOR);
     }

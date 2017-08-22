@@ -160,6 +160,23 @@
         <item name="android:textSize">15dp</item>
     </style>
 
+    <style name="whiteBoldMedium">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="whiteNormalSmall">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">10dp</item>
+    </style>
+    <style name="whiteItalicSmall">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">9dp</item>
+    </style>
+
     <style name="loginRegistrationButton">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#ff2d64</item>

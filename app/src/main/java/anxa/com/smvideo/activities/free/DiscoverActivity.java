@@ -4,11 +4,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.LoginActivity;
+import anxa.com.smvideo.activities.RegistrationActivity;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
@@ -46,9 +50,11 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
     private List<VideoContract> videosList;
 
     private YouTubePlayerFragment playerFragment;
+    private TextView header_right;
     View mView;
 
     private static final int RECOVERY_REQUEST = 1;
+    private static final int BROWSERTAB_ACTIVITY = 1111;
 
 
     @Override
@@ -61,6 +67,10 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
         caller = new ApiCaller();
         //header change
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_decouvrir));
+        header_right = (TextView) (mView.findViewById(R.id.header_right_tv));
+        header_right.setOnClickListener(this);
+
+        ((LinearLayout)mView.findViewById(R.id.youtube_layout_caption)).setVisibility(View.VISIBLE);
 
         //ui
         discoverListView = (CustomListView) mView.findViewById(R.id.discoverListView);
@@ -114,28 +124,32 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(final View v) {
 
-        FragmentManager fm = getFragmentManager();
-        String tag = YouTubePlayerFragment.class.getSimpleName();
-        playerFragment = (YouTubePlayerFragment) fm.findFragmentByTag(tag);
-        if (playerFragment != null) {
-            FragmentTransaction ft = fm.beginTransaction();
-            playerFragment = YouTubePlayerFragment.newInstance();
-            ft.replace(R.id.youtube_layout, playerFragment, tag);
-            ft.commit();
-        }
-
-        final String videoId = (String) v.getTag(R.id.video_id);
-
-        for (int i = 0; i < videosList.size(); i++) {
-            VideoContract temp = new VideoContract();
-            if (videosList.get(i).VideoUrl == videoId) {
-                RefreshPlayer(v, videosList.get(i));
-                videosList.get(i).IsSelected = true;
-            } else {
-                videosList.get(i).IsSelected = false;
+        if(v==header_right){
+            goToRegistrationPage();
+        }else {
+            FragmentManager fm = getFragmentManager();
+            String tag = YouTubePlayerFragment.class.getSimpleName();
+            playerFragment = (YouTubePlayerFragment) fm.findFragmentByTag(tag);
+            if (playerFragment != null) {
+                FragmentTransaction ft = fm.beginTransaction();
+                playerFragment = YouTubePlayerFragment.newInstance();
+                ft.replace(R.id.youtube_layout, playerFragment, tag);
+                ft.commit();
             }
+
+            final String videoId = (String) v.getTag(R.id.video_id);
+
+            for (int i = 0; i < videosList.size(); i++) {
+                VideoContract temp = new VideoContract();
+                if (videosList.get(i).VideoUrl == videoId) {
+                    RefreshPlayer(v, videosList.get(i));
+                    videosList.get(i).IsSelected = true;
+                } else {
+                    videosList.get(i).IsSelected = false;
+                }
+            }
+            adapter.updateItems(videosList);
         }
-        adapter.updateItems(videosList);
     }
 
     private void RefreshPlayer(final View v, final VideoContract video) {
@@ -208,5 +222,34 @@ public class DiscoverActivity extends Fragment implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    private void goToRegistrationPage() {
+        Intent mainIntent = new Intent(context, RegistrationActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == BROWSERTAB_ACTIVITY) {
+            if (intent != null) {
+                boolean isLogin = intent.getBooleanExtra("TO_LOGIN", false);
+                if (isLogin) {
+                    goToLoginPage();
+                }else if (intent.getBooleanExtra("TO_LANDING", false)){
+
+                }
+            }
+        }
+    }
+
+    private void goToLoginPage() {
+        Intent mainIntent = new Intent(context, LoginActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mainIntent);
     }
 }

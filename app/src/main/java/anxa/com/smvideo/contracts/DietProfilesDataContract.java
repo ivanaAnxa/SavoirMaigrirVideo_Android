@@ -8,61 +8,61 @@ import com.google.gson.annotations.SerializedName;
 
 public class DietProfilesDataContract {
 
-    @SerializedName("id")
+    @SerializedName("Dd")
     public int Id;
 
-    @SerializedName("userId")
+    @SerializedName("UserId")
     public int UserId;
 
-    @SerializedName("gender")
+    @SerializedName("Gender")
     public int Gender;
 
-    @SerializedName("startWeightInKg")
+    @SerializedName("StartWeightInKg")
     public float StartWeightInKg;
 
-    @SerializedName("currentWeightInKg")
+    @SerializedName("CurrentWeightInKg")
     public float CurrentWeightInKg;
 
-    @SerializedName("targetWeightInKg")
+    @SerializedName("TargetWeightInKg")
     public float TargetWeightInKg;
 
-    @SerializedName("heightInMeter")
+    @SerializedName("HeightInMeter")
     public float HeightInMeter;
 
-    @SerializedName("dietProfileAnswers")
+    @SerializedName("DietProfileAnswers")
     public String DietProfileAnswers;
 
-    @SerializedName("version")
+    @SerializedName("Version")
     public int Version;
 
-    @SerializedName("mealPlanType")
+    @SerializedName("MealPlanType")
     public int MealPlanType;
 
-    @SerializedName("calorieType")
+    @SerializedName("CalorieType")
     public int CalorieType;
 
-    @SerializedName("coachProgram")
+    @SerializedName("CoachProgram")
     public int CoachProgram;
 
-    @SerializedName("coachingStartDate")
+    @SerializedName("CoachingStartDate")
     public String CoachingStartDate;
 
-    @SerializedName("coachingEndDate")
+    @SerializedName("CoachingEndDate")
     public String CoachingEndDate;
 
-    @SerializedName("applicationId")
+    @SerializedName("ApplicationId")
     public int ApplicationId;
 
-    @SerializedName("application")
+    @SerializedName("Application")
     public ApplicationDataContract Application;
 
-    @SerializedName("deleted")
+    @SerializedName("Deleted")
     public Boolean deleted;
 
-    @SerializedName("modifiedDate")
+    @SerializedName("ModifiedDate")
     public String modifiedDate;
 
-    @SerializedName("createdDate")
+    @SerializedName("CreatedDate")
     public String createdDate;
 
 }

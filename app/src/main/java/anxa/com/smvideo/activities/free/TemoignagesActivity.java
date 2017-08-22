@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.RegistrationActivity;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
@@ -46,6 +48,9 @@ public class TemoignagesActivity extends Fragment implements View.OnClickListene
     private YouTubePlayerFragment playerFragment;
     View mView;
 
+    private static final int BROWSERTAB_ACTIVITY = 1111;
+    private TextView header_right;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class TemoignagesActivity extends Fragment implements View.OnClickListene
 
         //header change
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_temoignages));
+        header_right = (TextView) (mView.findViewById(R.id.header_right_tv));
+        header_right.setOnClickListener(this);
 
         //ui
         customListView = (CustomListView) mView.findViewById(R.id.testimonialListView);
@@ -107,29 +114,32 @@ public class TemoignagesActivity extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(final View v) {
-
-        FragmentManager fm = getFragmentManager();
-        String tag = YouTubePlayerFragment.class.getSimpleName();
-        playerFragment = (YouTubePlayerFragment) fm.findFragmentByTag(tag);
-        if (playerFragment != null) {
-            FragmentTransaction ft = fm.beginTransaction();
-            playerFragment = YouTubePlayerFragment.newInstance();
-            ft.replace(R.id.youtube_layout, playerFragment, tag);
-            ft.commit();
-        }
-
-        final String videoId = (String) v.getTag(R.id.video_id);
-
-        for (int i = 0; i < videosList.size(); i++) {
-            VideoContract temp = new VideoContract();
-            if (videosList.get(i).VideoUrl == videoId) {
-                RefreshPlayer(v, videosList.get(i));
-                videosList.get(i).IsSelected = true;
-            } else {
-                videosList.get(i).IsSelected = false;
+        if(v==header_right){
+            goToRegistrationPage();
+        }else {
+            FragmentManager fm = getFragmentManager();
+            String tag = YouTubePlayerFragment.class.getSimpleName();
+            playerFragment = (YouTubePlayerFragment) fm.findFragmentByTag(tag);
+            if (playerFragment != null) {
+                FragmentTransaction ft = fm.beginTransaction();
+                playerFragment = YouTubePlayerFragment.newInstance();
+                ft.replace(R.id.youtube_layout, playerFragment, tag);
+                ft.commit();
             }
+
+            final String videoId = (String) v.getTag(R.id.video_id);
+
+            for (int i = 0; i < videosList.size(); i++) {
+                VideoContract temp = new VideoContract();
+                if (videosList.get(i).VideoUrl == videoId) {
+                    RefreshPlayer(v, videosList.get(i));
+                    videosList.get(i).IsSelected = true;
+                } else {
+                    videosList.get(i).IsSelected = false;
+                }
+            }
+            adapter.updateItems(videosList);
         }
-        adapter.updateItems(videosList);
     }
 
     private void RefreshPlayer(final View v, final VideoContract video) {
@@ -191,4 +201,10 @@ public class TemoignagesActivity extends Fragment implements View.OnClickListene
 
     }
 
+    private void goToRegistrationPage() {
+        Intent mainIntent = new Intent(context, RegistrationActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
+    }
 }

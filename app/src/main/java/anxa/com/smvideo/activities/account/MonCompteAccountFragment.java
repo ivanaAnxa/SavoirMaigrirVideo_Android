@@ -15,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.Date;
 
 import anxa.com.smvideo.ApplicationData;
@@ -36,7 +38,8 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     private Context context;
     protected ApiCaller caller;
 
-    private TextView saveButton;
+    private TextView logout_btn;
+    private Button saveButton;
     private EditText name_et;
     private TextView sexe_et;
     private EditText weight_init_et;
@@ -45,7 +48,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     private TextView plan_et;
     private TextView niveau_calorique_et;
     private EditText email_et;
-    private Button logout_btn;
+//    private Button logout_btn;
     private ProgressBar savingProgressBar;
 
     private UserDataContract userDataContract;
@@ -60,6 +63,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
 
     View mView;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +77,8 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         dietProfilesDataContract = ApplicationData.getInstance().dietProfilesDataContract;
 
         genderArray = new String[]{getString(R.string.mon_compte_sexe_fem), getString(R.string.mon_compte_sexe_masc)};
+
+
         plansArray = new String[]{getString(R.string.mon_compte_plans_brunch), getString(R.string.mon_compte_plans_classique), getString(R.string.mon_compte_plans_pour),
                 getString(R.string.mon_compte_plans_dejeuner), getString(R.string.mon_compte_plans_diner), getString(R.string.mon_compte_plans_gluten), getString(R.string.mon_compte_plans_vache),
                 getString(R.string.mon_compte_plans_laitages_avec), getString(R.string.mon_compte_plans_laitages_sans), getString(R.string.mon_compte_plans_petit_dejeuner), getString(R.string.mon_compte_plans_special), getString(R.string.mon_compte_plans_vegetarien)};
@@ -81,16 +87,16 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
 
         //header change
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_account_compte));
-        saveButton = ((TextView) (mView.findViewById(R.id.header_right_tv)));
-        saveButton.setText(getString(R.string.mon_compte_save));
-        saveButton.setOnClickListener(this);
+        logout_btn = ((TextView) (mView.findViewById(R.id.header_right_tv)));
+        logout_btn.setText(getString(R.string.mon_compte_disconnect));
+        logout_btn.setOnClickListener(this);
 
         name_et = (EditText) (mView.findViewById(R.id.mon_name_et));
         sexe_et = (TextView) (mView.findViewById(R.id.mon_sexe_et));
         sexe_et.setOnClickListener(this);
 
-        logout_btn = (Button) (mView.findViewById(R.id.logout_btn));
-        logout_btn.setOnClickListener(this);
+        saveButton = (Button) (mView.findViewById(R.id.save_btn));
+        saveButton.setOnClickListener(this);
 
         weight_init_et = (EditText) (mView.findViewById(R.id.mon_weight_init_et));
         weight_target_et = (EditText) (mView.findViewById(R.id.mon_weight_target_et));
@@ -100,7 +106,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         plan_et.setOnClickListener(this);
         niveau_calorique_et = (TextView) (mView.findViewById(R.id.mon_calories_et));
         niveau_calorique_et.setOnClickListener(this);
-        email_et = (EditText) (mView.findViewById(R.id.mon_email_et));
+//        email_et = (EditText) (mView.findViewById(R.id.mon_email_et));
 
         savingProgressBar = (ProgressBar) (mView.findViewById(R.id.account_progressBar));
         savingProgressBar.setVisibility(View.GONE);
@@ -165,7 +171,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     private void updateUserProfile() {
         if (userDataContract != null) {
             name_et.setText(userDataContract.FirstName);
-            email_et.setText(userDataContract.Email);
+//            email_et.setText(userDataContract.Email);
 
             if (dietProfilesDataContract != null) {
                 //diet profile
@@ -173,8 +179,8 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
                 weight_target_et.setText(AppUtil.convertToFrenchDecimal(dietProfilesDataContract.TargetWeightInKg));
                 height_et.setText(AppUtil.convertToWholeNumber(dietProfilesDataContract.HeightInMeter));
 
-                plan_et.setText(plansArray[dietProfilesDataContract.MealPlanType]);
-                niveau_calorique_et.setText(caloriesArray[dietProfilesDataContract.CalorieType]);
+                plan_et.setText(AppUtil.getMealTypeString(dietProfilesDataContract.MealPlanType, context));
+                niveau_calorique_et.setText(AppUtil.getCalorieType(dietProfilesDataContract.CalorieType, context));
 
                 sexe_et.setText(genderArray[dietProfilesDataContract.Gender]);
             }
@@ -198,21 +204,29 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
             displayToastMessage(getString(R.string.ALERTMESSAGE_CURRENTWEIGHT));
             return false;
         }
-        if (email_et.getText() == null || email_et.getText().length() <= 0) {
-            displayToastMessage(getString(R.string.ALERTMESSAGE_EMAIL));
-            return false;
-        }
+//        if (email_et.getText() == null || email_et.getText().length() <= 0) {
+//            displayToastMessage(getString(R.string.ALERTMESSAGE_EMAIL));
+//            return false;
+//        }
         return true;
     }
 
     private void saveProfileToObject() {
+        Gson gson = new Gson();
+
         userDataContract.FirstName = name_et.getText().toString();
-        userDataContract.Email = email_et.getText().toString();
+//        userDataContract.Email = email_et.getText().toString();
 
 //        dietProfilesDataContract.HeightInMeter = AppUtil.convertToEnglishDecimal(height_et.getText().toString()) / 100;
         dietProfilesDataContract.HeightInMeter = AppUtil.convertToEnglishDecimal(height_et.getText().toString());
         dietProfilesDataContract.CurrentWeightInKg = AppUtil.convertToEnglishDecimal(weight_init_et.getText().toString());
         dietProfilesDataContract.TargetWeightInKg = AppUtil.convertToEnglishDecimal(weight_target_et.getText().toString());
+
+        System.out.println("save dietProfilesDataContract: " + niveau_calorique_et.getText().toString());
+        System.out.println("save dietProfilesDataContract: " + plan_et.getText().toString());
+
+        dietProfilesDataContract.CalorieType = AppUtil.getCalorieTypeIndex(niveau_calorique_et.getText().toString(), context);
+        dietProfilesDataContract.MealPlanType = AppUtil.getMealTypeIndex(plan_et.getText().toString(), context);
 
         if (userDataContract.DietProfiles != null) {
             for (DietProfilesDataContract dietProfile : userDataContract.DietProfiles) {
@@ -223,6 +237,8 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
                 }
             }
         }
+
+        System.out.println("dietProfilesDataContract: " + gson.toJson(userDataContract));
 
         saveProfileToAPI();
     }
@@ -286,5 +302,7 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(mainIntent);
     }
+
+
 
 }

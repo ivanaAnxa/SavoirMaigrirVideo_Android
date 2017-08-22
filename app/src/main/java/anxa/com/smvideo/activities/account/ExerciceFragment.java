@@ -78,31 +78,8 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
         ft.replace(R.id.youtube_layout, playerFragment, tag);
         ft.commit();
 
-        caller.GetAccountExercice(new AsyncResponse() {
-            @Override
-            public void processFinish(Object output) {
+        getCoachingVideosFromAPI();
 
-                //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
-                if (output != null) {
-                    VideoResponseContract c = (VideoResponseContract) output;
-
-                    if (c != null && c.Data != null && c.Data.Videos != null) {
-                        for (VideoContract v : c.Data.Videos) {
-//                            if (v.VideoSource != null && v.VideoSource.equalsIgnoreCase("youtube")) {
-                            videosList.add(v);
-//                            }
-                        }
-
-                        ApplicationData.getInstance().exerciseVideoList = videosList;
-                        VideoHelper.sort("index", videosList);
-                        videosList.get(0).IsSelected = true;
-                        adapter.updateItems(videosList);
-
-                        RefreshPlayer(mView, videosList.get(0));
-                    }
-                }
-            }
-        });
         return mView;
     }
 
@@ -131,6 +108,34 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
             }
         }
         adapter.updateItems(videosList);
+    }
+
+    private void getCoachingVideosFromAPI(){
+        caller.GetAccountExercice(new AsyncResponse() {
+            @Override
+            public void processFinish(Object output) {
+
+                //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+                if (output != null) {
+                    VideoResponseContract c = (VideoResponseContract) output;
+
+                    if (c != null && c.Data != null && c.Data.Videos != null) {
+                        for (VideoContract v : c.Data.Videos) {
+//                            if (v.VideoSource != null && v.VideoSource.equalsIgnoreCase("youtube")) {
+                            videosList.add(v);
+//                            }
+                        }
+
+                        ApplicationData.getInstance().exerciseVideoList = videosList;
+                        VideoHelper.sort("index", videosList);
+                        videosList.get(0).IsSelected = true;
+                        adapter.updateItems(videosList);
+
+                        RefreshPlayer(mView, videosList.get(0));
+                    }
+                }
+            }
+        });
     }
 
     private void RefreshPlayer(final View v, final VideoContract video) {

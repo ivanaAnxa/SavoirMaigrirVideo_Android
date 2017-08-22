@@ -28,6 +28,7 @@ import anxa.com.smvideo.activities.account.LandingPageAccountActivity;
 import anxa.com.smvideo.activities.account.MonCompteAccountFragment;
 import anxa.com.smvideo.activities.account.RecipesAccountFragment;
 import anxa.com.smvideo.activities.account.RepasFragment;
+import anxa.com.smvideo.activities.account.WebinarFragment;
 import anxa.com.smvideo.activities.account.WeightGraphFragment;
 import anxa.com.smvideo.activities.free.BilanMinceurActivity;
 import anxa.com.smvideo.activities.free.DiscoverActivity;
@@ -91,7 +92,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             mNavItems.add(new NavItem(getString(R.string.menu_account_coaching), R.drawable.icon_account_coaching));
             mNavItems.add(new NavItem(getString(R.string.menu_account_repas), R.drawable.icon_account_repas));
             mNavItems.add(new NavItem(getString(R.string.menu_account_recettes), R.drawable.icon_account_recettes));
-            mNavItems.add(new NavItem(getString(R.string.menu_account_conseils), R.drawable.icon_account_conseils));
+            mNavItems.add(new NavItem(getString(R.string.menu_account_webinars), R.drawable.icon_account_webinar));
             mNavItems.add(new NavItem(getString(R.string.menu_account_exercices), R.drawable.icon_account_exercises));
             mNavItems.add(new NavItem(getString(R.string.menu_account_poids), R.drawable.icon_account_poids));
             mNavItems.add(new NavItem(getString(R.string.menu_account_compte), R.drawable.icon_account_compte));
@@ -173,7 +174,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                     break;
                 case 3: //conseils
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Conseil;
-                    fragment = new ConseilsFragment();
+                    fragment = new WebinarFragment();
                     break;
                 case 4: //exercices
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Exercices;

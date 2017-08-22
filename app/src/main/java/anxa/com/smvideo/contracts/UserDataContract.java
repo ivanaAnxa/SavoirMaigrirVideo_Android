@@ -9,61 +9,61 @@ import java.util.List;
  */
 
 public class UserDataContract {
-    @SerializedName("id")
+    @SerializedName("Id")
     public int Id;
 
-    @SerializedName("email")
+    @SerializedName("Email")
     public String Email;
 
-    @SerializedName("emailConfirmed")
+    @SerializedName("EmailConfirmed")
     public boolean EmailConfirmed;
 
-    @SerializedName("passwordHash")
+    @SerializedName("PasswordHash")
     public String PasswordHash;
 
-    @SerializedName("phone")
+    @SerializedName("Phone")
     public String Phone;
 
-    @SerializedName("phoneConfirmed")
+    @SerializedName("PhoneConfirmed")
     public boolean PhoneConfirmed;
 
-    @SerializedName("userName")
+    @SerializedName("UserName")
     public String userName;
 
-    @SerializedName("firstName")
+    @SerializedName("FirstName")
     public String FirstName;
 
-    @SerializedName("middleName")
+    @SerializedName("MiddleName")
     public String MiddleName;
 
-    @SerializedName("lastName")
+    @SerializedName("LastName")
     public String LastName;
 
-    @SerializedName("pictureUrl")
+    @SerializedName("PictureUrl")
     public String PictureUrl;
 
-    @SerializedName("membershipType")
+    @SerializedName("MembershipType")
     public String MembershipType;
 
-    @SerializedName("alertType")
+    @SerializedName("AlertType")
     public String AlertType;
 
-    @SerializedName("alertContact")
+    @SerializedName("AlertContact")
     public String AlertContact;
 
-    @SerializedName("activities")
+    @SerializedName("Activities")
     public List<ActivitiesDataContract> Activities;
 
-    @SerializedName("dietProfiles")
+    @SerializedName("DietProfiles")
     public List<DietProfilesDataContract> DietProfiles;
 
-    @SerializedName("deleted")
+    @SerializedName("Deleted")
     public Boolean deleted;
 
-    @SerializedName("modifiedDate")
+    @SerializedName("ModifiedDate")
     public String modifiedDate;
 
-    @SerializedName("createdDate")
+    @SerializedName("CreatedDate")
     public String createdDate;
 
 }

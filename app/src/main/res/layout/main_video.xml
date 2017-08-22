@@ -12,35 +12,36 @@
         android:layout_centerHorizontal="true"
         android:visibility="visible" />
 
-    <LinearLayout
-        android:id="@+id/youtube_layout_caption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/youtube_layout">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/youtube_layout_caption"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:layout_below="@+id/youtube_layout"-->
+        <!--android:background="@android:color/transparent">-->
 
-        <TextView
-            android:id="@+id/videoTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        <!--<TextView-->
+            <!--android:id="@+id/videoTitle"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Title"-->
+            <!--style="@style/whiteNormalMedium" />-->
 
-        <TextView
-            android:id="@+id/videoDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        <!--<TextView-->
+            <!--android:id="@+id/videoDesc"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Description"-->
+            <!--style="@style/whiteNormalMedium" />-->
 
-        <TextView
-            android:id="@+id/videoDuration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textStyle="italic" />
+        <!--<TextView-->
+            <!--android:id="@+id/videoDuration"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Duration"-->
+            <!--style="@style/whiteNormalMedium"-->
+            <!--android:textStyle="italic" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </RelativeLayout>

@@ -73,7 +73,7 @@ public class ConseilsFragment extends Fragment implements View.OnClickListener {
         context.registerReceiver(the_receiver, filter);
 
         //header change
-        ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_account_conseils));
+//        ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_account_conseils));
         ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.VISIBLE);
         header_right = (TextView) (mView.findViewById(R.id.header_right_tv));
         header_right.setText(getString(R.string.conseils_header_right));

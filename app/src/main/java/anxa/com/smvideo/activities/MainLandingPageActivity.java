@@ -56,9 +56,11 @@ public class MainLandingPageActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == BROWSERTAB_ACTIVITY) {
             if (intent != null) {
-                boolean isLogin = intent.getBooleanExtra("TO_LOGIN", true);
+                boolean isLogin = intent.getBooleanExtra("TO_LOGIN", false);
                 if (isLogin) {
                     goToLoginPage();
+                }else if (intent.getBooleanExtra("TO_LANDING", false)){
+
                 }
             }
         }

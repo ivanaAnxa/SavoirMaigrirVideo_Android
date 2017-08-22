@@ -1,5 +1,6 @@
 package anxa.com.smvideo.util;
 
+import android.content.Context;
 import android.os.Build;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
@@ -26,6 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import anxa.com.smvideo.ApplicationData;
+import anxa.com.smvideo.R;
 import anxa.com.smvideo.contracts.WeightGraphContract;
 
 /**
@@ -374,8 +377,8 @@ public class AppUtil {
         return oldestWeight;
     }
 
-    public static Date convertStringToDate(String dateToConvert){
-    //sample date: 2017-06-26T19:32:57.247
+    public static Date convertStringToDate(String dateToConvert) {
+        //sample date: 2017-06-26T19:32:57.247
 //        2017-06-26T19:32:57.247
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH);
@@ -384,7 +387,7 @@ public class AppUtil {
             cal.setTime(sdf.parse(dateToConvert));
             return cal.getTime();
 
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
@@ -752,7 +755,7 @@ public class AppUtil {
         return localTime;
     }
 
-    public static int getIMCRange(String inputtedIMC){
+    public static int getIMCRange(String inputtedIMC) {
 
 //        Maigreur           below 18.5  - 3
 //        Bonne santé     18.5 - 25  - 2
@@ -761,19 +764,19 @@ public class AppUtil {
 
         float inputtedIMCinFloat = 0;
 
-        if (inputtedIMC!=null){
+        if (inputtedIMC != null) {
             //replace comma with period
             inputtedIMC = inputtedIMC.replace(",", ".");
             inputtedIMCinFloat = Float.parseFloat(inputtedIMC);
         }
 
-        if (inputtedIMCinFloat<18.5){
+        if (inputtedIMCinFloat < 18.5) {
             return 3;
-        }else if (inputtedIMCinFloat<25){
+        } else if (inputtedIMCinFloat < 25) {
             return 2;
-        }else if (inputtedIMCinFloat<30){
+        } else if (inputtedIMCinFloat < 30) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
     }
@@ -807,7 +810,7 @@ public class AppUtil {
         listView.requestLayout();
     }
 
-    public static String convertToFrenchDecimal(float toConvert){
+    public static String convertToFrenchDecimal(float toConvert) {
         String convertedString = String.format("%.2f", toConvert);
 
         convertedString = convertedString.replace(".", ",");
@@ -815,38 +818,32 @@ public class AppUtil {
         return convertedString;
     }
 
-    public static String convertToWholeNumber(float toConvert){
+    public static String convertToWholeNumber(float toConvert) {
         String convertedString = String.format("%.0f", toConvert);
 
         return convertedString;
     }
 
-    public static float convertToEnglishDecimal(String toConvert){
+    public static float convertToEnglishDecimal(String toConvert) {
         toConvert = toConvert.replace(",", ".");
 
         return Float.parseFloat(toConvert);
     }
 
-    public static int getCurrentWeekNumber(long coachingStartDate, Date endTime){
+    public static int getCurrentWeekNumber(long coachingStartDate, Date endTime) {
         Calendar startCalendar = new GregorianCalendar();
-        startCalendar.setTimeInMillis(coachingStartDate*1000);
+        startCalendar.setTimeInMillis(coachingStartDate * 1000);
         Calendar endCalendar = new GregorianCalendar();
         endCalendar.setTime(endTime);
 
-        long diff = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis(); //result in millis
+        int weekNumber = endCalendar.get(Calendar.WEEK_OF_YEAR) - startCalendar.get(Calendar.WEEK_OF_YEAR) + 1;
 
-        double days = diff / (24 * 60 * 60 * 1000);
-        double modWeeks = Math.ceil((days+1) / 7.0);
-
-        if (modWeeks==0){
-            return 1;
-        }
-        return (int)modWeeks;
+        return weekNumber;
     }
 
-    public static int getDaysDiffToCurrent(long coachingStartDate){
+    public static int getDaysDiffToCurrent(long coachingStartDate) {
         Calendar startCalendar = new GregorianCalendar();
-        startCalendar.setTimeInMillis(coachingStartDate*1000);
+        startCalendar.setTimeInMillis(coachingStartDate * 1000);
         Calendar endCalendar = new GregorianCalendar();
         endCalendar.setTime(new Date());
 
@@ -854,50 +851,50 @@ public class AppUtil {
 
         double days = diff / (24 * 60 * 60 * 1000);
 
-        return (int)days;
+        return (int) days;
     }
 
-    public static int getCurrentDayNumber(){
+    public static int getCurrentDayNumber() {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
         int dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1;
 
-        if (dayNumber==0){
+        if (dayNumber == 0) {
             dayNumber = 7;
         }
         return dayNumber;
     }
 
-    public static int getDayNumber(Date date){
+    public static int getDayNumber(Date date) {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
         int dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1;
 
-        if (dayNumber==0){
+        if (dayNumber == 0) {
             dayNumber = 7;
         }
         return dayNumber;
     }
 
-    public static String getRepasDateHeader(Date date, boolean init){
+    public static String getRepasDateHeader(Date date, boolean init) {
         String stringHeader;
         if (init) {
             stringHeader = " (semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date())) + ")";
-            stringHeader = getCurrentDayName(getCurrentDayNumber()) + " "+ stringHeader;
+            stringHeader = getCurrentDayName(getCurrentDayNumber()) + " " + stringHeader;
 
-        }else{
+        } else {
             stringHeader = " (semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), date)) + ")";
-            stringHeader = getGivenDayName(date) + " "+ stringHeader;
+            stringHeader = getGivenDayName(date) + " " + stringHeader;
         }
 
         return stringHeader;
     }
 
-    public static String getCurrentDayName(int i){
+    public static String getCurrentDayName(int i) {
 
         String weekDay;
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.FRANCE);
@@ -908,7 +905,7 @@ public class AppUtil {
         return weekDay;
     }
 
-    public static String getGivenDayName(Date date){
+    public static String getGivenDayName(Date date) {
 
         String weekDay;
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.FRANCE);
@@ -920,5 +917,143 @@ public class AppUtil {
         return weekDay;
     }
 
+    public static String getMealTypeString(int mealTypeIndex, Context context) {
+
+        String mealTypeString = "";
+        switch (mealTypeIndex) {
+            case 1:
+                mealTypeString = context.getString(R.string.mon_compte_plans_classique);
+                break;
+            case 2:
+                mealTypeString = context.getString(R.string.mon_compte_plans_laitages_avec);
+                break;
+            case 3:
+                mealTypeString = context.getString(R.string.mon_compte_plans_laitages_avec);
+                break;
+            case 4:
+                mealTypeString = context.getString(R.string.mon_compte_plans_laitages_sans);
+                break;
+            case 5:
+                mealTypeString = context.getString(R.string.mon_compte_plans_special);
+                break;
+            case 6:
+                mealTypeString = context.getString(R.string.mon_compte_plans_viande_porc);
+                break;
+            case 7:
+                mealTypeString = context.getString(R.string.mon_compte_plans_vegetarien);
+                break;
+            case 8:
+                mealTypeString = context.getString(R.string.mon_compte_plans_gluten);
+                break;
+            case 9:
+                mealTypeString = context.getString(R.string.mon_compte_plans_petit_dejeuner);
+                break;
+            case 10:
+                mealTypeString = context.getString(R.string.mon_compte_plans_low_budget);
+                break;
+            case 11:
+                mealTypeString = context.getString(R.string.mon_compte_plans_laitages_sans);
+                break;
+            case 12:
+                mealTypeString = context.getString(R.string.mon_compte_plans_brunch);
+                break;
+            case 13:
+                mealTypeString = context.getString(R.string.mon_compte_plans_diner);
+                break;
+            case 14:
+                mealTypeString = context.getString(R.string.mon_compte_plans_jeune_cohen);
+                break;
+            case 15:
+                mealTypeString = context.getString(R.string.mon_compte_plans_dejeuner);
+                break;
+            case 16:
+                mealTypeString = context.getString(R.string.mon_compte_plans_plat_prepares);
+                break;
+            default:
+                mealTypeString = context.getString(R.string.mon_compte_plans_classique);
+                break;
+        }
+
+        return mealTypeString;
+
+    }
+
+    public static int getMealTypeIndex(String mealType, Context context) {
+        if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_classique))) {
+            return 1;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_laitages_avec))) {
+            return 2;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_laitages_avec))) {
+            return 3;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_laitages_sans))) {
+            return 4;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_special))) {
+            return 5;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_viande_porc))) {
+            return 6;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_vegetarien))) {
+            return 7;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_gluten))) {
+            return 8;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_petit_dejeuner))) {
+            return 9;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_low_budget))) {
+            return 10;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_laitages_sans))) {
+            return 11;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_brunch))) {
+            return 12;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_diner))) {
+            return 13;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_jeune_cohen))) {
+            return 14;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_dejeuner))) {
+            return 15;
+        } else if (mealType.equalsIgnoreCase(context.getString(R.string.mon_compte_plans_plat_prepares))) {
+            return 16;
+        } else {
+            return 1;
+        }
+    }
+
+    public static String getCalorieType(int calorieType, Context context) {
+        String calorieString = "";
+        switch (calorieType) {
+            case 1:
+                calorieString = context.getString(R.string.mon_compte_niveau_calorique_900);
+                break;
+            case 2:
+                calorieString = context.getString(R.string.mon_compte_niveau_calorique_1200);
+                break;
+            case 3:
+                calorieString = context.getString(R.string.mon_compte_niveau_calorique_1400);
+                break;
+            case 4:
+                calorieString = context.getString(R.string.mon_compte_niveau_calorique_1600);
+                break;
+            case 5:
+                calorieString = context.getString(R.string.mon_compte_niveau_calorique_1800);
+                break;
+            default:
+                calorieString = context.getString(R.string.mon_compte_niveau_calorique_900);
+        }
+        return calorieString;
+    }
+
+    public static int getCalorieTypeIndex(String calorieTypeString, Context context) {
+        if (calorieTypeString.equalsIgnoreCase(context.getString(R.string.mon_compte_niveau_calorique_900))) {
+            return 1;
+        } else if (calorieTypeString.equalsIgnoreCase(context.getString(R.string.mon_compte_niveau_calorique_1200))) {
+            return 2;
+        } else if (calorieTypeString.equalsIgnoreCase(context.getString(R.string.mon_compte_niveau_calorique_1400))) {
+            return 3;
+        } else if (calorieTypeString.equalsIgnoreCase(context.getString(R.string.mon_compte_niveau_calorique_1600))) {
+            return 4;
+        } else if (calorieTypeString.equalsIgnoreCase(context.getString(R.string.mon_compte_niveau_calorique_1800))) {
+            return 5;
+        } else {
+            return 1;
+        }
+    }
 
 }

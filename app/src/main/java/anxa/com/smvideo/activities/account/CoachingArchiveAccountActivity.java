@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import anxa.com.smvideo.ApplicationData;
@@ -29,7 +30,9 @@ public class CoachingArchiveAccountActivity extends Activity implements View.OnC
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.coaching_archive_account);
+
         ((TextView) findViewById(R.id.header_title_tv)).setText(getString(R.string.coaching_header_right));
+        ((ImageView) findViewById(R.id.header_menu_iv)).setVisibility(View.GONE);
 
         header_right = (TextView) findViewById(R.id.header_right_tv);
         header_right.setVisibility(View.VISIBLE);

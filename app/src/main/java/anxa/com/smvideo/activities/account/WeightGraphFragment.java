@@ -31,6 +31,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -59,7 +60,7 @@ import anxa.com.smvideo.util.AppUtil;
  * Created by aprilanxa on 28/06/2017.
  */
 
-public class WeightGraphFragment extends Fragment implements View.OnClickListener, View.OnKeyListener, OnChartGestureListener, OnChartValueSelectedListener {
+public class WeightGraphFragment extends Fragment implements View.OnClickListener, View.OnKeyListener, OnChartGestureListener{
 
     private Context context;
     protected ApiCaller caller;
@@ -128,6 +129,7 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
         weightLineChart = (LineChart) mView.findViewById(R.id.viewcontentGraph);
         weightLineChart.setVisibility(View.VISIBLE);
+        weightLineChart.setBackgroundColor(Color.WHITE);
 
         weight_1m = (Button) mView.findViewById(R.id.weight_1m_btn);
         weight_3m = (Button) mView.findViewById(R.id.weight_3m_btn);
@@ -391,6 +393,17 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
             default:
                 break;
         }
+
+        System.out.println("sort weight data 1: " + weightGraphDataArrayList);
+        Collections.sort(weightGraphDataArrayList, new Comparator<WeightGraphContract>() {
+            public int compare(WeightGraphContract o1, WeightGraphContract o2) {
+                return AppUtil.toDate(o1.Date).compareTo(AppUtil.toDate(o2.Date));
+            }
+        });
+
+        System.out.println("sort weight data 2: " + weightGraphDataArrayList);
+
+
         populateData();
     }
 
@@ -409,15 +422,16 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         weightLineChart.clear();
 
         weightLineChart.setOnChartGestureListener(this);
-        weightLineChart.setOnChartValueSelectedListener(this);
         weightLineChart.setDrawGridBackground(false);
 
         // no description text
         weightLineChart.setDescription("");
         weightLineChart.setNoDataTextDescription(getResources().getString(R.string.WEIGHT_GRAPH_NO_DATA));
 
+//        dataToGraphArray(graphMealList);
+
         // enable value highlighting
-        weightLineChart.setHighlightEnabled(true);
+//        weightLineChart.setHighlightEnabled(true);
 
         // enable touch gestures
         weightLineChart.setTouchEnabled(false);
@@ -451,64 +465,19 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         xAxis.setDrawAxisLine(true);
         xAxis.setGridLineWidth(0.5f);
         xAxis.setAxisLineColor(Color.LTGRAY);
-        xAxis.setSpaceBetweenLabels(1);
+//        xAxis.setSpaceBetweenLabels(1);
 
         YAxis rightAxis = weightLineChart.getAxisRight();
         rightAxis.setEnabled(false);
 
         YAxis leftAxis = weightLineChart.getAxisLeft();
         leftAxis.setEnabled(true);
-        leftAxis.setDrawAxisLine(true);
-        //set grid color to light gray - 10/20/15
         leftAxis.setGridColor(Color.LTGRAY);
         leftAxis.setGridLineWidth(0.5f);
+        leftAxis.setDrawAxisLine(true);
+        leftAxis.removeAllLimitLines();
         leftAxis.addLimitLine(llXAxis);
-
         leftAxis.setTextColor(Color.GRAY);
-
-
-        if (heighestWeight > initialWeight) {
-            leftAxis.setAxisMaxValue((float) heighestWeight + 3);
-        } else {
-            System.out.println("setAxisMaxValue: " + initialWeight);
-            leftAxis.setAxisMaxValue((float) initialWeight + 3);
-        }
-
-        System.out.println("setAxisMinValue: target" + targetWeight + " lowestWeight: " + lowestWeight);
-
-        if (lowestWeight < targetWeight) {
-            leftAxis.setAxisMinValue((float) lowestWeight - 3);
-        } else {
-            leftAxis.setAxisMinValue((float) targetWeight - 3);
-        }
-
-
-        dataToGraphArray(graphMealList);
-
-        weightLineChart.setBackgroundColor(Color.WHITE);
-
-        leftAxis.setStartAtZero(false);
-
-        leftAxis.setValueFormatter(new YAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float v, YAxis yAxis) {
-                System.out.println("y value: " + v);
-
-                return String.valueOf((int) Math.floor(v));
-            }
-        });
-
-        System.out.println("entries: " + weightLineChart.getAxisLeft().mEntries.length);
-
-        System.out.println("setAxisMinValue: " + weightLineChart.getAxisLeft().getAxisMinValue() + " max: " + weightLineChart.getAxisLeft().getAxisMaxValue());
-
-        weightLineChart.invalidate();
-    }
-
-    /**
-     * @param graphMealList - list of GraphMeals to be plotted in line graph
-     **/
-    private void dataToGraphArray(List<WeightGraphContract> graphMealList) {
 
         List<String> dayArray = new ArrayList<>();
         ArrayList<Entry> valsList = new ArrayList<>();
@@ -537,11 +506,45 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         dataSet1.setCircleColorHole(Color.parseColor("#4CB6EB"));
         dataSet1.setAxisDependency(YAxis.AxisDependency.LEFT);
         dataSet1.setDrawCubic(true);
+        dataSet1.setDrawCircleHole(true);
 
-        LineData data = new LineData(dayArray, dataSet1);
+        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        dataSets.add(dataSet1); // add the datasets
+
+        LineData data = new LineData(dayArray, dataSets);
+        leftAxis.setStartAtZero(false);
+
+        if (heighestWeight > initialWeight) {
+            leftAxis.setAxisMaxValue((float) heighestWeight + 3);
+        } else {
+            System.out.println("setAxisMaxValue: " + initialWeight);
+            leftAxis.setAxisMaxValue((float) initialWeight + 3);
+        }
+
+        System.out.println("setAxisMinValue: target" + targetWeight + " lowestWeight: " + lowestWeight);
+
+        if (lowestWeight < targetWeight) {
+            leftAxis.setAxisMinValue((float) lowestWeight - 3);
+        } else {
+            leftAxis.setAxisMinValue((float) targetWeight - 3);
+        }
 
         weightLineChart.setData(data);
+
+        weightLineChart.getAxisLeft().setValueFormatter(new YAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float v, YAxis yAxis) {
+                System.out.println("y value: " + v);
+
+                return String.valueOf((int) Math.floor(v));
+            }
+        });
+
+        System.out.println("entries: " + weightLineChart.getAxisLeft().mEntries.length);
+
+        weightLineChart.invalidate();
     }
+
 
     private void getWeightGraphData() {
         caller.GetAccountGraphData(new AsyncResponse() {
@@ -598,18 +601,6 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
                 }
             }
         });
-    }
-
-    @Override
-    public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onNothingSelected() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

@@ -49,6 +49,7 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.RegistrationActivity;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
@@ -101,6 +102,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
     private YouTubePlayer youTubePlayer;
 
+    private static final int BROWSERTAB_ACTIVITY = 1111;
+    private TextView header_right;
+
     Context context;
     ApiCaller caller;
     View mView;
@@ -115,6 +119,10 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
         //header change
         ((TextView) ((RelativeLayout) mView.findViewById(R.id.headermenu)).findViewById(R.id.header_title_tv)).setText(getString(R.string.menu_bilan));
+        header_right = (TextView) (mView.findViewById(R.id.header_right_tv));
+        header_right.setVisibility(View.VISIBLE);
+        header_right.setOnClickListener(this);
+
 
         dietProfileResultsPage1 = (RelativeLayout) mView.findViewById(R.id.dietProfileResultsPage1);
         dietProfileResultsPage2 = (RelativeLayout) mView.findViewById(R.id.dietProfileResultsPage2);
@@ -229,6 +237,9 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        if(v==header_right){
+            goToRegistrationPage();
+        }else {
             String buttonTag = (String) v.getTag();
             switch (buttonTag) {
                 case "buttonReturnToResultsPage1":
@@ -310,6 +321,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
                 default:
                     break;
             }
+        }
 //        }
         // default method for handling onClick Events..
     }
@@ -888,6 +900,13 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
 
         });
 
+    }
+
+    private void goToRegistrationPage() {
+        Intent mainIntent = new Intent(context, RegistrationActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
     }
 
 }

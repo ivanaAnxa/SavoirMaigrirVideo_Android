@@ -62,9 +62,6 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
     private RepasListAdapter repasListAdapter_dinner;
     private RepasRelatedListAdapter repasListAdapter_related;
 
-    String[] plansArray = new String[]{};
-    String[] caloriesArray = new String[]{};
-
     private int dayOffset = 0;
     private int weekNumber = 0;
     private int dayNumber = 0;
@@ -97,16 +94,10 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
         dinnerListView = (CustomListView) mView.findViewById(R.id.repas_dinner_list);
         relatedListView = (CustomListView) mView.findViewById(R.id.repas_related_list);
 
-        plansArray = new String[]{getString(R.string.mon_compte_plans_brunch), getString(R.string.mon_compte_plans_classique), getString(R.string.mon_compte_plans_pour),
-                getString(R.string.mon_compte_plans_dejeuner), getString(R.string.mon_compte_plans_diner), getString(R.string.mon_compte_plans_gluten), getString(R.string.mon_compte_plans_vache),
-                getString(R.string.mon_compte_plans_laitages_avec), getString(R.string.mon_compte_plans_laitages_sans), getString(R.string.mon_compte_plans_petit_dejeuner), getString(R.string.mon_compte_plans_special), getString(R.string.mon_compte_plans_vegetarien)};
-        caloriesArray = new String[]{getString(R.string.mon_compte_niveau_calorique_900), getString(R.string.mon_compte_niveau_calorique_1200), getString(R.string.mon_compte_niveau_calorique_1400),
-                getString(R.string.mon_compte_niveau_calorique_1600), getString(R.string.mon_compte_niveau_calorique_1800)};
-
         String programHeader = getString(R.string.repas_header_meal_plan);
 
-        programHeader = programHeader.replace("#program", plansArray[ApplicationData.getInstance().dietProfilesDataContract.MealPlanType]);
-        programHeader = programHeader.replace("#calorie", caloriesArray[ApplicationData.getInstance().dietProfilesDataContract.CalorieType]);
+        programHeader = programHeader.replace("#program", AppUtil.getMealTypeString(ApplicationData.getInstance().dietProfilesDataContract.MealPlanType, context));
+        programHeader = programHeader.replace("#calorie", AppUtil.getCalorieType(ApplicationData.getInstance().dietProfilesDataContract.CalorieType, context));
 
         repasProgram_tv.setText(programHeader);
 
@@ -115,6 +106,8 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
         weekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
         dayNumber = AppUtil.getCurrentDayNumber();
         totalDaysArchive = AppUtil.getDaysDiffToCurrent(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate));
+
+        System.out.println("totalDaysArchive: " + totalDaysArchive);
 
         getMealOfTheDay();
 
@@ -175,6 +168,7 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
 
     private void getMealOfTheDay(){
         //dayOffset = 0, today
+
         caller.GetAccountRepas(new AsyncResponse() {
             @Override
             public void processFinish(Object output) {

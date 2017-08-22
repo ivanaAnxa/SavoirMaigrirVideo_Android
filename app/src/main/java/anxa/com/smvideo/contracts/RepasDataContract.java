@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public class RepasDataContract {
-    @SerializedName("mealPlans")
+    @SerializedName("MealPlans")
     public List<RepasContract> Repas;
 }

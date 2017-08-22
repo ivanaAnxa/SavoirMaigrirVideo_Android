@@ -44,6 +44,7 @@ public class RecipeAccountActivity extends Activity implements View.OnClickListe
         ((TextView) ((RelativeLayout) findViewById(R.id.headermenu)).findViewById(R.id.header_title_tv)).setText(getString(R.string.menu_recette));
         ((ImageView) ((RelativeLayout) findViewById(R.id.headermenu)).findViewById(R.id.header_menu_iv)).setVisibility(View.GONE);
         ((TextView) ((RelativeLayout) findViewById(R.id.headermenu)).findViewById(R.id.header_right_tv)).setVisibility(View.GONE);
+        ((ImageView) findViewById(R.id.header_menu_iv)).setVisibility(View.GONE);
 
         backButton = (ImageView) ((RelativeLayout) findViewById(R.id.headermenu)).findViewById(R.id.header_menu_back);
         backButton.setVisibility(View.VISIBLE);

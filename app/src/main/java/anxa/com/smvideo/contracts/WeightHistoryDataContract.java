@@ -10,16 +10,16 @@ import java.util.List;
 
 public class WeightHistoryDataContract {
 
-    @SerializedName("initialWeightModel")
+    @SerializedName("InitialWeightModel")
     public WeightHistoryContract InitialWeightModel;
 
-    @SerializedName("historyModel")
+    @SerializedName("HistoryModel")
     public List<WeightHistoryContract> HistoryModel;
 
-    @SerializedName("page")
+    @SerializedName("Page")
     public int Page;
 
-    @SerializedName("totalRecords")
+    @SerializedName("TotalRecords")
     public int TotalRecords;
 
 }

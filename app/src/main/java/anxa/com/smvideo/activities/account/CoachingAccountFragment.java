@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -88,6 +89,9 @@ public class CoachingAccountFragment extends Fragment implements View.OnClickLis
         header_right.setOnClickListener(this);
 
         coachingListView = (CustomListView) mView.findViewById(R.id.coachingListView);
+
+        ((LinearLayout)mView.findViewById(R.id.youtube_layout_caption)).setVisibility(View.VISIBLE);
+
 
         videosList = new ArrayList<CoachingVideosContract>();
         videosList_all = new ArrayList<CoachingVideosContract>();

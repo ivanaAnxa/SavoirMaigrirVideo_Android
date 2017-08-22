@@ -59,7 +59,7 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        VideoListAdapter.ViewHolder viewHolder = null;
+        ViewHolder viewHolder = null;
 
         View row = convertView;
         if (row == null) {
@@ -67,13 +67,13 @@ public class VideoListAdapter extends ArrayAdapter<VideoContract> implements Vie
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             row = layoutInflator.inflate(R.layout.listitem_video, parent, false);
-            viewHolder = new VideoListAdapter.ViewHolder();
+            viewHolder = new ViewHolder();
             viewHolder.videoImage = (ImageView) row.findViewById(R.id.videoImage);
             viewHolder.videoTitle = ((TextView) row.findViewById(R.id.videoTitle));
             viewHolder.videoImageProgress= ((ProgressBar) row.findViewById(R.id.videoImageProgress));
             row.setTag(viewHolder);
         }else {
-            viewHolder = (VideoListAdapter.ViewHolder) row.getTag();
+            viewHolder = (ViewHolder) row.getTag();
         }
 
         int itemCount = items.size() - position;

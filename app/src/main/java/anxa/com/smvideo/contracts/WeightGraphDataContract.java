@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public class WeightGraphDataContract {
-    @SerializedName("weights")
+    @SerializedName("Weights")
     public List<WeightGraphContract> Weights;
 }

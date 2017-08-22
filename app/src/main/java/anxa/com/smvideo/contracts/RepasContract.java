@@ -7,22 +7,22 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class RepasContract {
-    @SerializedName("progId")
+    @SerializedName("ProgId")
     public int progId;
-    @SerializedName("dnum")
+    @SerializedName("Dnum")
     public int dnum;
-    @SerializedName("wnum")
+    @SerializedName("Wnum")
     public int wnum;
-    @SerializedName("mealType")
+    @SerializedName("MealType")
     public int mealType;
-    @SerializedName("ctid")
+    @SerializedName("Ctid")
     public int ctid;
-    @SerializedName("itemName")
+    @SerializedName("ItemName")
     public String itemName;
-    @SerializedName("linkCtid")
+    @SerializedName("LinkCtid")
     public int linkCtid;
-    @SerializedName("originalCtid")
+    @SerializedName("OriginalCtid")
     public int originalCtid;
-    @SerializedName("bootcampId")
+    @SerializedName("BootcampId")
     public int bootcampId;
 }

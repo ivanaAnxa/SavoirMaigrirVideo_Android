@@ -20,6 +20,7 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.RegistrationActivity;
 import anxa.com.smvideo.activities.free.RecipeActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
@@ -40,6 +41,9 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
     private List<RecipeContract> recipesList;
 
     private Context context;
+    private static final int BROWSERTAB_ACTIVITY = 1111;
+    private TextView header_right;
+
 
     protected ApiCaller caller;
 
@@ -56,6 +60,9 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
         //header change
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_recettes));
         ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.VISIBLE);
+        header_right = (TextView) (mView.findViewById(R.id.header_right_tv));
+        header_right.setOnClickListener(this);
+
 
         //ui
         recipesListView = (CustomListView) mView.findViewById(R.id.recipesListView);
@@ -121,60 +128,64 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        List<RecipeContract> currentViewRecipeList = new ArrayList<>();
+        if(v==header_right){
+            goToRegistrationPage();
+        }else {
+            List<RecipeContract> currentViewRecipeList = new ArrayList<>();
 
-        RecipeContract.RecipeTypeEnum recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Entree;
+            RecipeContract.RecipeTypeEnum recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Entree;
 
-        if (v.getId() == R.id.button_entree || v.getId() == R.id.button_salad || v.getId() == R.id.button_plat || v.getId() == R.id.button_dessert || v.getId() == R.id.button_soup) {
-            recipesListView.setAdapter(null);
-            recipesListView.setAdapter(adapter);
-            if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                ((Button) v.findViewById(v.getId())).setBackgroundDrawable(getResources().getDrawable(R.drawable.button_orange_roundedcorners));
-            } else {
-                ((Button) v.findViewById(v.getId())).setBackground(getResources().getDrawable(R.drawable.button_orange_roundedcorners));
-            }
-            if (v.getId() == R.id.button_entree) {
-                UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Entree);
-                recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Entree;
-            }
-            if (v.getId() == R.id.button_salad) {
-                UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Salad);
-                recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Salad;
-            }
-            if (v.getId() == R.id.button_plat) {
-                UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Plat);
-                recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Plat;
-            }
-            if (v.getId() == R.id.button_dessert) {
-                UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Dessert);
-                recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Dessert;
-            }
-            if (v.getId() == R.id.button_soup) {
-
-                UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Soup);
-                recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Soup;
-            }
-            for (RecipeContract r : recipesList) {
-                if (r.RecipeType == recipeCategoryToSearch.getNumVal()) {
-                    currentViewRecipeList.add(r);
+            if (v.getId() == R.id.button_entree || v.getId() == R.id.button_salad || v.getId() == R.id.button_plat || v.getId() == R.id.button_dessert || v.getId() == R.id.button_soup) {
+                recipesListView.setAdapter(null);
+                recipesListView.setAdapter(adapter);
+                if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    ((Button) v.findViewById(v.getId())).setBackgroundDrawable(getResources().getDrawable(R.drawable.button_orange_roundedcorners));
+                } else {
+                    ((Button) v.findViewById(v.getId())).setBackground(getResources().getDrawable(R.drawable.button_orange_roundedcorners));
                 }
+                if (v.getId() == R.id.button_entree) {
+                    UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Entree);
+                    recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Entree;
+                }
+                if (v.getId() == R.id.button_salad) {
+                    UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Salad);
+                    recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Salad;
+                }
+                if (v.getId() == R.id.button_plat) {
+                    UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Plat);
+                    recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Plat;
+                }
+                if (v.getId() == R.id.button_dessert) {
+                    UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Dessert);
+                    recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Dessert;
+                }
+                if (v.getId() == R.id.button_soup) {
+
+                    UpdateCategoryButtons(RecipeContract.RecipeTypeEnum.Soup);
+                    recipeCategoryToSearch = RecipeContract.RecipeTypeEnum.Soup;
+                }
+                for (RecipeContract r : recipesList) {
+                    if (r.RecipeType == recipeCategoryToSearch.getNumVal()) {
+                        currentViewRecipeList.add(r);
+                    }
+                }
+                adapter.updateItems(currentViewRecipeList);
+                recipesListView.setAdapter(adapter);
+
+
+            } else {
+                int recipeId = (Integer) v.getTag(R.id.recipe_id);
+
+                Fragment fragment = new RecipeActivity();
+                FragmentManager fragmentManager = getFragmentManager();
+                Bundle bundle = new Bundle();
+                bundle.putString("RECIPE_ID", String.valueOf(recipeId));
+                bundle.putString("SOURCE", "fromRecipes");
+                fragment.setArguments(bundle);
+                fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
+                        .commit();
+
             }
-            adapter.updateItems(currentViewRecipeList);
-            recipesListView.setAdapter(adapter);
-
-
-        } else {
-            int recipeId = (Integer) v.getTag(R.id.recipe_id);
-
-            Fragment fragment = new RecipeActivity();
-            FragmentManager fragmentManager = getFragmentManager();
-            Bundle bundle = new Bundle();
-            bundle.putString("RECIPE_ID", String.valueOf(recipeId));
-            bundle.putString("SOURCE", "fromRecipes");
-            fragment.setArguments(bundle);
-            fragmentManager.beginTransaction().add(R.id.mainContent, fragment, "RECIPE_FRAGMENT").addToBackStack(null)
-                    .commit();
-
         }
 
     }
@@ -231,6 +242,13 @@ public class RecipesActivity extends Fragment implements View.OnClickListener {
 
     private Gson gson;{
         gson = new Gson();
+    }
+
+    private void goToRegistrationPage() {
+        Intent mainIntent = new Intent(context, RegistrationActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
     }
 }
 
