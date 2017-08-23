@@ -52,7 +52,10 @@ public class LoginActivity extends Activity{
     }
 
     public void goBackToLandingPage(View view){
-        onBackPressed();
+//        onBackPressed();
+
+        Intent mainIntent = new Intent(this, MainLandingPageActivity.class);
+        startActivity(mainIntent);
     }
 
     public void validateLogin(View view){
@@ -85,6 +88,9 @@ public class LoginActivity extends Activity{
                         }else {
                             ApplicationData.getInstance().userDataContract = c.Data;
                             ApplicationData.getInstance().regId = c.Data.Id;
+
+                            ApplicationData.getInstance().setIsLogin(getBaseContext(), true);
+                            ApplicationData.getInstance().saveLoginCredentials(loginContract.Email, loginContract.Password);
 
                             goToAccountLandingPage();
                         }

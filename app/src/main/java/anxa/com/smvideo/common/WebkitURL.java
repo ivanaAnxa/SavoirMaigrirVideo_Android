@@ -15,9 +15,7 @@ public class WebkitURL {
 
     public static String registrationURL = "/1dirparjour/registration?v=99&sid=221";
     public static String registrationDoneURL = "/1dirparjour/";
-    //http://qc.savoir-maigrir.aujourdhui.com/3actparjour/login
     public static String loginURL = "/3actparjour/login";
-    //http://qc.savoir-maigrir.aujourdhui.com/1dirparjour/registration/offer
     public static String offerURL = "/1dirparjour/registration/offer";
 
     public static String webinarURL = "/1dirparjour/webinar";

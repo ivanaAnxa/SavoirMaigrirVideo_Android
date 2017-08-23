@@ -1,10 +1,13 @@
 package anxa.com.smvideo;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
 import com.crashlytics.android.Crashlytics;
 
+import anxa.com.smvideo.activities.MainActivity;
 import anxa.com.smvideo.contracts.CoachingVideosContract;
 import anxa.com.smvideo.contracts.DietProfilesDataContract;
 import anxa.com.smvideo.contracts.QuestionsContract;
@@ -63,6 +66,12 @@ public class ApplicationData extends Application {
     public String accountType = "account";
     public String userName = "User";
 
+    private Context context;
+
+    private static final String PROPERTY_APP_LOGIN = "isLogin";
+    private static final String PROPERTY_APP_LOGIN_USERNAME = "userName";
+    private static final String PROPERTY_APP_LOGIN_PASSWORD = "password";
+
     public SelectedFragment selectedFragment = SelectedFragment.Decouvir;
 
     public Hashtable<String, Bitmap> recipePhotoList = new Hashtable<String, Bitmap>();
@@ -119,5 +128,61 @@ public class ApplicationData extends Application {
     public static ApplicationData getInstance() {
         return instance;
     }
+
+    public boolean isLoggedIn(Context context) {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        return prefs.getBoolean(PROPERTY_APP_LOGIN, false);
+
+    }
+
+    private SharedPreferences getGCMPreferences(Context context) {
+        return getSharedPreferences(MainActivity.class.getSimpleName(),
+                Context.MODE_PRIVATE);
+    }
+
+    public void saveLoginCredentials(String username, String password) {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(PROPERTY_APP_LOGIN_PASSWORD, password);
+        editor.putString(PROPERTY_APP_LOGIN_USERNAME, username);
+        editor.commit();
+    }
+
+    public String getSavedUserName() {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        return prefs.getString(PROPERTY_APP_LOGIN_USERNAME, "");
+    }
+
+    public String getSavedPassword() {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        return prefs.getString(PROPERTY_APP_LOGIN_PASSWORD, "");
+    }
+
+    public void clearLoginCredentials() {
+        //called when user logged out
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(PROPERTY_APP_LOGIN_PASSWORD, "");
+//        editor.putString(PROPERTY_APP_LOGIN_USERNAME, "");
+        editor.commit();
+    }
+
+    public void clearAllLoginCredentials() {
+        //called when user logged out
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(PROPERTY_APP_LOGIN_PASSWORD, "");
+        editor.putString(PROPERTY_APP_LOGIN_USERNAME, "");
+        editor.commit();
+    }
+
+    public void setIsLogin(Context context, Boolean isLogin) {
+
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(PROPERTY_APP_LOGIN, isLogin);
+        editor.commit();
+    }
+
 
 }

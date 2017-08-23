@@ -293,6 +293,10 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
         ApplicationData.getInstance().userDataContract = new UserDataContract();
         ApplicationData.getInstance().regId = 1;
 
+        ApplicationData.getInstance().setIsLogin(context, false);
+        //clear the saved login credentials
+        ApplicationData.getInstance().clearLoginCredentials();
+
         goToLoginPage();
     }
 

@@ -12,6 +12,7 @@
         android:hardwareAccelerated="true">
         <activity android:name=".activities.MainLandingPageActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
