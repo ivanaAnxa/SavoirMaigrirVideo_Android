@@ -115,7 +115,11 @@ public class RecipesListAdapter extends ArrayAdapter<RecipeContract> implements 
             Glide.with(context).load(recipe.ImageUrl).diskCacheStrategy(DiskCacheStrategy.RESULT).into(viewHolder.recipeImage);
             try {
                 if (!ApplicationData.getInstance().recipePhotoList.containsKey(String.valueOf(recipe.Id)) && viewHolder.recipeImage.getDrawable() != null) {
-                    ApplicationData.getInstance().recipePhotoList.put(String.valueOf(recipe.Id), ((GlideBitmapDrawable) viewHolder.recipeImage.getDrawable()).getBitmap());
+                    try {
+                        ApplicationData.getInstance().recipePhotoList.put(String.valueOf(recipe.Id), ((GlideBitmapDrawable) viewHolder.recipeImage.getDrawable()).getBitmap());
+                    }catch (ClassCastException e){
+                        e.printStackTrace();
+                    }
                 }
 
             } catch (Exception e) {

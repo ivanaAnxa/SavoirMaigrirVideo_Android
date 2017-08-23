@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -51,7 +52,7 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         this.context = getActivity();
-        mView = inflater.inflate(R.layout.coaching_account, null);
+        mView = inflater.inflate(R.layout.exercice, null);
 
         caller = new ApiCaller();
 
@@ -60,6 +61,8 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
         ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.INVISIBLE);
 
         coachingListView = (CustomListView) mView.findViewById(R.id.coachingListView);
+
+        ((LinearLayout)mView.findViewById(R.id.youtube_layout_caption)).setVisibility(View.VISIBLE);
 
         videosList = new ArrayList<VideoContract>();
         if (adapter == null) {
@@ -79,6 +82,7 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
         ft.commit();
 
         getCoachingVideosFromAPI();
+//        getVideosFromAPI2/();
 
         return mView;
     }
@@ -148,7 +152,7 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
 
                     ((TextView) (mView.findViewById(R.id.videoTitle))).setText(video.Title);
                     ((TextView) (mView.findViewById(R.id.videoDesc))).setText(video.Description);
-                    ((TextView) (mView.findViewById(R.id.videoDuration))).setText(video.Duration);
+//                    ((TextView) (mView.findViewById(R.id.videoDuration))).setText(video.Duration);
                     youTubePlayer.setPlaybackEventListener(new YouTubePlayer.PlaybackEventListener() {
                         @Override
                         public void onBuffering(boolean arg0) {
@@ -200,6 +204,34 @@ public class ExerciceFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    private void getVideosFromAPI2(){
+        caller.GetFreeDiscover(new AsyncResponse() {
+            @Override
+            public void processFinish(Object output) {
+
+                //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+                if (output != null) {
+                    VideoResponseContract c = (VideoResponseContract) output;
+
+                    if (c != null && c.Data != null && c.Data.Videos != null) {
+                        for (VideoContract v : c.Data.Videos) {
+                            if (v.VideoSource != null && v.VideoSource.equalsIgnoreCase("youtube")) {
+                                videosList.add(v);
+                            }
+                        }
+
+                        ApplicationData.getInstance().discoverVideoList = videosList;
+                        VideoHelper.sort("index", videosList);
+                        videosList.get(0).IsSelected = true;
+                        adapter.updateItems(videosList);
+
+                        RefreshPlayer(mView, videosList.get(0));
+                    }
+                }
+            }
+        });
     }
 }
 

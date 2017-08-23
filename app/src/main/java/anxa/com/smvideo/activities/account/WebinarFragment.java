@@ -154,10 +154,7 @@ public class WebinarFragment extends Fragment {
         mainContentWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mainContentWebView.getSettings().setJavaScriptEnabled(true);
 
-        String defaultagent = mainContentWebView.getSettings().getUserAgentString();
-
-        if (defaultagent == null)
-            defaultagent = AppUtil.getDefaultUserAgent();
+        String defaultagent = AppUtil.getDefaultUserAgent(context);
 
         mainContentWebView.getSettings().setUserAgentString(ApplicationData.getInstance().customAgent + " " + BuildConfig.VERSION_NAME + " " + defaultagent);
 

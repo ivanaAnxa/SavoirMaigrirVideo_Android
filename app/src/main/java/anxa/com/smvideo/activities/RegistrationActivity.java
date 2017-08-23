@@ -129,7 +129,7 @@ public class RegistrationActivity extends Activity {
         String defaultagent = mainContentWebView.getSettings().getUserAgentString();
 
         if (defaultagent == null)
-            defaultagent = AppUtil.getDefaultUserAgent();
+            defaultagent = AppUtil.getDefaultUserAgent(this);
 
         mainContentWebView.getSettings().setUserAgentString(ApplicationData.getInstance().customAgent + " " + BuildConfig.VERSION_NAME + " " + defaultagent);
 

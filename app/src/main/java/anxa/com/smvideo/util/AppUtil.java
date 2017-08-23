@@ -55,9 +55,12 @@ public class AppUtil {
         return new String(chars);
     }
 
-    public static String getDefaultUserAgent() {
+    public static String getDefaultUserAgent(Context context) {
         StringBuilder result = new StringBuilder(64);
-        result.append("Dalvik/");
+        result.append(context.getString(R.string.app_name));
+        result.append(" ");
+        result.append(context.getString(R.string.app_version));
+        result.append(" Dalvik/");
         result.append(System.getProperty("java.vm.version")); // such as 1.1.0
         result.append(" (Linux; U; Android ");
 
@@ -78,6 +81,8 @@ public class AppUtil {
             result.append(id);
         }
         result.append(")");
+
+        System.out.println("useragent: " + result.toString());
         return result.toString();
     }
 
