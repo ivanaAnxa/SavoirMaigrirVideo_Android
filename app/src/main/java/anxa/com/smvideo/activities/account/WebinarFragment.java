@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.compat.BuildConfig;
 import android.view.LayoutInflater;
@@ -153,6 +154,10 @@ public class WebinarFragment extends Fragment {
         //prevent horizontal scrolling
         mainContentWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mainContentWebView.getSettings().setJavaScriptEnabled(true);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            mainContentWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
 
         String defaultagent = AppUtil.getDefaultUserAgent(context);
 
