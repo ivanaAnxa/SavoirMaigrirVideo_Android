@@ -160,10 +160,21 @@
         <item name="android:textSize">15dp</item>
     </style>
 
+    <style name="whiteNormalRepas">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
     <style name="whiteBoldMedium">
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">14dp</item>
+    </style>
+    <style name="whiteBoldLarge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">15dp</item>
     </style>
 
     <style name="whiteNormalSmall">

@@ -78,4 +78,23 @@ public class MainLandingPageActivity extends Activity {
         }
     }
 
+    public void displayToastMessage(final String message) {
+        final Context context = this;
+        this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                Toast m = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                m.show();
+
+            }
+        });
+    }
+
+    private void goToAccountLandingPage(){
+        ApplicationData.getInstance().accountType = "account";
+
+        Intent mainIntent = new Intent(this, LandingPageAccountActivity.class);
+        startActivity(mainIntent);
+    }
 }

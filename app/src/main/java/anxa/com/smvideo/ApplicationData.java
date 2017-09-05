@@ -13,6 +13,7 @@ import anxa.com.smvideo.contracts.DietProfilesDataContract;
 import anxa.com.smvideo.contracts.QuestionsContract;
 import anxa.com.smvideo.contracts.RepasContract;
 import anxa.com.smvideo.contracts.ResultsResponseDataContract;
+import anxa.com.smvideo.contracts.ShoppingListContract;
 import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.VideoContract;
 import anxa.com.smvideo.contracts.WeightGraphContract;
@@ -91,7 +92,9 @@ public class ApplicationData extends Application {
     public List<VideoContract> exerciseVideoList = new ArrayList<>();
     public List<WeightGraphContract> weightGraphContractList = new ArrayList<>();
     public List<RepasContract> repasContractArrayList = new ArrayList<>();
+    public List<ShoppingListContract> shoppingListContractArrayList = new ArrayList<>();
     public List<String> categoryList = new ArrayList<>();
+    public List<String> shoppingCategoryList = new ArrayList<>();
     public ResultsResponseDataContract bilanminceurResults = new ResultsResponseDataContract();
     public RecipeContract selectedRelatedRecipe = new RecipeContract();
 

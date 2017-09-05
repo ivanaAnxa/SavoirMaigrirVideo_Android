@@ -27,6 +27,7 @@ public class CommandConstants {
     public static String ACCOUNT_CONSEILS = "advice";
     public static String ACCOUNT_EXERCICE = "exercise";
     public static String ACCOUNT_REPAS = "mealplan/day";
+    public static String ACCOUNT_SHOPPING_LIST = "mealplan/shopping-list-week";
     public static String ACCOUNT_RECIPE_CTID = "recipe";
     public static String ACCOUNT_RECIPES = "popular";
     public static String ACCOUNT_GRAPH_DATA = "weight/graphData";

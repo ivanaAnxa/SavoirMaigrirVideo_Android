@@ -108,6 +108,8 @@
     <string name="mon_compte_disconnect">Deconnexion</string>
 
     <!--Repas-->
+    <string name="repas_header_meal_plans">Plan de repas</string>
+    <string name="repas_header_shopping_list">Liste de courses</string>
     <string name="repas_header_meal_plan">Vous suivez actuellement le programme \n#program à #calorie/jour</string>
     <string name="repas_breakfast">Petit-Déjeuner</string>
     <string name="repas_lunch">Déjeuner</string>
@@ -232,5 +234,19 @@
     <string name="ALERTMESSAGE_LOGIN_FAILED">La connexion à votre compte a échoué.</string>
     <string name="ALERTMESSAGE_LOGIN_EMAIL_ERROR">Le format de votre e-mail est erronée. Veuillez entrer une adresse email valide .</string>
 
+
+    <string name="shopping_list_category_1">Boisson</string>
+    <string name="shopping_list_category_2">Boulangerie</string>
+    <string name="shopping_list_category_3">Crèmerie</string>
+    <string name="shopping_list_category_4">Epicerie</string>
+    <string name="shopping_list_category_5">Fruits et légumes</string>
+    <string name="shopping_list_category_6">Poissons &amp; fruits de mer</string>
+    <string name="shopping_list_category_7">Viandes</string>
+    <string name="shopping_list_category_8">Volailles</string>
+    <string name="shopping_list_category_9">Surgelés</string>
+    <string name="shopping_list_category_10">Charcuterie-Traiteur</string>
+    <string name="shopping_list_category_11">Indispensables</string>
+
+    <string name="shopping_list_recipes">Liste de courses des recettes de la semaine</string>
 
 </resources>

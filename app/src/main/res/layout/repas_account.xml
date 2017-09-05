@@ -2,21 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@drawable/fullbackground"
     android:orientation="vertical">
 
     <include
         android:id="@+id/headermenu"
         layout="@layout/header_menu"
         android:layout_width="match_parent"
-        android:layout_height="44dp"/>
+        android:layout_height="44dp" />
 
 
     <LinearLayout
-        android:id="@+id/repasHeader_ll"
+        android:id="@+id/repasTab_ll"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
         android:layout_below="@id/headermenu"
+        android:background="@android:color/transparent">
+
+        <Button
+            android:id="@+id/meal_plan_button"
+            style="@style/whiteNormalRepas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_weight_graph_bg"
+            android:text="@string/repas_header_meal_plans" />
+
+        <Button
+            android:id="@+id/shopping_list_button"
+            style="@style/whiteNormalRepas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_weight_graph_bg"
+            android:text="@string/repas_header_shopping_list" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/repasHeader_ll"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_below="@id/repasTab_ll"
         android:background="@android:color/white">
 
         <TextView
@@ -32,10 +61,10 @@
     <!--Search Bar-->
     <LinearLayout
         android:id="@+id/repasSearch_ll"
-        android:layout_below="@id/repasHeader_ll"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@android:color/black"
+        android:layout_below="@id/repasHeader_ll"
+        android:background="@android:color/transparent"
         android:weightSum="10">
 
         <ImageButton
@@ -53,11 +82,11 @@
             android:layout_gravity="center"
             android:layout_weight="6"
             android:background="@drawable/search_background"
+            android:editable="false"
             android:gravity="center"
             android:text="jeudi (semaine 17)"
             android:textColor="@android:color/black"
-            android:textSize="18dp"
-            android:editable="false"/>
+            android:textSize="18dp" />
 
         <ImageButton
             android:id="@+id/nextDayButton"
@@ -72,10 +101,11 @@
     <!--Main Content-->
 
     <ScrollView
-        android:layout_below="@+id/repasSearch_ll"
         android:id="@+id/repasScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/repasSearch_ll"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,8 +151,8 @@
                         android:id="@+id/repas_bfast_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawSelectorOnTop="false"
-                        android:divider="@android:color/transparent"/>
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
 
                 </LinearLayout>
 
@@ -158,8 +188,8 @@
                         android:id="@+id/repas_lunch_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawSelectorOnTop="false"
-                        android:divider="@android:color/transparent"/>
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
                 </LinearLayout>
 
                 <!--dinner-->
@@ -193,8 +223,8 @@
                         android:id="@+id/repas_dinner_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawSelectorOnTop="false"
-                        android:divider="@android:color/transparent"/>
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -219,8 +249,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="5dp"
-                    android:drawSelectorOnTop="false"
-                    android:divider="@android:color/transparent"/>
+                    android:divider="@android:color/transparent"
+                    android:drawSelectorOnTop="false" />
 
                 <TextView
                     android:id="@+id/repasFooter"
@@ -230,6 +260,349 @@
                     android:text="@string/repas_footer" />
             </LinearLayout>
 
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--Shopping List-->
+
+    <ScrollView
+        android:id="@+id/shoppingListScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/repasSearch_ll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:id="@+id/shopping_category_1"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_2"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_3"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/shopping_category_4"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_4" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_5"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_6"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_7"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_7" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_8"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_9"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_9" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_10"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_10" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/shopping_category_11"
+                    style="@style/RepasMenuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/shopping_list_category_11" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <anxa.com.smvideo.ui.CustomListView
+                        android:id="@+id/repas_shopping_list_11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@android:color/transparent"
+                        android:drawSelectorOnTop="false" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/shoppingList_recipe_header"
+                    style="@style/whiteBoldLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/text_orange"
+                    android:padding="5dp"
+                    android:text="@string/shopping_list_recipes" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/shopping_list_recipe_ll">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="5dp"
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
+
+                        <anxa.com.smvideo.ui.CustomListView
+                            android:id="@+id/repas_shopping_list_recipe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="@android:color/transparent"
+                            android:drawSelectorOnTop="false" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

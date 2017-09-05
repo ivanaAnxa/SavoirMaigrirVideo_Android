@@ -32,5 +32,7 @@
     <color name="red_text_bilan">#ff0000</color>
     <color name="light_gray_text_bilan">#aaaaaa</color>
 
+    <color name="bg_orangedark">#f2680d</color>
+
 
 </resources>

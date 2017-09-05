@@ -22,6 +22,7 @@ import anxa.com.smvideo.contracts.CoachingVideosResponseContract;
 import anxa.com.smvideo.contracts.LoginContract;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
 import anxa.com.smvideo.contracts.RepasResponseContract;
+import anxa.com.smvideo.contracts.ShoppingListResponseContract;
 import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.contracts.VideoResponseContract;
@@ -172,6 +173,20 @@ public class ApiCaller {
         params.put("dayNumber", dayNumber);
 
         apiClient.GetAsync(asyncResponse, CommandConstants.API_TV, command, params, RepasResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void GetAccountShoppingList(AsyncResponse asyncResponse, int weekNumber, int dayNumber) {
+
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.ACCOUNT_SHOPPING_LIST;
+        command.RegId = ApplicationData.getInstance().regId;
+
+        Hashtable params = new Hashtable();
+        params.put("mealProfile", ApplicationData.getInstance().dietProfilesDataContract.MealPlanType);
+        params.put("calorieType", ApplicationData.getInstance().dietProfilesDataContract.CalorieType);
+        params.put("weekNumber", weekNumber);
+
+        apiClient.GetAsync(asyncResponse, CommandConstants.API_TV, command, params, ShoppingListResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public void GetAccountRecipeCtid(AsyncResponse asyncResponse, int recipeCtid, int returnMealDay) {

@@ -899,6 +899,18 @@ public class AppUtil {
         return stringHeader;
     }
 
+    public static String getShoppingListDateHeader(Date date, boolean init) {
+        String stringHeader;
+        if (init) {
+            stringHeader = " Semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date()));
+
+        } else {
+            stringHeader = " Semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), date));
+        }
+
+        return stringHeader;
+    }
+
     public static String getCurrentDayName(int i) {
 
         String weekDay;
@@ -1056,6 +1068,78 @@ public class AppUtil {
             return 4;
         } else if (calorieTypeString.equalsIgnoreCase(context.getString(R.string.mon_compte_niveau_calorique_1800))) {
             return 5;
+        } else {
+            return 1;
+        }
+    }
+
+    public static String getShoppingCategoryString(int index, Context context) {
+
+        String categoryString = "";
+        switch (index) {
+            case 1:
+                categoryString = context.getString(R.string.shopping_list_category_1);
+                break;
+            case 2:
+                categoryString = context.getString(R.string.shopping_list_category_2);
+                break;
+            case 3:
+                categoryString = context.getString(R.string.shopping_list_category_3);
+                break;
+            case 4:
+                categoryString = context.getString(R.string.shopping_list_category_4);
+                break;
+            case 5:
+                categoryString = context.getString(R.string.shopping_list_category_5);
+                break;
+            case 6:
+                categoryString = context.getString(R.string.shopping_list_category_6);
+                break;
+            case 7:
+                categoryString = context.getString(R.string.shopping_list_category_7);
+                break;
+            case 8:
+                categoryString = context.getString(R.string.shopping_list_category_8);
+                break;
+            case 9:
+                categoryString = context.getString(R.string.shopping_list_category_9);
+                break;
+            case 10:
+                categoryString = context.getString(R.string.shopping_list_category_10);
+                break;
+            case 11:
+                categoryString = context.getString(R.string.shopping_list_category_11);
+                break;
+            default:
+                categoryString = context.getString(R.string.shopping_list_category_1);
+                break;
+        }
+        return categoryString;
+    }
+
+    public static int getCategoryTypeIndex(String category, Context context) {
+        if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_1))) {
+            return 1;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_2))) {
+            return 2;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_3))) {
+            return 3;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_4))) {
+            return 4;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_5))) {
+            return 5;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_6))) {
+            return 6;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_7))) {
+            return 7;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_8))) {
+            return 8;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_9))) {
+            return 9;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_10))) {
+            return 10;
+        } else if (category.equalsIgnoreCase(context.getString(R.string.shopping_list_category_11))) {
+            return 11;
         } else {
             return 1;
         }
