@@ -90,6 +90,7 @@ public class LoginActivity extends Activity{
                             ApplicationData.getInstance().regId = c.Data.Id;
 
                             ApplicationData.getInstance().setIsLogin(getBaseContext(), true);
+                            ApplicationData.getInstance().setAnxamatsSessionStart(getBaseContext(), System.currentTimeMillis());
                             ApplicationData.getInstance().saveLoginCredentials(loginContract.Email, loginContract.Password);
 
                             goToAccountLandingPage();

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -289,6 +290,29 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
 
     public void logout(){
 
+        UserDataContract up = ApplicationData.getInstance().userDataContract;
+
+        long activeTimeMilliseconds = System.currentTimeMillis() - ApplicationData.getInstance().getAnxamatsSessionStart();
+        if(activeTimeMilliseconds > ApplicationData.getInstance().maximumAnxamatsSessionTime)
+        {
+            activeTimeMilliseconds = ApplicationData.getInstance().maximumAnxamatsSessionTime;
+        }
+        final long activeTimeFinal = activeTimeMilliseconds;
+        Log.d("sessionstartvalue", String.valueOf(ApplicationData.getInstance().getAnxamatsSessionStart()));
+        if (up != null && up.Id>0 ) {
+            if ((ApplicationData.getInstance().getAnxamatsSessionStart() > 0) &&
+                    (activeTimeFinal > ApplicationData.minimumAnxamatsSessionTime)) {
+                caller.PostAnxamatsActiveTime(new AsyncResponse() {
+                    @Override
+                    public void processFinish(Object output) {
+                        Log.d("USERTIMELOGGED", "Logged user time " + activeTimeFinal);
+
+                    }
+                }, activeTimeFinal, up.Id);
+
+            }
+        }
+        ApplicationData.getInstance().setAnxamatsSessionStart(context, 0);
         //clear login details
         ApplicationData.getInstance().userDataContract = new UserDataContract();
         ApplicationData.getInstance().regId = 1;

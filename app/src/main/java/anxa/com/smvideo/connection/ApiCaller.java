@@ -10,6 +10,8 @@ import java.util.Hashtable;
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.BuildConfig;
 import anxa.com.smvideo.common.CommandConstants;
+import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
+import anxa.com.smvideo.connection.http.AnxamatsClient;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.connection.http.MasterCommand;
 import anxa.com.smvideo.connection.http.SavoirMaigrirVideoApiClient;
@@ -20,6 +22,7 @@ import anxa.com.smvideo.contracts.BMVideoResponseContract;
 import anxa.com.smvideo.contracts.BaseContract;
 import anxa.com.smvideo.contracts.CoachingVideosResponseContract;
 import anxa.com.smvideo.contracts.LoginContract;
+import anxa.com.smvideo.contracts.PostAnxamatsContract;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
 import anxa.com.smvideo.contracts.RepasResponseContract;
 import anxa.com.smvideo.contracts.ShoppingListResponseContract;
@@ -40,7 +43,7 @@ public class ApiCaller {
     private MasterCommand masterCommand;
     private SavoirMaigrirVideoApiClient apiClient;
     private Gson gson;
-
+    private AnxamatsClient anxamatsClient;
     {
         gson = new Gson();
         apiClient = new SavoirMaigrirVideoApiClient();
@@ -48,6 +51,19 @@ public class ApiCaller {
 
     public ApiCaller() {
         masterCommand = new MasterCommand();
+        anxamatsClient = new AnxamatsClient();
+    }
+
+    public void PostAnxamatsActiveTime(AsyncResponse asyncResponse, long activeTimeMilliseconds, int userId)
+    {
+        PostAnxamatsContract contract = new PostAnxamatsContract();
+        contract.ApplicationId = SavoirMaigrirVideoConstants.ANXAMATS_APPLICATIONID;
+        contract.ApplicationUserId = userId;
+        contract.EventId = AnxamatsEvents.ANXAMATS_EVENTS_ACTIVETIME.getValue();
+        contract.LogDetails = AppUtil.SortableDateTimeNow();
+        contract.EventValue = String.valueOf(activeTimeMilliseconds);
+
+        anxamatsClient.PostAsync(asyncResponse, gson.toJson(contract), PostAnxamatsContract.class) ;
     }
 
     public void GetFreeDiscover(AsyncResponse asyncResponse) {
@@ -254,6 +270,21 @@ public class ApiCaller {
         command.ApplicationId = ApplicationData.getInstance().applicationId;
 
         apiClient.PostAsync(asyncResponse, CommandConstants.API_TV, command, gson.toJson(weightGraphContract), WeightHistoryResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public enum AnxamatsEvents
+    {
+        ANXAMATS_EVENTS_ACTIVETIME(1);
+
+        private final int value;
+
+        private AnxamatsEvents(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 
 

@@ -3,6 +3,7 @@ package anxa.com.smvideo.activities.account;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import anxa.com.smvideo.activities.MainActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.DietProfilesDataContract;
+import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.util.AppUtil;
 

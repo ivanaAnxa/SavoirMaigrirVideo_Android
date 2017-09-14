@@ -69,9 +69,16 @@ public class ApplicationData extends Application {
 
     private Context context;
 
+    public static long minimumAnxamatsSessionTime = 3000; //3 seconds
+    public static long maximumAnxamatsSessionTime = 45000; //45 seconds
+    public static long maximSessionTime = 300000; //300 seconds
+
     private static final String PROPERTY_APP_LOGIN = "isLogin";
     private static final String PROPERTY_APP_LOGIN_USERNAME = "userName";
     private static final String PROPERTY_APP_LOGIN_PASSWORD = "password";
+    private static final String PROPERTY_APP_ANXAMATS_SESSIONSTART = "anaxamatsSessionStart";
+    private static final String PROPERTY_APP_SESSIONTIME = "sessopmTo,e";
+
 
     public SelectedFragment selectedFragment = SelectedFragment.Decouvir;
 
@@ -187,5 +194,31 @@ public class ApplicationData extends Application {
         editor.commit();
     }
 
+    public long getAnxamatsSessionStart() {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        return prefs.getLong(PROPERTY_APP_ANXAMATS_SESSIONSTART, 0);
 
+    }
+
+    public void setAnxamatsSessionStart(Context context, long value) {
+
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(PROPERTY_APP_ANXAMATS_SESSIONSTART, value);
+        editor.commit();
+    }
+
+    public long getSessionTime() {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        return prefs.getLong(PROPERTY_APP_SESSIONTIME, 0);
+
+    }
+
+    public void setSessionTime(Context context, long value) {
+
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(PROPERTY_APP_SESSIONTIME, value);
+        editor.commit();
+    }
 }

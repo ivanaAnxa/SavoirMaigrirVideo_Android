@@ -843,7 +843,22 @@ public class AppUtil {
 
         int weekNumber = endCalendar.get(Calendar.WEEK_OF_YEAR) - startCalendar.get(Calendar.WEEK_OF_YEAR) + 1;
 
+        if (endCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            weekNumber = weekNumber - 1;
+        }
+
         return weekNumber;
+    }
+
+    public static int getCurrentWeekNumberRepas(long coachingStartDate, Date endTime) {
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTimeInMillis(coachingStartDate * 1000);
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endTime);
+
+        int weekNumber = endCalendar.get(Calendar.WEEK_OF_YEAR) - startCalendar.get(Calendar.WEEK_OF_YEAR) + 1;
+
+        return weekNumber + 2;
     }
 
     public static int getDaysDiffToCurrent(long coachingStartDate) {
@@ -859,12 +874,33 @@ public class AppUtil {
         return (int) days;
     }
 
-    public static int getCurrentDayNumber() {
+    public static int getAddDaysToCurrent() {
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTime(new Date());
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(new Date());
+        endCalendar.add(Calendar.WEEK_OF_YEAR, 1);
+        endCalendar.add(Calendar.DAY_OF_YEAR, Calendar.SATURDAY - startCalendar.get(Calendar.DAY_OF_WEEK));
 
+        long diff = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis(); //result in millis
+
+        double days = diff / (24 * 60 * 60 * 1000);
+
+        System.out.println("getAddDaysToCurrent: " + days + " endCalendar: " + endCalendar.getTime());
+        System.out.println("getAddDaysToCurrent: " + days + " startCalendar: " + startCalendar.getTime());
+
+        return (int) days + 1;
+    }
+
+
+    public static int getCurrentDayNumber() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
 
-        int dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        int dayNumber = calendar.get(Calendar.DAY_OF_WEEK);
+
+        System.out.println("getAddDaysToCurrent: " + calendar.getTime() + " day: " + dayNumber);
 
         if (dayNumber == 0) {
             dayNumber = 7;
@@ -873,17 +909,19 @@ public class AppUtil {
     }
 
     public static int getDayNumber(Date date) {
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
         int dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+        System.out.println("getAddDaysToCurrent: getDayNumber " + calendar.getTime() + " day: " + dayNumber);
 
         if (dayNumber == 0) {
             dayNumber = 7;
         }
         return dayNumber;
     }
+
 
     public static String getRepasDateHeader(Date date, boolean init) {
         String stringHeader;
@@ -899,11 +937,18 @@ public class AppUtil {
         return stringHeader;
     }
 
+    public static String getRepasDateHeaderWeekDay(int week, int day) {
+        String stringHeader;
+        stringHeader = " (semaine " + week + ")";
+        stringHeader = getStringDayName(day) + " " + stringHeader;
+
+        return stringHeader;
+    }
+
     public static String getShoppingListDateHeader(Date date, boolean init) {
         String stringHeader;
         if (init) {
             stringHeader = " Semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date()));
-
         } else {
             stringHeader = " Semaine " + Long.toString(getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), date));
         }
@@ -917,6 +962,18 @@ public class AppUtil {
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.FRANCE);
 
         Calendar calendar = Calendar.getInstance();
+        weekDay = dayFormat.format(calendar.getTime());
+
+        return weekDay;
+    }
+
+    public static String getStringDayName(int i) {
+
+        String weekDay;
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.FRANCE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_WEEK, i + 1);
         weekDay = dayFormat.format(calendar.getTime());
 
         return weekDay;
@@ -1142,6 +1199,22 @@ public class AppUtil {
             return 11;
         } else {
             return 1;
+        }
+    }
+
+    public static String SortableDateTimeNow() {
+        String date = null;
+
+        date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
+        return date;
+    }
+
+    public static boolean tryParseInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
