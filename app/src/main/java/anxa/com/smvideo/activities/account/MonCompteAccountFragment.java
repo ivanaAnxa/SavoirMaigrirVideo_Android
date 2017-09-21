@@ -49,7 +49,6 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
     private TextView plan_et;
     private TextView niveau_calorique_et;
     private EditText email_et;
-//    private Button logout_btn;
     private ProgressBar savingProgressBar;
 
     private UserDataContract userDataContract;
@@ -88,9 +87,10 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
 
         //header change
         ((TextView) (mView.findViewById(R.id.header_title_tv))).setText(getString(R.string.menu_account_compte));
-        logout_btn = ((TextView) (mView.findViewById(R.id.header_right_tv)));
-        logout_btn.setText(getString(R.string.mon_compte_disconnect));
-        logout_btn.setOnClickListener(this);
+        ((TextView) (mView.findViewById(R.id.header_right_tv))).setVisibility(View.GONE);
+//        logout_btn = ((TextView) (mView.findViewById(R.id.header_right_tv)));
+//        logout_btn.setText(getString(R.string.mon_compte_disconnect));
+//        logout_btn.setOnClickListener(this);
 
         name_et = (EditText) (mView.findViewById(R.id.mon_name_et));
         sexe_et = (TextView) (mView.findViewById(R.id.mon_sexe_et));
@@ -164,9 +164,10 @@ public class MonCompteAccountFragment extends Fragment implements View.OnClickLi
 
             genericDialog = builder.create();
             genericDialog.show();
-        } else if(v == logout_btn){
-            logout();
         }
+//        else if(v == logout_btn){
+//            logout();
+//        }
     }
 
     private void updateUserProfile() {

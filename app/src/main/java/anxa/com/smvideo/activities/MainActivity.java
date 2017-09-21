@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import java.util.Date;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.account.AproposFragment;
 import anxa.com.smvideo.activities.account.CoachingAccountFragment;
 import anxa.com.smvideo.activities.account.ConseilsFragment;
 import anxa.com.smvideo.activities.account.ExerciceFragment;
@@ -47,6 +49,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
     ListView mDrawerList;
     RelativeLayout mDrawerPane;
+    private LinearLayout apropos_ll;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
@@ -125,7 +128,9 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             //initial
             if (ApplicationData.getInstance().selectedFragment.getNumVal() < 5) {
                 ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Coaching;
-            } else {
+            } else if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Account_Apropos){
+                goToAproposPage();
+            }else {
                 selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal() - 5);
             }
         }
@@ -188,8 +193,11 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_MonCompte;
                     fragment = new MonCompteAccountFragment();
                     break;
+                case 7: //apropos
+                    ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
+                    fragment = new AproposFragment();
+                    break;
                 default:
-
                     fragment = new CoachingAccountFragment();
             }
         }
@@ -245,4 +253,29 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             }
         }
     };
+
+    public void goToAproposPage(View view){
+        goToAproposPage();
+    }
+
+    private void goToAproposPage(){
+        Fragment fragment = new AproposFragment();
+
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
+        FragmentManager fragmentManager = getFragmentManager();
+        if (getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT") != null) {
+            fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
+        }else{
+        }
+
+        try {
+
+            fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT").commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        mDrawerLayout.closeDrawer(mDrawerPane);
+
+    }
 }

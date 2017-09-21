@@ -88,6 +88,39 @@
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent" />
 
+        <LinearLayout
+            android:id="@+id/apropos_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:clickable="true"
+            android:onClick="goToAproposPage"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/icon_info"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/ic_info_outline_white_24dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/icon"
+                android:layout_toRightOf="@+id/icon"
+                android:gravity="center_vertical"
+                android:text="@string/apropos_menu_title"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

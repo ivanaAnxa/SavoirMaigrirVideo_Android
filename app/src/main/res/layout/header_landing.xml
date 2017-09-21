@@ -12,4 +12,13 @@
         android:gravity="center"
         android:src="@drawable/nav_logo"/>
 
+    <ImageView
+        android:id="@+id/header_info_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="10dp"
+        android:src="@drawable/ic_info_outline_white_24dp"/>
+
 </RelativeLayout>

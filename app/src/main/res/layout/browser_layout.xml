@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/nonVideoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <include
+            android:id="@+id/headermenu"
+            layout="@layout/header_menu"
+            android:layout_width="match_parent"
+            android:layout_height="44dp" />
+
+
+        <!-- Browser Navigation -->
+
+        <RelativeLayout
+            android:id="@+id/browserNav"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:layout_alignParentBottom="true" >
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="#00000000"
+                android:padding="10dip"
+                android:src="@drawable/backicon" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/forward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/back"
+                android:background="@android:color/transparent"
+                android:padding="10dip"
+                android:src="@drawable/forwardicon" >
+            </ImageButton>
+
+
+
+            <ImageButton
+                android:id="@+id/refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:padding="10dip"
+                android:paddingRight="20dip"
+                android:src="@drawable/refresh" >
+            </ImageButton>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/maincontentWebView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/browserNav"
+            android:layout_below="@+id/headermenu" >
+
+            <anxa.com.smvideo.customview.VideoEnabledWebView
+                android:id="@+id/maincontentWebView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#000000"
+                android:visibility="visible" >
+            </anxa.com.smvideo.customview.VideoEnabledWebView>
+        </RelativeLayout>
+    </RelativeLayout>
+    <!-- View where the video will be shown when video goes fullscreen -->
+
+    <RelativeLayout
+        android:id="@+id/videoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!-- View that will be shown while the fullscreen video loads (maybe include a spinner and a "Loading..." message) -->
+
+        <View
+            android:id="@+id/videoLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

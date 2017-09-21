@@ -249,4 +249,12 @@
 
     <string name="shopping_list_recipes">Liste de courses des recettes de la semaine</string>
 
+    <string name="apropos_menu_title">Á propos</string>
+    <string name="apropos_menu1">Á propos</string>
+    <string name="apropos_menu2">Conditions générales d’utilisation</string>
+    <string name="apropos_menu3">Charte sur la vie privée</string>
+    <string name="apropos_menu4">Contact</string>
+    <string name="apropos_menu5">Déconnexion</string>
+    <string name="apropos_content">Cette application gratuite vous permet de découvrir les vraies raisons du succès de Savoir Maigrir, le programme de coaching minceur proposé par le nutritioniste Jean-Michel Cohen. Des conseils minceur peu connus et basés sur le bon sens, des témoignages incroyables de personnes ayant perdu jusqu\'à 40 kilos et un communauté active des dizaines de milliers de personnes qui se serrent les coudes pour mincir !</string>
+
 </resources>

@@ -28,6 +28,8 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
 
         ApplicationData.getInstance().showLandingPage = false;
 
+        ((ImageView) findViewById(R.id.header_info_iv)).setVisibility(View.GONE);
+
         //initialize on click (transfer inside api call if there will be one in the future
         ((Button) findViewById(R.id.LandingDiscoverButton)).setOnClickListener(this);
         ((Button) findViewById(R.id.LandingRecettesButton)).setOnClickListener(this);

@@ -45,7 +45,8 @@ public class ApplicationData extends Application {
         Account_Conseil(8),
         Account_Exercices(9),
         Account_Suivi(10),
-        Account_MonCompte(11);
+        Account_MonCompte(11),
+        Account_Apropos(12);
         private int numVal;
 
         SelectedFragment(int numVal) {

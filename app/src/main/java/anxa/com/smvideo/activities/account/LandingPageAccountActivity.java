@@ -2,6 +2,7 @@ package anxa.com.smvideo.activities.account;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.Date;
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.MainActivity;
+import anxa.com.smvideo.common.WebkitURL;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.DietProfilesDataContract;
@@ -32,6 +34,8 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
     String userName = "";
     TextView initial_weight_tv, target_weight_tv, lost_weight_tv;
     ProgressBar weightProgressBar, landingProgressBar;
+    private ImageView header_info_iv;
+    private Button conditions_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,8 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         landingProgressBar = (ProgressBar) findViewById(R.id.landing_account_progressBar);
         landingProgressBar.setVisibility(View.VISIBLE);
 
+        header_info_iv = (ImageView) findViewById(R.id.header_info_iv);
+        header_info_iv.setOnClickListener(this);
 
         caller = new ApiCaller();
 
@@ -104,6 +110,11 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         ((ImageView) findViewById(R.id.LandingImage5_account)).setOnClickListener(this);
         ((ImageView) findViewById(R.id.LandingImage6_account)).setOnClickListener(this);
         ((ImageView) findViewById(R.id.LandingImage7_account)).setOnClickListener(this);
+
+        conditions_btn = (Button)findViewById(R.id.terms_of_service_account);
+        conditions_btn.setPaintFlags(conditions_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        conditions_btn.setOnClickListener(this);
+
     }
 
     @Override
@@ -122,6 +133,10 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
             goToSuiviPage();
         } else if (v.getId() == R.id.LandingMonCompteButton || v.getId() == R.id.LandingImage7_account) {
             goToMonComptePage();
+        } else if (v == header_info_iv){
+            goToAproposPage();
+        } else if (v == conditions_btn){
+            goToConditionsPage();
         }
     }
 
@@ -179,6 +194,19 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         lost_weight_tv.setText(lost_weight_message);
 
         weightProgressBar.setProgress((int)lost_percentage);
+    }
+
+    private void goToAproposPage(){
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
+        Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(mainIntent);
+    }
+
+    private void goToConditionsPage(){
+        Intent mainContentBrowser = new Intent(this, BrowserActivity.class);
+        mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.apropos_menu2));
+        mainContentBrowser.putExtra("URL_PATH", WebkitURL.conditionsURL);
+        startActivity(mainContentBrowser);
     }
 
 }

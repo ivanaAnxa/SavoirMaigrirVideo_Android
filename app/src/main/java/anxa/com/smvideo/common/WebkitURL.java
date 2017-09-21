@@ -18,10 +18,14 @@ public class WebkitURL {
     public static String loginURL = "/3actparjour/login";
     public static String offerURL = "/1dirparjour/registration/offer";
 
+
+    public static String conditionsURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/cgv";
+    public static String privacyURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/privacy";
+    public static String contactURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/contact";
+
     public static String webinarURL = "/1dirparjour/webinar";
 
     public static String webinarAutoLoginURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/webinar";
-
     public static final String ANXAMATS_URL = "http://api.anxa.com/anxamats";
 
 }
