@@ -111,7 +111,7 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         ((ImageView) findViewById(R.id.LandingImage6_account)).setOnClickListener(this);
         ((ImageView) findViewById(R.id.LandingImage7_account)).setOnClickListener(this);
 
-        conditions_btn = (Button)findViewById(R.id.terms_of_service_account);
+        conditions_btn = (Button) findViewById(R.id.terms_of_service_account);
         conditions_btn.setPaintFlags(conditions_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         conditions_btn.setOnClickListener(this);
 
@@ -133,9 +133,9 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
             goToSuiviPage();
         } else if (v.getId() == R.id.LandingMonCompteButton || v.getId() == R.id.LandingImage7_account) {
             goToMonComptePage();
-        } else if (v == header_info_iv){
+        } else if (v == header_info_iv) {
             goToAproposPage();
-        } else if (v == conditions_btn){
+        } else if (v == conditions_btn) {
             goToConditionsPage();
         }
     }
@@ -189,24 +189,28 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
 
         float lost_weight = ApplicationData.getInstance().dietProfilesDataContract.StartWeightInKg - ApplicationData.getInstance().dietProfilesDataContract.CurrentWeightInKg;
         //(StartWeightInKg - CurrentWeightInKg) / (StartWeightInKg - TargetWeightInKg)) * 100
-        float lost_percentage = (lost_weight/ (ApplicationData.getInstance().dietProfilesDataContract.StartWeightInKg - ApplicationData.getInstance().dietProfilesDataContract.TargetWeightInKg)) * 100;
-        String lost_weight_message = getString(R.string.lost_weight_text) + " " + String.format("%.2f", lost_weight) + " kg (" + String.format("%.0f", lost_percentage)  + "%)";
+        float lost_percentage = (lost_weight / (ApplicationData.getInstance().dietProfilesDataContract.StartWeightInKg - ApplicationData.getInstance().dietProfilesDataContract.TargetWeightInKg)) * 100;
+        String lost_weight_message = getString(R.string.lost_weight_text) + " " + String.format("%.2f", lost_weight) + " kg (" + String.format("%.0f", lost_percentage) + "%)";
         lost_weight_tv.setText(lost_weight_message);
 
-        weightProgressBar.setProgress((int)lost_percentage);
+        weightProgressBar.setProgress((int) lost_percentage);
     }
 
-    private void goToAproposPage(){
+    private void goToAproposPage() {
         ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
         Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(mainIntent);
     }
 
-    private void goToConditionsPage(){
+    private void goToConditionsPage() {
         Intent mainContentBrowser = new Intent(this, BrowserActivity.class);
         mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.apropos_menu2));
         mainContentBrowser.putExtra("URL_PATH", WebkitURL.conditionsURL);
         startActivity(mainContentBrowser);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
 }

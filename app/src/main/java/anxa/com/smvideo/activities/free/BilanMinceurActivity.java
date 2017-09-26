@@ -161,7 +161,7 @@ public class BilanMinceurActivity extends Fragment implements View.OnClickListen
         ft.replace(R.id.youtube_layout, playerFragment, tag);
         ft.commit();
 
-        ((LinearLayout)mView.findViewById(R.id.youtube_layout_caption)).setVisibility(View.GONE);
+//        ((LinearLayout)mView.findViewById(R.id.youtube_layout_caption)).setVisibility(View.GONE);
 
 
         /*

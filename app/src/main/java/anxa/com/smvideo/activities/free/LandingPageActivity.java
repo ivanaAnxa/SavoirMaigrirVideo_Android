@@ -47,17 +47,14 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
 
         if (v.getId() == R.id.LandingDiscoverButton || v.getId() == R.id.LandingImage1) {
             GoToDiscoverPage();
-        }
-        if (v.getId() == R.id.LandingRecettesButton || v.getId() == R.id.LandingImage4) {
+        } else if (v.getId() == R.id.LandingRecettesButton || v.getId() == R.id.LandingImage4) {
             GoToRecettesPage();
-        }
-        if (v.getId() == R.id.LandingBilanButton || v.getId() == R.id.LandingImage2) {
+        } else if (v.getId() == R.id.LandingBilanButton || v.getId() == R.id.LandingImage2) {
             GoToBilanPage();
         }
         if (v.getId() == R.id.LandingTemoignagesButton || v.getId() == R.id.LandingImage3) {
             GoToTemoignagesPage();
-        }
-        if (v.getId() == R.id.LandingRegisterButton) {
+        } else if (v.getId() == R.id.LandingRegisterButton) {
             goToRegistrationPage();
         }
     }
@@ -70,13 +67,9 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
     }
 
     private void GoToRecettesPage() {
-      ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Recettes;
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Recettes;
         Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
         startActivity(mainIntent);
-
-
-
-
     }
 
     private void GoToBilanPage() {
@@ -105,7 +98,7 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
                 boolean isLogin = intent.getBooleanExtra("TO_LOGIN", false);
                 if (isLogin) {
                     goToLoginPage();
-                }else if (intent.getBooleanExtra("TO_LANDING", false)){
+                } else if (intent.getBooleanExtra("TO_LANDING", false)) {
 
                 }
             }
@@ -113,12 +106,15 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
     }
 
     private void goToLoginPage() {
-
         System.out.println("goToLoginPage");
         Intent mainIntent = new Intent(this, LoginActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(mainIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
 }

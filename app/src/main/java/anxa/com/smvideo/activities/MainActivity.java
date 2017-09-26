@@ -76,6 +76,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
             ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(getString(R.string.welcome_message));
+            mNavItems.add(new NavItem(getString(R.string.menu_home), R.drawable.icon_home));
             mNavItems.add(new NavItem(getString(R.string.menu_decouvrir), R.drawable.decouvrez_ico));
             mNavItems.add(new NavItem(getString(R.string.menu_bilan), R.drawable.bilanminceur_ico));
             mNavItems.add(new NavItem(getString(R.string.menu_temoignages), R.drawable.temoignage_ico));
@@ -91,7 +92,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
             }
             ((TextView) (findViewById(R.id.slide_nav_header_tv))).setText(welcome_message);
-
+            mNavItems.add(new NavItem(getString(R.string.menu_home), R.drawable.icon_home));
             mNavItems.add(new NavItem(getString(R.string.menu_account_coaching), R.drawable.icon_account_coaching));
             mNavItems.add(new NavItem(getString(R.string.menu_account_repas), R.drawable.icon_account_repas));
             mNavItems.add(new NavItem(getString(R.string.menu_account_recettes), R.drawable.icon_account_recettes));
@@ -123,15 +124,21 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
     public void onResume() {
         super.onResume();
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
-            selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal());
+            if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Home) {
+                goToHomePage();
+            }else {
+                selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal()+1);
+            }
         } else {
             //initial
             if (ApplicationData.getInstance().selectedFragment.getNumVal() < 5) {
                 ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Coaching;
-            } else if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Account_Apropos){
+            } else if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Account_Apropos) {
                 goToAproposPage();
-            }else {
-                selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal() - 5);
+            } else if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Home) {
+                goToHomePage();
+            } else {
+                selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal() - 4);
             }
         }
     }
@@ -143,19 +150,22 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
 
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
             switch (position) {
-                case 0: //decouvir
+                case 0:
+                    goToHomePage();
+                    break;
+                case 1: //decouvir
                     fragment = new DiscoverActivity();
                     break;
-                case 1: //bilan
+                case 2: //bilan
                     fragment = new BilanMinceurActivity();
                     break;
-                case 2: //temoignages
+                case 3: //temoignages
                     fragment = new TemoignagesActivity();
                     break;
-                case 3: //recetters
+                case 4: //recetters
                     fragment = new RecipesActivity();
                     break;
-                case 4: //mon compte
+                case 5: //mon compte
                     fragment = new MonCompteActivity();
                     break;
                 default:
@@ -163,37 +173,40 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             }
         } else {
             switch (position) {
-                case 0: //coaching
+                case 0:
+                    goToHomePage();
+                    break;
+                case 1: //coaching
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Coaching;
                     if (!ApplicationData.getInstance().fromArchive)
                         ApplicationData.getInstance().selectedWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
                     fragment = new CoachingAccountFragment();
                     break;
-                case 1: //repas
+                case 2: //repas
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Repas;
                     fragment = new RepasFragment();
                     break;
-                case 2: //recettes
+                case 3: //recettes
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Recettes;
                     fragment = new RecipesAccountFragment();
                     break;
-                case 3: //conseils
+                case 4: //conseils
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Conseil;
                     fragment = new WebinarFragment();
                     break;
-                case 4: //exercices
+                case 5: //exercices
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Exercices;
                     fragment = new ExerciceFragment();
                     break;
-                case 5: //suivi
+                case 6: //suivi
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Suivi;
                     fragment = new WeightGraphFragment();
                     break;
-                case 6: //mon compte
+                case 7: //mon compte
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_MonCompte;
                     fragment = new MonCompteAccountFragment();
                     break;
-                case 7: //apropos
+                case 8: //apropos
                     ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
                     fragment = new AproposFragment();
                     break;
@@ -205,13 +218,13 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         FragmentManager fragmentManager = getFragmentManager();
         if (getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT") != null) {
             fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
-        }else{
+        } else {
         }
 
         try {
 
             fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT").commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -229,7 +242,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
             //burger menu
             ApplicationData.getInstance().fromArchive = false;
             ApplicationData.getInstance().fromArchiveConseils = false;
-            if(ApplicationData.getInstance().accountType.equalsIgnoreCase("account")) {
+            if (ApplicationData.getInstance().accountType.equalsIgnoreCase("account")) {
                 ApplicationData.getInstance().selectedWeekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
             }
             mDrawerLayout.openDrawer(Gravity.LEFT);
@@ -254,28 +267,40 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         }
     };
 
-    public void goToAproposPage(View view){
+    public void goToAproposPage(View view) {
         goToAproposPage();
     }
 
-    private void goToAproposPage(){
+    private void goToAproposPage() {
         Fragment fragment = new AproposFragment();
 
         ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
         FragmentManager fragmentManager = getFragmentManager();
         if (getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT") != null) {
             fragmentManager.beginTransaction().remove(getFragmentManager().findFragmentByTag("CURRENT_FRAGMENT")).commit();
-        }else{
+        } else {
         }
 
         try {
 
             fragmentManager.beginTransaction().replace(R.id.mainContent, fragment, "CURRENT_FRAGMENT").commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         mDrawerLayout.closeDrawer(mDrawerPane);
 
+    }
+
+    private void goToHomePage() {
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            ApplicationData.getInstance().accountType = "free";
+            Intent mainIntent = new Intent(this, LandingPageActivity.class);
+            startActivity(mainIntent);
+        }else{
+            ApplicationData.getInstance().accountType = "account";
+            Intent mainIntent = new Intent(this, LandingPageAccountActivity.class);
+            startActivity(mainIntent);
+        }
     }
 }
