@@ -64,6 +64,7 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         filter.addAction(this.getResources().getString(R.string.bilan_broadcast_subscribe));
         this.getApplicationContext().registerReceiver(the_receiver, filter);
 
+        apropos_ll = (LinearLayout)findViewById(R.id.apropos_ll);
 
         //landing page on the first launch
         if (ApplicationData.getInstance().showLandingPage) {
@@ -126,6 +127,8 @@ public class MainActivity extends BaseVideoActivity implements View.OnClickListe
         if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
             if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Home) {
                 goToHomePage();
+            }else if (ApplicationData.getInstance().selectedFragment == ApplicationData.SelectedFragment.Account_Apropos) {
+                goToAproposPage();
             }else {
                 selectItemFromDrawer(ApplicationData.getInstance().selectedFragment.getNumVal()+1);
             }

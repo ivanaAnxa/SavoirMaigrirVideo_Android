@@ -57,16 +57,20 @@ public class BrowserActivity extends Activity implements View.OnClickListener{
         contentString = getIntent().getStringExtra("URL_PATH");
 
         System.out.println("BrowserActivity contentString: " + contentString);
-        String autologinURL = contentString.replace("%d", Integer.toString(ApplicationData.getInstance().userDataContract.Id));
-        try {
-            autologinURL = autologinURL.replace("%password", AppUtil.SHA1(Integer.toString(ApplicationData.getInstance().userDataContract.Id) + "Dxx-|%dsDaI"));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            URLPath = WebkitURL.domainURL + contentString;
+        }else {
+            String autologinURL = contentString.replace("%d", Integer.toString(ApplicationData.getInstance().userDataContract.Id));
+            try {
+                autologinURL = autologinURL.replace("%password", AppUtil.SHA1(Integer.toString(ApplicationData.getInstance().userDataContract.Id) + "Dxx-|%dsDaI"));
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
 
-        URLPath = WebkitURL.domainURL + autologinURL;
+            URLPath = WebkitURL.domainURL + autologinURL;
+        }
 
         setContentView(R.layout.browser_layout);
 

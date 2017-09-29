@@ -56,26 +56,33 @@ public class AproposFragment extends Fragment implements View.OnClickListener {
         version_tv = (TextView) (mView.findViewById(R.id.apropos_version_tv));
         version_tv.setText("Version " + BuildConfig.VERSION_NAME);
 
-        apropos_row = (TableRow)(mView.findViewById(R.id.apropos_row));
+//        apropos_row = (TableRow)(mView.findViewById(R.id.apropos_row));
         conditions_row = (TableRow)(mView.findViewById(R.id.conditions_row));
         privacy_row = (TableRow)(mView.findViewById(R.id.privacy_row));
         contact_row = (TableRow)(mView.findViewById(R.id.contact_row));
         logout_row = (TableRow)(mView.findViewById(R.id.logout_row));
 
-        apropos_row.setOnClickListener(this);
+//        apropos_row.setOnClickListener(this);
         conditions_row.setOnClickListener(this);
         privacy_row.setOnClickListener(this);
         contact_row.setOnClickListener(this);
         logout_row.setOnClickListener(this);
 
-        return mView;
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            logout_row.setVisibility(View.GONE);
+        }else{
+            logout_row.setVisibility(View.VISIBLE);
+        }
+
+            return mView;
     }
 
     @Override
     public void onClick(View v) {
-        if (v == apropos_row){
-            goToAproposContentPage();
-        }else if (v == conditions_row){
+//        if (v == apropos_row){
+//            goToAproposContentPage();
+//        }else
+        if (v == conditions_row){
             goToConditionsPage();
         }else if (v == privacy_row){
             goToPrivacyPage();
@@ -129,21 +136,33 @@ public class AproposFragment extends Fragment implements View.OnClickListener {
     private void goToConditionsPage() {
         Intent mainContentBrowser = new Intent(context, BrowserActivity.class);
         mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.apropos_menu2));
-        mainContentBrowser.putExtra("URL_PATH", WebkitURL.conditionsURL);
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.free_conditionsURL);
+        }else {
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.conditionsURL);
+        }
         startActivity(mainContentBrowser);
     }
 
     private void goToPrivacyPage() {
         Intent mainContentBrowser = new Intent(context, BrowserActivity.class);
         mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.apropos_menu3));
-        mainContentBrowser.putExtra("URL_PATH", WebkitURL.privacyURL);
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.free_privacyURL);
+        }else {
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.privacyURL);
+        }
         startActivity(mainContentBrowser);
     }
 
     private void goToContactPage() {
         Intent mainContentBrowser = new Intent(context, BrowserActivity.class);
         mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.apropos_menu4));
-        mainContentBrowser.putExtra("URL_PATH", WebkitURL.contactURL);
+        if (ApplicationData.getInstance().accountType.equalsIgnoreCase("free")) {
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.free_contactURL);
+        }else {
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.contactURL);
+        }
         startActivity(mainContentBrowser);
     }
 

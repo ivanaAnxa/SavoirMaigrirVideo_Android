@@ -23,6 +23,10 @@ public class WebkitURL {
     public static String privacyURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/privacy";
     public static String contactURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/contact";
 
+    public static String free_conditionsURL = "/1dirparjour/minisite/cgv";
+    public static String free_privacyURL = "/1dirparjour/minisite/privacy";
+    public static String free_contactURL = "/1dirparjour/minisite/contact";
+
     public static String webinarURL = "/1dirparjour/webinar";
 
     public static String webinarAutoLoginURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/webinar";

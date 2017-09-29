@@ -170,13 +170,14 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/terms_of_service_account"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/terms_of_service"
                 android:background="@android:color/transparent"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:visibility="invisible"
+                android:visibility="visible"
                 />
         </LinearLayout>
     </LinearLayout>

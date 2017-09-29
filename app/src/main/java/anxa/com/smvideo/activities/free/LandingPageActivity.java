@@ -2,6 +2,7 @@ package anxa.com.smvideo.activities.free;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.LoginActivity;
 import anxa.com.smvideo.activities.MainActivity;
 import anxa.com.smvideo.activities.RegistrationActivity;
+import anxa.com.smvideo.activities.account.BrowserActivity;
+import anxa.com.smvideo.common.WebkitURL;
 
 /**
  * Created by aprilanxa on 31/05/2017.
@@ -20,6 +23,9 @@ import anxa.com.smvideo.activities.RegistrationActivity;
 public class LandingPageActivity extends Activity implements View.OnClickListener {
 
     private static final int BROWSERTAB_ACTIVITY = 1111;
+    private ImageView header_info_iv;
+    private Button conditions_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +33,6 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
         setContentView(R.layout.menu_page_free);
 
         ApplicationData.getInstance().showLandingPage = false;
-
-        ((ImageView) findViewById(R.id.header_info_iv)).setVisibility(View.GONE);
 
         //initialize on click (transfer inside api call if there will be one in the future
         ((Button) findViewById(R.id.LandingDiscoverButton)).setOnClickListener(this);
@@ -40,6 +44,14 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
         ((ImageView) findViewById(R.id.LandingImage2)).setOnClickListener(this);
         ((ImageView) findViewById(R.id.LandingImage3)).setOnClickListener(this);
         ((ImageView) findViewById(R.id.LandingImage4)).setOnClickListener(this);
+
+        header_info_iv = (ImageView) findViewById(R.id.header_info_iv);
+        header_info_iv.setOnClickListener(this);
+
+        conditions_btn = (Button) findViewById(R.id.terms_of_service_account);
+        conditions_btn.setPaintFlags(conditions_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        conditions_btn.setOnClickListener(this);
+
     }
 
     @Override
@@ -51,11 +63,14 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
             GoToRecettesPage();
         } else if (v.getId() == R.id.LandingBilanButton || v.getId() == R.id.LandingImage2) {
             GoToBilanPage();
-        }
-        if (v.getId() == R.id.LandingTemoignagesButton || v.getId() == R.id.LandingImage3) {
+        } else if (v.getId() == R.id.LandingTemoignagesButton || v.getId() == R.id.LandingImage3) {
             GoToTemoignagesPage();
         } else if (v.getId() == R.id.LandingRegisterButton) {
             goToRegistrationPage();
+        }else if (v == header_info_iv) {
+            goToAproposPage();
+        }else if (v == conditions_btn) {
+            goToConditionsPage();
         }
     }
 
@@ -115,6 +130,19 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
 
     @Override
     public void onBackPressed() {
+    }
+
+    private void goToAproposPage() {
+        ApplicationData.getInstance().selectedFragment = ApplicationData.SelectedFragment.Account_Apropos;
+        Intent mainIntent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(mainIntent);
+    }
+
+    private void goToConditionsPage() {
+        Intent mainContentBrowser = new Intent(this, BrowserActivity.class);
+        mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.apropos_menu2));
+        mainContentBrowser.putExtra("URL_PATH", WebkitURL.free_conditionsURL);
+        startActivity(mainContentBrowser);
     }
 
 }
