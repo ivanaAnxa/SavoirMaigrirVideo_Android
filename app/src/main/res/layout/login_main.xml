@@ -80,7 +80,17 @@
         android:layout_marginTop="20dp"
         android:clickable="true"
         android:onClick="validateLogin"/>
-
+    <TextView
+        android:text="@string/login_forgot_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        style="@style/whiteNormalMedium"
+        android:id="@+id/login_forgotpw"
+        android:clickable="true"
+        android:onClick="goToForgetPw"
+        android:layout_below="@+id/login_login_button"/>
     <TextView
         android:text="@string/login_back_to_landing"
         android:layout_width="wrap_content"

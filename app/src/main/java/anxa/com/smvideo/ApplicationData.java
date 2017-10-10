@@ -75,6 +75,8 @@ public class ApplicationData extends Application {
     public static long minimumAnxamatsSessionTime = 3000; //3 seconds
     public static long maximumAnxamatsSessionTime = 45000; //45 seconds
     public static long maximSessionTime = 300000; //300 seconds
+    public static  float minWeight = 40;
+    public static  float maxWeight = 200;
 
     private static final String PROPERTY_APP_LOGIN = "isLogin";
     private static final String PROPERTY_APP_LOGIN_USERNAME = "userName";

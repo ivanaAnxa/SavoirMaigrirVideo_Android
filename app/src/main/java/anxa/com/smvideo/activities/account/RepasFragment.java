@@ -382,6 +382,9 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
         if (v == nextDay_btn) {
             if (mealPlan_btn.isSelected()) {
                 if (isUserWeek0) {
+                    if(  weekNumber == 0){
+                        weekNumber = 1;
+                    }
                     if (weekNumber == 1) {
                         if (dayNumber == 7) {
                             weekNumber++;
@@ -471,10 +474,18 @@ public class RepasFragment extends Fragment implements View.OnClickListener {
                 }
             }
         } else if (v == mealPlan_btn) {
-            repasDay_et.setText(AppUtil.getRepasDateHeader(new Date(), true));
 
-            weekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
-            dayNumber = AppUtil.getCurrentDayNumber();
+            if (isUserWeek0) {
+                weekNumber = 1;
+                dayNumber = 1;
+                weekOffset = 0;
+                repasDay_et.setText(AppUtil.getRepasDateHeaderWeekDay(weekNumber, dayNumber));
+
+            }else{
+                weekNumber = AppUtil.getCurrentWeekNumber(Long.parseLong(ApplicationData.getInstance().dietProfilesDataContract.CoachingStartDate), new Date());
+                dayNumber = AppUtil.getCurrentDayNumber();
+            }
+
 
             mealPlan_btn.setSelected(true);
             shoppingList_btn.setSelected(false);
