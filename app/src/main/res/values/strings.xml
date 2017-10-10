@@ -21,7 +21,7 @@
     <string name="landing_3">Temoignages</string>
     <string name="landing_4">Recettes</string>
 
-    <string name="recipe_entree">Entreé</string>
+    <string name="recipe_entree">Entrée</string>
     <string name="recipe_salad">Salade</string>
     <string name="recipe_plat">Plat</string>
     <string name="recipe_dessert">Dessert</string>
@@ -133,7 +133,7 @@
     <string name="WEIGHT_GRAPH_SEE_MORE">Voir plus</string>
     <string name="WEIGHT_GRAPH_DEVICE">Appareil</string>
     <string name="WEIGHT_GRAPH_NO_MORE_CONTENTS_TO_SHOW">Fin du contenu</string>
-    <string name="WEIGHT_GRAPH_EDIT_WEIGHT">Editer de Poids</string>
+    <string name="WEIGHT_GRAPH_EDIT_WEIGHT">Editer le Poids</string>
     <string name="WEIGHT_BUTTON">Courbe de Poids</string>
     <string name="WEIGHT_GRAPH_NO_DATA">Poids actuel: Pas de données</string>
     <string name="WEIGHT_GRAPH_CURRENT_WEIGHT_ASOF">Poids actuel: %@ kg le</string>
@@ -144,12 +144,14 @@
     <string name="ALERTMESSAGE_DELETE_MEAL">Voulez-vous vraiment supprimer cette entrée ?</string>
     <string name="btn_no">Non</string>
     <string name="btn_yes">Oui</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">Annuler</string>
     <string name="ALERTMESSAGE_FIRSTNAME_EMPTY">Oops… Vous avez oublié d\'entrer votre prénom.</string>
     <string name="ALERTMESSAGE_HEIGHT">Oops… Vous avez oublié d\'entrer votre taille.</string>
     <string name="ALERTMESSAGE_CURRENTWEIGHT">Oops… Vous avez oublié d\'entrer votre poids actuel.</string>
     <string name="ALERTMESSAGE_TARGETWEIGHT">Oops… Vous avez oublié d\'entrer le poids que vous visez.</string>
     <string name="ALERTMESSAGE_EMAIL">Le format de votre e-mail est erronée. Veuillez entrer une adresse email valide .</string>
-
+    <string name="ALERTMESSAGE_ERRORWEIGHT_RANGE">Veuillez vérifier que le poids indiqué est entre 40 et 200kg</string>
 
     <!--Bilan Minceur-->
     <string name="bilan_broadcast_subscribe">SUBSCRIBE_BILAN</string>
@@ -229,7 +231,8 @@
     <string name="login_programme">Programme en vidéo</string>
     <string name="login_back_to_landing">Pas encore inscrit ?</string>
     <string name="login_email_placeholder">Votre adresse Email</string>
-    <string name="login_password_placeholder">Votre mot de pass</string>
+    <string name="login_password_placeholder">Votre mot de passe</string>
+    <string name="login_forgot_pw">Mot de passe oublié ?</string>
 
     <string name="ALERTMESSAGE_LOGIN_EMPTY">Authentification invalide</string>
     <string name="ALERTMESSAGE_LOGIN_FAILED">La connexion à votre compte a échoué.</string>
@@ -257,5 +260,5 @@
     <string name="apropos_menu4">Contact</string>
     <string name="apropos_menu5">Déconnexion</string>
     <string name="apropos_content">Cette application gratuite vous permet de découvrir les vraies raisons du succès de Savoir Maigrir, le programme de coaching minceur proposé par le nutritioniste Jean-Michel Cohen. Des conseils minceur peu connus et basés sur le bon sens, des témoignages incroyables de personnes ayant perdu jusqu\'à 40 kilos et un communauté active des dizaines de milliers de personnes qui se serrent les coudes pour mincir !</string>
-
+    <string name="contact">Contactez-nous</string>
 </resources>

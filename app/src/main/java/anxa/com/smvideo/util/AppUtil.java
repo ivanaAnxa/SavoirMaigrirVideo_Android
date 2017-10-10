@@ -727,7 +727,7 @@ public class AppUtil {
             TimeZone tz = cal.getTimeZone();
 
         /* date formatter in local timezone */
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
             sdf.setTimeZone(tz);
             localTime = sdf.format(date);

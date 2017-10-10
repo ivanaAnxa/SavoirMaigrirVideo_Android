@@ -225,6 +225,7 @@
                                 android:layout_height="30dp"
                                 android:gravity="center"
                                 android:hint=" (ex. 76.5)"
+                                android:maxLength="5"
                                 android:inputType="numberDecimal"
                                 android:textColor="@color/text_darkgray"
                                 android:textColorHint="@color/text_lightgray"

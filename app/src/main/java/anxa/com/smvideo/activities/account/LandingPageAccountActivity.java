@@ -35,7 +35,7 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
     TextView initial_weight_tv, target_weight_tv, lost_weight_tv;
     ProgressBar weightProgressBar, landingProgressBar;
     private ImageView header_info_iv;
-    private Button conditions_btn;
+    private Button contact_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +111,9 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         ((ImageView) findViewById(R.id.LandingImage6_account)).setOnClickListener(this);
         ((ImageView) findViewById(R.id.LandingImage7_account)).setOnClickListener(this);
 
-        conditions_btn = (Button) findViewById(R.id.terms_of_service_account);
-        conditions_btn.setPaintFlags(conditions_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        conditions_btn.setOnClickListener(this);
+        contact_btn = (Button) findViewById(R.id.contact_account);
+        contact_btn.setPaintFlags(contact_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        contact_btn.setOnClickListener(this);
 
     }
 
@@ -135,8 +135,8 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
             goToMonComptePage();
         } else if (v == header_info_iv) {
             goToAproposPage();
-        } else if (v == conditions_btn) {
-            goToConditionsPage();
+        } else if (v == contact_btn) {
+            goToContactPage();
         }
     }
 
@@ -208,7 +208,14 @@ public class LandingPageAccountActivity extends Activity implements View.OnClick
         mainContentBrowser.putExtra("URL_PATH", WebkitURL.conditionsURL);
         startActivity(mainContentBrowser);
     }
+    private void goToContactPage() {
+        Intent mainContentBrowser = new Intent(this, BrowserActivity.class);
+        mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.contact));
 
+        mainContentBrowser.putExtra("URL_PATH", WebkitURL.contactURL);
+
+        startActivity(mainContentBrowser);
+    }
     @Override
     public void onBackPressed() {
     }

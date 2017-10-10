@@ -1,11 +1,14 @@
 package anxa.com.smvideo.activities.account;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
@@ -677,6 +680,7 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
         }
 
         if (weightGraphHistoryDataList.size() > 7) {
+            weightLogsListCurrentDisplay.clear();
             for (int i = 0; i < 7; i++) {
                 weightLogsListCurrentDisplay.add(weightGraphHistoryDataList.get(i));
             }
@@ -764,32 +768,53 @@ public class WeightGraphFragment extends Fragment implements View.OnClickListene
 
         Float weightInput = Float.parseFloat(weightInput_tv);
 
-        long unixTime = System.currentTimeMillis() / 1000L;
-        final String toDate = String.valueOf(unixTime);
+        if(weightInput >= ApplicationData.getInstance().minWeight && weightInput <= ApplicationData.getInstance().maxWeight){
+            long unixTime = System.currentTimeMillis() / 1000L;
+            final String toDate = String.valueOf(unixTime);
 
-        WeightHistoryContract weightToPost = new WeightHistoryContract();
-        weightToPost.Date = unixTime;
-        weightToPost.WeightKg = weightInput;
-        weightToPost.Deleted = false;
-        weightToPost.UserId = ApplicationData.getInstance().regId;
+            WeightHistoryContract weightToPost = new WeightHistoryContract();
+            weightToPost.Date = unixTime;
+            weightToPost.WeightKg = weightInput;
+            weightToPost.Deleted = false;
+            weightToPost.UserId = ApplicationData.getInstance().regId;
 
-        weight_enter_et.setText("");
-        weightProgressBar.setVisibility(View.VISIBLE);
+            weight_enter_et.setText("");
+            weightProgressBar.setVisibility(View.VISIBLE);
 
-        caller.PostWeight(new AsyncResponse() {
-            @Override
-            public void processFinish(Object output) {
+            caller.PostWeight(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
 
-                //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
-                if (output != null) {
+                    //INITIALIZE ALL ONCLICK AND API RELATED PROCESS HERE TO AVOID CRASHES
+                    if (output != null) {
 
-                    System.out.println("PostWeight: " + output);
+                        System.out.println("PostWeight: " + output);
 
-                    getWeightHistoryAPI();
+                        getWeightHistoryAPI();
 
+                    }
                 }
+            }, weightToPost);
+        }else
+        {
+            AlertDialog.Builder builder;
+
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert);
+            }else{
+                builder = new AlertDialog.Builder(context);
             }
-        }, weightToPost);
+            builder.setMessage(context.getResources().getString(R.string.ALERTMESSAGE_ERRORWEIGHT_RANGE)).setPositiveButton(context.getResources().getString(R.string.btn_ok),
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        dialog.cancel();
+                    }
+                }).show();
+        }
+
 
     }
 

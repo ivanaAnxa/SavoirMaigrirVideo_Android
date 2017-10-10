@@ -7,11 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -220,6 +222,10 @@ public class WeightLogsListAdapter extends ArrayAdapter<WeightHistoryContract> i
 
         date.setInputType(InputType.TYPE_DATETIME_VARIATION_NORMAL | InputType.TYPE_DATETIME_VARIATION_DATE);
         weight.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        int maxLength = 5;
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(maxLength);
+        weight.setFilters(fArray);
 
         LinearLayout ll = new LinearLayout(context);
         ll.setOrientation(LinearLayout.VERTICAL);
@@ -232,20 +238,43 @@ public class WeightLogsListAdapter extends ArrayAdapter<WeightHistoryContract> i
         alertDialog.setView(ll);
 
         alertDialog.setCancelable(true);
-        alertDialog.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(context.getResources().getString(R.string.btn_ok), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
                 try {
                     selectedWeight.WeightKg = Float.valueOf(weight.getText().toString());
-                    if (isChangeDate) {
-                        selectedWeight.Date = myCalendar.getTime().getTime() / 1000;
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(weight_tv.getWindowToken(), 0);
+                    if( selectedWeight.WeightKg >= ApplicationData.getInstance().minWeight &&  selectedWeight.WeightKg <= ApplicationData.getInstance().maxWeight){
+                        if (isChangeDate) {
+                            selectedWeight.Date = myCalendar.getTime().getTime() / 1000;
+                        }
+                        ApplicationData.getInstance().currentWeight = selectedWeight;
+
+
+
+
+                        Intent broadint = new Intent();
+                        broadint.setAction(context.getResources().getString(R.string.WEIGHT_GRAPH_BROADCAST_EDIT));
+                        context.sendBroadcast(broadint);
+                    }else{
+                        AlertDialog.Builder builder;
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                            builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert);
+                        }else{
+                            builder = new AlertDialog.Builder(context);
+                        }
+                        builder.setMessage(context.getResources().getString(R.string.ALERTMESSAGE_ERRORWEIGHT_RANGE)).setPositiveButton(context.getResources().getString(R.string.btn_ok),
+                                new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.cancel();
+                                    }
+                                }).show();
                     }
-                    ApplicationData.getInstance().currentWeight = selectedWeight;
 
-
-                    Intent broadint = new Intent();
-                    broadint.setAction(context.getResources().getString(R.string.WEIGHT_GRAPH_BROADCAST_EDIT));
-                    context.sendBroadcast(broadint);
                 }catch (NumberFormatException e){
                     e.printStackTrace();
 
@@ -264,7 +293,7 @@ public class WeightLogsListAdapter extends ArrayAdapter<WeightHistoryContract> i
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(context.getResources().getString(R.string.btn_cancel), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
                 //ACTION

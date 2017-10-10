@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Browser;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
+import anxa.com.smvideo.activities.account.BrowserActivity;
 import anxa.com.smvideo.activities.account.LandingPageAccountActivity;
+import anxa.com.smvideo.common.WebkitURL;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.LoginContract;
@@ -137,5 +140,13 @@ public class LoginActivity extends Activity{
 
             }
         });
+    }
+
+    public void goToForgetPw(View view){
+        ApplicationData.getInstance().accountType = "free";
+        Intent mainContentBrowser = new Intent(this, BrowserActivity.class);
+        mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.login_forgot_pw));
+        mainContentBrowser.putExtra("URL_PATH", WebkitURL.forgetPw);
+        startActivity(mainContentBrowser);
     }
 }

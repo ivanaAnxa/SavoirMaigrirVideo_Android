@@ -24,7 +24,7 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
 
     private static final int BROWSERTAB_ACTIVITY = 1111;
     private ImageView header_info_iv;
-    private Button conditions_btn;
+    private Button contact_btn;
 
 
     @Override
@@ -48,9 +48,9 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
         header_info_iv = (ImageView) findViewById(R.id.header_info_iv);
         header_info_iv.setOnClickListener(this);
 
-        conditions_btn = (Button) findViewById(R.id.terms_of_service_account);
-        conditions_btn.setPaintFlags(conditions_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        conditions_btn.setOnClickListener(this);
+        contact_btn = (Button) findViewById(R.id.contact_account);
+        contact_btn.setPaintFlags(contact_btn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        contact_btn.setOnClickListener(this);
 
     }
 
@@ -69,8 +69,8 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
             goToRegistrationPage();
         }else if (v == header_info_iv) {
             goToAproposPage();
-        }else if (v == conditions_btn) {
-            goToConditionsPage();
+        }else if (v == contact_btn) {
+            goToContactPage();
         }
     }
 
@@ -105,7 +105,14 @@ public class LandingPageActivity extends Activity implements View.OnClickListene
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
     }
+    private void goToContactPage() {
+        Intent mainContentBrowser = new Intent(this, BrowserActivity.class);
+        mainContentBrowser.putExtra("HEADER_TITLE", getResources().getString(R.string.contact));
 
+            mainContentBrowser.putExtra("URL_PATH", WebkitURL.free_contactURL);
+
+        startActivity(mainContentBrowser);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == BROWSERTAB_ACTIVITY) {
