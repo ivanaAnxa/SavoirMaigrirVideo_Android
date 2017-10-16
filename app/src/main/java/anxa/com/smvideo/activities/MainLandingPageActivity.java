@@ -42,8 +42,11 @@ public class MainLandingPageActivity extends Activity {
     }
 
     private void goToRegistrationPage() {
-        Intent mainIntent = new Intent(this, RegistrationActivity.class);
-        startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
+        //Intent mainIntent = new Intent(this, RegistrationActivity.class);
+        //startActivityForResult(mainIntent, BROWSERTAB_ACTIVITY);
+
+        Intent mainIntent = new Intent(this, RegistrationFormActivity.class);
+        startActivity(mainIntent);
     }
 
     private void goToFreePage() {

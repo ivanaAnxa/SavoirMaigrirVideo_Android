@@ -60,15 +60,15 @@
         android:onClick="goToLoginPage"/>
 
     <TextView
-        android:text="@string/login_free_button"
+        android:id="@+id/login_free_tv"
+        style="@style/whiteNormalMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        style="@style/whiteNormalMedium"
-        android:id="@+id/login_free_tv"
-        android:layout_alignParentBottom="true"
         android:clickable="true"
-        android:onClick="goToFreePart"/>
+        android:onClick="goToFreePart"
+        android:text="@string/login_free_button" />
 
 </RelativeLayout>
