@@ -5,18 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.account.LandingPageAccountActivity;
 import anxa.com.smvideo.activities.free.LandingPageActivity;
+import anxa.com.smvideo.activities.registration.RegistrationFormActivity;
 import anxa.com.smvideo.connection.ApiCaller;
-import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.LoginContract;
-import anxa.com.smvideo.contracts.UserDataResponseContract;
 
 /**
  * Created by aprilanxa on 27/07/2017.

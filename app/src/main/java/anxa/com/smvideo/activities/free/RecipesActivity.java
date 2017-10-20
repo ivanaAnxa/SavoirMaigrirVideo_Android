@@ -20,15 +20,13 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
-import anxa.com.smvideo.activities.RegistrationActivity;
-import anxa.com.smvideo.activities.free.RecipeActivity;
+import anxa.com.smvideo.activities.registration.RegistrationActivity;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.RecipeContract;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
 import anxa.com.smvideo.ui.CustomListView;
 import anxa.com.smvideo.ui.RecipesListAdapter;
-import anxa.com.smvideo.util.AppUtil;
 
 /**
  * Created by angelaanxa on 5/24/2017.

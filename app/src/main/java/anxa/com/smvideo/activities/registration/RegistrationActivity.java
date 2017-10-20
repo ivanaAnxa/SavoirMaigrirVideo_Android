@@ -1,6 +1,7 @@
-package anxa.com.smvideo.activities;
+package anxa.com.smvideo.activities.registration;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -14,8 +15,10 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
@@ -23,6 +26,8 @@ import anxa.com.smvideo.common.WebkitURL;
 import anxa.com.smvideo.customview.VideoEnabledWebChromeClient;
 import anxa.com.smvideo.customview.VideoEnabledWebView;
 import anxa.com.smvideo.util.AppUtil;
+
+import static anxa.com.smvideo.util.AppUtil.isEmail;
 
 /**
  * Created by aprilanxa on 07/08/2017.
@@ -47,6 +52,7 @@ public class RegistrationActivity extends Activity {
 
         // Save the web view
         mainContentWebView = (VideoEnabledWebView) findViewById(R.id.maincontentWebView);
+
 
         forwardBrowserButton = (ImageButton) findViewById(R.id.forward);
         forwardBrowserButton.setOnClickListener(new View.OnClickListener() {
@@ -204,6 +210,8 @@ public class RegistrationActivity extends Activity {
         webSettings.setLoadWithOverviewMode(true);
 
     }
+
+
 }
 
 

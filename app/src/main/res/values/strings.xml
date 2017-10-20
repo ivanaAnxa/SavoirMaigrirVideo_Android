@@ -146,12 +146,20 @@
     <string name="btn_yes">Oui</string>
     <string name="btn_ok">OK</string>
     <string name="btn_cancel">Annuler</string>
+    <string name="btn_validate">Valider</string>
     <string name="ALERTMESSAGE_FIRSTNAME_EMPTY">Oops… Vous avez oublié d\'entrer votre prénom.</string>
     <string name="ALERTMESSAGE_HEIGHT">Oops… Vous avez oublié d\'entrer votre taille.</string>
     <string name="ALERTMESSAGE_CURRENTWEIGHT">Oops… Vous avez oublié d\'entrer votre poids actuel.</string>
     <string name="ALERTMESSAGE_TARGETWEIGHT">Oops… Vous avez oublié d\'entrer le poids que vous visez.</string>
     <string name="ALERTMESSAGE_EMAIL">Le format de votre e-mail est erronée. Veuillez entrer une adresse email valide .</string>
     <string name="ALERTMESSAGE_ERRORWEIGHT_RANGE">Veuillez vérifier que le poids indiqué est entre 40 et 200kg</string>
+
+    <string name="SIGNUP_EMAIL_ERROR">Le format de votre e-mail est erronée. Veuillez entrer une adresse email valide .</string>
+    <string name="ALERTMESSAGE_LASTNAME_EMPTY">Oops… Vous n\'avez pas entré votre nom de famille.</string>
+    <string name="ALERTMESSAGE_PASSWORD_EMPTY">Pour compléter votre inscription, merci de saisir un mot de passe.</string>
+    <string name="ALERTMESSAGE_GENDER_EMPTY">Oops… Vous avez oublié de préciser si vous êtes un homme ou une femme.</string>
+    <string name="ALERTMESSAGE_COUNTRY_EMPTY"> Oops… ressemble vous avez raté votre pays.</string>
+    <string name="ALERTMESSAGE_FORM_EMPTY_TITLE">Oops… Vous avez oublié de remplir certains champs.</string>
 
     <!--Bilan Minceur-->
     <string name="bilan_broadcast_subscribe">SUBSCRIBE_BILAN</string>
@@ -275,5 +283,11 @@
     <string name="incription_3mois">3 mois € 29,90</string>
     <string name="incription_832mois">€ 8,32/ mois</string>
     <string name="incription_6mois">6 mois € 49,90</string>
+    <string name="title_activity_landing">LandingActivity</string>
 
+    <string name="registration_bravoWelcome">Bravo et bienvenue dans votre programme Savoir Maigrir</string>
+    <string name="registration_validateAccount">Pour valider votre compte :</string>
+    <string name="registration_confirmEmail">confirmez votre email</string>
+    <string name="registration_createPassword">Créez un mot de passe</string>
+    <string name="registration_choosePseudo">Choisissez un pseudo pour participer aux webinaires en direct</string>
 </resources>
