@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/registrationform2_headermenu"
+        layout="@layout/header_menu"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/common_gray_separator" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:paddingBottom="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_background"
+            android:layout_margin="10dp"
+            android:id="@+id/rl_title"
+            >
+            <TextView
+                android:id="@+id/tv_selCoaching_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/registration_mealprofile_title"
+                style="@style/boldBlackText"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:layout_below="@+id/rl_title">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/registration_mealprofile_desc"
+                style="@style/regBlackText"/>
+        </RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_desc"
+            android:layout_marginBottom="80dp">
+            <RelativeLayout
+                android:id="@+id/rl_coachingContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:background="@android:color/white"
+                android:layout_below="@+id/rl_desc">
+
+                <LinearLayout
+                    android:id="@+id/ll_classic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:id="@+id/cbClassic"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgClassic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_repas_classique"
+                            android:layout_toRightOf="@+id/cbClassic"/>
+                        <TextView
+                            android:id="@+id/tv_Classic_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_classique"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgClassic"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_classic_desc"
+                            android:layout_below="@id/tv_Classic_title"
+                            android:layout_toRightOf="@id/imgClassic"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_mincir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_classic"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbMincir"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgMincir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_mincir_a_petit_prix"
+                            android:layout_toRightOf="@+id/cbMincir"/>
+                        <TextView
+                            android:id="@+id/tv_Mincir_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_pour"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgMincir"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_mincir_desc"
+                            android:layout_below="@id/tv_Mincir_title"
+                            android:layout_toRightOf="@id/imgMincir"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_vegetarien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_mincir"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbVegetarien"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgVegetarien"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_vegetarien"
+                            android:layout_toRightOf="@+id/cbVegetarien"/>
+                        <TextView
+                            android:id="@+id/tv_Vegetarien_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_vegetarien"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgVegetarien"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_vegetarien_desc"
+                            android:layout_below="@id/tv_Vegetarien_title"
+                            android:layout_toRightOf="@id/imgVegetarien"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_colopathie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_vegetarien"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbColopathie"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgColopathie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_special_colopathie"
+                            android:layout_toRightOf="@+id/cbColopathie"/>
+                        <TextView
+                            android:id="@+id/tv_Colopathie_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_special"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgColopathie"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_colopathie_desc"
+                            android:layout_below="@id/tv_Colopathie_title"
+                            android:layout_toRightOf="@id/imgColopathie"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_brunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_colopathie"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbBrunch"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgBrunch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_brunch_et_diner"
+                            android:layout_toRightOf="@+id/cbBrunch"/>
+                        <TextView
+                            android:id="@+id/tv_Brunch_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_brunch"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgBrunch"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_brunch_desc"
+                            android:layout_below="@id/tv_Brunch_title"
+                            android:layout_toRightOf="@id/imgBrunch"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_nobreakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_brunch"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoBreakfast"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoBreakfast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_san_petit_dejeuner"
+                            android:layout_toRightOf="@+id/cbNoBreakfast"/>
+                        <TextView
+                            android:id="@+id/tv_NoBreakfast_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_petit_dejeuner"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoBreakfast"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_brunch_desc"
+                            android:layout_below="@id/tv_NoBreakfast_title"
+                            android:layout_toRightOf="@id/imgNoBreakfast"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nolunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_nobreakfast"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoLunch"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoLunch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_dejeuner"
+                            android:layout_toRightOf="@+id/cbNoLunch"/>
+                        <TextView
+                            android:id="@+id/tv_cbNoLunch_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_dejeuner"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoLunch"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_nodinner_desc"
+                            android:layout_below="@id/tv_cbNoLunch_title"
+                            android:layout_toRightOf="@id/imgNoLunch"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nodinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_nolunch"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoDinner"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoDinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_diner"
+                            android:layout_toRightOf="@+id/cbNoDinner"/>
+                        <TextView
+                            android:id="@+id/tv_NoDinner_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_diner"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoDinner"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_nodinner_desc"
+                            android:layout_below="@id/tv_NoDinner_title"
+                            android:layout_toRightOf="@id/imgNoDinner"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nomilk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_nodinner"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoMilk"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoMilk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_lait_de_vache"
+                            android:layout_toRightOf="@+id/cbNoMilk"/>
+                        <TextView
+                            android:id="@+id/tv_NoMilk_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_vache"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoMilk"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_nomilk_desc"
+                            android:layout_below="@id/tv_NoMilk_title"
+                            android:layout_toRightOf="@id/imgNoMilk"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nodairy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_nomilk"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoDairy"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoDairy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_laitage_mais_avec_fromage"
+                            android:layout_toRightOf="@+id/cbNoDairy"/>
+                        <TextView
+                            android:id="@+id/tv_NoDairy_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_laitages_avec"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoDairy"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_nodairywithcheese_desc"
+                            android:layout_below="@id/tv_NoDairy_title"
+                            android:layout_toRightOf="@id/imgNoDairy"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nodairynocheese"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_nodairy"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoDairyNoCheese"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoDairyNoCheese"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_laitage_et_sans_fromage"
+                            android:layout_toRightOf="@+id/cbNoDairyNoCheese"/>
+                        <TextView
+                            android:id="@+id/tv_NoDairyNoCheese_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_laitages_sans"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoDairyNoCheese"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_nodairynocheese_desc"
+                            android:layout_below="@id/tv_NoDairyNoCheese_title"
+                            android:layout_toRightOf="@id/imgNoDairyNoCheese"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_noporc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_nodairynocheese"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoPorc"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoPorc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_porc"
+                            android:layout_toRightOf="@+id/cbNoPorc"/>
+                        <TextView
+                            android:id="@+id/tv_NoPorc_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_viande_porc"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoPorc"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_noporc_desc"
+                            android:layout_below="@id/tv_NoPorc_title"
+                            android:layout_toRightOf="@id/imgNoPorc"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_nogluten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@id/ll_noporc"
+                    android:layout_marginBottom="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:button="@drawable/roundcheckbox_selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/cbNoGluten"
+                            android:paddingLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
+
+                        <ImageView
+                            android:id="@+id/imgNoGluten"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/po_sans_porc"
+                            android:layout_toRightOf="@+id/cbNoGluten"/>
+                        <TextView
+                            android:id="@+id/tv_NoGluten_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mon_compte_plans_gluten"
+                            style="@style/boldBlackText"
+                            android:layout_toRightOf="@id/imgNoGluten"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mealprofile_nogluten_desc"
+                            android:layout_below="@id/tv_NoGluten_title"
+                            android:layout_toRightOf="@id/imgNoGluten"
+                            android:layout_marginLeft="5dp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:indeterminateDrawable="@drawable/animateprogress"
+                android:visibility="visible" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation  ="horizontal"
+            android:layout_width ="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp">
+            <Button
+                android:id="@+id/save_btn"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button_orange_bilanminceur"
+                android:clickable="true"
+                style="@style/whiteNormalMedium"
+                android:text="@string/registration_continue"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/rl_coachingContainer"
+                android:layout_alignParentBottom="true"
+                android:onClick="validateForm"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

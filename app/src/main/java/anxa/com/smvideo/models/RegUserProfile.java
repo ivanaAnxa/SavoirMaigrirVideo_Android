@@ -11,14 +11,21 @@ public class RegUserProfile {
     private String password;
     private String gender;
     private String country;
-    private int initialWeight = 0;
-    private int targetWeight = 0;
+    private float initialWeight;
+    private float targetWeight;
     private String objective;
     private String motivation;
     private String minutesSpent;
     private String profession;
+    private Float height;
     private boolean receiveNewsLetter;
-
+    private int paymentId;
+    public String username;
+    private String bday;
+    private int coaching;
+    private int mealProfile;
+    private String cuisiner;
+    private boolean noCookingTrial;
     public int getSid() {
         return sid;
     }
@@ -116,19 +123,19 @@ public class RegUserProfile {
         this.country = country;
     }
 
-    public int getInitialWeight() {
+    public float getInitialWeight() {
         return initialWeight;
     }
 
-    public void setInitialWeight(int initialWeight) {
+    public void setInitialWeight(float initialWeight) {
         this.initialWeight = initialWeight;
     }
 
-    public int getTargetWeight() {
+    public float getTargetWeight() {
         return targetWeight;
     }
 
-    public void setTargetWeight(int targetWeight) {
+    public void setTargetWeight(float targetWeight) {
         this.targetWeight = targetWeight;
     }
 
@@ -155,4 +162,65 @@ public class RegUserProfile {
     public void setMinutesSpent(String minutesSpent) {
         this.minutesSpent = minutesSpent;
     }
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(int paymentId) {
+        this.paymentId =paymentId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String minutesSpent) {
+        this.username = username;
+    }
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public String getBday() {
+        return bday;
+    }
+
+    public void setBday(String bday) {
+        this.bday = bday;
+    }
+    public int getCoaching() {
+        return coaching;
+    }
+
+    public void setCoaching(int coaching) {
+        this.coaching =coaching;
+    }
+    public int getMealProfile() {
+        return mealProfile;
+    }
+
+    public void setMealProfile(int mealProfile) {
+        this.mealProfile =mealProfile;
+    }
+    public String getCuisiner() {
+        return cuisiner;
+    }
+
+
+
+    public void setCuisiner(String cuisiner) {
+        this.cuisiner = cuisiner;
+    }
+    public Boolean getNoCookingTrial() {
+        return noCookingTrial;
+    }
+    public void setNoCookingTrial(Boolean noCookingTrial) {
+        this.noCookingTrial = noCookingTrial;
+    }
+
 }

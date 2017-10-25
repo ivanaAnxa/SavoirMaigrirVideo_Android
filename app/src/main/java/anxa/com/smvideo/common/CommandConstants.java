@@ -38,4 +38,6 @@ public class CommandConstants {
     public static String COMMAND_GOOGLE_ORDER = "order";
     public static String COMMAND_GOOGLE_ORDER_CONFIRM = "confirmation";
     public static String COMMAND_GOOGLE_ORDER_UPDATE= "google-update";
+    public static String COMMAND_REGISTRATION= "register";
+    public static String COMMAND_REGISTRATIONUPDATE= "registerUpdate";
 }

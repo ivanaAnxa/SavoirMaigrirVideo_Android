@@ -160,7 +160,9 @@
     <string name="ALERTMESSAGE_GENDER_EMPTY">Oops… Vous avez oublié de préciser si vous êtes un homme ou une femme.</string>
     <string name="ALERTMESSAGE_COUNTRY_EMPTY"> Oops… ressemble vous avez raté votre pays.</string>
     <string name="ALERTMESSAGE_FORM_EMPTY_TITLE">Oops… Vous avez oublié de remplir certains champs.</string>
-
+    <string name="ALERTMESSAGE_PSEUDO_EMPTY">Ce pseudo est déjà utilisé par quelqu\'un d\'autre.</string>
+    <string name="ALERTMESSAGE_BDAY_EMPTY">Date de naissance est requise.</string>
+    <string name="ALERTMESSAGE_ACCOUNT_EXISTS">Ce email est déjà utilisé par quelqu\'un d\'autre.</string>
     <!--Bilan Minceur-->
     <string name="bilan_broadcast_subscribe">SUBSCRIBE_BILAN</string>
     <string name="bilan_subscribe_btn">Je m\'abone</string>
@@ -290,4 +292,53 @@
     <string name="registration_confirmEmail">confirmez votre email</string>
     <string name="registration_createPassword">Créez un mot de passe</string>
     <string name="registration_choosePseudo">Choisissez un pseudo pour participer aux webinaires en direct</string>
+    <string name="registration_objective">Définissez votre objectif</string>
+    <string name="registration_initialWeight">Je Pèse (en kg)</string>
+    <string name="registration_targetWeight">Je veux peser (en kg)</string>
+    <string name="registration_height">Je mesure (en cm)</string>
+    <string name="registration_birthday">Date de naissance</string>
+    <string name="registration_continue">Continuer</string>
+    <string name="registration_validateprofile">Je valide mon profil</string>
+    <string name="registration_myProfileHeader">Mon Profil</string>
+
+    <string name="coaching_classic">Classique</string>
+    <string name="coaching_difficult">Difficulté à maigrir</string>
+    <string name="coaching_deborde">Débordé(e)</string>
+    <string name="coaching_mobilite">Mobilité réduite </string>
+    <string name="coaching_menopause">Ménopause </string>
+    <string name="coaching_medication">Sous traitement médicamenteux</string>
+    <string name="registration_coaching_title">Personnalisez vos sessions de coaching</string>
+    <string name="registration_coaching_desc">Pour bénéficier de sessions adaptées à votre profil sélectionnez le coaching qui vous convient : </string>
+    <string name="registration_mealprofile_title">Choisissez votre type de plan de repas</string>
+    <string name="registration_mealprofile_desc">Pour bénéficier de menus adaptés à vos habitudes alimentaires, sélectionnez vos plans de repas :</string>
+    <string name="coaching_classic_desc">la version originale de Savoir Maigrir adaptée au plus grand nombre</string>
+    <string name="coaching_difficult_desc">pour les personnes qui ont suivi plusieurs régimes</string>
+    <string name="coaching_deborde_desc">pour les personnes qui manquent de temps</string>
+    <string name="coaching_mobilite_desc">pour les personnes qui se déplacent très peu</string>
+    <string name="coaching_menopause_desc">pour les femmes ménopausées</string>
+    <string name="coaching_medication_desc">pour les personnes qui prennent des médicaments</string>
+
+    <string name="mealprofile_classic_desc">Menus variés et équilibrés</string>
+    <string name="mealprofile_mincir_desc">Menus rapides à moins de 50€ par semaine</string>
+    <string name="mealprofile_vegetarien_desc">Menus sans viande, sans poisson et sans fruits de mer</string>
+    <string name="mealprofile_colopathie_desc">Menus pauvres en fibres et aliments fermentescibles</string>
+    <string name="mealprofile_brunch_desc">1 brunch, 1 dîner, 1 collation dans la journée </string>
+    <string name="mealprofile_nobfast_desc">1 déjeuner, 1 dîner, 1 collation dans la journée</string>
+    <string name="mealprofile_nolunch_desc">1 petit déjeuner, 1 dîner, 1 collation dans la journée</string>
+    <string name="mealprofile_nodinner_desc">1 petit déjeuner, 1 déjeuner, 1 collation dans la journée</string>
+    <string name="mealprofile_nomilk_desc">Menus sans lait de vache mais avec laitage et fromage</string>
+    <string name="mealprofile_nodairywithcheese_desc">A base de lait et yaourts végétaux </string>
+    <string name="mealprofile_nodairynocheese_desc">A base de lait et yaourts végétaux et graines oléagineuses</string>
+    <string name="mealprofile_noporc_desc">Menus sans viande de porc</string>
+    <string name="mealprofile_nogluten_desc">Menus sans aliments contenant du gluten </string>
+
+    <string name="cooking_notime">Je n\'ai pas le temps de cuisiner</string>
+    <string name="cooking_30min">Moins de 30 minutes</string>
+    <string name="cooking_30minto1hr">Entre 30 minutes et 1 heure</string>
+    <string name="cooking_1hr">Plus d\'1 heure</string>
+
+    <string name="registration_nocooking_title">Avez-vous le temps de cuisiner ?</string>
+    <string name="registration_nocooking_desc">De combien de temps disposez-vous par jour pour préparer vos repas et ceux du foyer :</string>
+    <string name="registration_nocookingplan_interested">Êtes-vous intéressé pour tester nos nouveaux plans de repas sans cuisiner</string>
+    <string name="registration_nocookingplan_duration">(pendant 7 à 15 jours)</string>
 </resources>

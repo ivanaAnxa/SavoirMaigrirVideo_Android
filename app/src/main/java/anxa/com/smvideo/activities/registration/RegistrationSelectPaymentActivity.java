@@ -301,6 +301,8 @@ private TVPaymentOrderContract tvPaymentOrderContract;
             tvPaymentOrderContract.email = ApplicationData.getInstance().regUserProfile.getEmail();
             tvPaymentOrderContract.firstname = ApplicationData.getInstance().regUserProfile.getFirstname();
             tvPaymentOrderContract.surname = ApplicationData.getInstance().regUserProfile.getLastname();
+            tvPaymentOrderContract.sid = 221;
+            tvPaymentOrderContract.siteId = 3;
 
             paymentOrderGoogleContract = new PaymentOrderGoogleContract();
             paymentOrderGoogleContract.setOrderId(purchase.getOrderId());
@@ -368,7 +370,7 @@ private TVPaymentOrderContract tvPaymentOrderContract;
             }
         }, tvPaymentOrderContract);
     }
-    private void confirmGoogleOrder(int paymentId)
+    private void confirmGoogleOrder(final int paymentId)
     {
         PaymentConfirmationContract contract = new PaymentConfirmationContract();
         contract.PaymentReference = paymentOrderGoogleContract.getOrderId();
@@ -384,6 +386,7 @@ private TVPaymentOrderContract tvPaymentOrderContract;
 
                     }
                     if (responseContract.Message.equalsIgnoreCase("Successful")) {
+                        ApplicationData.getInstance().regUserProfile.setPaymentId(paymentId);
                         proceedToAccountCreationPage();
                     }
                 }
