@@ -37,15 +37,18 @@
             android:background="@android:color/white"
             android:padding="5dp"
             tools:style="@style/RepasContent">
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/grayText"
+                android:text="@string/registration_fn"/>
             <EditText
                 android:id="@+id/et_firstName"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
-                android:gravity="center_vertical|left"
-                android:hint="@string/registration_fn"
+                android:gravity="center_vertical|right"
                 android:inputType="textCapWords|text"
                 android:maxLength="50"
                 android:paddingLeft="10dp"
@@ -63,15 +66,18 @@
             android:layout_height="40dp"
             android:background="@android:color/white"
             android:padding="5dp">
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/grayText"
+                android:text="@string/registration_ln"/>
             <EditText
                 android:id="@+id/et_lastName"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
-                android:gravity="center_vertical|left"
-                android:hint="@string/registration_ln"
+                android:gravity="center_vertical|right"
                 android:inputType="textCapWords|text"
                 android:maxLength="50"
                 android:paddingLeft="10dp"
@@ -90,15 +96,18 @@
             android:layout_height="40dp"
             android:background="@android:color/white"
             android:padding="5dp">
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/grayText"
+                android:text="@string/registration_initialWeight"/>
             <EditText
                 android:id="@+id/et_initialWeight"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="sans-serif"
-                android:gravity="center_vertical|left"
-                android:hint="@string/registration_initialWeight"
+                android:gravity="center_vertical|right"
                 android:inputType="numberDecimal"
                 android:maxLength="50"
                 android:paddingLeft="10dp"
@@ -116,15 +125,18 @@
         android:layout_height="40dp"
         android:background="@android:color/white"
         android:padding="5dp">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/registration_targetWeight"/>
         <EditText
             android:id="@+id/et_targetWeight"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif"
-            android:gravity="center_vertical|left"
-            android:hint="@string/registration_targetWeight"
+            android:gravity="center_vertical|right"
             android:inputType="numberDecimal"
             android:maxLength="50"
             android:paddingLeft="10dp"
@@ -142,15 +154,18 @@
         android:layout_height="40dp"
         android:background="@android:color/white"
         android:padding="5dp">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/registration_height"/>
         <EditText
             android:id="@+id/et_height"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif"
-            android:gravity="center_vertical|left"
-            android:hint="@string/registration_height"
+            android:gravity="center_vertical|right"
             android:inputType="numberDecimal"
             android:maxLength="50"
             android:paddingLeft="10dp"
@@ -169,15 +184,18 @@
         android:layout_height="40dp"
         android:background="@android:color/white"
         android:padding="5dp">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/mon_compte_sexe"/>
         <EditText
             android:id="@+id/et_sexe"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif"
-            android:gravity="center_vertical|left"
-            android:hint="@string/mon_compte_sexe"
+            android:gravity="center_vertical|right"
             android:inputType="none"
             android:maxLength="50"
             android:paddingLeft="10dp"
@@ -198,15 +216,18 @@
         android:layout_height="40dp"
         android:background="@android:color/white"
         android:padding="5dp">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/registration_birthday"/>
         <EditText
             android:id="@+id/et_bday"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif"
-            android:gravity="center_vertical|left"
-            android:hint="@string/registration_birthday"
+            android:gravity="center_vertical|right"
             android:inputType="none"
             android:maxLength="50"
             android:paddingLeft="10dp"

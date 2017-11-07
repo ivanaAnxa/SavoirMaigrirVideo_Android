@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/registrationform2_headermenu"
-        layout="@layout/header_menu"
+        layout="@layout/reg_profile_header"
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
@@ -92,7 +92,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_repas_classique"
-                            android:layout_toRightOf="@+id/cbClassic"/>
+                            android:layout_toRightOf="@+id/cbClassic"
+                            android:onClick="setCheckBoxValue"/>
                         <TextView
                             android:id="@+id/tv_Classic_title"
                             android:layout_width="match_parent"
@@ -100,14 +101,17 @@
                             android:text="@string/mon_compte_plans_classique"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgClassic"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/mealprofile_classic_desc"
                             android:layout_below="@id/tv_Classic_title"
                             android:layout_toRightOf="@id/imgClassic"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:clickable="true"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -137,7 +141,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_mincir_a_petit_prix"
-                            android:layout_toRightOf="@+id/cbMincir"/>
+                            android:layout_toRightOf="@+id/cbMincir"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_Mincir_title"
                             android:layout_width="match_parent"
@@ -145,7 +151,9 @@
                             android:text="@string/mon_compte_plans_pour"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgMincir"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -182,7 +190,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_vegetarien"
-                            android:layout_toRightOf="@+id/cbVegetarien"/>
+                            android:layout_toRightOf="@+id/cbVegetarien"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_Vegetarien_title"
                             android:layout_width="match_parent"
@@ -190,7 +200,9 @@
                             android:text="@string/mon_compte_plans_vegetarien"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgVegetarien"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:clickable="true"
+                            android:onClick="setCheckBoxValue"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -228,7 +240,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_special_colopathie"
-                            android:layout_toRightOf="@+id/cbColopathie"/>
+                            android:layout_toRightOf="@+id/cbColopathie"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_Colopathie_title"
                             android:layout_width="match_parent"
@@ -236,14 +250,17 @@
                             android:text="@string/mon_compte_plans_special"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgColopathie"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/mealprofile_colopathie_desc"
                             android:layout_below="@id/tv_Colopathie_title"
                             android:layout_toRightOf="@id/imgColopathie"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -273,7 +290,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_brunch_et_diner"
-                            android:layout_toRightOf="@+id/cbBrunch"/>
+                            android:layout_toRightOf="@+id/cbBrunch"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_Brunch_title"
                             android:layout_width="match_parent"
@@ -281,7 +300,9 @@
                             android:text="@string/mon_compte_plans_brunch"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgBrunch"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -319,7 +340,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_san_petit_dejeuner"
-                            android:layout_toRightOf="@+id/cbNoBreakfast"/>
+                            android:layout_toRightOf="@+id/cbNoBreakfast"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_NoBreakfast_title"
                             android:layout_width="match_parent"
@@ -327,7 +350,9 @@
                             android:text="@string/mon_compte_plans_petit_dejeuner"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoBreakfast"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -364,7 +389,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_dejeuner"
-                            android:layout_toRightOf="@+id/cbNoLunch"/>
+                            android:layout_toRightOf="@+id/cbNoLunch"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_cbNoLunch_title"
                             android:layout_width="match_parent"
@@ -372,7 +399,9 @@
                             android:text="@string/mon_compte_plans_dejeuner"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoLunch"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -409,7 +438,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_diner"
-                            android:layout_toRightOf="@+id/cbNoDinner"/>
+                            android:layout_toRightOf="@+id/cbNoDinner"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_NoDinner_title"
                             android:layout_width="match_parent"
@@ -417,14 +448,16 @@
                             android:text="@string/mon_compte_plans_diner"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoDinner"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/mealprofile_nodinner_desc"
                             android:layout_below="@id/tv_NoDinner_title"
                             android:layout_toRightOf="@id/imgNoDinner"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:clickable="true"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -454,7 +487,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_lait_de_vache"
-                            android:layout_toRightOf="@+id/cbNoMilk"/>
+                            android:layout_toRightOf="@+id/cbNoMilk"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_NoMilk_title"
                             android:layout_width="match_parent"
@@ -462,7 +497,9 @@
                             android:text="@string/mon_compte_plans_vache"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoMilk"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -499,7 +536,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_laitage_mais_avec_fromage"
-                            android:layout_toRightOf="@+id/cbNoDairy"/>
+                            android:layout_toRightOf="@+id/cbNoDairy"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_NoDairy_title"
                             android:layout_width="match_parent"
@@ -507,7 +546,9 @@
                             android:text="@string/mon_compte_plans_laitages_avec"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoDairy"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -544,7 +585,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_laitage_et_sans_fromage"
-                            android:layout_toRightOf="@+id/cbNoDairyNoCheese"/>
+                            android:layout_toRightOf="@+id/cbNoDairyNoCheese"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_NoDairyNoCheese_title"
                             android:layout_width="match_parent"
@@ -552,7 +595,9 @@
                             android:text="@string/mon_compte_plans_laitages_sans"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoDairyNoCheese"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -586,7 +631,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_porc"
-                            android:layout_toRightOf="@+id/cbNoPorc"/>
+                            android:layout_toRightOf="@+id/cbNoPorc"
+                            android:clickable="true"
+                            android:onClick="setCheckBoxValue"/>
                         <TextView
                             android:id="@+id/tv_NoPorc_title"
                             android:layout_width="match_parent"
@@ -594,14 +641,17 @@
                             android:text="@string/mon_compte_plans_viande_porc"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoPorc"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/mealprofile_noporc_desc"
                             android:layout_below="@id/tv_NoPorc_title"
                             android:layout_toRightOf="@id/imgNoPorc"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -628,7 +678,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/po_sans_porc"
-                            android:layout_toRightOf="@+id/cbNoGluten"/>
+                            android:layout_toRightOf="@+id/cbNoGluten"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:id="@+id/tv_NoGluten_title"
                             android:layout_width="match_parent"
@@ -636,7 +688,9 @@
                             android:text="@string/mon_compte_plans_gluten"
                             style="@style/boldBlackText"
                             android:layout_toRightOf="@id/imgNoGluten"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:onClick="setCheckBoxValue"
+                            android:clickable="true"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

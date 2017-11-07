@@ -16,6 +16,7 @@ import java.util.List;
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.LoginActivity;
+import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.BaseContract;
@@ -39,9 +40,7 @@ public class RegistrationSelectPaymentActivity extends Activity implements IabBr
     static final String TAG = "SMVideo";
     ApiCaller caller;
 
-    // SKU for our subscription
-    private static final String SKU_JMC_3MONTHS = "sm_video_auto_renewable_3months";
-    private static final String SKU_JMC_6MONTHS = "sm_video_auto_renewable_6months";
+
 
     // Does the user have the premium upgrade?
     boolean mIsPremium = false;
@@ -56,7 +55,7 @@ public class RegistrationSelectPaymentActivity extends Activity implements IabBr
     boolean mSubscribedTo = false;
     String mSelectedSubscriptionPeriod = "";
     private PaymentOrderGoogleContract paymentOrderGoogleContract;
-private TVPaymentOrderContract tvPaymentOrderContract;
+    private TVPaymentOrderContract tvPaymentOrderContract;
     static final int RC_REQUEST = 10001;
 
     @Override
@@ -138,15 +137,15 @@ private TVPaymentOrderContract tvPaymentOrderContract;
              */
 
             // Do we have the premium upgrade?
-            Purchase premiumPurchase = inventory.getPurchase(SKU_JMC_3MONTHS);
+            Purchase premiumPurchase = inventory.getPurchase(SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS);
             mIsPremium = (premiumPurchase != null && verifyDeveloperPayload(premiumPurchase));
             Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
 
             // First find out which subscription is auto renewing
-            Purchase jmc_3months = inventory.getPurchase(SKU_JMC_3MONTHS);
-            Purchase jmc_6months = inventory.getPurchase(SKU_JMC_6MONTHS);
+            Purchase jmc_3months = inventory.getPurchase(SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS);
+            Purchase jmc_6months = inventory.getPurchase(SavoirMaigrirVideoConstants.SKU_JMC_6MONTHS);
            if (jmc_3months != null && jmc_3months.isAutoRenewing()) {
-                mSubscribedSku = SKU_JMC_3MONTHS;
+                mSubscribedSku = SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS;
                 mAutoRenewEnabled = true;
 
                 paymentOrderGoogleContract = new PaymentOrderGoogleContract();
@@ -158,7 +157,7 @@ private TVPaymentOrderContract tvPaymentOrderContract;
 
                 alert("User is currently subscribed to: " + getString(R.string.incription_3mois) + "\nAutorenewable: " + mAutoRenewEnabled);
             } else if (jmc_6months != null && jmc_6months.isAutoRenewing()) {
-                mSubscribedSku = SKU_JMC_6MONTHS;
+                mSubscribedSku = SavoirMaigrirVideoConstants.SKU_JMC_6MONTHS;
                 mAutoRenewEnabled = true;
 
                 paymentOrderGoogleContract = new PaymentOrderGoogleContract();
@@ -238,12 +237,12 @@ private TVPaymentOrderContract tvPaymentOrderContract;
         return true;
     }
     public void subscribeTo3Months(View view) {
-        mSelectedSubscriptionPeriod = SKU_JMC_3MONTHS;
+        mSelectedSubscriptionPeriod = SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS;
         purchaseItem();
     }
 
     public void subscribeTo6Months(View view) {
-        mSelectedSubscriptionPeriod = SKU_JMC_6MONTHS;
+        mSelectedSubscriptionPeriod = SavoirMaigrirVideoConstants.SKU_JMC_6MONTHS;
         purchaseItem();
     }
 
@@ -312,16 +311,16 @@ private TVPaymentOrderContract tvPaymentOrderContract;
             paymentOrderGoogleContract.setPurchaseToken(purchase.getToken());
             paymentOrderGoogleContract.setStatus(0);
 
-            if (purchase.getSku().equals(SKU_JMC_3MONTHS)) {
+            if (purchase.getSku().equals(SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS)) {
                 paymentOrderGoogleContract.setDescription(getString(R.string.incription_3mois));
-                tvPaymentOrderContract.ProductId = SKU_JMC_3MONTHS;
-            } else if (purchase.getSku().equals(SKU_JMC_6MONTHS)) {
+                tvPaymentOrderContract.ProductId = SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS;
+            } else if (purchase.getSku().equals(SavoirMaigrirVideoConstants.SKU_JMC_6MONTHS)) {
                 paymentOrderGoogleContract.setDescription(getString(R.string.incription_6mois));
-                tvPaymentOrderContract.ProductId = SKU_JMC_6MONTHS;
+                tvPaymentOrderContract.ProductId = SavoirMaigrirVideoConstants.SKU_JMC_6MONTHS;
             }
 
-            if (purchase.getSku().equals(SKU_JMC_3MONTHS)
-                    || purchase.getSku().equals(SKU_JMC_6MONTHS)) {
+            if (purchase.getSku().equals(SavoirMaigrirVideoConstants.SKU_JMC_3MONTHS)
+                    || purchase.getSku().equals(SavoirMaigrirVideoConstants.SKU_JMC_6MONTHS)) {
                 //alert("Thank you for subscribing to JMC!");
                 mSubscribedTo = true;
                 mAutoRenewEnabled = purchase.isAutoRenewing();

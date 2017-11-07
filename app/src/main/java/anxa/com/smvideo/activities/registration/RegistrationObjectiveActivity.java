@@ -219,7 +219,7 @@ public class RegistrationObjectiveActivity extends Activity implements View.OnCl
         finish();
     }
     private void goToCoachingSelect()
-    {
+    { progressLayout.setVisibility(View.GONE);
         Intent mainIntent = new Intent(this, RegistrationSelectCoachingActivity.class);
         startActivity(mainIntent);
     }

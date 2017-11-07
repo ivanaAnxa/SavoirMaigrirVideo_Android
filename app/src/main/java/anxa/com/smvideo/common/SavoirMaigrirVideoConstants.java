@@ -11,4 +11,8 @@ public class SavoirMaigrirVideoConstants {
 
     public static final int ANXAMATS_APPLICATIONID = 2109;
 
+    // SKU for our subscription
+    public static final String SKU_JMC_3MONTHS = "sm_video_auto_renewable_3months";
+    public static final String SKU_JMC_6MONTHS = "sm_video_auto_renewable_6months";
+
 }

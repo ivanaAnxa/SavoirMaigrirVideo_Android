@@ -3,9 +3,11 @@ package anxa.com.smvideo.activities.registration;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,13 +22,20 @@ import anxa.com.smvideo.activities.MainLandingPageActivity;
 import anxa.com.smvideo.activities.SplashActivity;
 import anxa.com.smvideo.activities.account.LandingPageAccountActivity;
 import anxa.com.smvideo.activities.free.LandingPageActivity;
+import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.BaseContract;
 import anxa.com.smvideo.contracts.LoginContract;
+import anxa.com.smvideo.contracts.PaymentOrderGoogleContract;
 import anxa.com.smvideo.contracts.PaymentOrderResponseContract;
 import anxa.com.smvideo.contracts.TVRegistrationUpdateContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
+import anxa.com.smvideo.util.IabBroadcastReceiver;
+import anxa.com.smvideo.util.IabHelper;
+import anxa.com.smvideo.util.IabResult;
+import anxa.com.smvideo.util.Inventory;
+import anxa.com.smvideo.util.Purchase;
 
 /**
  * Created by angelaanxa on 10/24/2017.
@@ -45,6 +54,9 @@ public class SelectRegistrationCuisinerActivity extends Activity {
     ApiCaller caller;
 
     private LoginContract loginContract;
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +69,7 @@ public class SelectRegistrationCuisinerActivity extends Activity {
         //header change
         ((TextView) (this.findViewById(R.id.header_title_tv))).setText(R.string.registration_myProfileHeader);
         ((TextView) (this.findViewById(R.id.header_right_tv))).setVisibility(View.INVISIBLE);
-        ((ImageView) findViewById(R.id.header_menu_iv)).setVisibility(View.GONE);
+        ((ImageView) findViewById(R.id.header_menu_iv)).setVisibility(View.VISIBLE);
         ((ImageView) findViewById(R.id.header_menu_back)).setVisibility(View.GONE);
 
         btnSave = (Button)findViewById(R.id.save_btn);
@@ -72,8 +84,8 @@ public class SelectRegistrationCuisinerActivity extends Activity {
         progressLayout = (LinearLayout) findViewById(R.id.progress);
         progressLayout.setVisibility(View.GONE);
 
-
     }
+
     public void validateForm(View view) {
 
 
@@ -151,7 +163,7 @@ public class SelectRegistrationCuisinerActivity extends Activity {
         contract.height = ApplicationData.getInstance().regUserProfile.getHeight();
         contract.weight = ApplicationData.getInstance().regUserProfile.getInitialWeight();
         contract.targetWeight = ApplicationData.getInstance().regUserProfile.getTargetWeight();
-        if(ApplicationData.getInstance().regUserProfile.getGender() == getString(R.string.mon_compte_sexe_fem))
+        if(ApplicationData.getInstance().regUserProfile.getGender().equalsIgnoreCase(getString(R.string.mon_compte_sexe_fem)))
         {
             contract.gender = false;
         }
@@ -210,7 +222,7 @@ public class SelectRegistrationCuisinerActivity extends Activity {
 
                             ApplicationData.getInstance().setIsLogin(getBaseContext(), true);
                             ApplicationData.getInstance().saveLoginCredentials(loginContract.Email, loginContract.Password);
-
+                            //updateGoogleOrder();
                             goToAccountPage();
                         }
                     } else {
@@ -222,6 +234,7 @@ public class SelectRegistrationCuisinerActivity extends Activity {
         }, loginContract);
 
     }
+
 
     private void goToAccountPage() {
 
@@ -288,7 +301,93 @@ public class SelectRegistrationCuisinerActivity extends Activity {
                     cbCooking30min1hr.setChecked(false);
                 }
                 break;
+            case R.id.tv_cuisiner1:
+                if (cbCookingNoTime.isChecked()) {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(false);
+                }
+                else
+                {
+                    cbCookingNoTime.setChecked(true);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(false);
+                }
+                break;
+            case R.id.tv_cuisiner2:
+                if (cbCooking30min.isChecked()) {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(false);
+                }
+                else
+                {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(true);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(false);
+                }
+                break;
+            case R.id.tv_cuisiner3:
+                if (cbCooking30min1hr.isChecked()) {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(false);
+                }
+                else
+                {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(true);
+                    cbCooking1hr.setChecked(false);
+                }
+                break;
+            case R.id.tv_cuisiner4:
+                if (cbCooking1hr.isChecked()) {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(false);
+                }
+                else
+                {
+                    cbCookingNoTime.setChecked(false);
+                    cbCooking30min.setChecked(false);
+                    cbCooking30min1hr.setChecked(false);
+                    cbCooking1hr.setChecked(true);
+                }
+                break;
+            case R.id.tv_interested:
+                if (cbInterested.isChecked()) {
+                    cbNotInterested.setChecked(false);
+                    cbInterested.setChecked(false);
+                }
+                else
+                {
+                    cbNotInterested.setChecked(false);
+                    cbInterested.setChecked(true);
+                }
+                break;
+            case R.id.tv_NotInterested:
+                if (cbNotInterested.isChecked()) {
+                    cbInterested.setChecked(false);
+                    cbNotInterested.setChecked(false);
+                }
+                else
+                {
+                    cbNotInterested.setChecked(true);
+                    cbInterested.setChecked(false);
+                }
+                break;
             default:
         }
     }
+    public void onBackPressed(View view) {
+        super.onBackPressed();
+    }
+
 }

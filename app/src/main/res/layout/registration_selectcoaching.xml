@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/registrationform2_headermenu"
-        layout="@layout/header_menu"
+        layout="@layout/reg_profile_header"
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
@@ -91,7 +91,9 @@
                   android:layout_height="wrap_content"
                   android:text="@string/coaching_classic"
                   style="@style/boldBlackText"
-                  android:layout_toRightOf="@id/cbClassic"/>
+                  android:layout_toRightOf="@id/cbClassic"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
           <TextView
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -129,7 +131,9 @@
                   android:layout_height="wrap_content"
                   android:text="@string/coaching_difficult"
                   style="@style/boldBlackText"
-                  android:layout_toRightOf="@id/cbDifficult"/>
+                  android:layout_toRightOf="@id/cbDifficult"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
               <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -168,7 +172,9 @@
                   android:layout_height="wrap_content"
                   android:text="@string/coaching_deborde"
                   style="@style/boldBlackText"
-                  android:layout_toRightOf="@id/cbDebordee"/>
+                  android:layout_toRightOf="@id/cbDebordee"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
               <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -206,7 +212,9 @@
                   android:layout_height="wrap_content"
                   android:text="@string/coaching_mobilite"
                   style="@style/boldBlackText"
-                  android:layout_toRightOf="@id/cbMobilite"/>
+                  android:layout_toRightOf="@id/cbMobilite"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
               <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -245,7 +253,9 @@
                   android:layout_height="wrap_content"
                   android:text="@string/coaching_menopause"
                   style="@style/boldBlackText"
-                  android:layout_toRightOf="@id/cbMenopause"/>
+                  android:layout_toRightOf="@id/cbMenopause"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
               <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -284,7 +294,9 @@
                   android:layout_height="wrap_content"
                   android:text="@string/coaching_medication"
                   style="@style/boldBlackText"
-                  android:layout_toRightOf="@id/cbMedication"/>
+                  android:layout_toRightOf="@id/cbMedication"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
               <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"

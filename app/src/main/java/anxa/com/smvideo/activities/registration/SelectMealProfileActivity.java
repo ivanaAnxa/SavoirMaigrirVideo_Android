@@ -49,7 +49,7 @@ public class SelectMealProfileActivity extends Activity {
         //header change
         ((TextView) (this.findViewById(R.id.header_title_tv))).setText(R.string.registration_myProfileHeader);
         ((TextView) (this.findViewById(R.id.header_right_tv))).setVisibility(View.INVISIBLE);
-        ((ImageView) findViewById(R.id.header_menu_iv)).setVisibility(View.GONE);
+        ((ImageView) findViewById(R.id.header_menu_iv)).setVisibility(View.VISIBLE);
         ((ImageView) findViewById(R.id.header_menu_back)).setVisibility(View.GONE);
 
         btnSave = (Button)findViewById(R.id.save_btn);
@@ -161,6 +161,7 @@ public class SelectMealProfileActivity extends Activity {
     public void setCheckBoxValue(View view) {
         switch (view.getId()) {
             case R.id.cbClassic:
+
                 if (cbClassic.isChecked()) {
                     cbMincir.setChecked(false);
                     cbVegetarien.setChecked(false);
@@ -177,6 +178,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbMincir:
+
                 if (cbMincir.isChecked()) {
                     cbClassic.setChecked(false);
                     cbVegetarien.setChecked(false);
@@ -193,6 +195,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbVegetarien:
+
                 if (cbVegetarien.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -241,6 +244,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoBreakfast:
+
                 if (cbNoBreakfast.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -273,6 +277,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoDinner:
+
                 if (cbNoDinner.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -289,6 +294,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoMilk:
+
                 if (cbNoMilk.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -305,6 +311,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoDairy:
+
                 if (cbNoDairy.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -321,6 +328,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoDairyNoCheese:
+
                 if (cbNoDairyNoCheese.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -337,6 +345,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoPorc:
+
                 if (cbNoPorc.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -353,6 +362,7 @@ public class SelectMealProfileActivity extends Activity {
                 }
                 break;
             case R.id.cbNoGluten:
+
                 if (cbNoGluten.isChecked()) {
                     cbClassic.setChecked(false);
                     cbMincir.setChecked(false);
@@ -368,7 +378,474 @@ public class SelectMealProfileActivity extends Activity {
                     cbNoPorc.setChecked(false);
                 }
                 break;
+            case R.id.imgClassic:
+            case R.id.tv_Classic_title:
 
+                if (cbClassic.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(true);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                break;
+            case R.id.tv_Mincir_title:
+            case R.id.imgMincir:
+            {
+                if (cbMincir.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(true);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgVegetarien:
+            case R.id.tv_Vegetarien_title:
+            {
+                if (cbVegetarien.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(true);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgColopathie:
+            case R.id.tv_Colopathie_title:
+            {
+                if (cbColopathie.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(true);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgBrunch:
+            case R.id.tv_Brunch_title:
+            {
+                if (cbBrunch.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(true);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoBreakfast:
+            case R.id.tv_NoBreakfast_title:
+            {
+                if (cbNoBreakfast.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(true);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+
+            case R.id.imgNoLunch:
+            case R.id.tv_cbNoLunch_title:
+            {
+                if (cbNoLunch.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(true);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoDinner:
+            case R.id.tv_NoDinner_title:
+            {
+                if (cbNoDinner.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(true);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoMilk:
+            case R.id.tv_NoMilk_title:
+            {
+                if (cbNoMilk.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(true);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoDairy:
+            case R.id.tv_NoDairy_title:
+            {
+                if (cbNoDairy.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(true);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoDairyNoCheese:
+            case R.id.tv_NoDairyNoCheese_title:
+            {
+                if (cbNoDairyNoCheese.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(true);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoPorc:
+            case R.id.tv_NoPorc_title:
+            {
+                if (cbNoPorc.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(true);
+                    cbNoGluten.setChecked(false);
+                }
+            }
+            break;
+            case R.id.imgNoGluten:
+            case R.id.tv_NoGluten_title:
+            {
+                if (cbNoGluten.isChecked()) {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(false);
+                }
+                else
+                {
+                    cbClassic.setChecked(false);
+                    cbMincir.setChecked(false);
+                    cbVegetarien.setChecked(false);
+                    cbColopathie.setChecked(false);
+                    cbBrunch.setChecked(false);
+                    cbNoBreakfast.setChecked(false);
+                    cbNoLunch.setChecked(false);
+                    cbNoDinner.setChecked(false);
+                    cbNoMilk.setChecked(false);
+                    cbNoDairy.setChecked(false);
+                    cbNoDairyNoCheese.setChecked(false);
+                    cbNoPorc.setChecked(false);
+                    cbNoGluten.setChecked(true);
+                }
+            }
+            break;
             default:
         }
     }
@@ -390,7 +867,12 @@ public class SelectMealProfileActivity extends Activity {
     }
     private void goToRegistrationLastPage()
     {
+        progressLayout.setVisibility(View.GONE);
+        btnSave.setEnabled(true);
         Intent mainIntent = new Intent(this, SelectRegistrationCuisinerActivity.class);
         startActivity(mainIntent);
+    }
+    public void onBackPressed(View view) {
+        super.onBackPressed();
     }
 }

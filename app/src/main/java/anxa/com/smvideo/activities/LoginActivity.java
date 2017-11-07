@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Browser;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,12 +17,19 @@ import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.account.BrowserActivity;
 import anxa.com.smvideo.activities.account.LandingPageAccountActivity;
+import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.common.WebkitURL;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
 import anxa.com.smvideo.contracts.LoginContract;
+import anxa.com.smvideo.contracts.PaymentOrderGoogleContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.util.AppUtil;
+import anxa.com.smvideo.util.IabBroadcastReceiver;
+import anxa.com.smvideo.util.IabHelper;
+import anxa.com.smvideo.util.IabResult;
+import anxa.com.smvideo.util.Inventory;
+import anxa.com.smvideo.util.Purchase;
 
 /**
  * Created by aprilanxa on 27/07/2017.
@@ -35,6 +43,7 @@ public class LoginActivity extends Activity{
 
     private ApiCaller apiCaller;
     private ProgressBar loginProgressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

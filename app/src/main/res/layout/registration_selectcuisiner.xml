@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/registrationform2_headermenu"
-        layout="@layout/header_menu"
+        layout="@layout/reg_profile_header"
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
@@ -81,16 +81,19 @@
                         android:button="@drawable/roundcheckbox_selector"
                         android:id="@+id/cbCookingNoTime"
                         android:paddingLeft="5dp"
-                        android:onClick="setCheckBoxValue"/>
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
 
                     <TextView
-                        android:id="@+id/tv_Classic_title"
+                        android:id="@+id/tv_cuisiner1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cooking_notime"
                         style="@style/boldBlackText"
-                        android:layout_toRightOf="@id/cbCookingNoTime"/>
+                        android:layout_toRightOf="@id/cbCookingNoTime"
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -112,17 +115,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/cbCooking30min"
-                        android:paddingLeft="5dp"/>
+                        android:paddingLeft="5dp"
+                        android:onClick="setCheckBoxValue"/>
 
 
                     <TextView
-                        android:id="@+id/tv_Difficult_title"
+                        android:id="@+id/tv_cuisiner2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cooking_30min"
                         style="@style/boldBlackText"
                         android:layout_toRightOf="@id/cbCooking30min"
-                        android:onClick="setCheckBoxValue"/>
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -149,12 +154,14 @@
 
 
                     <TextView
-                        android:id="@+id/tv_Debordee_title"
+                        android:id="@+id/tv_cuisiner3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cooking_30minto1hr"
                         style="@style/boldBlackText"
-                        android:layout_toRightOf="@id/cbCooking30min1hr"/>
+                        android:layout_toRightOf="@id/cbCooking30min1hr"
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -181,12 +188,14 @@
 
 
                     <TextView
-                        android:id="@+id/tv_Mobilite_title"
+                        android:id="@+id/tv_cuisiner4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/cooking_1hr"
                         style="@style/boldBlackText"
-                        android:layout_toRightOf="@id/cbCooking1hr"/>
+                        android:layout_toRightOf="@id/cbCooking1hr"
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -251,7 +260,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/btn_yes"
                         style="@style/boldBlackText"
-                        android:layout_toRightOf="@id/cbInterested"/>
+                        android:layout_toRightOf="@id/cbInterested"
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -283,7 +294,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/btn_no"
                         style="@style/boldBlackText"
-                        android:layout_toRightOf="@id/cbNotInterested"/>
+                        android:layout_toRightOf="@id/cbNotInterested"
+                        android:onClick="setCheckBoxValue"
+                        android:clickable="true"/>
 
                 </RelativeLayout>
             </LinearLayout>
