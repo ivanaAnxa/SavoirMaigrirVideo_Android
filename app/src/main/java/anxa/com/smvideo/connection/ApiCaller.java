@@ -22,10 +22,19 @@ import anxa.com.smvideo.contracts.BMVideoResponseContract;
 import anxa.com.smvideo.contracts.BaseContract;
 import anxa.com.smvideo.contracts.CoachingVideosResponseContract;
 import anxa.com.smvideo.contracts.LoginContract;
+import anxa.com.smvideo.contracts.PaymentConfirmationContract;
+import anxa.com.smvideo.contracts.PaymentOrderDataContract;
+import anxa.com.smvideo.contracts.PaymentOrderGoogleContract;
+import anxa.com.smvideo.contracts.PaymentOrderResponseContract;
 import anxa.com.smvideo.contracts.PostAnxamatsContract;
 import anxa.com.smvideo.contracts.RecipeResponseContract;
+import anxa.com.smvideo.contracts.RegistrationDataContract;
+import anxa.com.smvideo.contracts.RegistrationResponseContract;
 import anxa.com.smvideo.contracts.RepasResponseContract;
 import anxa.com.smvideo.contracts.ShoppingListResponseContract;
+import anxa.com.smvideo.contracts.TVPaymentOrderContract;
+import anxa.com.smvideo.contracts.TVRegistrationContract;
+import anxa.com.smvideo.contracts.TVRegistrationUpdateContract;
 import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.UserDataResponseContract;
 import anxa.com.smvideo.contracts.VideoResponseContract;
@@ -271,7 +280,44 @@ public class ApiCaller {
 
         apiClient.PostAsync(asyncResponse, CommandConstants.API_TV, command, gson.toJson(weightGraphContract), WeightHistoryResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);
     }
+    public void PostGoogleOrder(AsyncResponse asyncResponse, TVPaymentOrderContract tvPaymentOrderContract) {
+        MasterCommand command = new MasterCommand();
+        //command.RegId = Integer.parseInt(regId);
+        Hashtable params = new Hashtable();
+        params.put("orderEmail", tvPaymentOrderContract.email);
 
+        command.Command = CommandConstants.COMMAND_GOOGLE_ORDER;
+
+        apiClient.PostAsync(asyncResponse, "tv/payment", command, gson.toJson(tvPaymentOrderContract), params, PaymentOrderResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);;
+    }
+    public void PostConfirmGoogleOrder(AsyncResponse asyncResponse, PaymentConfirmationContract paymentConfirmationContract) {
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.COMMAND_GOOGLE_ORDER_CONFIRM;
+        Hashtable params = new Hashtable();
+        params.put("confirmPaymentId", paymentConfirmationContract.PaymentId);
+        apiClient.PostAsync(asyncResponse, "tv/payment", command, gson.toJson(paymentConfirmationContract), params, BaseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);;
+    }
+    public void PostGoogleOrderUpdate(AsyncResponse asyncResponse, PaymentOrderGoogleContract paymentOrderGoogleContract, int regId) {
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.COMMAND_GOOGLE_ORDER_UPDATE;
+        command.RegId = regId;
+
+        apiClient.PostAsync(asyncResponse, "tv/payment", command, gson.toJson(paymentOrderGoogleContract), PaymentOrderResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);;
+    }
+    public void PostRegistration(AsyncResponse asyncResponse, TVRegistrationContract tvRegistrationContract, String email) {
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.COMMAND_REGISTRATION;
+        command.RegEmail = email;
+
+        apiClient.PostAsync(asyncResponse, "tv/registration", command, gson.toJson(tvRegistrationContract), RegistrationResponseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);;
+    }
+    public void PostRegistrationUpdate(AsyncResponse asyncResponse, TVRegistrationUpdateContract tvRegistrationContract, int regid) {
+        MasterCommand command = new MasterCommand();
+        command.Command = CommandConstants.COMMAND_REGISTRATIONUPDATE;
+        command.RegId = regid;
+
+        apiClient.PostAsync(asyncResponse, "tv/registration", command, gson.toJson(tvRegistrationContract), BaseContract.class, AsyncTask.THREAD_POOL_EXECUTOR);;
+    }
     public enum AnxamatsEvents
     {
         ANXAMATS_EVENTS_ACTIVETIME(1);

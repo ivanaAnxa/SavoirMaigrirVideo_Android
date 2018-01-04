@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -22,7 +21,7 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
-import anxa.com.smvideo.activities.RegistrationActivity;
+import anxa.com.smvideo.activities.registration.RegistrationActivity;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;

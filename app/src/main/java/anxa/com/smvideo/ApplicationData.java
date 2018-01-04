@@ -18,6 +18,7 @@ import anxa.com.smvideo.contracts.UserDataContract;
 import anxa.com.smvideo.contracts.VideoContract;
 import anxa.com.smvideo.contracts.WeightGraphContract;
 import anxa.com.smvideo.contracts.WeightHistoryContract;
+import anxa.com.smvideo.models.RegUserProfile;
 import anxa.com.smvideo.util.AppUtil;
 import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class ApplicationData extends Application {
     public int applicationId = 1;
     public String accountType = "account";
     public String userName = "User";
-
+    public RegUserProfile regUserProfile;
     private Context context;
 
     public static long minimumAnxamatsSessionTime = 3000; //3 seconds

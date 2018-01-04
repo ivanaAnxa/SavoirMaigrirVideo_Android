@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/registrationform2_headermenu"
+        layout="@layout/reg_profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/common_gray_separator" />
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingBottom="20dp">
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/gray_background"
+          android:layout_margin="10dp"
+          android:id="@+id/rl_title"
+          >
+          <TextView
+              android:id="@+id/tv_selCoaching_title"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/registration_coaching_title"
+              style="@style/boldBlackText"/>
+
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:id="@+id/rl_desc"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="5dp"
+          android:padding="10dp"
+          android:background="@android:color/white"
+          android:layout_below="@+id/rl_title">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/registration_coaching_desc"
+
+              style="@style/regBlackText"/>
+      </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_coachingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:layout_below="@+id/rl_desc">
+
+      <LinearLayout
+          android:id="@+id/ll_classic"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/white"
+          android:layout_marginBottom="10dp">
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+
+
+          <CheckBox
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:button="@drawable/roundcheckbox_selector"
+              android:id="@+id/cbClassic"
+              android:paddingLeft="5dp"
+              android:onClick="setCheckBoxValue"/>
+
+
+
+              <TextView
+                  android:id="@+id/tv_Classic_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_classic"
+                  style="@style/boldBlackText"
+                  android:layout_toRightOf="@id/cbClassic"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/coaching_classic_desc"
+              android:layout_below="@id/tv_Classic_title"
+              android:layout_toRightOf="@id/cbClassic"/>
+
+      </RelativeLayout>
+      </LinearLayout>
+      <LinearLayout
+          android:id="@+id/ll_difficult"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/white"
+          android:layout_below="@id/ll_classic"
+          android:layout_marginBottom="10dp">
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+              <CheckBox
+                  android:button="@drawable/roundcheckbox_selector"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/cbDifficult"
+                  android:paddingLeft="5dp"
+                  android:onClick="setCheckBoxValue"/>
+
+
+              <TextView
+                  android:id="@+id/tv_Difficult_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_difficult"
+                  style="@style/boldBlackText"
+                  android:layout_toRightOf="@id/cbDifficult"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_difficult_desc"
+
+                  android:layout_below="@id/tv_Difficult_title"
+                  android:layout_toRightOf="@id/cbDifficult"/>
+
+          </RelativeLayout>
+      </LinearLayout>
+      <LinearLayout
+          android:id="@+id/ll_debordee"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/white"
+          android:layout_below="@id/ll_difficult"
+          android:layout_marginBottom="10dp">
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+              <CheckBox
+                  android:button="@drawable/roundcheckbox_selector"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/cbDebordee"
+                  android:paddingLeft="5dp"
+                  android:onClick="setCheckBoxValue"/>
+
+
+              <TextView
+                  android:id="@+id/tv_Debordee_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_deborde"
+                  style="@style/boldBlackText"
+                  android:layout_toRightOf="@id/cbDebordee"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_deborde_desc"
+                  android:layout_below="@id/tv_Debordee_title"
+                  android:layout_toRightOf="@id/cbDebordee"/>
+
+          </RelativeLayout>
+      </LinearLayout>
+      <LinearLayout
+          android:id="@+id/ll_mobilite"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/white"
+          android:layout_below="@+id/ll_debordee"
+          android:layout_marginBottom="10dp">
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+              <CheckBox
+                  android:button="@drawable/roundcheckbox_selector"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/cbMobilite"
+                  android:paddingLeft="5dp"
+                  android:onClick="setCheckBoxValue"/>
+
+
+              <TextView
+                  android:id="@+id/tv_Mobilite_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_mobilite"
+                  style="@style/boldBlackText"
+                  android:layout_toRightOf="@id/cbMobilite"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_mobilite_desc"
+                  android:layout_below="@id/tv_Mobilite_title"
+                  android:layout_toRightOf="@id/cbMobilite"/>
+
+          </RelativeLayout>
+      </LinearLayout>
+      <LinearLayout
+          android:id="@+id/ll_menopause"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/white"
+          android:layout_below="@+id/ll_mobilite"
+          android:layout_marginBottom="10dp">
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+              <CheckBox
+                  android:button="@drawable/roundcheckbox_selector"
+
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/cbMenopause"
+                  android:paddingLeft="5dp"
+                  android:onClick="setCheckBoxValue"/>
+
+
+              <TextView
+                  android:id="@+id/tv_Menopause_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_menopause"
+                  style="@style/boldBlackText"
+                  android:layout_toRightOf="@id/cbMenopause"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_menopause_desc"
+                  android:layout_below="@id/tv_Menopause_title"
+                  android:layout_toRightOf="@id/cbMenopause"/>
+
+          </RelativeLayout>
+      </LinearLayout>
+      <LinearLayout
+          android:id="@+id/ll_medication"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@android:color/white"
+          android:layout_below="@+id/ll_menopause"
+          android:layout_marginBottom="10dp">
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+              <CheckBox
+                  android:button="@drawable/roundcheckbox_selector"
+                  android:text=""
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/cbMedication"
+                  android:paddingLeft="5dp"
+                  android:onClick="setCheckBoxValue"/>
+
+
+              <TextView
+                  android:id="@+id/tv_Medication_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_medication"
+                  style="@style/boldBlackText"
+                  android:layout_toRightOf="@id/cbMedication"
+                  android:onClick="setCheckBoxValue"
+                  android:clickable="true"/>
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/coaching_medication_desc"
+                  android:layout_below="@id/tv_Medication_title"
+                  android:layout_toRightOf="@id/cbMedication"/>
+
+          </RelativeLayout>
+      </LinearLayout>
+
+      </RelativeLayout>
+      <LinearLayout
+          android:id="@+id/progress"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:orientation="vertical"
+          android:visibility="gone">
+
+          <ProgressBar
+              android:id="@+id/progressBar"
+              android:layout_width="20dp"
+              android:layout_height="20dp"
+              android:layout_gravity="center_horizontal"
+              android:indeterminateDrawable="@drawable/animateprogress"
+              android:visibility="visible" />
+      </LinearLayout>
+      <LinearLayout
+          android:orientation  ="horizontal"
+          android:layout_width ="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginBottom="20dp">
+      <Button
+          android:id="@+id/save_btn"
+          android:layout_width="150dp"
+          android:layout_height="30dp"
+          android:background="@drawable/button_orange_bilanminceur"
+          android:clickable="true"
+          style="@style/whiteNormalMedium"
+          android:text="@string/registration_continue"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@+id/rl_coachingContainer"
+          android:layout_alignParentBottom="true"
+          android:onClick="validateForm"
+          />
+      </LinearLayout>
+  </RelativeLayout>
+
+</LinearLayout>

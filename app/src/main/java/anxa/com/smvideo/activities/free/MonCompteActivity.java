@@ -3,7 +3,6 @@ package anxa.com.smvideo.activities.free;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import anxa.com.smvideo.R;
-import anxa.com.smvideo.activities.RegistrationActivity;
-import anxa.com.smvideo.connection.ApiCaller;
-import anxa.com.smvideo.connection.http.AsyncResponse;
-import anxa.com.smvideo.contracts.VideoResponseContract;
+import anxa.com.smvideo.activities.registration.RegistrationActivity;
 
 /**
  * Created by josephollero on 6/2/2017.

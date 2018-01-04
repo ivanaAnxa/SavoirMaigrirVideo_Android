@@ -42,7 +42,11 @@ public class SavoirMaigrirVideoApiClient {
         System.out.println("json: " + json);
         client.executeOnExecutor(executor, json);
     }
-
+    public  <T extends BaseContract> void PostAsync(AsyncResponse asyncResponse, String apiName, MasterCommand command, String json, Hashtable params, Class<T> classType, Executor executor) {
+        AnxacoachingPostAsync client = new AnxacoachingPostAsync(asyncResponse, FormatUri(apiName, "post", command, params), classType);
+        System.out.println("json: " + json);
+        client.executeOnExecutor(executor, json);
+    }
     public String FormatUri(String apiName, String httpMethod,  MasterCommand command)  {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("http").encodedAuthority(WebkitURL.domainURL.replace("http://", ""));

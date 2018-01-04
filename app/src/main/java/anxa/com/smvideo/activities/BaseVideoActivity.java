@@ -33,7 +33,7 @@ public class BaseVideoActivity extends Activity{
             ApplicationData.getInstance().setAnxamatsSessionStart(this, System.currentTimeMillis());
         }
         if (!this.getClass().getSimpleName().equalsIgnoreCase("LoginActivity") && !this.getClass().getSimpleName().equalsIgnoreCase("RegistrationActivity") && !this.getClass().getSimpleName().equalsIgnoreCase("SplashActivity")
-                && !this.getClass().getSimpleName().equalsIgnoreCase("FullBrowserActivity") && !this.getClass().getSimpleName().equalsIgnoreCase("LandingActivity") && !this.getClass().getSimpleName().equalsIgnoreCase("NpnaActivity")) {
+                && !this.getClass().getSimpleName().equalsIgnoreCase("FullBrowserActivity") && !this.getClass().getSimpleName().equalsIgnoreCase("NpnaActivity")) {
             long sessionTimeMilliseconds = System.currentTimeMillis() - ApplicationData.getInstance().getSessionTime();
             if(sessionTimeMilliseconds > ApplicationData.getInstance().maximSessionTime)
             {

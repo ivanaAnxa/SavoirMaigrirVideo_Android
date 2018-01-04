@@ -25,7 +25,7 @@ import java.util.List;
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
 import anxa.com.smvideo.activities.LoginActivity;
-import anxa.com.smvideo.activities.RegistrationActivity;
+import anxa.com.smvideo.activities.registration.RegistrationActivity;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;

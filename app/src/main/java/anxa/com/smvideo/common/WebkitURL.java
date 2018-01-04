@@ -17,7 +17,7 @@ public class WebkitURL {
     public static String registrationDoneURL = "/1dirparjour/";
     public static String loginURL = "/3actparjour/login";
     public static String offerURL = "/1dirparjour/registration/offer";
-    public static String forgetPw = "/iphone/compte/rappelmdp.asp?ver=2&webkit=yes";
+    public static String forgetPw = "/3actparjour/forgot-password";
 
     public static String conditionsURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/cgv";
     public static String privacyURL = "/3actparjour/login?u=%d&p=%password&redirect=/1dirparjour/aide/privacy";

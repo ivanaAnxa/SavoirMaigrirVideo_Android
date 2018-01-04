@@ -7,16 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.Image;
-import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,12 +32,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.google.android.youtube.player.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +43,7 @@ import java.util.List;
 
 import anxa.com.smvideo.ApplicationData;
 import anxa.com.smvideo.R;
-import anxa.com.smvideo.activities.RegistrationActivity;
+import anxa.com.smvideo.activities.registration.RegistrationActivity;
 import anxa.com.smvideo.common.SavoirMaigrirVideoConstants;
 import anxa.com.smvideo.connection.ApiCaller;
 import anxa.com.smvideo.connection.http.AsyncResponse;
@@ -60,9 +54,7 @@ import anxa.com.smvideo.contracts.BMResultsResponseContract;
 import anxa.com.smvideo.contracts.BMVideoResponseContract;
 import anxa.com.smvideo.contracts.QuestionsContract;
 import anxa.com.smvideo.contracts.ResultsResponseDataContract;
-import anxa.com.smvideo.contracts.VideoContract;
 import anxa.com.smvideo.util.AppUtil;
-import anxa.com.smvideo.util.BilanMinceurUtil;
 import anxa.com.smvideo.util.InputValidatorUtil;
 
 /**

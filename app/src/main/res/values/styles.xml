@@ -207,4 +207,25 @@
     </style>
 
 
+    <style name="orangeHeaderText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_orangedark</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="boldBlackText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_blackgray</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="regBlackText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_blackgray</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="grayText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#cacaca</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

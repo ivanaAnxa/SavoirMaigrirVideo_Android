@@ -98,7 +98,22 @@
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/common_gray_separator" />
+    <LinearLayout
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateDrawable="@drawable/animateprogress"
+            android:visibility="visible" />
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -114,7 +129,8 @@
             android:background="@drawable/button_orange_bilanminceur"
             android:clickable="true"
             android:text="@string/bilan_results_continue"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:onClick="validateRegistrationForm"/>
 
         <TextView
             android:text="@string/login_login_account_button"

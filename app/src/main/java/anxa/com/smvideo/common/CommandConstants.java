@@ -35,4 +35,9 @@ public class CommandConstants {
     public static String ACCOUNT_POST_WEIGHT = "weight/add";
     public static String ACCOUNT_EDIT_WEIGHT = "weight/edit";
     public static String ACCOUNT_EDIT_PROFILE = "updateBasicInfo";
+    public static String COMMAND_GOOGLE_ORDER = "order";
+    public static String COMMAND_GOOGLE_ORDER_CONFIRM = "confirmation";
+    public static String COMMAND_GOOGLE_ORDER_UPDATE= "google-update";
+    public static String COMMAND_REGISTRATION= "register";
+    public static String COMMAND_REGISTRATIONUPDATE= "registerUpdate";
 }

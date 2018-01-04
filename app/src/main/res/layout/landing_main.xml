@@ -7,14 +7,9 @@
     <Button
         android:id="@+id/login_button"
         android:layout_width="110dp"
-        android:layout_height="28dp"
-        android:background="@drawable/button_light_border_roundedcorners"
-        android:layout_alignParentRight="true"
+        android:layout_height="30dp"
         android:layout_margin="20dp"
-        android:text="@string/login_login_button"
-        style="@style/darkGrayNormalMedium"
-        android:clickable="true"
-        android:onClick="goToLoginPage"/>
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/login_iv"
@@ -34,18 +29,23 @@
         style="@style/darkGrayNormalXLarge"
         android:text="@string/login_programme"/>
 
+
+
+
     <Button
         android:id="@+id/registration_button"
-        android:layout_width="240dp"
+        android:layout_width="260dp"
         android:layout_height="45dp"
         android:background="@drawable/button_no_border_white"
-        android:layout_marginTop="60dp"
         android:text="@string/login_registration_button"
         style="@style/loginRegistrationButton"
-        android:layout_below="@+id/login_subtitle"
         android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:onClick="goToRegisrationPage" />
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/login_subtitle"
+        android:layout_marginTop="160dp"
+        android:onClick="goToRegisrationPage"/>
+
+
 
     <TextView
         android:text="@string/login_login_account_button"
@@ -60,15 +60,18 @@
         android:onClick="goToLoginPage"/>
 
     <TextView
-        android:id="@+id/login_free_tv"
-        style="@style/whiteNormalMedium"
+        android:text="@string/login_free_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+
         android:layout_marginBottom="30dp"
+        style="@style/whiteNormalMedium"
+        android:id="@+id/login_back_to_landing_tv"
+        android:layout_alignParentBottom="true"
         android:clickable="true"
-        android:onClick="goToFreePart"
-        android:text="@string/login_free_button" />
+        android:onClick="goToFreePart"/>
+
+
 
 </RelativeLayout>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/registrationform2_headermenu"
+        layout="@layout/header_menu"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/common_gray_separator" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_background"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registration_objective"
+            style="@style/boldBlackText"/>
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_firstName"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/white"
+            android:padding="5dp"
+            tools:style="@style/RepasContent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/grayText"
+                android:text="@string/registration_fn"/>
+            <EditText
+                android:id="@+id/et_firstName"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical|right"
+                android:inputType="textCapWords|text"
+                android:maxLength="50"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#cacaca" />
+        </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/common_gray_separator" />
+
+        <RelativeLayout
+            android:id="@+id/rl_lastName"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/white"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/grayText"
+                android:text="@string/registration_ln"/>
+            <EditText
+                android:id="@+id/et_lastName"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical|right"
+                android:inputType="textCapWords|text"
+                android:maxLength="50"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#cacaca" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/common_gray_separator" />
+
+        <RelativeLayout
+            android:id="@+id/rl_initialWeight"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/white"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/grayText"
+                android:text="@string/registration_initialWeight"/>
+            <EditText
+                android:id="@+id/et_initialWeight"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical|right"
+                android:inputType="numberDecimal"
+                android:maxLength="50"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#cacaca"
+                />
+        </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/common_gray_separator" />
+    <RelativeLayout
+        android:id="@+id/rl_targetWeight"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/registration_targetWeight"/>
+        <EditText
+            android:id="@+id/et_targetWeight"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|right"
+            android:inputType="numberDecimal"
+            android:maxLength="50"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#cacaca"
+            />
+    </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/common_gray_separator" />
+    <RelativeLayout
+        android:id="@+id/rl_height"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/registration_height"/>
+        <EditText
+            android:id="@+id/et_height"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|right"
+            android:inputType="numberDecimal"
+            android:maxLength="50"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#cacaca"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/common_gray_separator" />
+
+    <RelativeLayout
+        android:id="@+id/rl_sexe"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/mon_compte_sexe"/>
+        <EditText
+            android:id="@+id/et_sexe"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|right"
+            android:inputType="none"
+            android:maxLength="50"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#cacaca"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/common_gray_separator" />
+    <RelativeLayout
+        android:id="@+id/rl_bday"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/grayText"
+            android:text="@string/registration_birthday"/>
+        <EditText
+            android:id="@+id/et_bday"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|right"
+            android:inputType="none"
+            android:maxLength="50"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="#cacaca"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateDrawable="@drawable/animateprogress"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_orange_bilanminceur"
+        android:clickable="true"
+        style="@style/whiteNormalMedium"
+        android:text="@string/registration_continue"
+        android:layout_gravity="center_horizontal|bottom"/>
+
+
+
+</LinearLayout>
